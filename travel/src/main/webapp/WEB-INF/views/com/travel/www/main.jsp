@@ -10,6 +10,9 @@
 <title>Document</title>
 <script src="js/j-query-3.4.1.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>Document</title>
 
 <style>
@@ -188,6 +191,11 @@ $(function() {
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Travel</a>
+	<ul>
+		<li><a>로그인</a></li>
+		<li><a>회원가입</a></li>
+	</ul>
 </nav>
 <div class="jumbotron">
 	<div class="container">
