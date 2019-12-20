@@ -198,7 +198,7 @@
     	<div class="loginModal"></div>
     	<div class="loginModalBox">
         	<iframe src="http://localhost/member/login.kit" class="modalFrame"></iframe>
-    	</div>
+    	</div> 
     </c:if>
     <!-- modal e -->
 
