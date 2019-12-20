@@ -1,173 +1,210 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>schedule</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
-    <!-- <script src='main.js'></script> -->
-    <style>
-        /* all s */
-        *{
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            border: none;
-            outline: none;
-            color: #8EC0E4;
-        }
-        /* all e */
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<title>schedule</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
+<!-- <script src='main.js'></script> -->
+<style>
+/* all s */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: none;
+	outline: none;
+	color: #8EC0E4;
+}
+/* all e */
 
-        /* body s */
-        .mainBody{
-            background-color: #6AAFE6;
-        }
-        /* body e */
+/* body s */
+.mainBody {
+	background-color: #6AAFE6;
+}
+/* body e */
 
-        /* main s */
-        .mainBox{
-            width: 100%;
-            height: 100vh;
-        }
-        /* main e */
+/* main s */
+.mainBox {
+	width: 100%;
+	height: 100vh;
+}
+/* main e */
 
-        /* schedule s */
-        .scheduleBox{
-            width: 85%;
-            height: 100%;
-            float: left;
-        }
-        .schedule{
-            width: 50%;
-            min-height: 50%;
-            height: auto;
-            margin: 0 auto;
-            background-color: #CADBE9;
-            margin-top: 2.5%;
-            margin-bottom: 2.5%;
-            padding-bottom: 2.5%;
-            border-radius: 16px;
-        }
-        .toDay{
-            font-weight: bold;
-            user-select: none;
-            text-align: center;
-            font-size: 2rem;
-        }
-        .elCls{
-            display: block;
-            min-width: 90%;
-            max-width: 90%;
-            min-height: 5vh;
-            height: auto;
-            margin: 0 auto;
-            margin-top: 2.5%;
-            margin-bottom: 2.5%;
-            border-radius: 16px;
-            padding: 8px;
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-        /* schedule e */
+/* schedule s */
+.scheduleBox {
+	width: 85%;
+	height: 100%;
+	float: left;
+}
 
-        /* sidebar s */
-        .sidebarBox{
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 15%;
-            height: 100%;
-            background-color: #D4DFE6;
-        }
-        .sidebar img{
-            display: block;
-            width: 100px;
-            height: 100px;
-            margin: 5% auto;
-        }
-        .sidebar li {
-            display: block;
-        }
-        .saveBtn{
-            display: block;
-            width: 80%;
-            height: 80px;
-            margin: 0 auto;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border-radius: 16px;
-        }
-        /* sidebar e */
+.schedule {
+	width: 50%;
+	min-height: 50%;
+	height: auto;
+	margin: 0 auto;
+	background-color: #CADBE9;
+	margin-top: 2.5%;
+	margin-bottom: 2.5%;
+	padding-bottom: 2.5%;
+	border-radius: 16px;
+}
 
-        /* del s */
-        .del{
-            display: none;
-        }
-        /* del e */
-    </style>
+.toDay {
+	font-weight: bold;
+	user-select: none;
+	text-align: center;
+	font-size: 2rem;
+}
+
+.elCls {
+	display: block;
+	min-width: 90%;
+	max-width: 90%;
+	min-height: 5vh;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 2.5%;
+	margin-bottom: 2.5%;
+	border-radius: 16px;
+	padding: 8px;
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+/* schedule e */
+
+/* sidebar s */
+.sidebarBox {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 15%;
+	height: 100%;
+	background-color: #D4DFE6;
+}
+
+.sidebar img {
+	display: block;
+	width: 100px;
+	height: 100px;
+	margin: 5% auto;
+}
+
+.sidebar li {
+	display: block;
+}
+
+.saveBtn {
+	display: block;
+	width: 80%;
+	height: 80px;
+	margin: 0 auto;
+	font-size: 1.5rem;
+	font-weight: bold;
+	border-radius: 16px;
+}
+/* sidebar e */
+
+/* del s */
+.del {
+	display: none;
+}
+/* del e */
+
+/* modal s */
+.loginModal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 100%;
+	height: 100vh;
+	background-color: black;
+	opacity: 0.4;
+}
+
+.loginModalBox {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+}
+
+.modalFrame {
+	display: block;
+	flex-basis: 800px;
+	height: 800px;
+	margin: auto;
+}
+/* modal e */
+</style>
 </head>
 <body class="mainBody">
-    <!-- main s -->
-    <div class="mainBox" dropzone="true">
-        <!-- schedule s -->
-        <ul class="scheduleBox">
-            <li class="schedule">
-                <div class="toDay">Day 1</div>
-            </li>
-            <li class="schedule">
-                <div class="toDay">Day 2</div>
-            </li>
-            <li class="schedule">
-                <div class="toDay">Day 3</div>
-            </li>
-        </ul>
-        <!-- schedule e -->
+	<!-- main s -->
+	<div class="mainBox" dropzone="true">
+		<!-- schedule s -->
+		<ul class="scheduleBox">
+			<li class="schedule">
+				<div class="toDay">Day 1</div>
+			</li>
+			<li class="schedule">
+				<div class="toDay">Day 2</div>
+			</li>
+			<li class="schedule">
+				<div class="toDay">Day 3</div>
+			</li>
+		</ul>
+		<!-- schedule e -->
 
-        <!-- sidebar s -->
-        <div class="sidebarBox">
-            <!-- side s -->
-            <ul class="sidebar">
-                <li>
-                    <img src="/img/schedule/hotel.jpg" alt="hotel" class="side">
-                </li>
-                <li>
-                    <img src="/img/schedule/restaurant.jpg" alt="restaurant" class="side">
-                </li>
-                <li>
-                    <img src="/img/schedule/taxi.jpg" alt="taxi" class="side">
-                </li>
-                <li>
-                    <img src="/img/schedule/text.jpg" alt="text" class="side">
-                </li>
-                <li>
-                    <img src="" alt="">
-                </li>
-            </ul>
-            <!-- side e -->
+		<!-- sidebar s -->
+		<div class="sidebarBox">
+			<!-- side s -->
+			<ul class="sidebar">
+				<li><img src="/img/schedule/hotel.jpg" alt="hotel" class="side">
+				</li>
+				<li><img src="/img/schedule/restaurant.jpg" alt="restaurant"
+					class="side"></li>
+				<li><img src="/img/schedule/taxi.jpg" alt="taxi" class="side">
+				</li>
+				<li><img src="/img/schedule/text.jpg" alt="text" class="side">
+				</li>
+				<li><img src="" alt=""></li>
+			</ul>
+			<!-- side e -->
 
-            <!-- menu s -->
-            <ul class="menu">
-                <li>
-                    <input type="button" class="saveBtn" value="저장하기">
-                </li>
-            </ul>
-            <!-- menu e -->
-        </div>
-        <!-- sidebar e -->
-    </div>
-    <!-- main e -->
+			<!-- menu s -->
+			<ul class="menu">
+				<li><input type="button" class="saveBtn" value="저장하기">
+				</li>
+			</ul>
+			<!-- menu e -->
+		</div>
+		<!-- sidebar e -->
+	</div>
+	<!-- main e -->
 
-    <!-- del s -->
-    <div class="del"></div>
-    <!-- del e -->
+	<!-- del s -->
+	<div class="del"></div>
+	<!-- del e -->
 
-    <!-- mainScript s -->
-    <script>
+	<!-- modal s -->
+	<c:if test="${empty SID}">
+		<div class="loginModal"></div>
+		<div class="loginModalBox">
+			<iframe src="http://localhost/member/login.kit" class="modalFrame"></iframe>
+		</div>
+	</c:if>
+	<!-- modal e -->
+
+	<!-- mainScript s -->
+	<script>
         document.addEventListener('DOMContentLoaded', () => {
             // all s
             localStorage.removeItem('cnt');
@@ -205,7 +242,8 @@
 
             // event s
             evt(sidebar, 'dragstart', dragstart_);
-            evt(saveBtn, 'click', saveEvt);
+            // evt(saveBtn, 'click', saveEvt);
+            evt(saveBtn, 'click', saveClick);
             evt(mainBox, 'dragover', dragover_);
             evt(mainBox, 'drop', drop_box);
             // event e
@@ -282,9 +320,18 @@
                     del.removeChild(el);
                 }
             }
+            function saveClick(e){
+                e.preventDefault();
+
+				if(id('.loginModal') != undefined) {
+					id('.loginModal').style.display = 'block';
+	                id('.loginModalBox').style.display = 'flex';
+	                id('.mainBody').style.overflow = 'hidden';
+				}
+            }
             // function e
         });
     </script>
-    <!-- mainScript e -->
+	<!-- mainScript e -->
 </body>
 </html>

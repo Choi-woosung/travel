@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/www/css/w3.css" >
-<script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script>
+<link rel="stylesheet" href="/css/w3.css" >
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#find_btn').click(function(){
@@ -25,16 +25,26 @@
 
 
 <c:if test="${empty SID}">
+<<<<<<< HEAD
 <form method="POST" action="/loginProc.kit">
+=======
+<form method="POST" action="/member/loginProc.kit">
+>>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 	<div class="w3-col m12 w3-center w3-margin-top">
 		<h1 class="w3-col w3-center" >L O G I N</h1>
 	</div>
 		
 	<div class="w3-col m12 w3-center">
 	
+<<<<<<< HEAD
 	<div><input type="text" id="id" placeholder="아이디" maxlength="10"></div>
 	<div><input type="password" id="pw" placeholder="비밀번호" maxlength="8"></div>
 	
+=======
+	<div><input type="text" name="mId" id="id" placeholder="아이디를 입력하세요" maxlength="10"></div>
+	<div><input type="password" name="mPw" id="pw" placeholder="비밀번호를 입력하세요" maxlength="8"></div>
+
+>>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 	<div class="w3-padding">
 		<input class="w3-margin" type="submit" id="btn" value="확인">
 		<input class="w3-margin" type="button" id="home" value="취소">
@@ -59,6 +69,9 @@
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 </body>
 </html>

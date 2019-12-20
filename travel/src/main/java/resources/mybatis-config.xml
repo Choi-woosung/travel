@@ -21,9 +21,10 @@
 	</typeAliases> 
 	
 	
-<!-- 	<mappers>
-		<mapper resource="com/simple/www/sql/MemberSQL.xml"/>
-	</mappers> -->
+ 	<mappers>
+		<mapper resource="com/travel/www/sql/MemberSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleSQL.xml"/>
+	</mappers>
 	
 	
 </configuration>

@@ -10,6 +10,7 @@
  
  
  	<beans:bean id="mDAO" class="com.travel.www.dao.MemberDAO" />
+ 	<beans:bean id="sDAO" class="com.travel.www.dao.ScheduleDAO" />
 
 	
 </beans:beans>
