@@ -8,5 +8,9 @@
 
 <mapper namespace="mSQL"> 
 
+	<select id="Login" resultType="int" parameterType="mVO">
+		
+	</select>
+	
 	
 </mapper>
