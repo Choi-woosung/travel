@@ -70,26 +70,13 @@
 					<th>예상금액</th>
 				</tr>
 			</thead>
-			<tr class="simpleInfo">
-				<td>1</td>
-				<td>경주여행</td>
-				<td>400,000원</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>강릉여행</td>
-				<td>650,000원</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>전주여행</td>
-				<td>550,000원</td>
-			</tr>
-			<tr>
-				<td>4</td>
-				<td>경주여행</td>
-				<td>700,000원</td>
-			</tr>
+<%-- 			<c:forEach var="data" items="${LIST}"> --%>
+<!-- 			<tr class="simpleInfo"> -->
+<%-- 				<td>${data.sNo}</td> --%>
+<%-- 				<td>${data.sName}</td> --%>
+<!-- 				<td>400,000원</td> -->
+<!-- 			</tr> -->
+<%-- 			</c:forEach> --%>
 		</table>
 		<div class="w3-center">
 			<div class="w3-bar w3-round w3-margin-top" style="background-color: #203767;">

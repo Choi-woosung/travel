@@ -8,5 +8,13 @@
 
 <mapper namespace="mSQL"> 
 
+	<select id="login" resultType="int" parameterType="mVO">
+		SELECT
+			count(*) cnt
+		FROM
+			member
+		WHERE
+			m_id = #{mId}
+	</select>
 	
 </mapper>

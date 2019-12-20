@@ -3,9 +3,7 @@ package com.travel.www.vo;
 
  
 	import java.sql.*;
-	import java.text.*;
 
-import org.springframework.web.multipart.MultipartFile;
 	
 public class MemberVO {
 	private int mNo;
@@ -15,12 +13,20 @@ public class MemberVO {
 	private String mName;
 	private String mAddress;
 	private int mMobile;
-	private String mID;
+	private String mId;
 	private Date mJdate;
 	private Date mOdate;
 	private String mGrade;
 	private int mAvatar;
 	private int mPoint;
+	private int cnt;
+	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getmNo() {
 		return mNo;
 	}
@@ -63,11 +69,11 @@ public class MemberVO {
 	public void setmMobile(int mMobile) {
 		this.mMobile = mMobile;
 	}
-	public String getmID() {
-		return mID;
+	public String getmId() {
+		return mId;
 	}
-	public void setmID(String mID) {
-		this.mID = mID;
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 	public Date getmJdate() {
 		return mJdate;

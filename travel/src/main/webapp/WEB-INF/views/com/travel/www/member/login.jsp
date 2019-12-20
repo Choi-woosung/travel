@@ -24,15 +24,15 @@
 
 
 <c:if test="${empty SID}">
-<form method="POST" action="/www/project/main.kit">
+<form method="POST" action="/member/loginProc.kit">
 	<div class="w3-col m12 w3-center w3-margin-top">
 		<h1 class="w3-col w3-center" >L O G I N</h1>
 	</div>
 		
 	<div class="w3-col m12 w3-center">
 	
-	<div><input type="text" id="id" placeholder="아이디를 입력하세요" maxlength="10"></div>
-	<div><input type="password" id="pw" placeholder="비밀번호를 입력하세요" maxlength="8"></div>
+	<div><input type="text" name="mId" id="id" placeholder="아이디를 입력하세요" maxlength="10"></div>
+	<div><input type="password" name="mPw" id="pw" placeholder="비밀번호를 입력하세요" maxlength="8"></div>
 
 	<div class="w3-padding">
 		<input class="w3-margin" type="submit" id="btn" value="확인">
@@ -59,6 +59,5 @@
 
 
 
-</form>
 </body>
 </html>
