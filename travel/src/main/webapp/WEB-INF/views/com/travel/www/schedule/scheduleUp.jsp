@@ -109,6 +109,33 @@
             display: none;
         }
         /* del e */
+
+        /* modal s */
+        .loginModal{
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            width: 100%;
+            height: 100vh;
+            background-color: black;
+            opacity: 0.4;
+        }
+        .loginModalBox{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+        }
+        .modalFrame{
+            display: block;
+            flex-basis: 800px;
+            height: 800px;
+            margin: auto;
+        }
+        /* modal e */
     </style>
 </head>
 <body class="mainBody">
@@ -166,6 +193,15 @@
     <div class="del"></div>
     <!-- del e -->
 
+    <!-- modal s -->
+    <c:if test="${empty SID}">
+    	<div class="loginModal"></div>
+    	<div class="loginModalBox">
+        	<iframe src="http://localhost/member/login.kit" class="modalFrame"></iframe>
+    	</div>
+    </c:if>
+    <!-- modal e -->
+
     <!-- mainScript s -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -205,7 +241,8 @@
 
             // event s
             evt(sidebar, 'dragstart', dragstart_);
-            evt(saveBtn, 'click', saveEvt);
+            // evt(saveBtn, 'click', saveEvt);
+            evt(saveBtn, 'click', saveClick);
             evt(mainBox, 'dragover', dragover_);
             evt(mainBox, 'drop', drop_box);
             // event e
@@ -281,6 +318,15 @@
                     del.appendChild(el);
                     del.removeChild(el);
                 }
+            }
+            function saveClick(e){
+                e.preventDefault();
+
+				if(id('.loginModal') != undefined) {
+					id('.loginModal').style.display = 'block';
+	                id('.loginModalBox').style.display = 'flex';
+	                id('.mainBody').style.overflow = 'hidden';
+				}
             }
             // function e
         });
