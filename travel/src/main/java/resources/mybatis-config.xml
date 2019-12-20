@@ -13,11 +13,11 @@
 	
  
 	 <typeAliases>
-		<typeAlias alias="mVO" type="com.trip.www.vo.MemberVO"/>
-		<typeAlias alias="sVO" type="com.trip.www.vo.ScheduleVO"/>
-		<typeAlias alias="saVO" type="com.trip.www.vo.ScheduleAnswerVO"/>
-		<typeAlias alias="sdeVO" type="com.trip.www.vo.ScheduleDetailVO"/>
-		<typeAlias alias="sdiVO" type="com.trip.www.vo.ScheduleDiningVO"/>
+		<typeAlias alias="mVO" type="com.travel.www.vo.MemberVO"/>
+		<typeAlias alias="sVO" type="com.travel.www.vo.ScheduleVO"/>
+		<typeAlias alias="saVO" type="com.travel.www.vo.ScheduleAnswerVO"/>
+		<typeAlias alias="sdeVO" type="com.travel.www.vo.ScheduleDetailVO"/>
+		<typeAlias alias="sdiVO" type="com.travel.www.vo.ScheduleDiningVO"/>
 	</typeAliases> 
 	
 	
