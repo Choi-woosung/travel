@@ -2,6 +2,8 @@ package com.travel.www.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +20,13 @@ public class Schedule {
 	ScheduleDAO sDAO;
 	
 	@RequestMapping("/scheduleList.kit")
-	public ModelAndView scheduleListForm(ModelAndView mv, String mId) {
+	public ModelAndView scheduleListForm(ModelAndView mv, HttpSession session) {
 		mv.setViewName("/schedule/scheduleList");
-//		List<ScheduleVO> list = sDAO.scheduleList(mId);
 		
-//		mv.addObject("LIST", list);
+		String sid = (String) session.getAttribute("SID");
+		List<ScheduleVO> list = sDAO.scheduleList(sid);
+		
+		mv.addObject("LIST", list);
 		
 		return mv;
 	}
