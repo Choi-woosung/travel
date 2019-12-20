@@ -200,7 +200,7 @@ $(function() {
   <a class="navbar-brand" href="#">TRAVEL</a>
 <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="#">로그인 </a>
       </li>
       <li class="nav-item">
@@ -244,8 +244,8 @@ $(function() {
                    	<button class="right total"></button>
 				</div>
 			</div>
-			<button class="btn btn-default" id="make" type="button">스케쥴 만들기</button>
-			<button type="submit" class="btn btn-default mainSubmit">검색</button>
+			<button class="btn btn-info" id="make" type="button">스케쥴 만들기</button>
+			<button type="submit" class="btn btn-info">검색</button>
 			</form>
 		</div>
 	</div>	
