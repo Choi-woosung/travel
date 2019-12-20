@@ -39,7 +39,7 @@
 					<h5 class=""><input type="text" id="mail" name="mail"></h5>
 				</div>
 				<div class="">
-					<h5 class="">전화번호 :</h5>
+					<h5 class="">전화번호 :</h5> 
 					<h5 class="" ><input type="text" class="" id="tel" name="tel"></h5>
 				</div>
 				<div class="">
