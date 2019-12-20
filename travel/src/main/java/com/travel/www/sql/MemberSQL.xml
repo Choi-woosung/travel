@@ -8,12 +8,10 @@
 
 <mapper namespace="mSQL"> 
 
-<<<<<<< HEAD
 	<select id="Login" resultType="int" parameterType="mVO">
 		
 	</select>
 	
-=======
 	<select id="login" resultType="int" parameterType="mVO">
 		SELECT
 			count(*) cnt
@@ -22,6 +20,5 @@
 		WHERE
 			m_id = #{mId}
 	</select>
->>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 	
 </mapper>

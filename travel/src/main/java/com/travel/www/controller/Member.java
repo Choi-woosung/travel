@@ -9,22 +9,16 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.travel.www.dao.MemberDAO;
-<<<<<<< HEAD
 import com.travel.www.vo.JoinVO;
-=======
 import com.travel.www.vo.MemberVO;
->>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 
 @Controller
 @RequestMapping("/member/")
 public class Member {
 	@Autowired
 	MemberDAO mDAO;
-<<<<<<< HEAD
 	
-=======
 
->>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 	@RequestMapping("login.kit")
 	public ModelAndView loginForm(ModelAndView mv) {
 		
@@ -34,7 +28,6 @@ public class Member {
 	}
 	
 	@RequestMapping("loginProc.kit")
-<<<<<<< HEAD
 	public ModelAndView loginProc(HttpSession session, ModelAndView mv, RedirectView rv, JoinVO vo) {
 		int cnt = mDAO.loginProc(vo);
 		if(cnt != 1) {
@@ -45,8 +38,11 @@ public class Member {
 			session.setAttribute("SID", vo.getjId());
 			rv.setUrl("/member/main.kit");
 		}
+		mv.setView(rv);
 		
-=======
+		return mv;
+	}
+	
 	public ModelAndView loginProc(HttpSession session ,ModelAndView mv, RedirectView rv, MemberVO mVO) {
 		int cnt = mDAO.login(mVO);
 		
@@ -57,7 +53,6 @@ public class Member {
 		} else {
 			rv.setUrl("/member/login.kit");
 		}
->>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 		mv.setView(rv);
 		return mv;
 	}
@@ -82,14 +77,10 @@ public class Member {
 		return mv;
 	}
 	
-<<<<<<< HEAD
-
-=======
 	@RequestMapping("memberEdit.kit")
 	public ModelAndView memEditForm(ModelAndView mv) {
 		mv.setViewName("member/memberEdit");
 		
 		return mv;
 	}
->>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 }
