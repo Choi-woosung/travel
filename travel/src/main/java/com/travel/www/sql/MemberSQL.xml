@@ -8,6 +8,10 @@
 
 <mapper namespace="mSQL"> 
 
+	<select id="Login" resultType="int" parameterType="mVO">
+		
+	</select>
+	
 	<select id="login" resultType="int" parameterType="mVO">
 		SELECT
 			count(*) cnt

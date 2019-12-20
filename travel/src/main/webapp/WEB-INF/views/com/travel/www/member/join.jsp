@@ -10,11 +10,13 @@
 <script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script>
 </head>
 <body>
-<div class="container">
+<div class="w3-center">
 
  <h3 class="panel-title">Please Sign In</h3>
 				
-<form method="POST" action="/project/realmain.kit" enctype="multipart/form-data"><!-- enctype = 파일 업로드 -->
+<form method="POST" action="/member/main.kit" enctype="multipart/form-data"><!-- enctype = 파일 업로드 -->
+	
+
 	<div class="form-group w3-margin">
 		<label for="userId">아이디</label>
 		<input type="text" id="userId" name="p_userid" placeholder="아이디" maxlength="8">
@@ -36,21 +38,14 @@
 		<input type="email" id="email" name="p_email" placeholder="이메일" maxlength="25">
 	</div>
 	
-	<div class="form-group w3-margin">
-		<label for="gen">성별</label>
-		<input type="text" id="gen" name="p_gen" placeholder="성별" maxlength="2">
-	</div>
-	
-	<div class="w3-margin">
-		<label for="gumin">주민번호</label>
-		<input type="text" id="gumin" name="p_gumin" placeholder="주민번호" maxlength="14">
-	</div>
-	
+
 	<div class="w3-margin">
 		<button type="submit" class="btn-ok">확인</button>
 		<button type="submit" class="btn-cc">취소</button>
 	</div>
+	
 </form>
+</div>	
 
 
 </div>

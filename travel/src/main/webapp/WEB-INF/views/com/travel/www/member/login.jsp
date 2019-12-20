@@ -10,12 +10,13 @@
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#find_id_btn').click(function(){
-			$(location).attr('href', '/www/project/find.kit');
+		$('#find_btn').click(function(){
+			$(location).attr('href', '/member/find.kit');
 		});
 		
-		$('#find_pw_btn').click(function(){
-			$(location).attr('href', '/www/project/find.kit');
+		$('#btn').click(function(){
+			$(location).attr('href', '/www/member/loginProc.kit');
+			
 		});
 	});
 </script>
@@ -24,16 +25,26 @@
 
 
 <c:if test="${empty SID}">
+<<<<<<< HEAD
+<form method="POST" action="/loginProc.kit">
+=======
 <form method="POST" action="/member/loginProc.kit">
+>>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 	<div class="w3-col m12 w3-center w3-margin-top">
 		<h1 class="w3-col w3-center" >L O G I N</h1>
 	</div>
 		
 	<div class="w3-col m12 w3-center">
 	
+<<<<<<< HEAD
+	<div><input type="text" id="id" placeholder="아이디" maxlength="10"></div>
+	<div><input type="password" id="pw" placeholder="비밀번호" maxlength="8"></div>
+	
+=======
 	<div><input type="text" name="mId" id="id" placeholder="아이디를 입력하세요" maxlength="10"></div>
 	<div><input type="password" name="mPw" id="pw" placeholder="비밀번호를 입력하세요" maxlength="8"></div>
 
+>>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 	<div class="w3-padding">
 		<input class="w3-margin" type="submit" id="btn" value="확인">
 		<input class="w3-margin" type="button" id="home" value="취소">
@@ -41,8 +52,7 @@
 	
 		
 	<div class="w3-padding">
-		<div id="find_id_btn" class="w3-margin">아이디찾기</div>
-		<div id="find_pw_btn" class="w3-margin">비밀번호찾기</div>
+		<div id="find_btn" class="w3-margin">아이디 | 비밀번호찾기</div>
 	</div>
 	</div>
 </form>
@@ -59,5 +69,9 @@
 
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 </body>
 </html>

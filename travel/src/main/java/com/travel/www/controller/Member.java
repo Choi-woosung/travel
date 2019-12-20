@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.travel.www.dao.MemberDAO;
+import com.travel.www.vo.JoinVO;
 import com.travel.www.vo.MemberVO;
 
 @Controller
@@ -16,6 +17,7 @@ import com.travel.www.vo.MemberVO;
 public class Member {
 	@Autowired
 	MemberDAO mDAO;
+	
 
 	@RequestMapping("login.kit")
 	public ModelAndView loginForm(ModelAndView mv) {
@@ -26,6 +28,21 @@ public class Member {
 	}
 	
 	@RequestMapping("loginProc.kit")
+	public ModelAndView loginProc(HttpSession session, ModelAndView mv, RedirectView rv, JoinVO vo) {
+		int cnt = mDAO.loginProc(vo);
+		if(cnt != 1) {
+			// 실패한 경우
+			rv.setUrl("/member/login.kit");
+		} else {
+			// 성공한 경우
+			session.setAttribute("SID", vo.getjId());
+			rv.setUrl("/member/main.kit");
+		}
+		mv.setView(rv);
+		
+		return mv;
+	}
+	
 	public ModelAndView loginProc(HttpSession session ,ModelAndView mv, RedirectView rv, MemberVO mVO) {
 		int cnt = mDAO.login(mVO);
 		
@@ -44,6 +61,12 @@ public class Member {
 	public ModelAndView joinForm(ModelAndView mv) {
 		mv.setViewName("member/join");
 		
+		return mv;
+	}
+	
+	@RequestMapping("find.kit")
+	public ModelAndView findForm(ModelAndView mv) {
+		mv.setViewName("member/find");
 		return mv;
 	}
 	
