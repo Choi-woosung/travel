@@ -8,6 +8,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Document</title>
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="js/j-query-3.4.1.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -115,7 +119,9 @@ html .ui-button.ui-state-disabled:active {
 .barcolor {
 	background : #222222;
 }
-
+.nav-link {
+	font-size : 20px;
+}
 
 </style>
 <script>
@@ -191,11 +197,17 @@ $(function() {
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Travel</a>
-	<ul>
-		<li><a>로그인</a></li>
-		<li><a>회원가입</a></li>
-	</ul>
+  <a class="navbar-brand" href="#">TRAVEL</a>
+<div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">로그인 </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">회원가입</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 <div class="jumbotron">
 	<div class="container">

@@ -40,10 +40,7 @@ public class Schedule {
 	
 	@RequestMapping("/scheduleLi.kit")
 	public ModelAndView scheduleLi(ModelAndView mv, ScheduleVO vo) {
-		System.out.println("���� ���� ���ô� ? " + vo.getsCountry());
-		System.out.println("��� ��¥ : " + vo.getsSdate());
-		System.out.println("���� ��¥ : " + vo.getsEdate());
-		System.out.println("��� ? : " + vo.getsPtotal());
+		
 		return mv;
 	}
 	

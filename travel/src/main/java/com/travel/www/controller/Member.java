@@ -53,4 +53,11 @@ public class Member {
 		
 		return mv;
 	}
+	
+	@RequestMapping("memberEdit.kit")
+	public ModelAndView memEditForm(ModelAndView mv) {
+		mv.setViewName("member/memberEdit");
+		
+		return mv;
+	}
 }
