@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org/DTD Config 3.0/EN"
+			"http://mybatis.org/dtd/mybatis-3-config.dtd">
+			
+<configuration>
+
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="useGeneratedKeys" value="true"/>
+		<setting name="defaultExecutorType" value="REUSE"/>
+	</settings>
+	
+ 
+	 <typeAliases>
+		<typeAlias alias="mVO" type="com.trip.www.vo.MemberVO"/>
+		<typeAlias alias="sVO" type="com.trip.www.vo.ScheduleVO"/>
+		<typeAlias alias="saVO" type="com.trip.www.vo.ScheduleAnswerVO"/>
+		<typeAlias alias="sdeVO" type="com.trip.www.vo.ScheduleDetailVO"/>
+		<typeAlias alias="sdiVO" type="com.trip.www.vo.ScheduleDiningVO"/>
+	</typeAliases> 
+	
+	
+<!-- 	<mappers>
+		<mapper resource="com/simple/www/sql/MemberSQL.xml"/>
+	</mappers> -->
+	
+	
+</configuration>
