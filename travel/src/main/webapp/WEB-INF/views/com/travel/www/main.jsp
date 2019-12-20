@@ -188,7 +188,6 @@ $(function() {
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	
 </nav>
 <div class="jumbotron">
 	<div class="container">
