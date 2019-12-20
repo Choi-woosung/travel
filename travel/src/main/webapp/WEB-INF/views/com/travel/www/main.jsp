@@ -8,11 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Document</title>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="js/j-query-3.4.1.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
 <title>Document</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 
 <style>
 .jumbotron {
@@ -111,6 +109,9 @@ html .ui-button.ui-state-disabled:active {
 	font-weight : bold;
 	margin-left : 30px;
 }
+.barcolor {
+	background : #222222;
+}
 
 
 </style>
@@ -186,8 +187,8 @@ $(function() {
 </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	
 </nav>
 <div class="jumbotron">
 	<div class="container">
