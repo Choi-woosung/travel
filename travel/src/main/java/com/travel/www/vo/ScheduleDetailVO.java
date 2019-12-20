@@ -1,6 +1,6 @@
-package com.trip.www.vo;
+package com.travel.www.vo;
 
-public class ScheduleAnswerVO {
+public class ScheduleDetailVO {
 	private int saNo;
 	private String saAsn;
 	private int saQno;

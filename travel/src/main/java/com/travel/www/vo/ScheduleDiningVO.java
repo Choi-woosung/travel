@@ -1,4 +1,4 @@
-package com.trip.www.vo;
+package com.travel.www.vo;
 
 public class ScheduleDiningVO {
 	private int scDno; 

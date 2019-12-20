@@ -1,4 +1,4 @@
-package com.trip.www.dao;
+package com.travel.www.dao;
 
 
 import org.mybatis.spring.SqlSessionTemplate;

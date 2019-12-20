@@ -1,10 +1,10 @@
-package com.trip.www.controller;
+package com.travel.www.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.trip.www.vo.ScheduleVO;
+import com.travel.www.vo.ScheduleVO;
 
 @Controller
 @RequestMapping("/schedule")
@@ -26,10 +26,10 @@ public class Schedule {
 	
 	@RequestMapping("/scheduleLi.kit")
 	public ModelAndView scheduleLi(ModelAndView mv, ScheduleVO vo) {
-		System.out.println("°¡°í ½ÍÀº µµ½Ã´Â ? " + vo.getsCountry());
-		System.out.println("Ãâ¹ß ³¯Â¥ : " + vo.getsSdate());
-		System.out.println("µµÂø ³¯Â¥ : " + vo.getsEdate());
-		System.out.println("¸î¸í ? : " + vo.getsPtotal());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã´ï¿½ ? " + vo.getsCountry());
+		System.out.println("ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ : " + vo.getsSdate());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ : " + vo.getsEdate());
+		System.out.println("ï¿½ï¿½ï¿½ ? : " + vo.getsPtotal());
 		return mv;
 	}
 	
