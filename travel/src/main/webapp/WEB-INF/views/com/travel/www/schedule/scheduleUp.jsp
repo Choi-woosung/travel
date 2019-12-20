@@ -43,8 +43,8 @@
             float: left;
         }
         .schedule{
-            width: 42.5%;
-            min-height: 425px;
+            width: 50%;
+            min-height: 50%;
             height: auto;
             margin: 0 auto;
             background-color: #CADBE9;
@@ -133,16 +133,16 @@
             <!-- side s -->
             <ul class="sidebar">
                 <li>
-                    <img src="/img/schedule/hotel.jpg" alt="hotel">
+                    <img src="/img/schedule/hotel.jpg" alt="hotel" class="side">
                 </li>
                 <li>
-                    <img src="/img/schedule/restaurant.jpg" alt="restaurant">
+                    <img src="/img/schedule/restaurant.jpg" alt="restaurant" class="side">
                 </li>
                 <li>
-                    <img src="/img/schedule/taxi.jpg" alt="taxi">
+                    <img src="/img/schedule/taxi.jpg" alt="taxi" class="side">
                 </li>
                 <li>
-                    <img src="/img/schedule/text.jpg" alt="text">
+                    <img src="/img/schedule/text.jpg" alt="text" class="side">
                 </li>
                 <li>
                     <img src="" alt="">
@@ -235,11 +235,12 @@
                 this.appendChild(el);
             }
             // menu event
-            function getEl(id){
+            function getEl(id) {
                 let attr;
 
                 cnt++;
 
+                // sidebar s 
                 switch (id) {
                     case 'hotel':
                         attr = createEl('textarea');
@@ -254,6 +255,7 @@
                         attr = createEl('textarea');
                         break;
                 }
+                // sidebar e
 
                 if (attr != undefined) {
                     attr.setAttribute('alt', 'el' + cnt);                    
@@ -263,24 +265,21 @@
 
                 return attr;
             }
-            function createEl(id){
+            function createEl(id) {
                 return document.createElement(id);
             }
-            function saveEvt(){
+            function saveEvt() {
                 location.href = '/schedule/scheduleList.kit';
             }
-            function drop_box(e){
+            function drop_box(e) {
                 e.preventDefault();
                 let id = e.dataTransfer.getData('alt');
                 let el = document.querySelector('[alt=' + id +']');
-                console.log(id);
                 
-                if (id == 'el' + cnt) {
-                    if (el != undefined) {
-                        el.style.display = 'none';
-                        del.appendChild(el);
-                        del.removeChild(el);
-                    }
+                if (el.alt == undefined) {
+                    el.style.display = 'none';
+                    del.appendChild(el);
+                    del.removeChild(el);
                 }
             }
             // function e
