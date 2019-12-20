@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/www/css/w3.css" >
-<script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script>
+<link rel="stylesheet" href="/css/w3.css" >
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#find_id_btn').click(function(){

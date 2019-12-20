@@ -70,13 +70,13 @@
 					<th>예상금액</th>
 				</tr>
 			</thead>
-<%-- 			<c:forEach var="data" items="${LIST}"> --%>
-<!-- 			<tr class="simpleInfo"> -->
-<%-- 				<td>${data.sNo}</td> --%>
-<%-- 				<td>${data.sName}</td> --%>
-<!-- 				<td>400,000원</td> -->
-<!-- 			</tr> -->
-<%-- 			</c:forEach> --%>
+			<c:forEach var="data" items="${LIST}">
+			<tr class="simpleInfo">
+				<td>${data.sNo}</td>
+				<td>${data.sName}</td>
+				<td>400,000원</td>
+			</tr>
+			</c:forEach>
 		</table>
 		<div class="w3-center">
 			<div class="w3-bar w3-round w3-margin-top" style="background-color: #203767;">
