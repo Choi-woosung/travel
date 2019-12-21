@@ -8,27 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Document</title>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 <script src="js/j-query-3.4.1.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<<<<<<< HEAD
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-=======
-
->>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 <title>Document</title>
 
 <style>
@@ -135,6 +123,17 @@ html .ui-button.ui-state-disabled:active {
 	font-size : 20px;
 }
 
+<%-- 인원수 정하는 div --%>
+.adult, .child {
+	display : flex;
+	justify-content : space-between;
+}
+.count {
+	font-size : 23px;
+}
+
+
+
 </style>
 <script>
 $(function() {
@@ -154,6 +153,7 @@ $(function() {
 	$("#people").focusin(function(){
 	    $(".peopleClick").css("display" , "block");
 	});
+	$('#people').focusout
 	
 /* 	캘린더  */
 	$('#calendarArea1').click(function(e) {
@@ -245,15 +245,26 @@ $(function() {
 				<label for="inputArea"> 인원수 </label> 
 				<input type="text" class="form-control city" id="people" name="sPtotal" placeholder="인원수를 선택해주세요">
 				<div class="peopleClick">
-					성인 
-                  		<button class="left total"></button>
-                	  	<input type="text" class="col-md-1 total" id="adult" value="0">
-                	  	<button class="right total totalChange"></button>
-                	  	<br>
-               		 아이
-                  	 	<button class="left total"></button>
-                  	 	<input type="text" class="col-md-1 total" id="baby" value = "0">
-                   	<button class="right total"></button>
+					<div class="adult">
+						<label>
+							<span class="totalcount">성인</span>
+						</label>
+						<div class="count">
+							<span><img src="/img/asset/icons/chevron-compact-left.svg" width="40" height="20"></span>
+							<span class="count">0</span>
+							<span><img src="/img/asset/icons/chevron-compact-right.svg" width="40" height="20"></span>
+						</div>
+					</div>
+					<div class="child">
+						<label>
+							<span class="totalcount">어린이</span>
+						</label>
+						<div class="count">
+							<span><img src="/img/asset/icons/chevron-compact-left.svg" width="40" height="20"></span>
+							<span class="count">0</span>
+							<span><img src="/img/asset/icons/chevron-compact-right.svg" width="40" height="20"></span>
+						</div>
+					</div>
 				</div>
 			</div>
 			<button class="btn btn-info" id="make" type="button">스케쥴 만들기</button>

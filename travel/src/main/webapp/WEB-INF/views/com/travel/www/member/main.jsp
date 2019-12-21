@@ -796,9 +796,7 @@ div.zabuto_calendar div.legend span.badge {
 }
 
 </style>
-=======
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
->>>>>>> branch 'working' of https://github.com/depthkim/trip.git
 </head>
 <body>
   <div class="container">
