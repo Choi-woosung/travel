@@ -301,7 +301,7 @@
             }
             for (let i = 0; i < schedule.length; i++) {
                 schedule[i].setAttribute('dropzone', true);
-                evt(schedule[i], 'dragover', dragover_);
+                evt(schedule[i], 'dragover', dragover_); 
                 evt(schedule[i], 'drop', drop_);
                 evt(schedule[i], 'dragstart', dragstart_);
             }
