@@ -85,7 +85,7 @@ html .ui-button.ui-state-disabled:active {
    position : absolute;
    border : 1px solid gray;
    border-radius : 3px;
-   padding : 20px;
+   padding : 10px;
    margin-top : 2px;
    display : none;
 }
@@ -218,15 +218,19 @@ $(function() {
   <a class="navbar-brand" href="#">TRAVEL</a>
 <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
     <ul class="navbar-nav">
+      <c:if test="${empty SID }">
       <li class="nav-item">
         <a class="nav-link" href="/member/login.kit">로그인 </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">회원가입</a>
+        <a class="nav-link" href="/member/join.kit">회원가입</a>
       </li>
+      </c:if>
+      <c:if test="${!empty SID }">
       <li class="nav-item">
         <a class="nav-link" href="/member/memberEdit.kit">회원정보보기</a>
       </li>
+      </c:if>
     </ul>
   </div>
 </nav>
@@ -273,6 +277,7 @@ $(function() {
 							<span class="count">0</span>
 							<span><img src="/img/asset/icons/chevron-compact-right.svg" width="40" height="20"></span>
 						</div>
+						<button class="btn btn-info">확인</button>
 					</div>
 				</div>
 			</div>
