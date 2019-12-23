@@ -195,7 +195,7 @@
         	color: rgba(0, 0, 0, 0.5);
         }
         .signUpNav{
-        	margin-right: 16px;
+        	margin-right: 24px;
         	font-size: 1.25rem;
         	color: rgba(0, 0, 0, 0.5);
         }
@@ -206,6 +206,7 @@
 			color: rgba(0, 0, 0, 0.9);
 		}
 		.profile{
+			margin-left: auto;
         	font-size: 1.25rem;
         	margin-right: 24px;
         	color: rgba(0, 0, 0, 0.5);
@@ -219,9 +220,13 @@
 	   	<!-- topMenu s -->
 		<div class="topMenu">
 			<div class="travel">TRAVEL</div>
-			<div class="loginNav">로그인</div>
-			<div class="signUpNav">회원가입</div>
-			<div class="profile">회원정보보기</div>
+			<c:if test="${empty SID}">
+				<div class="loginNav">로그인</div>
+				<div class="signUpNav">회원가입</div>
+			</c:if>
+			<c:if test="${not empty SID}">
+				<div class="profile">회원정보보기</div>
+			</c:if>
 		</div>
 		<!-- topMenu e -->
     
@@ -339,7 +344,9 @@
             }
             // addEventListener
             function evt(id, evt, fun) {
-                id.addEventListener(evt, fun);
+                if (id != null) {
+                	id.addEventListener(evt, fun);
+                }
             }
             // dragstart_ 
             function dragstart_(e) {
