@@ -78,20 +78,21 @@ html .ui-button.ui-state-disabled:active {
 .city{
 	width : 359px;
 }
-.city{
-   width : 359px;
-}
-.peopleCount{
+.pCount{
    width: 359px;
    height : 120px;
    background : white;
-   display : none;
    position : absolute;
    border : 1px solid gray;
    border-radius : 3px;
    padding : 20px;
    margin-top : 2px;
+   display : none;
 }
+.pCount.view {
+	display : block;
+}
+
 
 .totalChange{
 	margin-bottom : 20px;
@@ -118,7 +119,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 <%-- 인원수 정하는 div --%>
-.adult, .child {
+.adult {
 	display : flex;
 	justify-content : space-between;
 }
@@ -144,13 +145,21 @@ $(function() {
 	});
 	
 	/* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
-	$('#people').focusin(function(){
-		$('.peopleCount').toggle();
+	$('#people').click(function(){
+		$('.pCount').addClass('view');
 	});
-	$('#people').focusout(function(){
-		if()
-		$('.peopleCount').toggle();
+	
+	$('body').on('click', function(e){
+		var pClass = $(e.target).hasClass('city');
+		var psClass = $(e.target).parents().hasClass('tCount');
+	 	
+	 	if(!pClass && !psClass){
+			$('.pCount').removeClass('view');
+	 	} else if (psClass){
+	 		return false;
+	 	}
 	});
+	
 	
 /* 	캘린더  */
 	$('#calendarArea1').click(function(e) {
@@ -241,10 +250,10 @@ $(function() {
 					<input type="text" class="form-control col-md-12" id="endDatePicker" name="sEdate" placeholder="언제까지 ?">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group tCount">
 				<label for="inputArea"> 인원수 </label> 
 				<input type="text" class="form-control city" id="people" name="sPtotal" placeholder="인원수를 선택해주세요">
-				<div class="peopleCount" id="peopleCount">
+				<div class="pCount" id="pCount">
 					<div class="adult">
 						<label>
 							<span class="totalcount">성인</span>
@@ -255,7 +264,7 @@ $(function() {
 							<span><img src="/img/asset/icons/chevron-compact-right.svg" width="40" height="20"></span>
 						</div>
 					</div>
-					<div class="child">
+					<div class="adult">
 						<label>
 							<span class="totalcount">어린이</span>
 						</label>
