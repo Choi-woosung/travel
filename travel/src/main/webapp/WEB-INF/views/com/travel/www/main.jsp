@@ -14,9 +14,6 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="js/j-query-3.4.1.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&libraries=places"></script>
 <title>Document</title>
 
@@ -145,15 +142,15 @@ footer{
 <script>
 $(function() {
 	$('#login').click(function () {
-		$(location).attr('href', '/member/login.kit')
+		$(location).attr('href', '/member/login.kit');
 	});
 	
 	$('#join').click(function () {
-		$(location).attr('href', '/member/join.kit')
+		$(location).attr('href', '/member/join.kit');
 	});
 	
 	$('#make').click(function () {
-		$(location).attr('href', '/schedule/scheduleUp.kit')
+		$(location).attr('href', '/schedule/scheduleUp.kit);
 	});
 	
 	/* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
@@ -222,15 +219,8 @@ $(function() {
 				},
 				
 			});
-	
-	});
 </script>
 <script>
-// 구글 맵 검색창 자동완성 //
-var autoComplete = new google.maps.places.Autocomplete(
-		document.getElementById('inputArea'), {
-		types: ['(cities)']
-		});
 </script>
 </head>
 <body>
