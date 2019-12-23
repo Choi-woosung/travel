@@ -1,8 +1,6 @@
 package com.travel.www.controller;
 
-import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.travel.www.dao.MemberDAO;
-import com.travel.www.vo.JoinVO;
 import com.travel.www.vo.MemberVO;
 
 @Controller
@@ -73,14 +70,7 @@ public class Member {
 		return mv;
 	}
 	
-//	@RequestMapping("memberEdit.kit")
-//	public ModelAndView memEditForm(ModelAndView mv, MemberVO vo) {
-//		
-//		mv.addObject("DATA", vo);
-//		mv.setViewName("member/memberEdit");
-//		
-//		return mv;
-//	}
+
 	
 	@RequestMapping("memberCheck.kit")
 

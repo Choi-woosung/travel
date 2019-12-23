@@ -219,6 +219,17 @@ $(function() {
 				},
 				
 			});
+	
+	$('#search').click(function () {
+		$('#frm').attr('action', '/schedule/scheduleList.kit');
+		$('#frm').submit();
+	});
+
+	$('#make').click(function () {
+		$('#frm').attr('action', '/schedule/scheduleUp.kit');
+		$('#frm').submit();
+	});
+	
 });
 </script>
 <script>
@@ -261,7 +272,7 @@ $(function() {
 		<div class="mainSearch">
 			<h3>떠나고 싶은 곳 어디든</h3>
 			<h2>지금 검색해보세요.</h2>
-			<form method="POST" action="/schedule/scheduleLi.kit">
+			<form method="POST" action="" id="frm">
 			<div class="form-group">
 				<label for="inputArea"> 여행가는 도시 </label> 
 				<input type="text" class="form-control city" id="inputArea" name="sCountry" placeholder="떠나실 장소를 검색해보세요">
@@ -304,7 +315,7 @@ $(function() {
 				</div>
 			</div>
 			<button class="btn btn-info" id="make" type="button">스케쥴 만들기</button>
-			<button type="submit" class="btn btn-info">검색</button>
+			<button type="submit" class="btn btn-info" id="search">검색</button>
 			</form>
 		</div>
 	</div>	
