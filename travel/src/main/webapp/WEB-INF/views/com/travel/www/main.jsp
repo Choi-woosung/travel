@@ -257,8 +257,8 @@ var autoComplete = new google.maps.places.Autocomplete(
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/member/memberEdit.kit">
-      		<button class="btn btn-outline-success my-2 my-sm-0">내 정보수정</button>
+        <a class="nav-link" href="/member/memberForm.kit">
+      		<button class="btn btn-outline-success my-2 my-sm-0">회원정보보기</button>
         </a>
       </li>
       </c:if>

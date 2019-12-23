@@ -19,9 +19,16 @@ public class MemberDAO {
 	public int login(MemberVO mVO) {
 		return sqlSession.selectOne("mSQL.login", mVO);
 	}
-	
-	public MemberVO member(String SID) {
-		return sqlSession.selectOne("mSQL.Member", SID);
+	// 회원정보보기 함수
+	public MemberVO member(MemberVO vo) {
+		return sqlSession.selectOne("mSQL.Member", vo);
+	}
+	// 회원정보 수정처리함수
+	public int memberEdit(MemberVO mVO) {
+		return sqlSession.update("mSQL.MemberEdit", mVO);
+	}
+	public int membercheck(MemberVO mVO) {
+		return sqlSession.selectOne("mSQL.MemberCheck", mVO);
 	}
 	
 	
