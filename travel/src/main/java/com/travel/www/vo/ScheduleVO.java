@@ -13,15 +13,15 @@ public class ScheduleVO {
 	private Date sWdate;
 	private Date sWedate; 
 	private String sBody;
-	private int sPtotal;
+	private String sPtotal;
 	public int sRate;
 	public String sDel;
 	
 	
-	public int getsPtotal() {
+	public String getsPtotal() {
 		return sPtotal;
 	}
-	public void setsPtotal(int sPtotal) {
+	public void setsPtotal(String sPtotal) {
 		this.sPtotal = sPtotal;
 	}
 	public int getsNo() {

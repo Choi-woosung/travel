@@ -27,7 +27,7 @@ public class Schedule {
 	
 	@RequestMapping("/scheduleList.kit")
 	public ModelAndView scheduleListForm(ModelAndView mv, HttpSession session, ScheduleVO vo) {
-
+		
 		mv.setViewName("/schedule/scheduleList");
 		
 		String sid = (String) session.getAttribute("SID");
@@ -40,7 +40,9 @@ public class Schedule {
 	
 	@RequestMapping("/scheduleUp.kit")
 	public ModelAndView scheduleUpForm(ModelAndView mv, HttpServletRequest req, ScheduleVO vo) {
-
+		if(vo.getsSdate() == null || vo.getsEdate() == null || vo.getsCountry() == null) {
+			mv.setViewName("/main.kit");
+		}
 		mv.setViewName("/schedule/scheduleUp");
 		
 		return mv;
