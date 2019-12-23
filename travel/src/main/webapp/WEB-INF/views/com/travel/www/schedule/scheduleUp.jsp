@@ -55,6 +55,7 @@
             width: 85%;
             height: 100%;
             float: left;
+            padding-top: 2%;
         }
 
         .schedule {
@@ -63,10 +64,8 @@
             height: auto;
             margin: 0 auto;
             background-color: #CADBE9;
-            margin-top: 2.5%;
-            margin-bottom: 2.5%;
-            padding-bottom: 2.5%;
             border-radius: 16px;
+            margin-bottom: 4%;
         }
 
         .toDay {
@@ -233,9 +232,6 @@
             </li>
             <li class="schedule">
                 <div class="toDay">Day 2</div>
-            </li>
-            <li class="schedule">
-                <div class="toDay">Day 3</div>
             </li>
         </ul>
         <!-- schedule e -->
