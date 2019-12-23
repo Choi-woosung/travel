@@ -7,6 +7,8 @@ public class ScheduleVO {
 	private String sName; 
 	private Date sSdate;
 	private Date sEdate; 
+	private String sStrdate;
+	private String sEtrdate; 
 	private String sCountry; 
 	private String sArea;  
 	private int sWriter;
@@ -95,6 +97,22 @@ public class ScheduleVO {
 	}
 	public void setsDel(String sDel) {
 		this.sDel = sDel;
+	}
+	public String getsStrdate() {
+		String str = sSdate.toString().replaceAll("-", "");
+		
+		return str;
+	}
+	public void setsStrdate(String sStrdate) {
+		this.sStrdate = sStrdate;
+	}
+	public String getsEtrdate() {
+		String str = sEdate.toString().replaceAll("-", "");
+		
+		return str;
+	}
+	public void setsEtrdate(String sEtrdate) {
+		this.sEtrdate = sEtrdate;
 	}
 	
 	}

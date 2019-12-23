@@ -233,13 +233,7 @@
         <!-- schedule s -->
         <ul class="scheduleBox">
             <li class="schedule">
-                <div class="toDay" draggable="false">Day 1</div>
-            </li>
-            <li class="schedule">
-                <div class="toDay" draggable="false">Day 2</div>
-            </li>
-            <li class="schedule">
-                <div class="toDay" draggable="false">Day 3</div>
+                <div class="toDay" draggable="false">Day 1 ${LIST.sSdate} ${LIST.sEdate}</div>
             </li>
         </ul>
         <!-- schedule e -->
