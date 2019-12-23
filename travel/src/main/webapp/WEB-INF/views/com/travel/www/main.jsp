@@ -150,7 +150,7 @@ $(function() {
 	});
 	
 	$('#make').click(function () {
-		$(location).attr('href', '/schedule/scheduleUp.kit);
+		$(location).attr('href', '/schedule/scheduleUp.kit');
 	});
 	
 	/* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
