@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -77,8 +76,14 @@ public class Member {
 	
 	@RequestMapping("memberCheck.kit")
 
-	public ModelAndView memEditForm(ModelAndView mv, MemberVO vo, HttpSession session) {
+	public ModelAndView memEditForm(ModelAndView mv, MemberVO vo, HttpSession session, RedirectView rv) {
 		String mId = (String) session.getAttribute("SID");
+		System.out.println(mId);
+		if(vo.getmPw() == null) {
+			rv.setUrl("/main.kit");
+			mv.setView(rv);
+			return mv;
+		}
 		vo.setmId(mId);
 		int cnt = mDAO.membercheck(vo);
 		if(cnt == 1) {
@@ -103,30 +108,18 @@ public class Member {
 	}
 	@RequestMapping("memberEditProc.kit")
 	@ResponseBody
-	public ModelAndView memEditForm(ModelAndView mv, MemberVO vo, HttpServletResponse response, RedirectView rv) throws Exception  {
-		String url = "";
+	public int memEditForm(ModelAndView mv, MemberVO vo) {
+		int cnt = 0;
 		System.out.println(vo.getmPw());
-		System.out.println(vo.getmPw2());
 		if(vo.getmPw().equals(vo.getmPw2())) {
-			mDAO.memberEdit(vo);
-			System.out.println("등록성공");			
-				response.setContentType("text/html; charset=UTF-8");
-	            PrintWriter out = response.getWriter();
-	            out.println("<script>alert('수정 완료'); </script>");
-	            out.flush();
-	            out.close();
-	            url = "/main.kit";
-	            rv.setUrl(url);
-	            mv.setView(rv);
+			cnt = mDAO.memberEdit(vo);
+			System.out.println("수정완료");
+			vo = mDAO.member(vo);
+			mv.addObject("DATA", vo);
 		}else {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			url = "/member/memberEdit";
-			 out.println("<script>alert('수정 실패'); </script>");
-			 out.flush();
-			 out.close();
+			System.out.println("수정 실패");
 		}
 		
-		return mv;
+		return cnt;
 	}
 }

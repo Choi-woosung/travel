@@ -31,36 +31,60 @@
 </style>
 <script type="text/javascript">
 	
+	
  $(document).ready(function () {
+	 
+
+	 
 	 $('#pw2').keyup(function () {
-		 var pw1 = $('#pw').text();
-			var pw2 = $('#pw2').val();
+		var pw1 = $('#pw').val();
+		var pw2 = $('#pw2').val();
+
 			if (pw1 == pw2) {
 				$('.pwok').css('display', 'block');
 				$('.pwx').css('display', 'none');
 			} else {
 				$('.pwok').css('display', 'none');
-				$('.pwx').css('display', 'block');
-				
+				$('.pwx').css('display', 'block');	
 			}
 		});
 	 $('#cancel').click(function () {
-		
+		history.back();
 	})
 	$('#save').click(function () {
 			var mId = $('#id').text();
 			var mPw = $('#pw').val();
 			var mPw2 = $('#pw2').val();
-			var 
-			alert(mId);
-			alert(mPw);
-			alert(mPw2);
+			var mMail = $('#mail').val();
+			var mMobile = $('#tel').val();
+			var mAddress = $('#adr').val();
 		$.ajax({
 			url : "/member/memberEditProc.kit",
 			type : "POST",
 			dataType : "json",
 			data : {
-			
+				"mId" : mId,
+				"mPw" : mPw,
+				"mPw2" : mPw2,
+				"mMail" : mMail,
+				"mMobile" : mMobile,
+				"mAddress" : mAddress
+			}, success : function (data) {
+				if(data == 1){
+				alert("변경완료");
+				$('#id').html('${DATA.mId}');
+				$('#name').html('${DATA.mName}');
+				$('#mail').html('${DATA.mMail}');
+				$('#tel').html('${DATA.mMobile}');
+				$('#adr').html('${DATA.mAddress}');
+				
+				$(location).attr('href', '/main.kit');
+				} else{
+					alert("변경실패");
+				}
+				
+			}, error : function () {
+				alert("수정실패");
 			}
 		});
 		
@@ -69,6 +93,7 @@
 </script>
 </head>
 <body>
+
 	<!-- 회원 정보 수정 모달 -->
 
 		<div class="container" id="edit">
@@ -108,7 +133,7 @@
 					</div>
 					<div class="p-4 row">
 						<pre>이   메  일 :</pre>
-						<h5 class="ml-4" id="name">${DATA.mMail }</h5>
+						<h5 class="ml-4" id="mail">${DATA.mMail }</h5>
 					</div>
 					<div class="p-4 row">
 						<pre>전 화 번 호 :</pre>
