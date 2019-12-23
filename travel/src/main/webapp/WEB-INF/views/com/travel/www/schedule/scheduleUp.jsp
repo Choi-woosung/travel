@@ -45,51 +45,50 @@
         .mainBox {
             width: 100%;
             height: 100vh;
-            margin-top: 4%;
         }
-
         /* main e */
 
         /* schedule s */
         .scheduleBox {
             width: 85%;
-            height: 100%;
-            float: left;
-            padding-top: 2%;
+            height: 90%;
+            padding-top: 110px;
         }
 
         .schedule {
             width: 50%;
-            min-height: 50%;
+            min-height: 500px;
             height: auto;
-            margin: 0 auto;
             background-color: #CADBE9;
             border-radius: 16px;
-            margin-bottom: 4%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
         }
-
+        
         .toDay {
             font-weight: bold;
             user-select: none;
             text-align: center;
             font-size: 2rem;
+      		margin-bottom: 2.5%;
         }
 
         .elCls {
             display: block;
             min-width: 90%;
             max-width: 90%;
-            min-height: 5vh;
+            min-height: 5%;
             height: auto;
-            margin: 0 auto;
-            margin-top: 2.5%;
-            margin-bottom: 2.5%;
             border-radius: 16px;
             padding: 8px;
             font-size: 1.25rem;
             font-weight: bold;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 2.5%;
         }
-
         /* schedule e */
 
         /* sidebar s */
@@ -122,6 +121,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             border-radius: 16px;
+            margin-top: 50%;
         }
 
         /* sidebar e */
@@ -171,7 +171,7 @@
         	left: 0;
         	width: 100%;
         	height: 62px;
-        	background-color: rgb(248, 249, 250);;
+        	background-color: rgb(248, 249, 250);
         	display: flex;
         	overflow: hidden;
         	z-index: 1;
@@ -195,7 +195,7 @@
         	color: rgba(0, 0, 0, 0.5);
         }
         .signUpNav{
-        	margin-right: 16px;
+        	margin-right: 24px;
         	font-size: 1.25rem;
         	color: rgba(0, 0, 0, 0.5);
         }
@@ -206,6 +206,7 @@
 			color: rgba(0, 0, 0, 0.9);
 		}
 		.profile{
+			margin-left: auto;
         	font-size: 1.25rem;
         	margin-right: 24px;
         	color: rgba(0, 0, 0, 0.5);
@@ -215,23 +216,30 @@
 </head>
 <body class="mainBody">
     <!-- main s -->
-    <div class="mainBox" dropzone="true">
-    	<!-- topMenu s -->
+    <div class="mainBox" dropzone="true">    
+	   	<!-- topMenu s -->
 		<div class="topMenu">
 			<div class="travel">TRAVEL</div>
-			<div class="loginNav">로그인</div>
-			<div class="signUpNav">회원가입</div>
-			<div class="profile">회원정보보기</div>
+			<c:if test="${empty SID}">
+				<div class="loginNav">로그인</div>
+				<div class="signUpNav">회원가입</div>
+			</c:if>
+			<c:if test="${not empty SID}">
+				<div class="profile">회원정보보기</div>
+			</c:if>
 		</div>
 		<!-- topMenu e -->
     
         <!-- schedule s -->
         <ul class="scheduleBox">
             <li class="schedule">
-                <div class="toDay">Day 1</div>
+                <div class="toDay" draggable="false">Day 1</div>
             </li>
             <li class="schedule">
-                <div class="toDay">Day 2</div>
+                <div class="toDay" draggable="false">Day 2</div>
+            </li>
+            <li class="schedule">
+                <div class="toDay" draggable="false">Day 3</div>
             </li>
         </ul>
         <!-- schedule e -->
@@ -240,21 +248,16 @@
         <div class="sidebarBox">
             <!-- side s -->
             <ul class="sidebar">
-                <li><img src="/img/schedule/hotel.jpg" alt="hotel" class="side">
-                </li>
+                <li><img src="/img/schedule/hotel.jpg" alt="hotel" class="side"></li>
                 <li><img src="/img/schedule/restaurant.jpg" alt="restaurant" class="side"></li>
-                <li><img src="/img/schedule/taxi.jpg" alt="taxi" class="side">
-                </li>
-                <li><img src="/img/schedule/text.jpg" alt="text" class="side">
-                </li>
-                <li><img src="" alt=""></li>
+                <li><img src="/img/schedule/taxi.jpg" alt="taxi" class="side"></li>
+                <li><img src="/img/schedule/text.jpg" alt="text" class="side"></li>
             </ul>
             <!-- side e -->
 
             <!-- menu s -->
             <ul class="menu">
-                <li><input type="button" class="saveBtn" value="저장">
-                </li>
+                <li><input type="button" class="saveBtn" value="저장"></li>
             </ul>
             <!-- menu e -->
         </div>
@@ -336,12 +339,14 @@
 
             // function s
             // querySelector
-            function id(id = new String) {
+            function id(id) {
                 return document.querySelector(id);
             }
             // addEventListener
-            function evt(id = new Object, evt = new String, fun = new Function) {
-                id.addEventListener(evt, fun);
+            function evt(id, evt, fun) {
+                if (id != null) {
+                	id.addEventListener(evt, fun);
+                }
             }
             // dragstart_ 
             function dragstart_(e) {
@@ -356,7 +361,9 @@
                 let id = e.dataTransfer.getData('alt');
                 let el = getEl(id);
 
-                this.appendChild(el);
+                if (el != null) {
+                    this.appendChild(el);
+                }
             }
             // menu event
             function getEl(id) {
@@ -378,6 +385,8 @@
                     case 'text':
                         attr = createEl('textarea');
                         break;
+                    default :
+                        attr = null;
                 }
                 // sidebar e
 
@@ -398,12 +407,23 @@
             function drop_box(e) {
                 e.preventDefault();
                 let id = e.dataTransfer.getData('alt');
-                let el = document.querySelector('[alt=' + id + ']');
+                let el;
+                if (id != null) {
+                    try {
+                        el = document.querySelector('[alt=' + id + ']');
+                    } catch (e) {
+                        
+                    }
+                } else {
+                    el = null;
+                }
 
-                if (el.alt == undefined) {
-                    el.style.display = 'none';
-                    del.appendChild(el);
-                    del.removeChild(el);
+                if (e.target.alt != undefined || e.target.alt != null || el != null) {
+                    if (el.alt == undefined || el.alt == null) {
+                        el.style.display = 'none';
+                        del.appendChild(el);
+                        del.removeChild(el);
+                    }
                 }
             }
             function saveClick(e) {
