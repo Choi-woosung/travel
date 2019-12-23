@@ -55,6 +55,7 @@
             width: 85%;
             height: 100%;
             float: left;
+            padding-top: 2%;
         }
 
         .schedule {
@@ -63,10 +64,8 @@
             height: auto;
             margin: 0 auto;
             background-color: #CADBE9;
-            margin-top: 2.5%;
-            margin-bottom: 2.5%;
-            padding-bottom: 2.5%;
             border-radius: 16px;
+            margin-bottom: 4%;
         }
 
         .toDay {
@@ -99,8 +98,9 @@
             bottom: 0;
             right: 0;
             width: 15%;
-            height: 93.5%;
+            height: 100%;
             background-color: #D4DFE6;
+            padding-top: 5%;
         }
 
         .sidebar img {
@@ -143,6 +143,7 @@
             height: 100vh;
             background-color: black;
             opacity: 0.4;
+            z-index: 2;
         }
 
         .loginModalBox {
@@ -173,8 +174,10 @@
         	background-color: rgb(248, 249, 250);;
         	display: flex;
         	overflow: hidden;
+        	z-index: 1;
+        	user-select: none;
         }
-        .travel, .loginNav, .signUpNav{
+        .travel, .loginNav, .signUpNav, .profile{
         	margin-top: auto;
         	margin-bottom: auto;
         	padding-bottom: 1px;
@@ -192,15 +195,20 @@
         	color: rgba(0, 0, 0, 0.5);
         }
         .signUpNav{
-        	margin-right: 24px;
+        	margin-right: 16px;
         	font-size: 1.25rem;
         	color: rgba(0, 0, 0, 0.5);
         }
-        .travel:hover, .loginNav:hover, .signUpNav:hover{
+        .travel:hover, .loginNav:hover, .signUpNav:hover, .profile:hover{
 			cursor: pointer;
 		}
-		.loginNav:hover, .signUpNav:hover{
+		.loginNav:hover, .signUpNav:hover, .profile:hover{
 			color: rgba(0, 0, 0, 0.9);
+		}
+		.profile{
+        	font-size: 1.25rem;
+        	margin-right: 24px;
+        	color: rgba(0, 0, 0, 0.5);
 		}
         /* topMenu e */
     </style>
@@ -213,6 +221,7 @@
 			<div class="travel">TRAVEL</div>
 			<div class="loginNav">로그인</div>
 			<div class="signUpNav">회원가입</div>
+			<div class="profile">회원정보보기</div>
 		</div>
 		<!-- topMenu e -->
     
@@ -223,9 +232,6 @@
             </li>
             <li class="schedule">
                 <div class="toDay">Day 2</div>
-            </li>
-            <li class="schedule">
-                <div class="toDay">Day 3</div>
             </li>
         </ul>
         <!-- schedule e -->
@@ -283,6 +289,7 @@
             const travel = id('.travel');
             const loginNav = id('.loginNav');
             const signUpNav = id('.signUpNav');
+            const profile = id('.profile');
             let cnt = localStorage.getItem('cnt');
             // var e
 
@@ -321,6 +328,9 @@
             });
             evt(signUpNav, 'click', () => {
             	location.href = '/member/join.kit';
+            });
+            evt(profile, 'click', () => {
+            	location.href = '/member/memberEdit.kit';
             });
             // event e
 
