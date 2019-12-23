@@ -130,7 +130,7 @@
 					</div>
 					<div class="">
 						<div class="btn btn-info" id="cancel">취소</div>
-						<button class="btn btn-info" id="save" >저장</button>
+						<button class="btn btn-info" id="save" >저장</button> 
 					</div>
 				</div>
 			</div>
