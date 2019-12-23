@@ -33,6 +33,9 @@ public class Schedule {
 	
 	@RequestMapping("/scheduleUp.kit")
 	public ModelAndView scheduleUpForm(ModelAndView mv) {
+//		list = sDAO.scheduleUp();
+//		
+//		mv.addObject(list);
 		mv.setViewName("/schedule/scheduleUp");
 		
 		return mv;

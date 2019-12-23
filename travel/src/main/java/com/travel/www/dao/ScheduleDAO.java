@@ -16,4 +16,8 @@ public class ScheduleDAO {
 		return sqlSession.selectList("sSQL.scheduleList", sid);
 	}
 	
+//	public List<ScheduleVO> scheduleUp() {
+//		return sqlSession.selectList("sSQL.scheduleUp");
+//	}
+
 }
