@@ -78,7 +78,9 @@ public class Member {
 	}
 	
 	@RequestMapping("memberEdit.kit")
-	public ModelAndView memEditForm(ModelAndView mv) {
+	public ModelAndView memEditForm(ModelAndView mv, MemberVO vo) {
+			vo = mDAO.member(vo);
+		System.out.println(vo.getmMail());
 		mv.setViewName("member/memberEdit");
 		
 		return mv;

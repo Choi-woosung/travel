@@ -25,5 +25,9 @@ public class MemberDAO {
 		return sqlSession.selectOne("mSQL.login", mVO);
 	}
 	
+	public MemberVO member(MemberVO mVO) {
+		return sqlSession.selectOne("mSQL.Member", mVO);
+	}
+	
 	
 }
