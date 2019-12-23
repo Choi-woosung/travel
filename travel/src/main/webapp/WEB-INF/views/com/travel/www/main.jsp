@@ -78,16 +78,10 @@ html .ui-button.ui-state-disabled:active {
 .city{
 	width : 359px;
 }
-.peopleClick{
-	width: 359px;
-	height : 200px;
-	background : white;
-	display : none;
-}
 .city{
    width : 359px;
 }
-.peopleClick{
+.peopleCount{
    width: 359px;
    height : 120px;
    background : white;
@@ -151,9 +145,20 @@ $(function() {
 	
 	/* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
 	$("#people").focusin(function(){
-	    $(".peopleClick").css("display" , "block");
+	    $(".peopleCount").css("display" , "block");
+		var count = $(".peopleCount").css("display");
+		console.log(count);
+	    if(count == 'block'){
+	    	break;
+	    } else {
+	    	$(document).click(function(event) {
+	    	    var tid = $(event.target).attr("id");
+	    	    if(tid != 'peopleCount'){
+	    	    	$(".peopleCount").css("display", "none");
+	    	    }
+	    	});
+	    }
 	});
-	$('#people').focusout
 	
 /* 	캘린더  */
 	$('#calendarArea1').click(function(e) {
@@ -213,7 +218,7 @@ $(function() {
 <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">로그인 </a>
+        <a class="nav-link" href="/member/login.kit">로그인 </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">회원가입</a>
@@ -244,7 +249,7 @@ $(function() {
 			<div class="form-group">
 				<label for="inputArea"> 인원수 </label> 
 				<input type="text" class="form-control city" id="people" name="sPtotal" placeholder="인원수를 선택해주세요">
-				<div class="peopleClick">
+				<div class="peopleCount" id="peopleCount">
 					<div class="adult">
 						<label>
 							<span class="totalcount">성인</span>
@@ -274,11 +279,9 @@ $(function() {
 	</div>	
 </div>
 <section>
-	<div class="container">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Volutpat odio facilisis mauris sit amet massa. Commodo odio aenean sed adipiscing diam donec adipiscing tristique. Mi eget mauris pharetra et. Non tellus orci ac auctor augue. Elit at imperdiet dui accumsan sit. Ornare arcu dui vivamus arcu felis. Egestas integer eget aliquet nibh praesent. In hac habitasse platea dictumst quisque sagittis purus. Pulvinar elementum integer enim neque volutpat ac.
-
-Senectus et netus et malesuada. Nunc pulvinar sapien et ligula ullamcorper malesuada proin. Neque convallis a cras semper auctor. Libero id faucibus nisl tincidunt eget. Leo a diam sollicitudin tempor id. A lacus vestibulum sed arcu non odio euismod lacinia. In tellus integer feugiat scelerisque. Feugiat in fermentum posuere urna nec tincidunt praesent. Porttitor rhoncus dolor purus non enim praesent elementum facilisis. Nisi scelerisque eu ultrices vitae auctor eu augue ut lectus. Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus. Et malesuada fames ac turpis egestas sed. Sit amet nisl suscipit adipiscing bibendum est ultricies. Arcu ac tortor dignissim convallis aenean et tortor at. Pretium viverra suspendisse potenti nullam ac tortor vitae purus. Eros donec ac odio tempor orci dapibus ultrices. Elementum nibh tellus molestie nunc. Et magnis dis parturient montes nascetur. Est placerat in egestas erat imperdiet. Consequat interdum varius sit amet mattis vulputate enim.
-
-Sit amet nulla facilisi morbi tempus. Nulla facilisi cras fermentum odio eu. Etiam erat velit scelerisque in dictum non consectetur a erat. Enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Ut sem nulla pharetra diam. Fames ac turpis egestas maecenas. Bibendum neque egestas congue quisque egestas diam. Laoreet id donec ultrices tincidunt arcu non sodales neque. Eget felis eget nunc lobortis mattis aliquam faucibus purus. Faucibus interdum posuere lorem ipsum dolor sit.</div>
+	<div class="container">
+		
+	</div>
 </section>
 <hr>
 <footer>
