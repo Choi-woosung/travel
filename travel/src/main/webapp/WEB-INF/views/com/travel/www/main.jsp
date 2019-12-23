@@ -222,6 +222,13 @@ $(function() {
 });
 </script>
 <script>
+	$(document).ready(function(){
+		var autocomplete;
+	    var options = {
+	    	        types: ['geocode']
+	    	      };
+		autocomplete = new google.maps.places.Autocomplete(document.getElementById('inputArea'), options);
+	});
 </script>
 </head>
 <body>
