@@ -8,15 +8,14 @@
 
 <mapper namespace="mSQL"> 
 
-	<select id="Login" resultType="int" parameterType="mVO">
-		
-	</select>
 	
-	<select id="Member" resultType="mVO" parameterType="mVO">
+	<select id="Member" resultType="mVO" parameterType="String">
 		SELECT
-			m_id, m_name, m_mail, m_mobile, m_address, m_jdate
+			m_id mId, m_name mName, m_mail mMail, m_mobile mMobile, m_address mAddress, m_jdate mJdate
 		FROM
 			member
+		WHERE
+			m_id = #{SID}
 	</select>
 	
 	<select id="login" resultType="int" parameterType="mVO">

@@ -26,23 +26,8 @@ public class Member {
 		
 		return mv;
 	}
-	
+
 	@RequestMapping("loginProc.kit")
-	public ModelAndView loginProc(HttpSession session, ModelAndView mv, RedirectView rv, JoinVO vo) {
-		int cnt = mDAO.loginProc(vo);
-		if(cnt != 1) {
-			// 실패한 경우
-			rv.setUrl("/member/login.kit");
-		} else {
-			// 성공한 경우
-			session.setAttribute("SID", vo.getjId());
-			rv.setUrl("/member/main.kit");
-		}
-		mv.setView(rv);
-		
-		return mv;
-	}
-	
 	public ModelAndView loginProc(HttpSession session ,ModelAndView mv, RedirectView rv, MemberVO mVO) {
 		int cnt = mDAO.login(mVO);
 		
@@ -78,9 +63,11 @@ public class Member {
 	}
 	
 	@RequestMapping("memberEdit.kit")
-	public ModelAndView memEditForm(ModelAndView mv, MemberVO vo) {
-			vo = mDAO.member(vo);
-		System.out.println(vo.getmMail());
+	public ModelAndView memEditForm(ModelAndView mv, MemberVO vo, HttpSession session, String SID) {
+		SID = (String) session.getAttribute("SID");
+		System.out.println(SID);
+		vo = mDAO.member(SID);
+		mv.addObject("DATA", vo);
 		mv.setViewName("member/memberEdit");
 		
 		return mv;
