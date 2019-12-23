@@ -1,6 +1,7 @@
 package com.travel.www.controller;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,8 @@ public class Schedule {
 	ScheduleDAO sDAO;
 	
 	@RequestMapping("/scheduleList.kit")
-	public ModelAndView scheduleListForm(ModelAndView mv, HttpSession session) {
+	public ModelAndView scheduleListForm(ModelAndView mv, HttpSession session, ScheduleVO vo) {
+
 		mv.setViewName("/schedule/scheduleList");
 		
 		String sid = (String) session.getAttribute("SID");
@@ -37,17 +39,12 @@ public class Schedule {
 	}
 	
 	@RequestMapping("/scheduleUp.kit")
-	public ModelAndView scheduleUpForm(ModelAndView mv, HttpServletRequest req) {
-		
+	public ModelAndView scheduleUpForm(ModelAndView mv, HttpServletRequest req, ScheduleVO vo) {
+
 		mv.setViewName("/schedule/scheduleUp");
 		
 		return mv;
 	}
 	
-	@RequestMapping("/scheduleLi.kit")
-	public ModelAndView scheduleLi(ModelAndView mv, ScheduleVO vo) {
-		
-		return mv;
-	}
-	
+
 }

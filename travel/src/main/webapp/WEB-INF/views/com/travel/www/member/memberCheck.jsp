@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,10 +12,16 @@
 
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/js/bootstrap.min.js">
-
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#cancel').click(function() {
+			history.back();
+		});
+	});
+</script>
 </head>
 <body>
-<form method="POST" action="/member/memberCheck.kit">
+	<form method="POST" action="/member/memberCheck.kit">
 		<div class="container" id="edit">
 			<h2 class=".col-md-4 text-center">회원 정보 수정</h2>
 			<input type="hidden" name="mId" value="${DATA.mId}">
@@ -29,9 +35,9 @@
 						<pre>비 밀  번 호 :</pre>
 						<h5 class="" id="name"></h5>
 						<h5 class="">
-							<input type="password" class="ml-4" id="pw" 
-								name="mPw" required="required">
-						</h5>	
+							<input type="password" class="ml-4" id="pw" name="mPw"
+								required="required">
+						</h5>
 					</div>
 					<div class="">
 						<div class="btn btn-info" id="cancel">취소</div>
