@@ -12,6 +12,13 @@
 		
 	</select>
 	
+	<select id="Member" resultType="mVO" parameterType="mVO">
+		SELECT
+			m_id, m_name, m_mail, m_mobile, m_address, m_jdate
+		FROM
+			member
+	</select>
+	
 	<select id="login" resultType="int" parameterType="mVO">
 		SELECT
 			count(*) cnt

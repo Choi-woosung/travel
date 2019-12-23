@@ -37,32 +37,37 @@
 			<div class="ml-4">
 				
 				<div class="p-4">
-					<h5 class="">회원번호 :</h5>
-					<h5 class="" id="no"></h5>
-				</div>
-				<div class="p-4">
-					<h5 class="">아 이 디   :</h5>
+					<pre>아   이   디 :</pre>
 					<h5 class="" id="id"></h5>
 				</div>
 				<div class="p-4">
-					<h5 class="">회원이름 :</h5>
+					<pre>회 원  이 름 :</pre>
 					<h5 class="" id="name"></h5>
 				</div>
 				<div class="p-4 ml-1 row">
-					<h5 class="">비밀번호 :</h5>
+					<pre>비 밀  번 호 :</pre>
+					<h5 class="" id="name"></h5>
+					<h5 class=""><input type="password" class="ml-4" id="mail" name="mail"></h5>
+				</div>
+				<div class="p-4 ml-1 row">
+					<pre>비밀번호확인 :</pre>
 					<h5 class="" id="name"></h5>
 					<h5 class=""><input type="password" class="ml-4" id="mail" name="mail"></h5>
 				</div>
 				<div class="p-4 row ml-1">
-					<pre><h5 class="">이 메 일   :   </h5></pre>
-					<h5 class=""><input type="text" class="ml-4" id="mail" name="mail"></h5>
+					<pre>이   메  일 :</pre>
+					<h5 class="" id="name"></h5>
 				</div>
 				<div class="p-4 row ml-1">
-					<h5 class="">전화번호 :</h5> 
+					<pre>전 화 번 호 :</pre>
+					<h5 class="" ><input type="text" class="ml-4 text1" id="tel" name="tel"></h5>
+				</div>
+				<div class="p-4 row ml-1">
+					<pre>주       소 :</pre>
 					<h5 class="" ><input type="text" class="ml-4 text1" id="tel" name="tel"></h5>
 				</div>
 				<div class="p-4 ">
-					<h5 class="">가 입 일 :</h5>
+					<pre>가   입   일 :</pre>
 					<h5 class="" id="date"></h5>
 				</div>
 				<div class ="">

@@ -20,6 +20,16 @@
             border: none;
             outline: none;
             color: #8EC0E4;
+            font-family: -apple-system,
+            			 BlinkMacSystemFont,
+            			 "Segoe UI",Roboto,
+            			 "Helvetica Neue",
+            			 Arial,"Noto Sans",
+            			 sans-serif,
+            			 "Apple Color Emoji",
+            			 "Segoe UI Emoji",
+            			 "Segoe UI Symbol",
+            			 "Noto Color Emoji";
         }
 
         /* all e */
@@ -89,7 +99,7 @@
             bottom: 0;
             right: 0;
             width: 15%;
-            height: 92%;
+            height: 93.5%;
             background-color: #D4DFE6;
         }
 
@@ -159,7 +169,7 @@
         	top: 0;
         	left: 0;
         	width: 100%;
-        	height: 8vh;
+        	height: 62px;
         	background-color: rgb(248, 249, 250);;
         	display: flex;
         	overflow: hidden;
@@ -167,11 +177,13 @@
         .travel, .loginNav, .signUpNav{
         	margin-top: auto;
         	margin-bottom: auto;
+        	padding-bottom: 1px;
        	}
         .travel{
         	margin-left: 16px;
-        	font-size: 1.175rem;
+        	font-size: 20px;
         	color: rgba(0, 0, 0, 0.9);
+        	font-weight: 400;
         }
         .loginNav{
         	margin-left: auto;
@@ -194,16 +206,16 @@
     </style>
 </head>
 <body class="mainBody">
-	<!-- topMenu s -->
-	<div class="topMenu">
-		<div class="travel">TRAVEL</div>
-		<div class="loginNav">로그인</div>
-		<div class="signUpNav">회원가입</div>
-	</div>
-	<!-- topMenu e -->
-
     <!-- main s -->
     <div class="mainBox" dropzone="true">
+    	<!-- topMenu s -->
+		<div class="topMenu">
+			<div class="travel">TRAVEL</div>
+			<div class="loginNav">로그인</div>
+			<div class="signUpNav">회원가입</div>
+		</div>
+		<!-- topMenu e -->
+    
         <!-- schedule s -->
         <ul class="scheduleBox">
             <li class="schedule">
@@ -289,7 +301,7 @@
             }
             for (let i = 0; i < schedule.length; i++) {
                 schedule[i].setAttribute('dropzone', true);
-                evt(schedule[i], 'dragover', dragover_);
+                evt(schedule[i], 'dragover', dragover_); 
                 evt(schedule[i], 'drop', drop_);
                 evt(schedule[i], 'dragstart', dragstart_);
             }
@@ -305,10 +317,10 @@
             	location.href = '/';
             });
             evt(loginNav, 'click', () => {
-            	location.href = '/';
+            	location.href = '/member/login.kit';
             });
             evt(signUpNav, 'click', () => {
-            	location.href = '/';
+            	location.href = '/member/join.kit';
             });
             // event e
 
