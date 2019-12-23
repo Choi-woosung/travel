@@ -333,7 +333,7 @@
             	location.href = '/member/join.kit';
             });
             evt(profile, 'click', () => {
-            	location.href = '/member/memberEdit.kit';
+            	location.href = '/member/memberForm.kit';
             });
             // event e
 

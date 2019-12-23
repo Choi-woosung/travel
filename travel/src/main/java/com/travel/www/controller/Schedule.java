@@ -1,10 +1,15 @@
 package com.travel.www.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,7 +37,8 @@ public class Schedule {
 	}
 	
 	@RequestMapping("/scheduleUp.kit")
-	public ModelAndView scheduleUpForm(ModelAndView mv) {
+	public ModelAndView scheduleUpForm(ModelAndView mv, HttpServletRequest req) {
+		
 		mv.setViewName("/schedule/scheduleUp");
 		
 		return mv;

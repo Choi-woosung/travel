@@ -14,9 +14,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="js/j-query-3.4.1.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&libraries=places"></script>
 <title>Document</title>
 
 <style>
@@ -127,21 +125,32 @@ html .ui-button.ui-state-disabled:active {
 	font-size : 23px;
 }
 
+<%-- Footer 관련 css --%>
+
+footer{
+	background : #333333;
+	text-align : center;
+	color : gray;
+	height : 400px;
+	font-size : 12px;
+	padding : 20px;
+}
+
 
 
 </style>
 <script>
 $(function() {
 	$('#login').click(function () {
-		$(location).attr('href', '/member/login.kit')
+		$(location).attr('href', '/member/login.kit');
 	});
 	
 	$('#join').click(function () {
-		$(location).attr('href', '/member/join.kit')
+		$(location).attr('href', '/member/join.kit');
 	});
 	
 	$('#make').click(function () {
-		$(location).attr('href', '/schedule/scheduleUp.kit')
+		$(location).attr('href', '/schedule/scheduleUp.kit');
 	});
 	
 	/* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
@@ -210,25 +219,38 @@ $(function() {
 				},
 				
 			});
-	});
+});
+</script>
+<script>
 </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">TRAVEL</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">	
+  <a class="navbar-brand" href="#">MY TRAVEL</a>
 <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
     <ul class="navbar-nav">
       <c:if test="${empty SID }">
       <li class="nav-item">
-        <a class="nav-link" href="/member/login.kit">로그인 </a>
+      	<a class="nav-link" href="/member/login.kit">
+      		<button class="btn btn-outline-success my-2 my-sm-0">로그인</button>
+      	</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/member/join.kit">회원가입</a>
+        <a class="nav-link" href="/member/join.kit">        
+      		<button class="btn btn-outline-success my-2 my-sm-0">회원가입</button>
+        </a>
       </li>
       </c:if>
       <c:if test="${!empty SID }">
       <li class="nav-item">
-        <a class="nav-link" href="/member/memberForm.kit">회원정보보기</a>
+        <a class="nav-link" href="/member/logout.kit">
+      		<button class="btn btn-outline-success my-2 my-sm-0">로그아웃</button>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/member/memberForm.kit">
+      		<button class="btn btn-outline-success my-2 my-sm-0">회원정보보기</button>
+        </a>
       </li>
       </c:if>
     </ul>
@@ -294,11 +316,12 @@ $(function() {
 </section>
 <hr>
 <footer>
-	<div class="container">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Volutpat odio facilisis mauris sit amet massa. Commodo odio aenean sed adipiscing diam donec adipiscing tristique. Mi eget mauris pharetra et. Non tellus orci ac auctor augue. Elit at imperdiet dui accumsan sit. Ornare arcu dui vivamus arcu felis. Egestas integer eget aliquet nibh praesent. In hac habitasse platea dictumst quisque sagittis purus. Pulvinar elementum integer enim neque volutpat ac.
-
-Senectus et netus et malesuada. Nunc pulvinar sapien et ligula ullamcorper malesuada proin. Neque convallis a cras semper auctor. Libero id faucibus nisl tincidunt eget. Leo a diam sollicitudin tempor id. A lacus vestibulum sed arcu non odio euismod lacinia. In tellus integer feugiat scelerisque. Feugiat in fermentum posuere urna nec tincidunt praesent. Porttitor rhoncus dolor purus non enim praesent elementum facilisis. Nisi scelerisque eu ultrices vitae auctor eu augue ut lectus. Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus. Et malesuada fames ac turpis egestas sed. Sit amet nisl suscipit adipiscing bibendum est ultricies. Arcu ac tortor dignissim convallis aenean et tortor at. Pretium viverra suspendisse potenti nullam ac tortor vitae purus. Eros donec ac odio tempor orci dapibus ultrices. Elementum nibh tellus molestie nunc. Et magnis dis parturient montes nascetur. Est placerat in egestas erat imperdiet. Consequat interdum varius sit amet mattis vulputate enim.
-
-Sit amet nulla facilisi morbi tempus. Nulla facilisi cras fermentum odio eu. Etiam erat velit scelerisque in dictum non consectetur a erat. Enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Ut sem nulla pharetra diam. Fames ac turpis egestas maecenas. Bibendum neque egestas congue quisque egestas diam. Laoreet id donec ultrices tincidunt arcu non sodales neque. Eget felis eget nunc lobortis mattis aliquam faucibus purus. Faucibus interdum posuere lorem ipsum dolor sit.</div>
+	<div class="container">
+		<p>All material © 2019 – 2019 MyTravel Company Pte. Ltd., All Rights Reserved. </p>
+		<p>마이 트레블은 온라인 여행에 관한 각종 정보를 한 곳에서 찾아볼 수 있고 스케쥴을 짤 수 있는 사이트 입니다. </p>
+		
+		<p>해당 사이트에 등록된 모든 정보는 MyTravel Company 의 지적 자산이므로 당사의 협의없는 상업적 사용은 불허합니다.</p>
+	</div>
 </footer>
 </body>
 </html>

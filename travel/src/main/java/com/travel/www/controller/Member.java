@@ -29,6 +29,14 @@ public class Member {
 		
 		return mv;
 	}
+	
+	@RequestMapping("logout.kit")
+	public ModelAndView logout(ModelAndView mv, HttpSession session, RedirectView rv) {
+		session.invalidate();
+		rv.setUrl("/main.kit");
+		mv.setView(rv);
+		return mv;
+	}
 
 	@RequestMapping("loginProc.kit")
 	public ModelAndView loginProc(HttpSession session ,ModelAndView mv, RedirectView rv, MemberVO mVO) {
