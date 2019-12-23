@@ -223,6 +223,9 @@ $(function() {
       <li class="nav-item">
         <a class="nav-link" href="#">회원가입</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/member/memberEdit.kit">회원정보보기</a>
+      </li>
     </ul>
   </div>
 </nav>
