@@ -144,44 +144,12 @@ $(function() {
 	});
 	
 	/* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
-/*	$("#people").focusin(function(){
-		var count = $(".peopleCount").css("display");
-		if(count == 'none'){
-		    $(".peopleCount").css("display" , "block");
-		} else {
-			$(document).click(function(event) {
-			    var tid = $(event.target).attr("id");
-			    if(tid != 'peopleCount'){
-			    	$(".peopleCount").css("display", "none");
-			    }
-			});
-		}
+	$('#people').focusin(function(){
+		$('.peopleCount').toggle();
 	});
-	*/
-	$(".people").focusin(function(){
-		$(document).click(function(event){
-			var tid = $(event.target).attr("id");
-			console.log(tid);
-			if(tid == "people"){
-			    $(".peopleCount").css("display" , "block");
-			} else if (tid == "peopleCount"){
-				return false;
-			} else {
-		    	$(".peopleCount").css("display", "none");
-			}
-		});
-	});	$(".people").focusout(function(){
-		$(document).click(function(event){
-			var tid = $(event.target).attr("id");
-			console.log(tid);
-			if(tid == "people"){
-			    $(".peopleCount").css("display" , "block");
-			} else if (tid == "peopleCount"){
-				return false;
-			} else {
-		    	$(".peopleCount").css("display", "none");
-			}
-		});
+	$('#people').focusout(function(){
+		if()
+		$('.peopleCount').toggle();
 	});
 	
 /* 	캘린더  */
@@ -248,7 +216,7 @@ $(function() {
         <a class="nav-link" href="#">회원가입</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/member/memberEdit.kit?sid='qweq'">회원정보보기</a>
+        <a class="nav-link" href="/member/memberEdit.kit">회원정보보기</a>
       </li>
     </ul>
   </div>
