@@ -219,12 +219,13 @@ $(function() {
 				},
 				
 			});
+});
 </script>
 <script>
 </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">	
   <a class="navbar-brand" href="#">MY TRAVEL</a>
 <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
     <ul class="navbar-nav">
