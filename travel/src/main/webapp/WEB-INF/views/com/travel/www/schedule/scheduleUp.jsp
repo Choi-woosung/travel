@@ -170,7 +170,7 @@
         	top: 0;
         	left: 0;
         	width: 100%;
-        	height: 62px;
+        	height: 70px;
         	background-color: rgb(248, 249, 250);
         	display: flex;
         	overflow: hidden;
@@ -219,7 +219,7 @@
     <div class="mainBox" dropzone="true">    
 	   	<!-- topMenu s -->
 		<div class="topMenu">
-			<div class="travel">TRAVEL</div>
+			<div class="travel">MY TRAVEL</div>
 			<c:if test="${empty SID}">
 				<div class="loginNav">로그인</div>
 				<div class="signUpNav">회원가입</div>
