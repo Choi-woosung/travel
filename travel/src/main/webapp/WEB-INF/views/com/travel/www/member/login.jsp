@@ -13,7 +13,7 @@
 }
 
 .form-control{
-	display: block;
+	display: block; 
 	width: 50%;
 	line-height: 1.5;
 	align-items: center;
