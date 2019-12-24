@@ -233,6 +233,8 @@ $(function() {
 });
 </script>
 <script>
+
+	// 구글 맵 api 자동완성기능 //
 	$(document).ready(function(){
 		var autocomplete;
 	    var options = {
@@ -329,7 +331,6 @@ $(function() {
 </div>
 <section>
 	<div class="container">
-		con
 	</div>
 </section>
 <hr>
