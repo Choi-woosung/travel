@@ -9,6 +9,7 @@ public class MainController {
 	 
 	@RequestMapping("/main.kit")
 	public void getMain() {
+		
 		/* System.out.println("### 여기는 메인 ###"); */
 	}
 

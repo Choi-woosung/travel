@@ -244,8 +244,7 @@
 			$('#frm').submit();
 		};
 	};
-	function dateCalc(){
-	}
+
 	
 /* 	function getsearch() {
 		var formid = document.myform;

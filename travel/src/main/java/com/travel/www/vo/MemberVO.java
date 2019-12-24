@@ -2,7 +2,9 @@ package com.travel.www.vo;
 
 
  
-	import java.sql.*;
+import java.sql.*;
+
+import org.springframework.web.multipart.MultipartFile;
 
 	
 public class MemberVO {
@@ -21,6 +23,9 @@ public class MemberVO {
 	private int mAvatar;
 	private int mPoint;
 	private int cnt;
+	private MultipartFile sFile;
+	private MultipartFile[] file;
+	
 	
 	public int getCnt() {
 		return cnt;
@@ -112,6 +117,18 @@ public class MemberVO {
 	}
 	public void setmPoint(int mPoint) {
 		this.mPoint = mPoint;
+	}
+	public MultipartFile getsFile() {
+		return sFile;
+	}
+	public void setsFile(MultipartFile sFile) {
+		this.sFile = sFile;
+	}
+	public MultipartFile[] getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile[] file) {
+		this.file = file;
 	}
 	
 	
