@@ -18,9 +18,10 @@
 		<typeAlias alias="saVO" type="com.travel.www.vo.ScheduleAnswerVO"/>
 		<typeAlias alias="sdeVO" type="com.travel.www.vo.ScheduleDetailVO"/>
 		<typeAlias alias="sdiVO" type="com.travel.www.vo.ScheduleDiningVO"/>
+		<typeAlias alias="fVO" type="com.travel.www.vo.FileVO"/>
 	</typeAliases> 
 	
-	
+	 
  	<mappers>
 		<mapper resource="com/travel/www/sql/MemberSQL.xml"/>
 		<mapper resource="com/travel/www/sql/ScheduleSQL.xml"/>

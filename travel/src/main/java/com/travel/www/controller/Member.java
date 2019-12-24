@@ -142,7 +142,7 @@ public class Member {
 		
 		
 		mv.setViewName("member/memberCheck");
-		
+		 
 		return mv;
 	}
 	@RequestMapping("memberEditProc.kit")
