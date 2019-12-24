@@ -12,7 +12,7 @@ public class FileDAO {
 	SqlSessionTemplate sqlSession;
 	
 	// 파일 정보 입력 전담 처리 함수
-	public int insertPhoto(FileVO fVO) {
-		return sqlSession.insert("mSQL.addPic", fVO);
-	}
+//	public int insertPhoto(FileVO fVO) {
+//		return sqlSession.insert("mSQL.addPic", fVO);
+//	}
 }
