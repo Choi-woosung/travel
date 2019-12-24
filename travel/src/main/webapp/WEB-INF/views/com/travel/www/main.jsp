@@ -213,6 +213,16 @@
 		}); 
 
 
+		/* $('#make').click(function (e) {
+
+				$('#frm').attr('action', '/schedule/scheduleUp.kit');
+				$('#frm').submit();
+			}); */
+			
+		var date1 = $('#sSdate').val();
+		var date2 = $('#eEdate').val();
+		console.log(date1 - date2);
+
 	});
 	function getmake() {
 		var formid = document.myform;
@@ -233,6 +243,8 @@
 			$('#frm').submit();
 		};
 	};
+	function dateCalc(){
+	}
 	
 /* 	function getsearch() {
 		var formid = document.myform;
@@ -262,6 +274,8 @@
 	    	      };
 		autocomplete = new google.maps.places.Autocomplete(document.getElementById('inputArea'), options);
 	});
+	
+	
 </script>
 </head>
 <body>
@@ -277,18 +291,19 @@
 					<div class="form-group">
 						<label for="inputArea"> 여행가는 도시 </label>
 					 	<input type="text" class="form-control city" id="inputArea" name="sCountry"
-							placeholder="떠나실 장소를 검색해보세요">
+							placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
 					</div>
 					<div class="row">
 						<div class="form-group col-md-6 ">
 							<label for="calendarArea" id="calendarArea1"> 출발일 선택 </label> 
 							<input type="text" class="form-control col-md-12" id="sSdate"
-								name="sSdate" placeholder="언제부터 ?">
+								name="sSdate" placeholder="언제부터 ?" autocomplete="off">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="calendarArea"> 도착일 선택 </label> 
 							<input type="text" class="form-control col-md-12" id="sEdate" name="sEdate"
-								placeholder="언제까지 ?">
+								placeholder="언제까지 ?" autocomplete="off">
+								
 						</div>
 					</div>
 					<div class="form-group tCount">
