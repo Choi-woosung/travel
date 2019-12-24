@@ -50,7 +50,7 @@ public class Schedule {
 			System.out.println(cale2);
 			
 			mv.addObject("LIST", vo);
-			mv.setViewName("/schedule/scheduleUp");
+			mv.setViewName("/schedule/scheduleUp2");
 		}
 		
 		return mv;
