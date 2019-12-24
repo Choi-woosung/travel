@@ -200,18 +200,18 @@
 
 				});
 
-		/* $('#search').click(function () {
+		 $('#search').click(function () {
+			 var formid = document.myform;
+			 if (formid.sCountry.value == "" || formid.sSdate.value == "" || formid.sEdate.value == "") {
+					$(location).attr('href', '/schedule/scheduleList.kit');
+				} else{
+					$('#frm').attr('action', '/schedule/scheduleList.kit');
+					$('#frm').submit();
+				}
 			
-			$('#frm').attr('action', '/schedule/scheduleList.kit');
-			$('#frm').submit();
 		
-		}); */
+		}); 
 
-		/* $('#make').click(function (e) {
-
-				$('#frm').attr('action', '/schedule/scheduleUp.kit');
-				$('#frm').submit();
-			}); */
 
 	});
 	function getmake() {
@@ -234,7 +234,7 @@
 		};
 	};
 	
-	function getsearch() {
+/* 	function getsearch() {
 		var formid = document.myform;
 		if (formid.sCountry.value == "") {
 			formid.sCountry.focus();
@@ -251,8 +251,7 @@
 		} else {
 			$('#frm').attr('action', '/schedule/scheduleList.kit');
 			$('#frm').submit();
-		};
-	};
+		}; */
 </script>
 <script>
 	// 구글 맵 api 자동완성기능 //
@@ -323,7 +322,7 @@
 						</div>
 					</div>
 					<button type="button" class="btn btn-info" id="make" onclick="getmake()">스케쥴만들기</button>
-					<button type="button" class="btn btn-info" id="search" onclick="getsearch()">검색</button>
+					<button type="button" class="btn btn-info" id="search" >검색</button>
 				</form>
 			</div>
 		</div>
