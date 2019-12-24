@@ -7,21 +7,23 @@ public class ScheduleVO {
 	private String sName; 
 	private Date sSdate;
 	private Date sEdate; 
+	private String sStrdate;
+	private String sEtrdate; 
 	private String sCountry; 
 	private String sArea;  
 	private int sWriter;
 	private Date sWdate;
 	private Date sWedate; 
 	private String sBody;
-	private int sPtotal;
+	private String sPtotal;
 	public int sRate;
 	public String sDel;
 	
 	
-	public int getsPtotal() {
+	public String getsPtotal() {
 		return sPtotal;
 	}
-	public void setsPtotal(int sPtotal) {
+	public void setsPtotal(String sPtotal) {
 		this.sPtotal = sPtotal;
 	}
 	public int getsNo() {
@@ -95,6 +97,22 @@ public class ScheduleVO {
 	}
 	public void setsDel(String sDel) {
 		this.sDel = sDel;
+	}
+	public String getsStrdate() {
+		String str = sSdate.toString().replaceAll("-", "");
+		
+		return str;
+	}
+	public void setsStrdate(String sStrdate) {
+		this.sStrdate = sStrdate;
+	}
+	public String getsEtrdate() {
+		String str = sEdate.toString().replaceAll("-", "");
+		
+		return str;
+	}
+	public void setsEtrdate(String sEtrdate) {
+		this.sEtrdate = sEtrdate;
 	}
 	
 	}
