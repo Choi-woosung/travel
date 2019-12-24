@@ -25,8 +25,8 @@ public class Schedule {
 		
 		mv.setViewName("/schedule/scheduleList");
 		
-		String sid = (String) session.getAttribute("SID");
-		List<ScheduleVO> list = sDAO.scheduleList(sid);
+//		String sid = (String) session.getAttribute("SID");
+		List<ScheduleVO> list = sDAO.scheduleList();
 		
 		mv.addObject("LIST", list);
 		

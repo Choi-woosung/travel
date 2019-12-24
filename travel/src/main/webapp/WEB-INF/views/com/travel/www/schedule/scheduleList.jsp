@@ -62,22 +62,13 @@
 		  <a href="/schedule/scheduleUp.kit" class="w3-bar-item w3-button w3-text-white w3-padding w3-col m5 w3-xlarge" style="background-color: #203767;">스케쥴 등록</a>
 		</div>
 		<div class="w3-col m1"><p></p></div>
-		<table class="w3-table-all w3-col m10 w3-hoverable">
-			<thead>
-				<tr class="w3-dark-gray">
-					<th>스케쥴번호</th>
-					<th>스케쥴이름</th>
-					<th>예상금액</th>
-				</tr>
-			</thead>
-			<c:forEach var="data" items="${LIST}">
-			<tr class="simpleInfo">
-				<td>${data.sNo}</td>
-				<td>${data.sName}</td>
-				<td>400,000원</td>
-			</tr>
-			</c:forEach>
-		</table>
+		<div class="w3-col m10 w3-border">
+			<img class="w3-col m4 w3-padding" alt="해당여행사진" src="/img/schedule/hotel.jpg">
+			<div class="w3-col m8">
+				<p>스케쥴 짜기</p>
+			</div>
+		</div>
+		
 		<div class="w3-center">
 			<div class="w3-bar w3-round w3-margin-top" style="background-color: #203767;">
 				<a href="#" class="w3-bar-item w3-button w3-text-white">&laquo;</a>
@@ -87,17 +78,6 @@
 				<a href="#" class="w3-bar-item w3-button w3-text-white">4</a>
 				<a href="#" class="w3-bar-item w3-button w3-text-white">&raquo;</a>
 			</div>
-		</div>
-	</div>
-	<div id="detailInfo" class="w3-modal-content">
-		<header class="w3-container w3-text-white" style="background-color: #8FCEFF;">
-		<span id="exit" class="w3-button w3-display-topright">&times;</span>
-		<h2 class="w3-center" style="font-weight: bold;">스케쥴 상세보기</h2>
-		</header>
-		<div class="w3-container">
-			<h4 class="w3-center">스케쥴 제목</h4>
-			<p>여행시작날짜</p>
-			<p>여행종료날짜</p>
 		</div>
 	</div>
 </body>

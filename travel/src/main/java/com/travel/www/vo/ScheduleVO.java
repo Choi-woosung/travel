@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 public class ScheduleVO {
+	private int sRn;
 	private int sNo;
 	private String sName; 
 	private Date sSdate;
@@ -19,7 +20,12 @@ public class ScheduleVO {
 	public int sRate;
 	public String sDel;
 	
-	
+	public int getsRn() {
+		return sRn;
+	}
+	public void setsRn(int sRn) {
+		this.sRn = sRn;
+	}
 	public String getsPtotal() {
 		return sPtotal;
 	}
