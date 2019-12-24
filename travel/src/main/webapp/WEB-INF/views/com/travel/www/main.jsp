@@ -138,36 +138,11 @@ $(function() {
 		$(location).attr('href', '/member/join.kit')
 	});
 
-	
+
 	/* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
-	$("#people").focusin(function(){
-	    $(".peopleClick").css("display" , "block");
+	$('#people').click(function() {
+		$('.pCount').addClass('view');
 	});
-	
-/* 	캘린더  */
-	$('#calendarArea1').click(function(e) {
-		e.preventDefault();
-		$('#startDatePicker').focus();
-	});
-	$('#calendarArea2').click(function(e) {
-		e.preventDefault();
-		$("#endDatePicker").focus();
-	});
-	
-	$(function() {
-		$('#login').click(function() {
-			$(location).attr('href', '/member/login.kit');
-		});
-
-		$('#join').click(function() {
-			$(location).attr('href', '/member/join.kit');
-		});
-
-
-		/* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
-		$('#people').click(function() {
-			$('.pCount').addClass('view');
-		});
 
 		$('body').on('click', function(e) {
 			var pClass = $(e.target).hasClass('city');
@@ -179,7 +154,6 @@ $(function() {
 				return false;
 			}
 		});
-
 		/* 	캘린더  */
 		$('#calendarArea1').click(function(e) {
 			e.preventDefault();
@@ -252,10 +226,6 @@ $(function() {
 				$('#frm').submit();
 			}); */
 			
-		var date1 = $('#sSdate').val();
-		var date2 = $('#eEdate').val();
-		console.log(date1 - date2);
-
 	});
 	function getmake() {
 		var formid = document.myform;
