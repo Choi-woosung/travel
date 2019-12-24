@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.travel.www.dao.MemberDAO;
-import com.travel.www.vo.JoinVO;
 import com.travel.www.vo.MemberVO;
 
 @Controller
@@ -28,21 +27,36 @@ public class Member {
 	}
 	
 	@RequestMapping("loginProc.kit")
-	public ModelAndView loginProc(HttpSession session, ModelAndView mv, RedirectView rv, JoinVO vo) {
+	public ModelAndView loginProc(HttpSession session, ModelAndView mv, RedirectView rv, MemberVO vo) {
 		int cnt = mDAO.loginProc(vo);
 		if(cnt != 1) {
 			// 실패한 경우
 			rv.setUrl("/member/login.kit");
 		} else {
 			// 성공한 경우
-			session.setAttribute("SID", vo.getjId());
-			rv.setUrl("/member/main.kit");
+			session.setAttribute("SID", vo.getmId());
+			rv.setUrl("/main.kit");
 		}
 		mv.setView(rv);
 		
 		return mv;
 	}
 	
+	@RequestMapping("logoutProc.kit")
+	public ModelAndView logout(ModelAndView mv, RedirectView rv, HttpSession session) {
+		System.out.println("##########");
+		// 세션에 지정한 데이터를 지운다
+		session.setAttribute("SID", "");
+		
+		// 메인페이지로 강제로 요청을 만든다
+		rv.setUrl("/main.kit");
+		mv.setView(rv);
+		
+		return mv;
+		
+	}
+	
+/*	
 	public ModelAndView loginProc(HttpSession session ,ModelAndView mv, RedirectView rv, MemberVO mVO) {
 		int cnt = mDAO.login(mVO);
 		
@@ -56,6 +70,7 @@ public class Member {
 		mv.setView(rv);
 		return mv;
 	}
+*/	
 	
 	@RequestMapping("join.kit")
 	public ModelAndView joinForm(ModelAndView mv) {
@@ -83,4 +98,8 @@ public class Member {
 		
 		return mv;
 	}
+	
+
+	
+	
 }

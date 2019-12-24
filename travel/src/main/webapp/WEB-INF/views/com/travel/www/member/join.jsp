@@ -14,28 +14,28 @@
 
  <h3 class="panel-title">Please Sign In</h3>
 				
-<form method="POST" action="/member/main.kit" enctype="multipart/form-data"><!-- enctype = 파일 업로드 -->
+<form method="POST" action="/member/main.kit" ><!-- enctype = 파일 업로드 -->
 	
 
 	<div class="form-group w3-margin">
 		<label for="userId">아이디</label>
-		<input type="text" id="userId" name="p_userid" placeholder="아이디" maxlength="8">
+		<input type="text" id="userId" name="mId" placeholder="아이디" maxlength="8">
 		<input type="button" id="Idbtn" value="중복확인" class=" " style="width: 120px; height: 30px; padding: 0px;">
 	</div>
 	
 	<div class="form-group w3-margin">
 		<label for="userPw">패스워드</label>
-		<input type="password" id="userPw" name="p_password" placeholder="패스워드" maxlength="10">
+		<input type="password" id="userPw" name="mPw" placeholder="패스워드" maxlength="10">
 	</div>
 	
 	<div class="form-group w3-margin">
 		<label for="userName">이름</label>
-		<input type="text" id="userName" name="p_name" placeholder="이름" maxlength="5">
+		<input type="text" id="userName" name="mName" placeholder="이름" maxlength="5">
 	</div>
 	
 	<div class="form-group w3-margin">
 		<label for="email">이메일</label>
-		<input type="email" id="email" name="p_email" placeholder="이메일" maxlength="25">
+		<input type="email" id="email" name="mMail" placeholder="이메일" maxlength="25">
 	</div>
 	
 
@@ -47,10 +47,6 @@
 </form>
 </div>	
 
-
-</div>
-
-			
 
 
 </body>
