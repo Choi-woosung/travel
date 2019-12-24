@@ -1,6 +1,7 @@
 package com.travel.www.vo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class ScheduleVO {
 	private int sNo;
@@ -13,15 +14,16 @@ public class ScheduleVO {
 	private Date sWdate;
 	private Date sWedate; 
 	private String sBody;
-	private int sPtotal;
+	private String sPtotal;
+	private int sDay;
 	public int sRate;
 	public String sDel;
 	
 	
-	public int getsPtotal() {
+	public String getsPtotal() {
 		return sPtotal;
 	}
-	public void setsPtotal(int sPtotal) {
+	public void setsPtotal(String sPtotal) {
 		this.sPtotal = sPtotal;
 	}
 	public int getsNo() {
@@ -96,5 +98,10 @@ public class ScheduleVO {
 	public void setsDel(String sDel) {
 		this.sDel = sDel;
 	}
-	
+	public int getsDay() {
+		return sDay;
 	}
+	public void setsDay(int sDay) {
+		this.sDay = sDay;
+	}
+}

@@ -10,6 +10,25 @@
 
 
 	
+	<select id="Member" resultType="mVO" parameterType="mVO">
+		SELECT
+			m_id mId, m_name mName, m_mail mMail, m_mobile mMobile, m_address mAddress, m_jdate mJdate
+		FROM
+			member
+		WHERE
+			m_id = #{mId}
+	</select>
+	
+	<select id="MemberCheck" resultType="int" parameterType="mVO">
+		SELECT
+			count(*)
+		FROM
+			member
+		WHERE
+			m_id = #{mId}
+		AND m_pw = #{mPw}
+	</select>
+	
 	<select id="Login" resultType="int" parameterType="mVO">
 		SELECT
 			count(*) cnt
@@ -19,4 +38,15 @@
 			m_id = #{mId}
 	</select>
 	
+	<update id="MemberEdit" parameterType="mVO">
+		update
+			member		
+		set
+			m_pw = #{mPw},
+			m_mobile = #{mMobile},
+			m_address = #{mAddress}
+		WHERE
+		m_id = #{mId}
+		
+	</update>
 </mapper>

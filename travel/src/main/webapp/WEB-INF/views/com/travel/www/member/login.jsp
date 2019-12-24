@@ -95,11 +95,16 @@
   <button class="btn btn-lg btn-primary btn-block" id="btn" type="submit">Sign in</button>
   
   </div>
-</form>
-</c:if>
+  </form>
+  </c:if>
+
 	<c:if test="${not empty SID}">
 		<div class="btn btn-lg btn-primary btn-block" id="logout">로그아웃</div>
 	</c:if>
+
+
+
+
 
 </body>
 </html>

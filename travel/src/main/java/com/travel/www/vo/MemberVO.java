@@ -8,6 +8,7 @@ package com.travel.www.vo;
 public class MemberVO {
 	private int mNo;
 	private String mPw;
+	private String mPw2;
 	private Date mPcdate;
 	private String mMail;
 	private String mName;
@@ -38,6 +39,13 @@ public class MemberVO {
 	}
 	public void setmPw(String mPw) {
 		this.mPw = mPw;
+	}
+	
+	public String getmPw2() {
+		return mPw2;
+	}
+	public void setmPw2(String mPw2) {
+		this.mPw2 = mPw2;
 	}
 	public Date getmPcdate() {
 		return mPcdate;

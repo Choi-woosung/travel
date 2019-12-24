@@ -1,5 +1,6 @@
 package com.travel.www.controller;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,16 @@ public class Member {
 			// 성공한 경우
 			session.setAttribute("SID", vo.getmId());
 			rv.setUrl("/main.kit");
+		
 		}
 		mv.setView(rv);
-		
+		return mv;
+	}
+	@RequestMapping("logout.kit")
+	public ModelAndView logout(ModelAndView mv, HttpSession session, RedirectView rv) {
+		session.invalidate();
+		rv.setUrl("/main.kit");
+		mv.setView(rv);
 		return mv;
 	}
 	
@@ -57,6 +65,10 @@ public class Member {
 	}
 	
 /*	
+=======
+
+	@RequestMapping("loginProc.kit")
+>>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 	public ModelAndView loginProc(HttpSession session ,ModelAndView mv, RedirectView rv, MemberVO mVO) {
 		int cnt = mDAO.login(mVO);
 		
@@ -79,6 +91,13 @@ public class Member {
 		return mv;
 	}
 	
+	@RequestMapping("join2.kit")
+	public ModelAndView joinForm2(ModelAndView mv) {
+		mv.setViewName("member/join2");
+		
+		return mv;
+	}
+	
 	@RequestMapping("find.kit")
 	public ModelAndView findForm(ModelAndView mv) {
 		mv.setViewName("member/find");
@@ -92,14 +111,56 @@ public class Member {
 		return mv;
 	}
 	
-	@RequestMapping("memberEdit.kit")
-	public ModelAndView memEditForm(ModelAndView mv) {
-		mv.setViewName("member/memberEdit");
+
+	
+	@RequestMapping("memberCheck.kit")
+
+	public ModelAndView memEditForm(ModelAndView mv, MemberVO vo, HttpSession session, RedirectView rv) {
+		String mId = (String) session.getAttribute("SID");
+		System.out.println(mId);
+		if(vo.getmPw() == null) {
+			rv.setUrl("/main.kit");
+			mv.setView(rv);
+			return mv;
+		}
+		vo.setmId(mId);
+		int cnt = mDAO.membercheck(vo);
+		if(cnt == 1) {
+			System.out.println("성공");
+			vo = mDAO.member(vo);
+			mv.addObject("DATA", vo);
+			mv.setViewName("member/memberEdit");
+		} else {
+			mv.setViewName("member/memberCheck");
+			
+		}
 		
 		return mv;
 	}
-	
-
+	@RequestMapping("memberForm.kit")
+	public ModelAndView memEditForm(ModelAndView mv) {
+		
+		
+		mv.setViewName("member/memberCheck");
+		
+		return mv;
+	}
+	@RequestMapping("memberEditProc.kit")
+	@ResponseBody
+	public int memEditForm(ModelAndView mv, MemberVO vo) {
+		int cnt = 0;
+		System.out.println(vo.getmPw());
+		if(vo.getmPw().equals(vo.getmPw2())) {
+			cnt = mDAO.memberEdit(vo);
+			System.out.println("수정완료");
+			vo = mDAO.member(vo);
+			mv.addObject("DATA", vo);
+		}else {
+			System.out.println("수정 실패");
+		}
+		
+		return cnt;
+	}
 	
 	
 }

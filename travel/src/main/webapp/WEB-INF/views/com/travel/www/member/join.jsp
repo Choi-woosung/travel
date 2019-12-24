@@ -5,9 +5,47 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 <link rel="stylesheet" href="/www/css/w3.css" >
 <script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script>
+<script type="text/javascript">
+	$(function(){
+		$('#Idbtn').click(function(){
+			var sid = $('#userId').val();
+			
+			$.ajax({
+				url  : "/idCheck.kit",
+				type : "post",
+				dataType : "text",
+				data : {
+					"id" : sid
+				},
+			
+			},
+			success : function(){
+				var ok = data;
+				
+				if(ok == 1){
+					// 이미 회원가입 된거
+					$('#userId').val("");
+					$('#Idbtn').attr('class', '');
+					$('#Idbtn').toggleClass('w3-text-red');
+					$('#Idbtn').html("이미 가입된 아이디입니다.");					
+				
+				} else {
+					// 회원가입 가능
+					$('#Idbtn').attr('class', '');
+					$('#Idbtn').toggleClass('w3-text-green');
+					$('#Idbtn').html("사용 가능한 아이디입니다.");
+				}
+			},
+			error : function(){
+				alert("Error");
+			}			
+		});
+	});
+	
+</script>
 </head>
 <body>
 <div class="w3-center">
