@@ -21,7 +21,7 @@
 		<typeAlias alias="fVO" type="com.travel.www.vo.FileVO"/>
 	</typeAliases> 
 	
-	
+	 
  	<mappers>
 		<mapper resource="com/travel/www/sql/MemberSQL.xml"/>
 		<mapper resource="com/travel/www/sql/ScheduleSQL.xml"/>

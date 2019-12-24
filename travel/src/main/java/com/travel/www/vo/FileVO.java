@@ -22,7 +22,7 @@ public class FileVO {
 	}
 	public void setMno(int mno) {
 		this.mno = mno;
-	}
+	} 
 	public String getOriName() {
 		return oriName;
 	}

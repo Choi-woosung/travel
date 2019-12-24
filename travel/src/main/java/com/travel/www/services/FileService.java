@@ -115,8 +115,8 @@ public class FileService {
 		fVO.setMno(mVO.getmNo());
 		fVO.setOriName(mVO.getsFile().getOriginalFilename());
 		fVO.setSaveName(saveName);
-		fVO.setDir();
-		fVO.setLen(mVO.getsFile().getSize());
+		fVO.setDir(); 
+		fVO.setLen(mVO.getsFile().getSize()); 
 //		fDAO.insertPhoto(fVO);
 		return cnt;
 	}

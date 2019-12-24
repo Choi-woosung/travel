@@ -9,7 +9,7 @@ import com.travel.www.vo.*;
 
 public class FileDAO {
 	@Autowired
-	SqlSessionTemplate sqlSession;
+	SqlSessionTemplate sqlSession; 
 	
 	// 파일 정보 입력 전담 처리 함수
 //	public int insertPhoto(FileVO fVO) {

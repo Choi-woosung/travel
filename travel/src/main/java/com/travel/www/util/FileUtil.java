@@ -20,7 +20,7 @@ public class FileUtil {
 		 			
 		 */
 		
-		int count = 0; // 동일한 파일의 경우 붙여질 번호를 기억할 변수
+		int count = 0; // 동일한 파일의 경우 붙여질 번호를 기억할 변수 
 		
 		String tmpName = oldName ;	// 현재 이름을 따로 기억해 놓는다.
 		
