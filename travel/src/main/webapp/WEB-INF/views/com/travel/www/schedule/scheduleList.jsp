@@ -52,10 +52,12 @@
 		<div class="w3-col m1"><p></p></div>
 		<c:forEach var="data" items="${LIST}">
 			<div class="w3-col m10 w3-border">
-				<img class="w3-col m4 w3-padding" alt="해당여행사진" src="${data.sPic}">
-					<div class="w3-col m8">
-						<p>${data.sName}</p>
-					</div>
+				<img class="w3-col m4 w3-padding" alt="해당여행사진" src="/img/main/hongkong.jpg" style="width: 400px; height: 400px;">
+				<div class="w3-col m8">
+					<p class="w3-xxlarge">${data.sName}</p>
+					<p class="w3-large">여행시작일 : ${data.sSdate}</p>
+					<p class="w3-large">여행종료일 : ${data.sEdate}</p>
+				</div>
 			</div>
 		</c:forEach>
 	</div>
