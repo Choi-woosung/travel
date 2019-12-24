@@ -1,14 +1,13 @@
 package com.travel.www.vo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class ScheduleVO {
 	private int sNo;
 	private String sName; 
 	private Date sSdate;
 	private Date sEdate; 
-	private String sStrdate;
-	private String sEtrdate; 
 	private String sCountry; 
 	private String sArea;  
 	private int sWriter;
@@ -16,6 +15,7 @@ public class ScheduleVO {
 	private Date sWedate; 
 	private String sBody;
 	private String sPtotal;
+	private int sDay;
 	public int sRate;
 	public String sDel;
 	
@@ -98,21 +98,10 @@ public class ScheduleVO {
 	public void setsDel(String sDel) {
 		this.sDel = sDel;
 	}
-	public String getsStrdate() {
-		String str = sSdate.toString().replaceAll("-", "");
-		
-		return str;
+	public int getsDay() {
+		return sDay;
 	}
-	public void setsStrdate(String sStrdate) {
-		this.sStrdate = sStrdate;
+	public void setsDay(int sDay) {
+		this.sDay = sDay;
 	}
-	public String getsEtrdate() {
-		String str = sEdate.toString().replaceAll("-", "");
-		
-		return str;
-	}
-	public void setsEtrdate(String sEtrdate) {
-		this.sEtrdate = sEtrdate;
-	}
-	
-	}
+}
