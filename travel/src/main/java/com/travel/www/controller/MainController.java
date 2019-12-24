@@ -1,15 +1,26 @@
 package com.travel.www.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.travel.www.dao.ScheduleDAO;
+import com.travel.www.vo.ScheduleVO;
+
 @Controller
 public class MainController {
+	@Autowired
+	ScheduleDAO sDAO;
 	 
 	@RequestMapping("/main.kit")
-	public void getMain() {
+	public ModelAndView getMain(ModelAndView mv) {
 		
+		ScheduleVO vo = sDAO.schedule();
+		System.out.println(vo.getsArea());
+		mv.addObject("DATA", vo);
+		
+		return mv;
 		/* System.out.println("### 여기는 메인 ###"); */
 	}
 

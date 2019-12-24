@@ -123,6 +123,14 @@
 	font-size: 23px;
 }
 
+.section {
+	width: 400px;
+	text-align: center;
+	height: auto;
+	background: white;
+	padding: 20px;
+}
+
 </style>
 <script>
 $(function() {
@@ -328,8 +336,7 @@ $(function() {
 								<label> <span class="totalcount">어린이</span>
 								</label>
 								<div class="count">
-									<span><img
-										src="/img/asset/icons/chevron-compact-left.svg" width="40"
+									<span><img src="/img/asset/icons/chevron-compact-left.svg" width="40"
 										height="20"></span> <span class="count">0</span> <span><img
 										src="/img/asset/icons/chevron-compact-right.svg" width="40"
 										height="20"></span>
@@ -345,10 +352,51 @@ $(function() {
 		</div>
 	</div>	
 <section>
-	<div class="container">
+	<div class="container-fluid" style="width:90%;">
+		<div class="row" >
+			<div class="section col-md-1 m-5" >
+		</div>
+		<div class="section col-md-2 " >
+			
+			<img src="${DATA.sPic}" class="form-group" style=" height : 300px;" >
+			<div class="form-group">
+				추천수 : ${DATA.sRate }
+			</div>
+	<div class="form-group">
+				${DATA.sName }
+			</div>
+			<div class="form-group">
+				${DATA.sBody }
+			</div>
+			<div class="form-group">
+				가격 : ${DATA.sCost }
+			</div>
+		</div>
+		<div class="section col-md-1 m-5" >
+		</div>
+		<div class="section col-md-2 " >
+				<div class="form-group" style="background : url('/img/main/hongkong.jpg'); height : 300px;"  >
+				여기는 사진
+			</div>
+			<div class="form-group">
+				여기는 스케쥴 내용
+			</div>
+		</div>
+		<div class="section col-md-1 m-5" >
+		</div>
+	<div class="section col-md-2 " >
+				<div class="form-group" style="background : url('/img/main/hongkong.jpg'); height : 300px;"  >
+				여기는 사진
+			</div>
+			<div class="form-group">
+				여기는 스케쥴 내용
+			</div>
+		</div>
+			<div class="section col-md-1">
+		</div>
+		</div>
 	</div>
 </section>
-<hr>
 <footer>
 	<c:import url="/footer.kit"></c:import>
 </footer>

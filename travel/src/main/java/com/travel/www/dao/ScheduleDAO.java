@@ -16,4 +16,8 @@ public class ScheduleDAO {
 		return sqlSession.selectList("sSQL.scheduleList");
 	}
 	
+	public ScheduleVO schedule() {
+		return sqlSession.selectOne("sSQL.schedule");
+	}
+	
 }

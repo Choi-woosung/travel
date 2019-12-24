@@ -20,8 +20,15 @@ public class ScheduleVO {
 	private int sRate;
 	private String sDel;
 	private String sPic; 
+	private int sCost;
 	
 	
+	public int getsCost() {
+		return sCost;
+	}
+	public void setsCost(int sCost) {
+		this.sCost = sCost;
+	}
 	public String getsPic() {
 		return sPic;
 	}
