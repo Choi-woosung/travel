@@ -1,6 +1,6 @@
 package com.travel.www.controller;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -38,16 +38,12 @@ public class Schedule {
 		if(vo.getsSdate() == null || vo.getsEdate() == null || vo.getsCountry() == null) {
 			mv.setViewName("/main.kit");
 		} else {
-			Calendar cale1 = Calendar.getInstance();
-			Calendar cale2 = Calendar.getInstance();
-			int sDate = Integer.parseInt(vo.getsStrdate());
-			int eDate = Integer.parseInt(vo.getsEtrdate());
+			long d1 = vo.getsSdate().getTime();
+			long d2 = vo.getsEdate().getTime();
+		
+			int sDay = ((int) Math.abs((d1 - d2) / ( 24 * 60 * 60 * 1000)));
 			
-			cale1.set(Calendar.DATE, sDate);
-			cale2.set(Calendar.DATE, eDate);
-			
-			System.out.println(cale1);
-			System.out.println(cale2);
+			vo.setsDay(sDay);
 			
 			mv.addObject("LIST", vo);
 			mv.setViewName("/schedule/scheduleUp2");
