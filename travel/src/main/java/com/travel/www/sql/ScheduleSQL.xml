@@ -7,13 +7,11 @@
 <mapper namespace="sSQL"> 
 	
 	<!-- 스케쥴리스트가져오기 -->
-	<select id="scheduleList" resultType="sVO" parameterType="String">
+	<select id="scheduleList" resultType="sVO">
 		SELECT
-			s_no sNo, s_name sName
+			rownum sRn, s_name sName, s_area sArea
 		FROM
-			schedule, member
-		WHERE
-			(SELECT m_no FROM member WHERE m_id = #{SID}) = 1
+			schedule
 	</select>
 	
 </mapper>

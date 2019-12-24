@@ -12,8 +12,8 @@ public class ScheduleDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public List<ScheduleVO> scheduleList(String sid) {
-		return sqlSession.selectList("sSQL.scheduleList", sid);
+	public List<ScheduleVO> scheduleList() {
+		return sqlSession.selectList("sSQL.scheduleList");
 	}
 	
 }
