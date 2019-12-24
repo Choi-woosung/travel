@@ -4,15 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet"
-	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="/js/j-query-3.4.1.min.js"></script>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<title>Insert title here</title>
 <style>
 
 
@@ -30,7 +21,6 @@
 </head>
 <body>
 <%-- 공통 내비게이션 바 부분 --%>
-<header>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">MY TRAVEL</a>
@@ -60,7 +50,6 @@
 			</ul>
 		</div>
 	</nav>
-</header>
 
 
 </body>

@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Document</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -103,14 +102,6 @@
 	float: right;
 }
 
-.headertext {
-	color: white;
-	font-size: 25px;
-	float: right;
-	font-weight: bold;
-	margin-left: 30px;
-}
-
 .barcolor {
 	background: #222222;
 }
@@ -119,8 +110,8 @@
 	font-size: 20px;
 }
 
-<%--
-인원수 정하는 div --%> .adult {
+<%--인원수 정하는 div --%>
+ .adult {
 	display: flex;
 	justify-content: space-between;
 }
@@ -129,16 +120,6 @@
 	font-size: 23px;
 }
 
-<%--
-Footer 관련 css --%>
-footer {
-	background: #333333;
-	text-align: center;
-	color: gray;
-	height: 400px;
-	font-size: 12px;
-	padding: 20px;
-}
 </style>
 <script>
 	$(function() {
@@ -286,34 +267,7 @@ footer {
 </head>
 <body>
 <header>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">MY TRAVEL</a>
-		<div class="collapse navbar-collapse justify-content-end"
-			id="navbarCollapse">
-			<ul class="navbar-nav">
-				<c:if test="${empty SID }">
-					<li class="nav-item"><a class="nav-link"
-						href="/member/login.kit">
-							<button class="btn btn-outline-success my-2 my-sm-0">로그인</button>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/member/join.kit">
-							<button class="btn btn-outline-success my-2 my-sm-0">회원가입</button>
-					</a></li>
-				</c:if>
-				<c:if test="${!empty SID }">
-					<li class="nav-item"><a class="nav-link"
-						href="/member/logout.kit">
-							<button class="btn btn-outline-success my-2 my-sm-0">로그아웃</button>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/member/memberForm.kit">
-							<button class="btn btn-outline-success my-2 my-sm-0">회원정보보기</button>
-					</a></li>
-				</c:if>
-			</ul>
-		</div>
-	</nav>
+	<c:import url="/navigationBar.kit"></c:import>
 </header>
 	<div class="jumbotron">
 		<div class="container">
@@ -380,11 +334,7 @@ footer {
 </section>
 <hr>
 <footer>
-	<div class="container">
-		<p>All material © 2019 – 2019 MyTravel Company Pte. Ltd., AllRights Reserved.</p>
-		<p>마이 트레블은 온라인 여행에 관한 각종 정보를 한 곳에서 찾아볼 수 있고 스케쥴을 짤 수 있는 사이트 입니다.</p>
-		<p>해당 사이트에 등록된 모든 정보는 MyTravel Company 의 지적 자산이므로 당사의 협의없는 상업적	사용은 불허합니다.</p>
-	</div>
+	<c:import url="/footer.kit"></c:import>
 </footer>
 </body>
 </html>
