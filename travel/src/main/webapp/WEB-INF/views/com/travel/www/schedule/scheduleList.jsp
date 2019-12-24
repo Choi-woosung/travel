@@ -26,17 +26,6 @@
 </script>
 <style>
 	*{box-sizing: border-box;}
-	body{
-		background-image: url("/img/schedule/scheduleList_background.jpg");
-		background-size: cover;
-		background-position: center center;
-		background-attachment: fixed;
-		-ms-background-size: cover;
-   	 	-o-background-size: cover;
-    	-moz-background-size: cover;
-	    -webkit-background-size: cover;
-		background-repeat: no-repeat;
-	}
 	.container{
 		width: 100%;
 		height: 100%;
@@ -54,31 +43,21 @@
 </head>
 <body>
 	<div class="w3-container container">
-		<div class="w3-col m1"><p></p></div>
-		<h1 class="w3-col m10 w3-center w3-text-white w3-padding" style="font-weight: bold; background-color: #203767;">스케쥴 리스트</h1>
+		<h1 class="w3-col w3-center w3-text-white w3-padding" style="font-weight: bold; background-color: #203767;">스케쥴 리스트</h1>
 		<div class="w3-bar w3-margin-bottom w3-col">
 		<div class="w3-col m1"><p></p></div>
 		  <a href="/main.kit" class="w3-bar-item w3-button w3-padding w3-text-white w3-col m5 w3-xlarge" style="background-color: #203767;">Home</a>
 		  <a href="/schedule/scheduleUp.kit" class="w3-bar-item w3-button w3-text-white w3-padding w3-col m5 w3-xlarge" style="background-color: #203767;">스케쥴 등록</a>
 		</div>
 		<div class="w3-col m1"><p></p></div>
-		<div class="w3-col m10 w3-border">
-			<img class="w3-col m4 w3-padding" alt="해당여행사진" src="/img/schedule/hotel.jpg">
-			<div class="w3-col m8">
-				<p>스케쥴 짜기</p>
+		<c:forEach var="data" items="${LIST}">
+			<div class="w3-col m10 w3-border">
+				<img class="w3-col m4 w3-padding" alt="해당여행사진" src="${data.sPic}">
+					<div class="w3-col m8">
+						<p>${data.sName}</p>
+					</div>
 			</div>
-		</div>
-		
-		<div class="w3-center">
-			<div class="w3-bar w3-round w3-margin-top" style="background-color: #203767;">
-				<a href="#" class="w3-bar-item w3-button w3-text-white">&laquo;</a>
-				<a href="#" class="w3-bar-item w3-button w3-text-white">1</a>
-				<a href="#" class="w3-bar-item w3-button w3-text-white">2</a>
-				<a href="#" class="w3-bar-item w3-button w3-text-white">3</a>
-				<a href="#" class="w3-bar-item w3-button w3-text-white">4</a>
-				<a href="#" class="w3-bar-item w3-button w3-text-white">&raquo;</a>
-			</div>
-		</div>
+		</c:forEach>
 	</div>
 </body>
 </html>

@@ -17,9 +17,17 @@ public class ScheduleVO {
 	private String sBody;
 	private String sPtotal;
 	private int sDay;
-	public int sRate;
-	public String sDel;
+	private int sRate;
+	private String sDel;
+	private String sPic; 
 	
+	
+	public String getsPic() {
+		return sPic;
+	}
+	public void setsPic(String sPic) {
+		this.sPic = sPic;
+	}
 	public int getsRn() {
 		return sRn;
 	}

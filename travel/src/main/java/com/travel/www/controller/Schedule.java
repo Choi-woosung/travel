@@ -21,11 +21,10 @@ public class Schedule {
 	ScheduleDAO sDAO;
 	
 	@RequestMapping("/scheduleList.kit")
-	public ModelAndView scheduleListForm(ModelAndView mv, HttpSession session, ScheduleVO vo) {
+	public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO vo) {
 		
 		mv.setViewName("/schedule/scheduleList");
 		
-//		String sid = (String) session.getAttribute("SID");
 		List<ScheduleVO> list = sDAO.scheduleList();
 		
 		mv.addObject("LIST", list);

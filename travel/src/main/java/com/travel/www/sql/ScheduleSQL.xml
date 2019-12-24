@@ -9,7 +9,7 @@
 	<!-- 스케쥴리스트가져오기 -->
 	<select id="scheduleList" resultType="sVO">
 		SELECT
-			rownum sRn, s_name sName, s_area sArea
+			s_name sName, s_area sArea, s_pic sPic
 		FROM
 			schedule
 	</select>
