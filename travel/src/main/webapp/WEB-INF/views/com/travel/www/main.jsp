@@ -298,6 +298,7 @@
 							<label for="calendarArea"> 도착일 선택 </label> 
 							<input type="text" class="form-control col-md-12" id="sEdate" name="sEdate"
 								placeholder="언제까지 ?" autocomplete="off">
+								
 						</div>
 					</div>
 					<div class="form-group tCount">
