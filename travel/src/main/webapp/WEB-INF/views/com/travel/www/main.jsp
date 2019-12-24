@@ -174,7 +174,7 @@
 					//오늘날짜 이후부터만 설정되게 
 					,
 					onClose : function(selectedDate) {
-						$('#sEdate').datepicker("option", "minDate",
+						$('#sEdate').datepicker("option", "minDate", "maxDate",
 								selectedDate);
 					}
 
@@ -194,7 +194,7 @@
 					//오늘날짜 이후부터만 설정되게 
 					,
 					onClose : function(selectedDate) {
-						$('#sSdate').datepicker("option", "maxDate",
+						$('#sSdate').datepicker("option","minDate", "maxDate",
 								selectedDate);
 					},
 
@@ -205,6 +205,7 @@
 			 if (formid.sCountry.value == "" || formid.sSdate.value == "" || formid.sEdate.value == "") {
 					$(location).attr('href', '/schedule/scheduleList.kit');
 				} else{
+					alert("여긴 데이터 있을경우");
 					$('#frm').attr('action', '/schedule/scheduleList.kit');
 					$('#frm').submit();
 				}
