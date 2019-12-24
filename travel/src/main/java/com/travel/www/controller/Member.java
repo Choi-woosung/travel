@@ -65,10 +65,8 @@ public class Member {
 	}
 	
 /*	
-=======
 
 	@RequestMapping("loginProc.kit")
->>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 	public ModelAndView loginProc(HttpSession session ,ModelAndView mv, RedirectView rv, MemberVO mVO) {
 		int cnt = mDAO.login(mVO);
 		
