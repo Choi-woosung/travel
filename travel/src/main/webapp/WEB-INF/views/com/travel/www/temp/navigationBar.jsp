@@ -15,6 +15,9 @@
 .nav-link {
 	font-size: 20px;
 }
+.use{
+	user-select: none;
+}
 
 
 </style>
@@ -23,7 +26,7 @@
 <%-- 공통 내비게이션 바 부분 --%>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/main.kit">MY TRAVEL</a>
+		<a class="navbar-brand use" href="/main.kit">MY TRAVEL</a>
 		<div class="collapse navbar-collapse justify-content-end"
 			id="navbarCollapse">
 			<ul class="navbar-nav">
