@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.travel.www.dao.ScheduleDAO;
+import com.travel.www.util.PageUtil;
 import com.travel.www.vo.ScheduleVO;
 
 @Controller
@@ -15,13 +16,15 @@ public class MainController {
 	 
 	@RequestMapping("/main.kit")
 	public ModelAndView getMain(ModelAndView mv) {
-		
+		 PageUtil PageUtil = new PageUtil();
 		ScheduleVO vo = sDAO.schedule();
 		System.out.println(vo.getsArea());
 		mv.addObject("DATA", vo);
 		
+		PageUtil.setPage(0, 99, 1, 1);
+		mv.addObject("TCount", PageUtil);
 		return mv;
-		/* System.out.println("### 여기는 메인 ###"); */
+	
 	}
 
 	@RequestMapping("/footer.kit")

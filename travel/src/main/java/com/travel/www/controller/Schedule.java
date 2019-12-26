@@ -22,7 +22,10 @@ public class Schedule {
 	
 	@RequestMapping("/scheduleList.kit")
 	public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO vo) {
-		
+		System.out.println(vo.getsPtotal());
+		System.out.println(vo.getsSdate());
+		System.out.println(vo.getsEdate());
+		System.out.println(vo.getsCountry());
 		mv.setViewName("/schedule/scheduleList");
 		
 		List<ScheduleVO> list = sDAO.scheduleList();
