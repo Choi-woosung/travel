@@ -45,7 +45,7 @@ public class Schedule {
 			vo.setsDay(sDay);
 			
 			mv.addObject("LIST", vo);
-			mv.setViewName("/schedule/scheduleUp2");
+			mv.setViewName("/schedule/scheduleUp3");
 		}
 		
 		return mv;

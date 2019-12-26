@@ -213,8 +213,28 @@
 				let doc = schedule[i];
 
 				evt(doc, 'auxclick', e => {
-					setEl(e);
+					let ids = document.getElementsByClassName('toDay');
+					let bool = true;
+					
+					for (let j = 0; j < ids.length; j++) {
+						if (ids[j].className == doc.firstElementChild.className) {
+							bool = false;
+						}
+			        }
+					
+					if (bool) {
+						setEl(e);
+					}
 				});
+	        }
+			for (let i = 0; i < schedule.length; i++) {
+				for (let j = 0; j < schedule[i].children.length; j++) {
+					let doc = schedule[i].children[j];
+
+					evt(doc, 'auxclick', e => {
+						setEl_(e);
+					});
+		        }
 	        }
 			
 			<%-- event --%>
@@ -353,6 +373,9 @@
             }
             function setEl(e) {
            		localStorage.setItem('elId', e.target.id);
+            }
+            function setEl_(e) {
+            	localStorage.setItem('elId', e.target.parentElement.id);
             }
             function getEl(id) {
             	let str = null;
