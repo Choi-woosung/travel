@@ -137,8 +137,54 @@
 .pbtn {
 	border:none;
 }
-#startbtn{
-	po
+.leftBtn1{
+	position: relative;
+	top: -10px;
+	left: 5px;
+}
+.leftBtn2{
+	position: relative;
+	top: -11px;
+	left: 10px;
+}
+.topIpt{
+	position: relative;
+	top: -10px;
+	left: 2px;
+	width: 32px;
+	text-align: center;
+}
+.bottomIpt{
+	position: relative;
+	top: -11px;
+	left: 5px;
+	width: 32px;
+	text-align: center;
+}
+.rightBtn1{
+	position: relative;
+	top: -10px;
+	left: 5px;
+}
+.rightBtn2{
+	position: relative;
+	top: -11px;
+	left: 5px;
+}
+.confirmBtn{
+	position: relative;
+	top: -15px;
+	left: 0px;
+}
+.topAdult{
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+.countAdult{
+	position: relative;
+	top: -7px;
+	left: 0px;
 }
 
 </style>
@@ -387,28 +433,28 @@
 
 						</div>
 					</div>
-					<div class="form-group tCount">
+					<div class="form-group tCount confirmDiv">
 						<label for="inputArea"> 인원수 </label> <input type="text"
 							class="form-control city" id="people" placeholder="인원수를 선택해주세요" autocomplete="off">
 						<div class="pCount" id="pCount">
-							<div class="adult">
+							<div class="adult topAdult">
 								<label> <span class="totalcount">성인</span>
 								</label>
 
-								<button class="cbtn ml-4 btn" id="startbtn" >&laquo;</button>
-								<input type="text" class="pbtn" id="cCount">
-								<button class="cbtn btn" id="endbtn" >&raquo;</button>
+								<button class="cbtn ml-4 btn leftBtn1" id="startbtn" >&laquo;</button>
+								<input type="text" class="pbtn topIpt" id="cCount">
+								<button class="cbtn btn rightBtn1" id="endbtn" >&raquo;</button>
 				
 							</div>
 							<div class="count">
-							<label> <span class="totalcount">어린이</span>
+							<label> <span class="totalcount countAdult">어린이</span>
 							</label>
-								<button class="abtn btn" id="startbtn" >&laquo;</button>
-								<input type="text" class="pbtn" id="aCount">
-								<button class="abtn btn" id="endbtn">&raquo;</button>
+								<button class="abtn btn leftBtn2" id="startbtn" >&laquo;</button>
+								<input type="text" class="pbtn bottomIpt" id="aCount">
+								<button class="abtn btn rightBtn2" id="endbtn">&raquo;</button>
 					
 							</div>
-								<button class="btn btn-outline-info exbtn">확인</button>
+								<button class="btn btn-outline-info exbtn confirmBtn">확인</button>
 						</div>
 						<input type="hidden" name="sAtotal" id="adult12">
 						<input type="hidden" name="sCtotal" id="child12">
