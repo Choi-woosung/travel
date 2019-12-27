@@ -116,13 +116,13 @@
 
 .adult {
 	display: flex;
-	font-size: 23px;
+	font-size: 15px;
 	justify-content: space-between;
 }
 
 .count {
 	display: flex;
-	font-size: 23px;
+	font-size: 15px;
 	justify-content: space-between;
 }
 
@@ -133,6 +133,8 @@
 	background: white;
 	padding: 20px;
 }
+
+
 </style>
 <script>
 	$(function() {
@@ -390,9 +392,9 @@
 								<label> <span class="totalcount">성인</span>
 								</label>
 
-								<button class="cbtn ml-4 btn" id="startbtn">&laquo;</button>
-								<div class="cbtn" id="cCount"></div>
-								<button class="cbtn btn" id="endbtn">&raquo;</button>
+								<button class="cbtn ml-4 btn" id="startbtn" style="width : 30px; height : 20px;">&laquo;</button>
+								<div class="cbtn" id="cCount" style="width:30px; height : 20px;"></div>
+								<button class="cbtn btn" id="endbtn" style="width : 30px; height : 20px;">&raquo;</button>
 								<!-- 		<span><img
 										src="/img/asset/icons/chevron-compact-left.svg" width="40"
 										height="20"></span> <span class="count">0</span> <span><img
@@ -403,22 +405,22 @@
 							<div class="count">
 							<label> <span class="totalcount">어린이</span>
 							</label>
-								<button class="abtn btn" id="startbtn">&laquo;</button>
-								<div class="abtn" id="aCount"></div>
-								<button class="abtn btn" id="endbtn">&raquo;</button>
+								<button class="abtn btn" id="startbtn" style="width : 30px; height : 20px;">&laquo;</button>
+								<div class="abtn" id="aCount" style="width:30px; height : 20px;"></div>
+								<button class="abtn btn" id="endbtn" style="width : 30px; height : 20px;">&raquo;</button>
 								<!-- 	<span><img src="/img/asset/icons/chevron-compact-left.svg" width="40"
 										height="20"></span> <span class="count">0</span> <span><img
 										src="/img/asset/icons/chevron-compact-right.svg" width="40"
 										height="20"></span> -->
 							</div>
-								<button class="btn btn-info exbtn">확인</button>
+								<button class="btn btn-outline-info exbtn">확인</button>
 						</div>
 						<input type="hidden" name="sPtotal" id="adult12">
 						<input type="hidden" name="" id="child12">						
 					</div>
-					<button type="button" class="btn btn-info" id="make"
+					<button type="button" class="btn btn-outline-info" id="make"
 						onclick="getmake()">스케쥴만들기</button>
-					<button type="button" class="btn btn-info" id="search">검색</button>
+					<button type="button" class="btn btn-outline-info" id="search">검색</button>
 				</form>
 			</div>
 		</div>
