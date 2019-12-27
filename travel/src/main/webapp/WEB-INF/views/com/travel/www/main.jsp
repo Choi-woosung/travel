@@ -124,6 +124,7 @@
 	display: flex;
 	font-size: 15px;
 	justify-content: space-between;
+	
 }
 
 .section {
@@ -133,7 +134,12 @@
 	background: white;
 	padding: 20px;
 }
-
+.pbtn {
+	border:none;
+}
+#startbtn{
+	po
+}
 
 </style>
 <script>
@@ -222,22 +228,24 @@
 		// 인원수 기능 함수 	
 		var a = 0;
 		var b = 0;
-		var cCount = $('#cCount').text(a);
-		var aCount = $('#aCount').text(b);
+		$('#cCount').val(a);
+		$('#aCount').val(b);
 		$('.cbtn').click(function() {
+			var tmp = $(this).attr('id');
 			var sp = $('#startbtn').html();
 			var rp = $('#endbtn').html();
 			var nCount = $(this).text();
 
 			if (nCount != sp || nCount != rp) {
-				cCount.text();
+				$('#cCount').val();
 			}
 			if (nCount == sp) {
 				if (a == 0) {
 					return;
 				}
 				a--;
-				cCount.text(a);
+				$('#cCount').val(a);
+				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
 
 			}
 			if (nCount == rp) {
@@ -245,10 +253,11 @@
 					return;
 				}
 				a++;
-				cCount.text(a);
+				$('#cCount').val(a);
+				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
 			}
-			$('#child').val(cCount.text());
 		});
+		
 		$('.abtn').click(function() {
 			var sp = $('#startbtn').html();
 			var rp = $('#endbtn').html();
@@ -256,14 +265,15 @@
 
 			var aCount = $('#aCount').text(b);
 			if (nCount != sp || nCount != rp) {
-				aCount.text();
+				$('#aCount').val();
 			}
 			if (nCount == sp) {
 				if (b == 0) {
 					return;
 				}
 				b--;
-				aCount.text(b);
+				$('#aCount').val(b);
+				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
 			}
 			if (nCount == rp) {
 				if (b == 99) {
@@ -271,31 +281,25 @@
 				}
 
 				b++;
-				aCount.text(b);
+				$('#aCount').val(b);
+				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
 			}
 		});
 		
 		$('.exbtn').click(function () {
+
+			$('.pCount').removeClass('view');
 			
-			$('#adult12').val(aCount.text());
-			$('#child12').val(cCount.text());
-			$('.pCount').css('display', 'none');
 		})
 		
-		$('#search').click(
-				function() {
-					
+			
+		$('#search').click(function() {
+			$('#adult12').val(a);
+			$('#child12').val(b);
+			
 					var formid = document.myform;
-					if (formid.sCountry.value == ""
-							|| formid.sSdate.value == ""
-							|| formid.sEdate.value == "") {
-						$(location).attr('href', '/schedule/scheduleList.kit');
-					} else {
-						alert("여긴 데이터 있을경우");
 						$('#frm').attr('action', '/schedule/scheduleList.kit');
 						$('#frm').submit();
-					}
-
 				});
 		
 	});
@@ -374,49 +378,41 @@
 						<div class="form-group col-md-6 ">
 							<label for="calendarArea" id="calendarArea1"> 출발일 선택 </label> <input
 								type="text" class="form-control col-md-12" id="sSdate"
-								name="sSdate" placeholder="언제부터 ?" autocomplete="off">
+								name="Sdate" placeholder="언제부터 ?" autocomplete="off">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="calendarArea"> 도착일 선택 </label> <input type="text"
-								class="form-control col-md-12" id="sEdate" name="sEdate"
+								class="form-control col-md-12" id="sEdate" name="Edate"
 								placeholder="언제까지 ?" autocomplete="off">
 
 						</div>
 					</div>
 					<div class="form-group tCount">
 						<label for="inputArea"> 인원수 </label> <input type="text"
-							class="form-control city" id="people" name="sPtotal"
-							placeholder="인원수를 선택해주세요" autocomplete="off">
+							class="form-control city" id="people" placeholder="인원수를 선택해주세요" autocomplete="off">
 						<div class="pCount" id="pCount">
 							<div class="adult">
 								<label> <span class="totalcount">성인</span>
 								</label>
 
-								<button class="cbtn ml-4 btn" id="startbtn" style="width : 30px; height : 20px;">&laquo;</button>
-								<div class="cbtn" id="cCount" style="width:30px; height : 20px;"></div>
-								<button class="cbtn btn" id="endbtn" style="width : 30px; height : 20px;">&raquo;</button>
-								<!-- 		<span><img
-										src="/img/asset/icons/chevron-compact-left.svg" width="40"
-										height="20"></span> <span class="count">0</span> <span><img
-										src="/img/asset/icons/chevron-compact-right.svg" width="40"
-										height="20"></span> -->
-
+								<button class="cbtn ml-4 btn" id="startbtn" >&laquo;</button>
+								<input type="text" class="pbtn" id="cCount">
+								<button class="cbtn btn" id="endbtn" >&raquo;</button>
+				
 							</div>
 							<div class="count">
 							<label> <span class="totalcount">어린이</span>
 							</label>
-								<button class="abtn btn" id="startbtn" style="width : 30px; height : 20px;">&laquo;</button>
-								<div class="abtn" id="aCount" style="width:30px; height : 20px;"></div>
-								<button class="abtn btn" id="endbtn" style="width : 30px; height : 20px;">&raquo;</button>
-								<!-- 	<span><img src="/img/asset/icons/chevron-compact-left.svg" width="40"
-										height="20"></span> <span class="count">0</span> <span><img
-										src="/img/asset/icons/chevron-compact-right.svg" width="40"
-										height="20"></span> -->
+								<button class="abtn btn" id="startbtn" >&laquo;</button>
+								<input type="text" class="pbtn" id="aCount">
+								<button class="abtn btn" id="endbtn">&raquo;</button>
+					
 							</div>
 								<button class="btn btn-outline-info exbtn">확인</button>
 						</div>
-						<input type="hidden" name="sPtotal" id="adult12">
-						<input type="hidden" name="" id="child12">						
+						<input type="hidden" name="sAtotal" id="adult12">
+						<input type="hidden" name="sCtotal" id="child12">
+						<input type="hidden" name="sRn" value="1">				
 					</div>
 					<button type="button" class="btn btn-outline-info" id="make"
 						onclick="getmake()">스케쥴만들기</button>
