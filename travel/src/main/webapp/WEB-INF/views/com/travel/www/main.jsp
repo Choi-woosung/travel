@@ -145,18 +145,18 @@
 .leftBtn2{
 	position: relative;
 	top: -11px;
-	left: 10px;
+	left: 11px;
 }
 .topIpt{
 	position: relative;
-	top: -10px;
+	top: -9px;
 	left: 2px;
 	width: 32px;
 	text-align: center;
 }
 .bottomIpt{
 	position: relative;
-	top: -11px;
+	top: -10px;
 	left: 5px;
 	width: 32px;
 	text-align: center;
