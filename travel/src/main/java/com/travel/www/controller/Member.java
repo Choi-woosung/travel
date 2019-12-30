@@ -1,6 +1,9 @@
 package com.travel.www.controller;
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.travel.www.dao.MemberDAO;
 import com.travel.www.vo.MemberVO;
+
+import sun.nio.cs.ext.MacHebrew;
 
 @Controller
 @RequestMapping("/member/")
@@ -147,12 +152,18 @@ public class Member {
 	@ResponseBody
 	public int memEditForm(ModelAndView mv, MemberVO vo) {
 		int cnt = 0;
+		String pwex = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{8,20}$";
+		Matcher matcher = Pattern.compile(pwex).matcher(vo.getmPw());
 		System.out.println(vo.getmPw());
-		if(vo.getmPw().equals(vo.getmPw2())) {
-			cnt = mDAO.memberEdit(vo);
-			System.out.println("수정완료");
-			vo = mDAO.member(vo);
-			mv.addObject("DATA", vo);
+		System.out.println(matcher.matches());
+		if(vo.getmPw().equals(vo.getmPw2()) && matcher.matches()) {
+			
+				cnt = mDAO.memberEdit(vo);
+				System.out.println("수정완료");
+				vo = mDAO.member(vo);
+				mv.addObject("DATA", vo);					
+			
+			
 		}else {
 			System.out.println("수정 실패");
 		}
