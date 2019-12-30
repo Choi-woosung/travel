@@ -291,7 +291,7 @@
 				}
 				a--;
 				$('#cCount').val(a);
-				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
+				$('#people').val('성인 : ' + a + ' 어린이 : ' + b);
 
 			}
 			if (nCount == rp) {
@@ -300,7 +300,7 @@
 				}
 				a++;
 				$('#cCount').val(a);
-				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
+				$('#people').val('성인 : ' + a + ' 어린이 : ' + b);
 			}
 		});
 		
@@ -319,7 +319,7 @@
 				}
 				b--;
 				$('#aCount').val(b);
-				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
+				$('#people').val('성인 : ' + a + ' 어린이 : ' + b);
 			}
 			if (nCount == rp) {
 				if (b == 99) {
@@ -328,7 +328,7 @@
 
 				b++;
 				$('#aCount').val(b);
-				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
+				$('#people').val('성인 : ' + a + ' 어린이 : ' + b);
 			}
 		});
 		

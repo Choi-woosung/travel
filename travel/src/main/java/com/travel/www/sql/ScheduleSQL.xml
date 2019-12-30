@@ -16,7 +16,7 @@
 			schedule
 	</select>
 	
-		<select id="schedule" resultType="sVO">
+	<select id="schedule" resultType="sVO">
 		SELECT
 			s_name sName, s_sdate sSdate, s_area sArea, s_edate sEdate, s_pic sPic, s_body sBody, s_cost sCost, s_rate sRate
 		FROM

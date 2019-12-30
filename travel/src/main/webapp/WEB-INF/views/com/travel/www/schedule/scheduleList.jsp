@@ -62,9 +62,9 @@
 		<div class="searchbar w3-col m2">
 			호텔검색
 		</div>
-		<h2 class="destination w3-col m2">
-			${sCountry}
-		</h2>
+		<h3 class="destination w3-col m2">
+			${VO.sCountry}
+		</h3>
 		<ul class="sortbar w3-col m8 w3-ul w3-hoverable">
 			<li style= "font-size: 20px;">정렬기준</li>
 			<li>어떤거</li>
@@ -77,9 +77,9 @@
 					<img alt="mainimg" src="${data.sPic}" style="width: 100%; height: 100%;">
 				</div>
 				<div class="tripinfo w3-col m8">
-					<h3>${data.sName}</h3>
-					<h4>여행시작일: ${data.sSdate}</h4>
-					<h4>여행종료일: ${data.sEdate}</h4>
+					<h4>${data.sName}</h4>
+					<h5>여행시작일: ${data.sSdate}</h5>
+					<h5>여행종료일: ${data.sEdate}</h5>
 				</div>
 			</div>
 		</c:forEach>

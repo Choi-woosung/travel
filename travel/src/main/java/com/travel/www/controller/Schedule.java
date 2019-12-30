@@ -20,23 +20,11 @@ public class Schedule {
 	ScheduleDAO sDAO;
 	
 	@RequestMapping("/scheduleList.kit")
-<<<<<<< HEAD
-	public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO vo, HttpServletRequest req, String sCountry) {
-=======
 	public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO vo) {
-		System.out.println(vo.getsAtotal());
-		System.out.println(vo.getsCtotal());
-		System.out.println(vo.getsSdate());
-		System.out.println(vo.getsEdate());
-		System.out.println(vo.getsCountry());
->>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 		mv.setViewName("/schedule/scheduleList");
 		List<ScheduleVO> list = sDAO.scheduleList();
 		
-		System.out.println(sCountry);
-		System.out.println(vo.getsCountry());
-		System.out.println(req.getParameter("sCountry"));
-		
+		mv.addObject("VO", vo);
 		mv.addObject("LIST", list);
 		
 		return mv;
