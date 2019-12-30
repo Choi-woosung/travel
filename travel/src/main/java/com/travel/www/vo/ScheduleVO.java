@@ -17,8 +17,8 @@ public class ScheduleVO {
 	private Date sWdate;
 	private Date sWedate; 
 	private String sBody;
-	private int sCtotal;
-	private int sAtotal;
+	private String sCtotal;
+	private String sAtotal;
 	private int sDay;
 	private int sRate;
 	private String sDel;
@@ -44,17 +44,17 @@ public class ScheduleVO {
 	public void setsRn(int sRn) {
 		this.sRn = sRn;
 	}
-	public int getsAtotal() {
+	public String getsAtotal() {
 		return sAtotal;
 	}
-	public void setsAtotal(int sAtotal) {
+	public void setsAtotal(String sAtotal) {
 		this.sAtotal = sAtotal;
 	}
 	
-	public int getsCtotal() {
+	public String getsCtotal() {
 		return sCtotal;
 	}
-	public void setsCtotal(int sCtotal) {
+	public void setsCtotal(String sCtotal) {
 		this.sCtotal = sCtotal;
 	}
 	public int getsNo() {

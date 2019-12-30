@@ -424,11 +424,11 @@
 						<div class="form-group col-md-6 ">
 							<label for="calendarArea" id="calendarArea1"> 출발일 선택 </label> <input
 								type="text" class="form-control col-md-12" id="sSdate"
-								name="Sdate" placeholder="언제부터 ?" autocomplete="off">
+								name="sSdate" placeholder="언제부터 ?" autocomplete="off">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="calendarArea"> 도착일 선택 </label> <input type="text"
-								class="form-control col-md-12" id="sEdate" name="Edate"
+								class="form-control col-md-12" id="sEdate" name="sEdate"
 								placeholder="언제까지 ?" autocomplete="off">
 
 						</div>
