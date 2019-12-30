@@ -191,7 +191,7 @@
 <script>
 	$(function() {
 		$('#login').click(function() {
-			$(location).attr('href', '/member/login.kit')
+			$(location).attr('href', '/member/login.kit');
 		});
 
 		$('#logout').click(function() {
@@ -199,8 +199,13 @@
 		});
 
 		$('#join').click(function() {
-			$(location).attr('href', '/member/join.kit')
+			$(location).attr('href', '/member/join.kit');
 		});
+		
+		$('#test').click(function(){
+			$(location).attr('href', '/hotelSearch.kit');
+		});
+		
 
 		/* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
 		$('#people').click(function() {
@@ -457,7 +462,7 @@
 								<button class="btn btn-outline-info exbtn confirmBtn">확인</button>
 						</div>
 						<input type="hidden" name="sAtotal" id="adult12">
-						<input type="hidden" name="sCtotal" id="child12">
+						<input type="hidden" name="sCtotal" id="child12">	
 						<input type="hidden" name="sRn" value="1">				
 					</div>
 					<button type="button" class="btn btn-outline-info" id="make"
