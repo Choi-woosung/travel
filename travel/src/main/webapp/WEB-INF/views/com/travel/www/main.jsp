@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -235,7 +235,7 @@
 		$('#sSdate').datepicker(
 				{
 
-					dateFormat : 'yy-mm-dd',
+					dateFormat : 'yy/mm/dd',
 					showMonthAfterYear : true,
 					changeMonth : true,
 					changeYear : true,
@@ -256,7 +256,7 @@
 		//기간발행_끝 
 		$("#sEdate").datepicker(
 				{
-					dateFormat : 'yy-mm-dd',
+					dateFormat : 'yy/mm/dd',
 					showMonthAfterYear : true,
 					changeMonth : true,
 					changeYear : true,
@@ -296,7 +296,7 @@
 				}
 				a--;
 				$('#cCount').val(a);
-				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
+				$('#people').val('성인 : ' + a + ' 어린이 : ' + b);
 
 			}
 			if (nCount == rp) {
@@ -305,7 +305,7 @@
 				}
 				a++;
 				$('#cCount').val(a);
-				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
+				$('#people').val('성인 : ' + a + ' 어린이 : ' + b);
 			}
 		});
 		
@@ -324,7 +324,7 @@
 				}
 				b--;
 				$('#aCount').val(b);
-				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
+				$('#people').val('성인 : ' + a + ' 어린이 : ' + b);
 			}
 			if (nCount == rp) {
 				if (b == 99) {
@@ -333,7 +333,7 @@
 
 				b++;
 				$('#aCount').val(b);
-				$('#people').val('성인 : ' + b + ' 어린이 : ' + a);
+				$('#people').val('성인 : ' + a + ' 어린이 : ' + b);
 			}
 		});
 		

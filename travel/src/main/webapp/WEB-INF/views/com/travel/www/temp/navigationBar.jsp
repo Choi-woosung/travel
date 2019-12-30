@@ -28,6 +28,7 @@
 <body>
 <%-- 공통 내비게이션 바 부분 --%>
 
+
 	<nav class="navbar navbar-expand-lg navbar-dark back">
 		<a class="navbar-brand use" href="/main.kit">
 			<img src="/img/main/logo2.png">		
