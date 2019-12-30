@@ -1,5 +1,7 @@
 package com.travel.www.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +25,6 @@ public class Schedule {
 	public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO vo) {
 		mv.setViewName("/schedule/scheduleList");
 		List<ScheduleVO> list = sDAO.scheduleList();
-		
 		mv.addObject("VO", vo);
 		mv.addObject("LIST", list);
 		
@@ -32,8 +33,10 @@ public class Schedule {
 	
 	@RequestMapping("/scheduleUp.kit")
 	public ModelAndView scheduleUpForm(ModelAndView mv, ScheduleVO vo) {
-		long d1 = vo.getsSdate().getTime();
-		long d2 = vo.getsEdate().getTime();
+		Date sdate = new Date(vo.getSdate());
+		Date edate = new Date(vo.getEdate());
+		long d1 = sdate.getTime(); /// 1111-12-30 
+		long d2 = edate.getTime();
 	
 		int sDay = ((int) Math.abs((d1 - d2) / ( 24 * 60 * 60 * 1000)));
 		

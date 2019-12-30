@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -230,7 +230,7 @@
 		$('#sSdate').datepicker(
 				{
 
-					dateFormat : 'yy-mm-dd',
+					dateFormat : 'yy/mm/dd',
 					showMonthAfterYear : true,
 					changeMonth : true,
 					changeYear : true,
@@ -251,7 +251,7 @@
 		//기간발행_끝 
 		$("#sEdate").datepicker(
 				{
-					dateFormat : 'yy-mm-dd',
+					dateFormat : 'yy/mm/dd',
 					showMonthAfterYear : true,
 					changeMonth : true,
 					changeYear : true,
@@ -424,11 +424,11 @@
 						<div class="form-group col-md-6 ">
 							<label for="calendarArea" id="calendarArea1"> 출발일 선택 </label> <input
 								type="text" class="form-control col-md-12" id="sSdate"
-								name="sSdate" placeholder="언제부터 ?" autocomplete="off">
+								name="Sdate" placeholder="언제부터 ?" autocomplete="off">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="calendarArea"> 도착일 선택 </label> <input type="text"
-								class="form-control col-md-12" id="sEdate" name="sEdate"
+								class="form-control col-md-12" id="sEdate" name="Edate"
 								placeholder="언제까지 ?" autocomplete="off">
 
 						</div>

@@ -85,15 +85,21 @@ public class ScheduleVO {
 	public String getSdate() {
 		return Sdate;
 	}
+	public void setSdate(String Sdate) {
+		this.Sdate = Sdate;
+	}
 	public void setSdate() {
-		SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-DD");
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy/MM/dd");
 		Sdate = simple.format(sSdate);
 	}
 	public String getEdate() {
 		return Edate;
 	}
+	public void setEdate(String Edate) {
+		this.Edate = Edate;
+	}
 	public void setEdate() {
-		SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-DD");
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy/MM/dd");
 		Edate = simple.format(sEdate);
 	}
 	public String getsCountry() {
