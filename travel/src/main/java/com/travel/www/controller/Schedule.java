@@ -1,9 +1,8 @@
 package com.travel.www.controller;
 
-import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,14 +20,13 @@ public class Schedule {
 	ScheduleDAO sDAO;
 	
 	@RequestMapping("/scheduleList.kit")
-	public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO vo) {
-		System.out.println(vo.getsPtotal());
-		System.out.println(vo.getsSdate());
-		System.out.println(vo.getsEdate());
-		System.out.println(vo.getsCountry());
+	public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO vo, HttpServletRequest req, String sCountry) {
 		mv.setViewName("/schedule/scheduleList");
-		
 		List<ScheduleVO> list = sDAO.scheduleList();
+		
+		System.out.println(sCountry);
+		System.out.println(vo.getsCountry());
+		System.out.println(req.getParameter("sCountry"));
 		
 		mv.addObject("LIST", list);
 		

@@ -18,7 +18,7 @@ public class MainController {
 	public ModelAndView getMain(ModelAndView mv) {
 		 PageUtil PageUtil = new PageUtil();
 		ScheduleVO vo = sDAO.schedule();
-		System.out.println(vo.getsArea());
+//		System.out.println(vo.getsArea());
 		mv.addObject("DATA", vo);
 		
 		PageUtil.setPage(0, 99, 1, 1);

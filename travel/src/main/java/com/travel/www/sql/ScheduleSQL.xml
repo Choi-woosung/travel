@@ -9,7 +9,9 @@
 	<!-- 스케쥴리스트가져오기 -->
 	<select id="scheduleList" resultType="sVO">
 		SELECT
-			s_name sName, s_sdate sSdate, s_edate sEdate, s_pic sPic
+			s_name sName, s_sdate sSdate, s_edate sEdate, s_country sCountry, s_area sArea, 
+			s_writer sWriter, s_wdate sWdate, s_rate sRate, s_pic sPic, 
+			s_cost sCost
 		FROM
 			schedule
 	</select>
