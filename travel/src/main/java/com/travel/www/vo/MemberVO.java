@@ -15,7 +15,7 @@ public class MemberVO {
 	private String mMail;
 	private String mName;
 	private String mAddress;
-	private int mMobile;
+	private String mMobile;
 	private String mId;
 	private Date mJdate;
 	private Date mOdate;
@@ -76,10 +76,10 @@ public class MemberVO {
 	public void setmAddress(String mAddress) {
 		this.mAddress = mAddress;
 	}
-	public int getmMobile() {
+	public String getmMobile() {
 		return mMobile;
 	}
-	public void setmMobile(int mMobile) {
+	public void setmMobile(String mMobile) {
 		this.mMobile = mMobile;
 	}
 	public String getmId() {

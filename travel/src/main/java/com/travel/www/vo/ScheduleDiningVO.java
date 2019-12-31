@@ -1,55 +1,42 @@
 package com.travel.www.vo;
 
 public class ScheduleDiningVO {
-	private int scDno; 
-	private int scDsno;
-	private String scDname;
-	private String scDaddress;
-	private int scDcost;
-	private int ono;
-	private String scDbody;
-	public int getScDno() {
-		return scDno;
-	}
-	public void setScDno(int scDno) {
-		this.scDno = scDno;
-	}
-	public int getScDsno() {
-		return scDsno;
-	}
-	public void setScDsno(int scDsno) {
-		this.scDsno = scDsno;
-	}
-	public String getScDname() {
-		return scDname;
-	}
-	public void setScDname(String scDname) {
-		this.scDname = scDname;
-	}
-	public String getScDaddress() {
-		return scDaddress;
-	}
-	public void setScDaddress(String scDaddress) {
-		this.scDaddress = scDaddress;
-	}
-	public int getScDcost() {
-		return scDcost;
-	}
-	public void setScDcost(int scDcost) {
-		this.scDcost = scDcost;
-	}
-	public int getOno() {
-		return ono;
-	}
-	public void setOno(int ono) {
-		this.ono = ono;
-	}
-	public String getScDbody() {
-		return scDbody;
-	}
-	public void setScDbody(String scDbody) {
-		this.scDbody = scDbody;
-	}
 	
+	private int dno;
+	private String dname;
+	private String daddress;
+	private int dcost;
+	private String type;
+	
+	public int getDno() {
+		return dno;
+	}
+	public void setDno(int dno) {
+		this.dno = dno;
+	}
+	public String getDname() {
+		return dname;
+	}
+	public void setDname(String dname) {
+		this.dname = dname;
+	}
+	public String getDaddress() {
+		return daddress;
+	}
+	public void setDaddress(String daddress) {
+		this.daddress = daddress;
+	}
+	public int getDcost() {
+		return dcost;
+	}
+	public void setDcost(int dcost) {
+		this.dcost = dcost;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	
 }

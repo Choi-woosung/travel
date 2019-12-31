@@ -15,16 +15,23 @@
 	 <typeAliases>
 		<typeAlias alias="mVO" type="com.travel.www.vo.MemberVO"/>
 		<typeAlias alias="sVO" type="com.travel.www.vo.ScheduleVO"/>
-		<typeAlias alias="saVO" type="com.travel.www.vo.ScheduleAnswerVO"/>
-		<typeAlias alias="sdeVO" type="com.travel.www.vo.ScheduleDetailVO"/>
-		<typeAlias alias="sdiVO" type="com.travel.www.vo.ScheduleDiningVO"/>
 		<typeAlias alias="fVO" type="com.travel.www.vo.FileVO"/>
+		<typeAlias alias="detailVO" type="com.travel.www.vo.ScheduleDetailVO"/>
+		<typeAlias alias="diningVO" type="com.travel.www.vo.ScheduleDiningVO"/>
+		<typeAlias alias="moveVO" type="com.travel.www.vo.ScheduleMoveVO"/>
+		<typeAlias alias="restVO" type="com.travel.www.vo.ScheduleRestVO"/>
+		<typeAlias alias="untitleVO" type="com.travel.www.vo.ScheduleUntitleVO"/>
 	</typeAliases> 
 	
 	 
  	<mappers>
 		<mapper resource="com/travel/www/sql/MemberSQL.xml"/>
 		<mapper resource="com/travel/www/sql/ScheduleSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleDetailSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleRestSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleMoveSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleDiningSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleUntitleSQL.xml"/>
 	</mappers>
 	
 	
