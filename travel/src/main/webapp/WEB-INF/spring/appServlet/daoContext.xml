@@ -8,10 +8,8 @@
 		http://www.springframework.org/schema/context 
 		https://www.springframework.org/schema/context/spring-context-4.3.xsd">
  
- 
  	<beans:bean id="mDAO" class="com.travel.www.dao.MemberDAO" />
  	<beans:bean id="sDAO" class="com.travel.www.dao.ScheduleDAO" />
  	<beans:bean id="fDAO" class="com.travel.www.dao.FileDAO" />
-
 	
 </beans:beans> 
