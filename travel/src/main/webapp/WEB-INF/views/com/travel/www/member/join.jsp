@@ -76,15 +76,14 @@
         <br><br>
         <b><font size="6" color="gray">회원가입</font></b>
         <br><br><br>
-        <div class="small">
-         <input type="button" id="Idbtn" value="중복확인" size="40"> 
-        </div>
+    
         <form method="post" action="/member/joinProc.kit">
             <table>
                 <tr>
                     <td id="title">아이디</td>
                     <td>
                         <input type="text" id="userId" name="mId" maxlength="10" size="32">
+                        <input type="button" id="Idbtn" value="중복확인" size="40">
                     </td>
                 </tr>
                           
@@ -92,21 +91,21 @@
                 <tr>
                     <td id="title">비밀번호</td>
                     <td>
-                        <input type="password" id="userPw" name="mPw" maxlength="10" size="32">
+                        <input type="password" id="userPw" name="mPw" maxlength="10" size="41">
                     </td>
                 </tr>
                 
                 <tr>
                     <td id="title">비밀번호 확인</td>
                     <td>
-                        <input type="password" id="userPw2" name="mPw2" maxlength="10"  size="32">
+                        <input type="password" id="userPw2" name="mPw2" maxlength="10"  size="41">
                     </td>
                 </tr>
                     
                 <tr>
                     <td id="title">이름</td>
                     <td>
-                        <input type="text" id="name" name="mName" maxlength="10" size="32">
+                        <input type="text" id="name" name="mName" maxlength="10" size="41">
                     </td>
                 </tr>
                     
@@ -114,7 +113,7 @@
                 <tr>
                     <td id="title">이메일</td>
                     <td>
-                        <input type="email" id="email" name="mMail" maxlength="30" size="32">
+                        <input type="email" id="email" name="mMail" maxlength="30" size="41">
                     </td>
                 </tr>
                     
@@ -122,35 +121,35 @@
                 <tr>
                     <td id="title">주소</td>
                     <td>
-                        <input type="text" id="address" name="mAddress" maxlength="40" size="32">
+                        <input type="text" id="address" name="mAddress" maxlength="40" size="41">
                     </td>
                 </tr>
                 
                 <tr>
                     <td id="title">PCdate</td>
                     <td>
-                        <input type="text" id="userNo" name="sPcdate" maxlength="10" size="32">
+                        <input type="text" id="userNo" name="sPcdate" maxlength="10" size="41">
                     </td>
                 </tr>
                 
                  <tr>
                     <td id="title">핸드폰</td>
                     <td>
-                        <input type="text" id="userMobile" name="mMobile" maxlength="16" size="32">
+                        <input type="text" id="userMobile" name="mMobile" maxlength="16" size="41">
                     </td>
                 </tr>
                 
         		<tr>
                     <td id="title">Grade</td>
                     <td>
-                        <input type="text" id="userGrdae" name="mGrade" maxlength="10" size="32">
+                        <input type="text" id="userGrdae" name="mGrade" maxlength="10" size="41">
                     </td>
                 </tr>     
                             
         		<tr>
                     <td id="title">Point</td>
                     <td>
-                        <input type="text" id="userPoint" name="mPoint" maxlength="10" size="32">
+                        <input type="text" id="userPoint" name="mPoint" maxlength="10" size="41">
                     </td>
                 </tr>    
             </table>
