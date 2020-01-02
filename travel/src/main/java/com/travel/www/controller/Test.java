@@ -2,6 +2,7 @@ package com.travel.www.controller;
 
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class Test {
@@ -9,15 +10,21 @@ public class Test {
 	
 	@RequestMapping("/crawling.kit")
 	@ResponseBody
-	public String Crawler(String query) throws InterruptedException {
+	public ModelAndView Crawler(String query, ModelAndView mv) throws InterruptedException {
 		
 		String url = "https://www.google.com/";
 		
 		crawler.setUrl(url);
 		
-		crawler.crawlerStart(query);
+		String crawling = crawler.crawlerStart(query);
 		
-		return query;
+		crawler.crawlerStop();
+		
+		mv.addObject("CRAWLING", crawling);
+		
+		mv.setViewName("test/crawling");
+		
+		return mv;
 	}
 	
 }
