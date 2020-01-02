@@ -1,4 +1,4 @@
-package com.travel.www.controller.crawler;
+package com.travel.www.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

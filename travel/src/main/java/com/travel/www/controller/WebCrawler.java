@@ -1,4 +1,4 @@
-package com.travel.www.controller.crawler;
+package com.travel.www.controller;
 
 import java.util.concurrent.*;
 import org.openqa.selenium.*;
