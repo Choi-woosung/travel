@@ -19,7 +19,7 @@ public class Test {
 		crawler.setUrl(url);
 		
 		crawler.crawlerStart(query);
-		
+//		
 		return query;
 	}
 	
