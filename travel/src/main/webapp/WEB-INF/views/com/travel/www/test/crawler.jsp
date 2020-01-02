@@ -52,6 +52,16 @@
         .mainBox div input:focus {
             outline: none;
         }
+        .mainBtn{
+    		display: block;
+    		width: 120px;
+    		height: 64px;
+    		background-color: black;
+    		color: white;
+    		margin: 0 auto;
+    		font-size: 1.25rem;
+    		margin-top: 10%;
+    	}
     </style>
 </head>
 <body>
@@ -60,6 +70,7 @@
             <input type="text" placeholder="Query" autocomplete="off" id="query">
         </div>
         <input type="button" value="Crawling" id="crawBtn" />
+        <input type="button" onclick="location.href = '/main.kit';" value="메인" class="mainBtn">
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -98,9 +109,7 @@
                     if(val != '') {
                         bool = false;
 
-                        fetch('/crawling.kit?query=' + val)
-                        .then(() => {query.value = '', bool = true})
-                        .catch(err => bool = true);
+                        location.href = '/crawling.kit?query=' + val;
                     }
                 }
             });

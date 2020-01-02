@@ -49,6 +49,10 @@
 						href="/hotelSearch.kit">
 							<button class="btn btn-outline-light my-2 my-sm-0">테스트</button>
 					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/crawler.kit">
+							<button class="btn btn-outline-light my-2 my-sm-0">크롤러</button>
+					</a></li>
 				</c:if>
 				<c:if test="${!empty SID }">
 					<li class="nav-item"><a class="nav-link"
