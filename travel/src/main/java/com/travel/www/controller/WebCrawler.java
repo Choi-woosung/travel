@@ -24,9 +24,25 @@ public class WebCrawler {
 		driver.get(url);
 	}
 	
-	public void crawlerStart(String query) {
+	public void crawlerStart(String query) throws InterruptedException {
 		
-		System.out.println("실행");
+		WebElement element1 = driver.findElement(By.name("q"));
+		
+		Thread.sleep(1000);
+			
+		element1.sendKeys(query);
+		
+		Thread.sleep(1000);
+		
+		element1.submit();
+		
+		WebElement element2 = driver.findElement(By.cssSelector("body"));
+		
+		System.out.println(element2.getText());
+		
+		Thread.sleep(1000);
+		
+		crawlerStop();
 	}
 	
 	public void crawlerStop() {

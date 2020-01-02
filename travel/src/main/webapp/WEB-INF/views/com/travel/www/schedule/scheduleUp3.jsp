@@ -48,6 +48,7 @@
 	.toDay{
 		font-size: 2rem;
 		user-select: none;
+		margin-bottom: 16px;
 	}
 	<%-- scheduleSide --%>
 	.scheduleSide{
@@ -59,7 +60,7 @@
 		background-color: #d9e1e8;
 	}
 	<%-- menu --%>
-	.menu li input{
+	.hotel, .traffic, .restaurant{
 		display: block;
 		width: 128px;
 		height: 64px;
@@ -67,6 +68,19 @@
 		border: 1px solid rgb(51, 51, 51);
 		background-color: #ffffff;
 		font-size: 1.5rem;
+		margin-bottom: 16px;
+	}
+	.iptText{
+		display: block;
+		width: 300px;
+		height: 54px;
+		padding-left: 16px;
+		padding-right: 16px;
+		border-radius: 16px;
+		border: 1px solid rgb(51, 51, 51);
+		background-color: #ffffff;
+		font-size: 1rem;
+		margin-bottom: 16px;
 	}
 </style>
 </head>
@@ -79,14 +93,16 @@
 			<div class="toDay">Day ${data.count}</div>
 			<ul class="menu">
 				<li>
-					<input type="button" class="hotel" value="호텔">				
+					<input type="button" class="hotel" value="호텔">	
+					<input type="text" class="iptText">			
 				</li>
 				<li>
 					<input type="button" class="traffic" value="교통">
-				
+					<input type="text" class="iptText">		
 				</li>
 				<li>
-					<input type="button" class="restaurant" value="식당">		
+					<input type="button" class="restaurant" value="식당">	
+					<input type="text" class="iptText">		
 				</li>
 			</ul>
 		</li>
@@ -98,15 +114,21 @@
 	   
 	<%-- script --%> 
 	<script type="text/javascript">
-		document.addEventListener('DOMContentLoaded',()=>{
+		document.addEventListener('DOMContentLoaded',() => {
 			const schedule = document.getElementsByClassName('schedule');
 			
 			for (let i=0; i<schedule.length; i++){
-				schedule[i].addEventListener('click',e=>{
+				schedule[i].addEventListener('click',e => {
 					const target = e.target;
 					const cls = target.className;
-					
-					console.log(cls); 
+
+
+					if (cls != 'iptText') {
+						let next = target.nextElementSiblin;
+						console.log(next);
+						
+						
+					}
 				});
 			}
 		});
