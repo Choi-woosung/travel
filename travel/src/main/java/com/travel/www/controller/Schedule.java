@@ -39,7 +39,7 @@ public class Schedule {
 	public ModelAndView scheduleUpForm(ModelAndView mv, ScheduleVO vo) {
 
 		long d1 = new Date(vo.getsSdate()).getTime();
-		long d2 = new Date(vo.getsEdate()).getTime();
+		long d2 = new Date(vo.getsEdate()).getTime(); 
 	
 		int sDay = ((int) Math.abs((d1 - d2) / ( 24 * 60 * 60 * 1000)));
 		

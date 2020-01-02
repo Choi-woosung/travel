@@ -358,7 +358,7 @@
 			
 			if (sSdate != '' && sEdate != '') {
 				$(location).attr('href', '/schedule/scheduleUp.kit?sSdate=' + sSdate + '&sEdate=' + sEdate);	
-			}
+			} 
 		});
 	});
 	
