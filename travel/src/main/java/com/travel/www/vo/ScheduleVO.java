@@ -7,10 +7,8 @@ public class ScheduleVO {
 	private int sRn;
 	private int sNo;
 	private String sName; 
-	private Date sSdate;
-	private Date sEdate; 
-	private String Sdate;
-	private String Edate; 
+	private String sSdate;
+	private String sEdate; 
 	private String sCountry; 
 	private String sArea;  
 	private int sWriter;
@@ -69,32 +67,17 @@ public class ScheduleVO {
 	public void setsName(String sName) {
 		this.sName = sName;
 	}
-	public Date getsSdate() {
+	public String getsSdate() {
 		return sSdate;
 	}
-	public void setsSdate(Date sSdate) {
+	public void setsSdate(String sSdate) {
 		this.sSdate = sSdate;
 	}
-	public Date getsEdate() {
+	public String getsEdate() {
 		return sEdate;
 	}
-	public void setsEdate(Date sEdate) {
+	public void setsEdate(String sEdate) {
 		this.sEdate = sEdate;
-	}
-	
-	public String getSdate() {
-		return Sdate;
-	}
-	public void setSdate() {
-		SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-DD");
-		Sdate = simple.format(sSdate);
-	}
-	public String getEdate() {
-		return Edate;
-	}
-	public void setEdate() {
-		SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-DD");
-		Edate = simple.format(sEdate);
 	}
 	public String getsCountry() {
 		return sCountry;

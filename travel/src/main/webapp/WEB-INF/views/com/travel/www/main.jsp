@@ -13,7 +13,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="js/j-query-3.4.1.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&libraries=places"></script>
@@ -44,7 +43,6 @@
 
 .mainSubmit {
 	float: right;
-	background:
 }
 
 .disabled {
@@ -283,8 +281,8 @@
 		$('#aCount').val(b);
 		$('.cbtn').click(function() {
 			var tmp = $(this).attr('id');
-			var sp = $('#startbtn').html();
-			var rp = $('#endbtn').html();
+			var sp = $('#startbtn1').html();
+			var rp = $('#endbtn1').html();
 			var nCount = $(this).text();
 
 			if (nCount != sp || nCount != rp) {
@@ -310,8 +308,8 @@
 		});
 		
 		$('.abtn').click(function() {
-			var sp = $('#startbtn').html();
-			var rp = $('#endbtn').html();
+			var sp = $('#startbtn2').html();
+			var rp = $('#endbtn2').html();
 			var nCount = $(this).text();
 
 			var aCount = $('#aCount').text(b);
@@ -353,30 +351,16 @@
 						$('#frm').submit();
 				});
 		
-	});
-	
-	
-	function getmake() {
-		var formid = document.myform;
-		if (formid.sCountry.value == "") {
-			formid.sCountry.focus();
-			alert("여행 가실 곳을 입력해주세요");
-			return;
-		} else if (formid.sSdate.value == "") {
-			alert("출발일을 입력해주세요");
-			formid.sSdate.focus();
-			return;
-		} else if (formid.sEdate.value == "") {
-			alert("도착일을 입력해주세요");
-			formid.sEdate.focus();
-			return;
-		} else {
-			$('#frm').attr('action', '/schedule/scheduleUp.kit');
-			$('#frm').submit();
-		}
 		
-	};
-
+		$('#make').click(() => {
+			let sSdate = $('#sSdate').val();
+			let sEdate = $('#sEdate').val();
+			
+			if (sSdate != '' && sEdate != '') {
+				$(location).attr('href', '/schedule/scheduleUp.kit?sSdate=' + sSdate + '&sEdate=' + sEdate);	
+			}
+		});
+	});
 	
 	/* 	function getsearch() {
 	 var formid = document.myform;
@@ -446,17 +430,17 @@
 								<label> <span class="totalcount">성인</span>
 								</label>
 
-								<button class="cbtn ml-4 btn leftBtn1" id="startbtn" >&laquo;</button>
+								<button class="cbtn ml-4 btn leftBtn1" id="startbtn1" >&laquo;</button>
 								<input type="text" class="pbtn topIpt" id="cCount">
-								<button class="cbtn btn rightBtn1" id="endbtn" >&raquo;</button>
+								<button class="cbtn btn rightBtn1" id="endbtn1" >&raquo;</button>
 				
 							</div>
 							<div class="count">
 							<label> <span class="totalcount countAdult">어린이</span>
 							</label>
-								<button class="abtn btn leftBtn2" id="startbtn" >&laquo;</button>
+								<button class="abtn btn leftBtn2" id="startbtn2" >&laquo;</button>
 								<input type="text" class="pbtn bottomIpt" id="aCount">
-								<button class="abtn btn rightBtn2" id="endbtn">&raquo;</button>
+								<button class="abtn btn rightBtn2" id="endbtn2">&raquo;</button>
 					
 							</div>
 								<button class="btn btn-outline-info exbtn confirmBtn">확인</button>
@@ -465,8 +449,7 @@
 						<input type="hidden" name="sCtotal" id="child12">	
 						<input type="hidden" name="sRn" value="1">				
 					</div>
-					<button type="button" class="btn btn-outline-info" id="make"
-						onclick="getmake()">스케쥴만들기</button>
+					<button type="button" class="btn btn-outline-info" id="make">스케쥴만들기</button>
 					<button type="button" class="btn btn-outline-info" id="search">검색</button>
 				</form>
 			</div>
