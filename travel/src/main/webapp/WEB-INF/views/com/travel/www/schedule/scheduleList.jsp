@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>scheduleList</title>
 <link rel="stylesheet" href="/css/w3.css" >
+<link rel="shortcut icon" type="image/x-icon" href="/img/main/favicon2.ico" />
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript">

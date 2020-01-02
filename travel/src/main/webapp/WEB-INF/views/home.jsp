@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+<link rel="shortcut icon" type="image/x-icon" href="/img/main/favicon2.ico" />
 	<title>Home</title>
 </head>
 <body>
