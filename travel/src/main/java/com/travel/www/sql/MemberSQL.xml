@@ -7,9 +7,51 @@
 
 
 <mapper namespace="mSQL"> 
-
-
 	
+	<sql id="selCNT">
+		SELECT
+			count(*)
+		FROM
+			member
+		WHERE
+			m_id = 
+	</sql>
+	
+	
+	<!-- 로그인 처리 -->
+	<select id="Login" resultType="int" parameterType="mVO">
+		<include refid="selCNT" /> #{mId}
+			AND m_pw = #{mPw}
+	</select>
+	
+	
+	<!-- 중복확인 -->
+	<select id="idCount" resultType="int" parameterType="string">
+		 <include refid="selCNT" /> #{mId}
+	</select>
+	
+  	
+	<!-- 회원가입 추가 -->
+	<insert id="addMember" parameterType="mVO">
+		<selectKey keyProperty="mNo" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(m_no) + 1, 1001)
+			FROM
+				member
+		</selectKey>
+		INSERT INTO
+			member(
+				m_no, m_id, m_pw, m_name, 
+				m_mail, m_address, m_pcdate,
+				m_mobile, m_jdate, m_grade, m_point)
+		VALUES(
+			#{mNo}, #{mId}, #{mPw}, #{mName},
+			#{mMail}, #{mAddress}, #{sPcdate},
+			#{mMobile}, sysdate, #{mGrade}, #{mPoint}
+		)
+	</insert>
+
+
 	<select id="Member" resultType="mVO" parameterType="mVO">
 		SELECT
 			m_id mId, m_name mName, m_mail mMail, m_mobile mMobile, m_address mAddress, m_jdate mJdate
@@ -27,15 +69,6 @@
 		WHERE
 			m_id = #{mId}
 		AND m_pw = #{mPw}
-	</select>
-	
-	<select id="Login" resultType="int" parameterType="mVO">
-		SELECT
-			count(*) cnt
-		FROM
-			member
-		WHERE
-			m_id = #{mId}
 	</select>
 	
 	<update id="MemberEdit" parameterType="mVO">

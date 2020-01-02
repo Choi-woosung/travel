@@ -9,15 +9,17 @@ import org.springframework.web.multipart.MultipartFile;
 	
 public class MemberVO {
 	private int mNo;
+	private String mId;
 	private String mPw;
 	private String mPw2;
 	private Date mPcdate;
+	private String sPcdate;
 	private String mMail;
 	private String mName;
 	private String mAddress;
 	private String mMobile;
-	private String mId;
 	private Date mJdate;
+	private String sJdate;
 	private Date mOdate;
 	private String mGrade;
 	private int mAvatar;
@@ -26,13 +28,6 @@ public class MemberVO {
 	private MultipartFile sFile;
 	private MultipartFile[] file;
 	
-	
-	public int getCnt() {
-		return cnt;
-	}
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
-	}
 	public int getmNo() {
 		return mNo;
 	}
@@ -45,7 +40,6 @@ public class MemberVO {
 	public void setmPw(String mPw) {
 		this.mPw = mPw;
 	}
-	
 	public String getmPw2() {
 		return mPw2;
 	}
@@ -57,6 +51,12 @@ public class MemberVO {
 	}
 	public void setmPcdate(Date mPcdate) {
 		this.mPcdate = mPcdate;
+	}
+	public String getsPcdate() {
+		return sPcdate;
+	}
+	public void setsPcdate(String sPcdate) {
+		this.sPcdate = sPcdate;
 	}
 	public String getmMail() {
 		return mMail;
@@ -94,6 +94,12 @@ public class MemberVO {
 	public void setmJdate(Date mJdate) {
 		this.mJdate = mJdate;
 	}
+	public String getsJdate() {
+		return sJdate;
+	}
+	public void setsJdate(String sJdate) {
+		this.sJdate = sJdate;
+	}
 	public Date getmOdate() {
 		return mOdate;
 	}
@@ -118,6 +124,12 @@ public class MemberVO {
 	public void setmPoint(int mPoint) {
 		this.mPoint = mPoint;
 	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public MultipartFile getsFile() {
 		return sFile;
 	}
@@ -132,4 +144,10 @@ public class MemberVO {
 	}
 	
 	
+	public String toString() {
+		return mId + " | " + mPw + " | " + mName + " | " + mMail + " | " + mAddress + " | " + sPcdate + " | " + mMobile + " | " + mGrade + " | " + mPoint ;
+	}
+
+	
+
 }

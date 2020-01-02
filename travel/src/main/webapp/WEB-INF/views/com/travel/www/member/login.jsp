@@ -45,7 +45,9 @@
 			$(location).attr('href', '/member/logoutProc.kit');
 		});
 		
-
+		$('#btn').click(function(){
+			$(location).attr('href', '/member/main.kit')
+		});
 	}); 
 </script>
 <style>

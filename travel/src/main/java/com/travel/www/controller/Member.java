@@ -4,12 +4,17 @@ package com.travel.www.controller;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.*;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.travel.www.dao.MemberDAO;
@@ -24,10 +29,12 @@ public class Member {
 	MemberDAO mDAO;
 	
 
+	
+
 	@RequestMapping("login.kit")
 	public ModelAndView loginForm(ModelAndView mv) {
 		
-		mv.setViewName("member/login");
+		mv.setViewName("/member/login");
 		
 		return mv;
 	}
@@ -69,6 +76,31 @@ public class Member {
 		
 	}
 	
+	@RequestMapping("joinProc.kit")
+	public ModelAndView joinProc(ModelAndView mv, RedirectView rv, 
+									HttpSession session, MemberVO mVO) {
+		
+		// 할일
+		// 1. 회원정보 입력하고
+		int cnt = mDAO.insertMemb(mVO);
+		if(cnt != 1) {
+			rv.setUrl("/member/main.kit");
+		} else {
+			rv.setUrl("/member/join.kit");
+		}
+		mv.setView(rv);
+		return mv;
+	}
+	
+	
+	@RequestMapping(value="idCheck.kit")
+	@ResponseBody
+	public int idCheck(@RequestParam String id) {
+		int cnt = 0;
+		cnt = mDAO.idCheck(id);
+		return cnt;
+	}
+	
 /*	
 
 	@RequestMapping("loginProc.kit")
@@ -107,6 +139,8 @@ public class Member {
 		return mv;
 	}
 	
+
+	
 	@RequestMapping("main2.kit")
 	public ModelAndView mainForm(ModelAndView mv) {
 		mv.setViewName("member/main");
@@ -117,7 +151,6 @@ public class Member {
 
 	
 	@RequestMapping("memberCheck.kit")
-
 	public ModelAndView memEditForm(ModelAndView mv, MemberVO vo, HttpSession session, RedirectView rv) {
 		String mId = (String) session.getAttribute("SID");
 		System.out.println(mId);
@@ -170,6 +203,8 @@ public class Member {
 		
 		return cnt;
 	}
+	
+
 	
 	
 }
