@@ -14,7 +14,6 @@
 		<tr>
 			<td>
 				<form action="join_injeung${dice}.kit" method="post">
-<%-- 					<p>${dice}</p> --%>
 					<label>이메일</label>
 					<input type="text" name="email_injeung" placeholder="인증번호를 입력하세요.">
 					<button type="submit" name="submit">인증번호 전송</button>
