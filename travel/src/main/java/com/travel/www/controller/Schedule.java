@@ -37,15 +37,16 @@ public class Schedule {
 	
 	@RequestMapping("/scheduleUp.kit")
 	public ModelAndView scheduleUpForm(ModelAndView mv, ScheduleVO vo) {
-
-		long d1 = new Date(vo.getsSdate()).getTime();
-		long d2 = new Date(vo.getsEdate()).getTime(); 
-	
-		int sDay = ((int) Math.abs((d1 - d2) / ( 24 * 60 * 60 * 1000)));
+		if (vo.getsSdate() != null && vo.getsEdate() != null) {
+			long d1 = new Date(vo.getsSdate()).getTime();
+			long d2 = new Date(vo.getsEdate()).getTime(); 
 		
-		vo.setsDay(sDay);
-		
-		mv.addObject("LIST", vo);
+			int sDay = ((int) Math.abs((d1 - d2) / ( 24 * 60 * 60 * 1000)));
+			
+			vo.setsDay(sDay);
+			
+			mv.addObject("LIST", vo);
+		}
 		mv.setViewName("/schedule/scheduleUp3");
 
 		return mv;
