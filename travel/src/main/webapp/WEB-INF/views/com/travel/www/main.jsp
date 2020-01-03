@@ -363,10 +363,13 @@
 		$('#make').click(() => {
 			let sSdate = $('#sSdate').val();
 			let sEdate = $('#sEdate').val();
+			let url = '/schedule/scheduleUp.kit';
 			
 			if (sSdate != '' && sEdate != '') {
-				$(location).attr('href', '/schedule/scheduleUp.kit?sSdate=' + sSdate + '&sEdate=' + sEdate);	
-			} 
+				url += '?sSdate=' + sSdate + '&sEdate=' + sEdate;
+			}
+
+			$(location).attr('href', url);
 		});
 	});
 	
