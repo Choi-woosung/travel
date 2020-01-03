@@ -476,8 +476,8 @@
 			</div>
 		</div>
 		<div class="seduction">
-			<p>여러분의 스케쥴을 만들어보세요! </p>
-			<button type="button" class="btn btn-light btn-lg" id="make">스케쥴 만들어보기</button>
+			<p>여러분의 스케줄을 만들어보세요! </p>
+			<button type="button" class="btn btn-light btn-lg" id="make">스케줄 만들어보기</button>
 		</div>
 	</div>
 	<section>
