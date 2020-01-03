@@ -12,6 +12,7 @@
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&sensor=false&libraries=places"></script>
 <style>
 body, html {
 	margin: 0;
@@ -59,6 +60,14 @@ body, html {
 	display : flex;
   align-items: center;
   justify-content: center;
+  background : #f0f0f0;
+}
+.icons {
+	width : 50px;
+	height : 50px;
+}
+.searchBox {
+	height : 700px;
 }
 
 </style>
@@ -103,24 +112,31 @@ body, html {
 </div>
 <div class="container-fluid m-content">
   <div class="row">
-  	<div class="col-xl-10 border main-container bg-secondary">
+  	<div class="col-xl-10 border main-container">
   		<div class="innerpage bg-white">
-  		ㄴㅇㅍㅇㄹasd 바껴라 좀
+  		 바뀌십니다.
   		</div>
   	</div>
-  	<div class="col sidebar">
-  		<div class="container border-bottom">
-  			아이콘 모음
+  	<div class="col sidebar p-3">
+  		<div class="list-group">
+ 			 <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/bus.png" class="icons">교통</a>
+ 			 <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/hotel.png" class="icons">숙박</a>
+ 			 <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/Restaurant.png" class="icons">식사</a>
+ 			 <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/text.png" class="icons">자유스케쥴</a>
   		</div>
   		<div class="container bg-info">
-  			호텔 : 얼마
-  			교통비 : 얼마
-  			식당비 : 얼마
-  			기타비용 : 얼마
-  			가격 : 10000000원
+  			돈 얼마
   		</div>
   	</div>
   </div>
 </div>
+<div class="modal fade bd-example-modal-xl" id="exampleModalCenter" tabindex="1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content searchBox">
+		<c:import url="/test/nearbysearch.kit"></c:import>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

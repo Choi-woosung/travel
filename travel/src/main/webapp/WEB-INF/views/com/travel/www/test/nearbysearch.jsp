@@ -93,7 +93,6 @@
 			clearResults();
 			clearMarkers();
 			var place = autocomplete.getPlace();
-			alert(place.geometry.location);
 			map.panTo(place.geometry.location);
 			markers[0] = new google.maps.Marker({
 				position: place.geometry.location,
