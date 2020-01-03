@@ -5,6 +5,7 @@ import java.io.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.travel.www.vo.*;
@@ -47,6 +48,12 @@ public class MemberDAO {
 	
 	public int membercheck(MemberVO mVO) {
 		return sqlSession.selectOne("mSQL.MemberCheck", mVO);
+	}
+	
+	// 비밀번호 변경
+	@Transactional
+	public int update_pw(MemberVO mVO) throws Exception{
+		return sqlSession.update("member.update_pw", mVO);
 	}
 	
 

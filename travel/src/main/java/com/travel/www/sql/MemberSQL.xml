@@ -50,6 +50,13 @@
 			#{mMobile}, sysdate, #{mGrade}, #{mPoint}
 		)
 	</insert>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="update_pw" parameterType="member">
+		update member 
+		set pw = #{mPw} 
+		where id = #{mId}
+	</update>	
 
 
 	<select id="Member" resultType="mVO" parameterType="mVO">
