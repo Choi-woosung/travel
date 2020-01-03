@@ -59,7 +59,6 @@ body, html {
 	display : flex;
   align-items: center;
   justify-content: center;
-	background-image : url("/img/main/pattern.png");
 }
 
 </style>
@@ -104,7 +103,7 @@ body, html {
 </div>
 <div class="container-fluid m-content">
   <div class="row">
-  	<div class="col-xl-10 border main-container">
+  	<div class="col-xl-10 border main-container bg-secondary">
   		<div class="innerpage bg-white">
   		ㄴㅇㅍㅇㄹasd 바껴라 좀
   		</div>
