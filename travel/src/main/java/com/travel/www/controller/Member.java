@@ -100,12 +100,14 @@ public class Member {
 		cnt = mDAO.idCheck(id);
 		return cnt;
 	}
-	
+
+/*	
 	// 비밀번호 찾기 폼
 	@RequestMapping(value = "find.kit")
 	public String findform() throws Exception{
 		return "/member/find";
 	}	
+*/
 	
 /*	
 

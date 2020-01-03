@@ -39,8 +39,8 @@
         <property name="host" value="smtp.gmail.com" />
         <property name="port" value="587" />
         <property name="defaultEncoding" value="utf-8"/>
-        <property name="username" value="구글이메일@gmail.com" />
-        <property name="password" value="구글비밀번호" />
+        <property name="username" value="rudrms854@gmail.com" />
+        <property name="password" value="@@kk894600" />
        
         <property name="javaMailProperties">
             <props>
@@ -51,9 +51,6 @@
         
     </bean>
     
-	<bean id="email" class="com.travel.www.vo.EmailVO">
-	</bean>
-	<bean id="emailSender" class="com.travel.www.util.EmailSender">
-	</bean>	
+
 	
 </beans>

@@ -52,12 +52,12 @@
 	</insert>
 	
 	<!-- 비밀번호 변경 -->
-	<update id="update_pw" parameterType="member">
+<!-- 	<update id="update_pw" parameterType="mVO">
 		update member 
 		set pw = #{mPw} 
 		where id = #{mId}
 	</update>	
-
+-->
 
 	<select id="Member" resultType="mVO" parameterType="mVO">
 		SELECT
