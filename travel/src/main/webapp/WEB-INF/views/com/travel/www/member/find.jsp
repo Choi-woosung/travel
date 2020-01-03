@@ -13,6 +13,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
+<title>Insert title here</title>
+<link rel="stylesheet" href="/www/css/w3.css" >
+<link rel="shortcut icon" type="image/x-icon" href="/img/main/favicon2.ico" />
+<script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 			

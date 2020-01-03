@@ -9,7 +9,7 @@ footer {
    background: #333333;
    text-align: center;
    color: gray;
-   height: 400px;
+   height: 200px;
 
    font-size: 12px;
    padding: 20px;
