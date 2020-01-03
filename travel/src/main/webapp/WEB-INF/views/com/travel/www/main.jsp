@@ -204,6 +204,14 @@
 			$(location).attr('href', '/hotelSearch.kit');
 		});
 		
+		$('#googlemap').click(function(){
+			$(location).attr('href', '/test/googlemap.kit');
+		});
+		
+		$('#nearbysearch').click(function(){
+			$(location).attr('href', '/test/nearbysearch.kit');
+		});
+		
 
 		/* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
 		$('#people').click(function() {
@@ -451,6 +459,8 @@
 					</div>
 					<button type="button" class="btn btn-outline-info" id="make">스케쥴만들기</button>
 					<button type="button" class="btn btn-outline-info" id="search">검색</button>
+					<button type="button" class="btn btn-outline-info" id="googlemap">구글맵</button>
+					<button type="button" class="btn btn-outline-info" id="nearbysearch">근처검색</button>
 				</form>
 			</div>
 		</div>
