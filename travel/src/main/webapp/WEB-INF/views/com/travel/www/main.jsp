@@ -184,7 +184,20 @@
 	top: -7px;
 	left: 0px;
 }
-
+.seduction{
+	position: relative;
+	top: -350px;
+	left: 950px;
+	width: 600px;
+	height: 600px;
+/* 	border: 1px solid black; */
+	color: white;
+	font-size: 50px;
+	font-weight: bold;
+}
+#make {
+	float : right;
+}
 </style>
 <script>
 	$(function() {
@@ -361,13 +374,8 @@
 		
 		
 		$('#make').click(() => {
-			let sSdate = $('#sSdate').val();
-			let sEdate = $('#sEdate').val();
-			let url = '/schedule/scheduleUp.kit';
+			let url = '/schedule/scheduleMaker.kit';
 			
-			if (sSdate != '' && sEdate != '') {
-				url += '?sSdate=' + sSdate + '&sEdate=' + sEdate;
-			}
 
 			$(location).attr('href', url);
 		});
@@ -460,12 +468,16 @@
 						<input type="hidden" name="sCtotal" id="child12">	
 						<input type="hidden" name="sRn" value="1">				
 					</div>
-					<button type="button" class="btn btn-outline-info" id="make">스케쥴만들기</button>
+	<!-- 				<button type="button" class="btn btn-outline-info" id="make">스케쥴만들기</button> -->
 					<button type="button" class="btn btn-outline-info" id="search">검색</button>
 					<button type="button" class="btn btn-outline-info" id="certification">이메일인증</button>
 					<button type="button" class="btn btn-outline-info" id="nearbysearch">근처검색</button>
 				</form>
 			</div>
+		</div>
+		<div class="seduction">
+			<p>여러분의 스케쥴을 만들어보세요! </p>
+			<button type="button" class="btn btn-light btn-lg" id="make">스케쥴 만들어보기</button>
 		</div>
 	</div>
 	<section>

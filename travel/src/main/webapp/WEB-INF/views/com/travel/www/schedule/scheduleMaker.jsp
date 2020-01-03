@@ -74,20 +74,23 @@ body, html {
 </head>
 <body>
 <div class="nav-scroller bg-light border-bottom bg-light">
-    <a class="nav-link active font-weight-bold logoText" href="#">ConsulTravel</a>
+    <a class="nav-link active font-weight-bold logoText" href="/main.kit">ConsulTravel</a>
   	<nav class="nav nav-underline">
     <div class="dropdown first">
-    <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">프로젝트</a>
+    <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">스케쥴</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">새 스케쥴 만들기</a>
+          <a class="dropdown-item" href="#">스케쥴 저장하기</a>
+          <a class="dropdown-item" href="#">스케쥴 불러오기</a>
+          <a class="dropdown-item" href="#">스케쥴 삭제하기</a>
+          <a class="dropdown-item" href="#">스케쥴이름 바꾸기</a>
+          <a class="dropdown-item" href="#">스케쥴만들기 종료</a>
         </div>
     </div>
     <div class="dropdown">
-    <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">페이지</a>
+    <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공유하기</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">웹으로 공유하기</a>
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
@@ -95,17 +98,15 @@ body, html {
     <div class="dropdown">
     <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">편집</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">스케쥴 추가</a>
+          <a class="dropdown-item" href="#">일자 추가/삭제</a>
         </div>
     </div>
     <div class="dropdown">
     <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">도움말</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">튜토리얼</a>
+          <a class="dropdown-item" href="#">버젼</a>
         </div>
     </div>
   </nav>
