@@ -61,9 +61,8 @@ body, html {
   justify-content: center;
 	background-image : url("/img/main/pattern.png");
 }
+
 </style>
-<script>
-</script>
 </head>
 <body>
 <div class="nav-scroller bg-light border-bottom bg-light">
