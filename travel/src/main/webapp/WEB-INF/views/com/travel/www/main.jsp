@@ -204,8 +204,8 @@
 			$(location).attr('href', '/hotelSearch.kit');
 		});
 		
-		$('#googlemap').click(function(){
-			$(location).attr('href', '/test/googlemap.kit');
+		$('#certification').click(function(){
+			$(location).attr('href', '/member/email.kit');
 		});
 		
 		$('#nearbysearch').click(function(){
@@ -459,7 +459,7 @@
 					</div>
 					<button type="button" class="btn btn-outline-info" id="make">스케쥴만들기</button>
 					<button type="button" class="btn btn-outline-info" id="search">검색</button>
-					<button type="button" class="btn btn-outline-info" id="googlemap">구글맵</button>
+					<button type="button" class="btn btn-outline-info" id="certification">이메일인증</button>
 					<button type="button" class="btn btn-outline-info" id="nearbysearch">근처검색</button>
 				</form>
 			</div>

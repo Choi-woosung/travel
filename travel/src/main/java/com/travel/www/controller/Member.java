@@ -1,14 +1,23 @@
 package com.travel.www.controller;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.inject.Inject;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 // import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
@@ -22,15 +31,111 @@ import com.travel.www.vo.MemberVO;
 
 import sun.nio.cs.ext.MacHebrew;
 
+
 @Controller
 @RequestMapping("/member/")
 public class Member {
+	
+	@Inject
+	JavaMailSender mailSender;
+	
 	@Autowired
 	MemberDAO mDAO;
 	
-
+	@RequestMapping("email.kit")
+	public ModelAndView email(ModelAndView mv) {
+		mv.setViewName("/member/email");
+		
+		return mv;
+	}
 	
-
+	@RequestMapping(value = "auth.kit" , method=RequestMethod.POST )
+	public ModelAndView certification(ModelAndView mv, HttpServletRequest req, String email, HttpServletResponse resp) {
+		mv.setViewName("/member/email_certification");
+		
+		Random r = new Random();
+		int dice = r.nextInt(4589362) + 49311;
+		
+		String setfrom = "test@naver.com";
+		String tomail = req.getParameter("email");
+		String title = "회원가입 인증 이메일 입니다.";
+		System.out.println(tomail);
+		
+		String content = 
+				System.getProperty("line.separator") +
+				System.getProperty("line.separator") +
+				"안녕하세요 회원님 저희 홈페이지를 찾아주셔서 감사합니다." +
+				System.getProperty("line.separator") +
+				System.getProperty("line.separator") +
+				" 인증번호는 " + dice + " 입니다. " +
+				System.getProperty("line.separator") +
+				System.getProperty("line.separator") +
+				" 받으신 인증번호를 홈페이지에 입력해 주세요.";
+		
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+			
+			messageHelper.setFrom(setfrom);
+			messageHelper.setTo(tomail);
+			messageHelper.setSubject(title);
+			messageHelper.setText(content);
+			
+			mailSender.send(message);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("dice", dice);
+		
+		resp.setContentType("text/html; charset=UTF-8");
+		try {
+			PrintWriter out_email = resp.getWriter();
+			out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
+			out_email.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "join_injeung{dice}.kit", method = RequestMethod.POST)
+	public ModelAndView join_injeung(ModelAndView mv, String email_injeung, @PathVariable String dice, HttpServletResponse response_equals, RedirectView rv) {
+		System.out.println("인정 : " + email_injeung);
+		System.out.println("다이스 : " + dice);
+		
+		if (email_injeung.equals(dice)) {
+			System.out.println("일치");
+			mv.setViewName("member/join");
+			mv.addObject("EMAIL",email_injeung);
+			response_equals.setContentType("text/html; charset=UTF-8");
+			
+			try {
+				PrintWriter out_equals = response_equals.getWriter();
+				out_equals.println("<script>alert('인증번호가 일치하였습니다. 회원가입창으로 이동합니다.');</script>");
+				out_equals.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else if(email_injeung != dice) {
+			System.out.println("불일치");
+			rv.setUrl("/member/email.kit");
+			mv.setView(rv);
+			response_equals.setContentType("text/html; charset=UTF-8");
+			
+			try {
+				PrintWriter out_equals = response_equals.getWriter();
+				out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.'); history.go(-1);</script>");
+				out_equals.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return mv;
+	}
+	
 	@RequestMapping("login.kit")
 	public ModelAndView loginForm(ModelAndView mv) {
 		
