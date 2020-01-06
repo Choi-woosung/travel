@@ -68,9 +68,12 @@ body, html {
 }
 .searchBox {
 	height : 700px;
+	overflow : hidden;
 }
 
 </style>
+<script>
+</script>
 </head>
 <body>
 <div class="nav-scroller bg-light border-bottom bg-light">
@@ -114,8 +117,8 @@ body, html {
 <div class="container-fluid m-content">
   <div class="row">
   	<div class="col-xl-10 border main-container">
-  		<div class="innerpage bg-white">
-  		 바뀌십니다.
+  		<div class="innerpage bg-white shadow">
+  		 바뀌라고
   		</div>
   	</div>
   	<div class="col sidebar p-3">
@@ -125,10 +128,17 @@ body, html {
  			 <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/Restaurant.png" class="icons">식사</a>
  			 <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/text.png" class="icons">자유스케쥴</a>
   		</div>
-  		<div class="container bg-info">
-  			돈 얼마
-  		</div>
-  	</div>
+  		<hr>
+				<div class="container bg-white">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">교통비 : </li>
+						<li class="list-group-item">식비 : </li>
+						<li class="list-group-item">숙박비 : </li>
+						<li class="list-group-item">기타비용 : </li>
+						<li class="list-group-item">총액 : </li>
+					</ul>
+				</div>
+			</div>
   </div>
 </div>
 <div class="modal fade bd-example-modal-xl" id="exampleModalCenter" tabindex="1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

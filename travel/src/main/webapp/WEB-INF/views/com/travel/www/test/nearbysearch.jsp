@@ -8,60 +8,115 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/w3.css">
 <style type="text/css">
-		html, body {
-			margin: 0;
-			padding: 0;
-			height: 100%;
-			font-family: arial;
-			font-size: 13px;
-			overflow: hidden;
-		}
-		#map_canvas {
-			float: left;
-			width: 100%;
-			height: 100%;
-		}
-		#listing {
-			float: left;
-			margin-left: 1px;
-			width: 100%;
-			overflow: auto;
-			cursor: pointer;
-		}
-		#controls {
-			padding: 5px;
-			width: 100%;
-		}
-		.placeIcon {
-			width: 16px;
-			height: 16px;
-			margin: 2px;
-		}
-		#results {
-			border-collapse: collapse;
-			width: 100%;
-		}
-		#locationField {
-			margin-left: 1px;
-			width: 100%;
-		}
-		#autocomplete {
-			border: 1px solid #ccc;
-			width: 100%;
-		}
-		#infobox{
-			background-color: white;
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			width: 408px;
-			height: 100%;
-			z-index: 10;
-		}
-	</style>
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: arial;
+	font-size: 13px;
+	overflow: hidden;
+}
+
+#map_canvas {
+	float: left;
+	width: 100%;
+	height: 100%;
+}
+
+#listing {
+	float: left;
+	margin-left: 1px;
+	width: 100%;
+	overflow: auto;
+	cursor: pointer;
+}
+
+#controls {
+	padding: 5px;
+	width: 100%;
+}
+
+.placeIcon {
+	width: 16px;
+	height: 16px;
+	margin: 2px;
+}
+
+#results {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#locationField {
+	margin-left: 1px;
+	width: 100%;
+}
+
+#autocomplete {
+	border: 1px solid #ccc;
+	width: 100%;
+}
+
+
+#infobox {
+	background-color: white;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 408px;
+	height: 100%;
+	z-index: 10;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+#sidebar-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background : white;
+	width: 50px;
+	height: 100px;
+	position: absolute;
+	top: 70px;
+	left: 408px;
+	z-index: 11;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+.sidebar-active {
+	overflow-y: auto;
+	overflow : hidden;
+	-webkit-transform: translate3d(-408px, 0, 0);
+	-moz-transform: translate3d(-408px, 0, 0);
+	transform: translate3d(-408px, 0, 0);
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+
+</style>
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&sensor=false&libraries=places"></script>
 	<script type="text/javascript">
+	
+	$(function(){
+		$("#sidebar-toggle").click(function(){
+			$("#infobox").toggleClass("sidebar-active");
+			$('#sidebar-toggle').toggleClass("sidebar-active");
+		});
+	});
+	
 		var map, places, iw;
 		var markers = [];
 		var autocomplete;
@@ -76,10 +131,10 @@
 			map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
 			places = new google.maps.places.PlacesService(map);
 			google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
-			autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+/* 			autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
 			google.maps.event.addListener(autocomplete, 'place_changed', function () {
 				showSelectedPlace();
-			});
+			}); */
 		}
 
 		function tilesLoaded() {
@@ -212,16 +267,15 @@
 </head>
 <body>﻿
 	<div id="map_canvas"></div>
+	<div id="sidebar-toggle" class="shadow border-bottom border-left">
+		<img src="/img/icon/arrow-bar-left.svg" alt="" width="32" height="32" title="Bootstrap">
+	</div>
 	<div id="infobox">
 		<div id="locationField">
 			<input id="autocomplete" type="text">
 		</div>
 		<div id="controls">
 			<form name="controls">
-				<input type="radio" name="type" value="establishment" onclick="search()" checked="checked" />기관, 시설
-				<br/>
-				<input type="radio" name="type" value="hospital" onclick="search()" />병원
-				<br/>
 				<input type="radio" name="type" value="restaurant" onclick="search()" />레스토랑
 				<br/>
 				<input type="radio" name="type" value="subway_station" onclick="search()" />지하철
