@@ -109,17 +109,22 @@ html, body {
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&sensor=false&libraries=places"></script>
 	<script type="text/javascript">
-	
-	$(function(){
-		$("#sidebar-toggle").click(function(){
-			$("#infobox").toggleClass("sidebar-active");
-			$('#sidebar-toggle').toggleClass("sidebar-active");
-		});
-	});
-	
+		var type;
 		var map, places, iw;
 		var markers = [];
 		var autocomplete;
+		
+		$(function(){
+			$("#sidebar-toggle").click(function(){
+				$("#infobox").toggleClass("sidebar-active");
+				$('#sidebar-toggle').toggleClass("sidebar-active");
+			});
+			
+			$('.icons').click(function(){
+				type = $(this).attr('id');
+				search();
+			})
+		});
 
 		function initialize() {
 			var myLatlng = new google.maps.LatLng(37.566535, 126.97796919999996);
@@ -130,11 +135,11 @@ html, body {
 			};
 			map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
 			places = new google.maps.places.PlacesService(map);
-			google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
-/* 			autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+ 			google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
+ 			autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
 			google.maps.event.addListener(autocomplete, 'place_changed', function () {
 				showSelectedPlace();
-			}); */
+			}); 
 		}
 
 		function tilesLoaded() {
@@ -160,19 +165,13 @@ html, body {
 		}
 
 		function search() {
-			var type;
-			for (var i = 0; i < document.controls.type.length; i++) {
-				if (document.controls.type[i].checked) {
-					type = document.controls.type[i].value;
-				}
-			}
+			
 			autocomplete.setBounds(map.getBounds());
 			var search = {
 				bounds: map.getBounds()
 			};
-			if (type != 'establishment') {
-				search.types = [type];
-			}
+			search.types = [type];
+			
 			places.search(search, function (results, status) {
 				if (status == google.maps.places.PlacesServiceStatus.OK) {
 					clearResults();
@@ -263,6 +262,7 @@ html, body {
 			return content;
 		}
 		google.maps.event.addDomListener(window, 'load', initialize);
+		
 	</script>
 </head>
 <body>﻿
@@ -273,15 +273,6 @@ html, body {
 	<div id="infobox">
 		<div id="locationField">
 			<input id="autocomplete" type="text">
-		</div>
-		<div id="controls">
-			<form name="controls">
-				<input type="radio" name="type" value="restaurant" onclick="search()" />레스토랑
-				<br/>
-				<input type="radio" name="type" value="subway_station" onclick="search()" />지하철
-				<br/>
-				<input type="radio" name="type" value="lodging" onclick="search()" />숙박업소
-			</form>
 		</div>
 		<div id="listing">
 			<table id="results"></table>

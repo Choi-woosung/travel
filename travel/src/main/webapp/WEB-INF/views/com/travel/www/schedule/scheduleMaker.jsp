@@ -62,7 +62,7 @@ body, html {
   justify-content: center;
   background : #f0f0f0;
 }
-.icons {
+.icon {
 	width : 50px;
 	height : 50px;
 }
@@ -122,11 +122,11 @@ body, html {
   		</div>
   	</div>
   	<div class="col sidebar p-3">
-  		<div class="list-group">
- 			 <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/bus.png" class="icons">교통</a>
- 			 <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/hotel.png" class="icons">숙박</a>
- 			 <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/Restaurant.png" class="icons">식사</a>
- 			 <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/text.png" class="icons">자유스케쥴</a>
+  		<div class="list-group ">
+ 			 <a href="#" class="list-group-item list-group-item-action icons" id="subway_station" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/bus.png" class="icon">교통</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" id="lodging" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/hotel.png" class="icon">숙박</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" id="restaurant" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/Restaurant.png" class="icon">식사</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" id="type" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/text.png" class="icon">자유스케쥴</a>
   		</div>
   		<hr>
 				<div class="container bg-white">
