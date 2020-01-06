@@ -93,7 +93,6 @@
       <input type="checkbox" value="remember-me"> 기억하기
   </div>
   
-  <div id="find_btn" class="w3-margin w3-center"> 아이디 | 비밀번호찾기</div>
       
   <button class="btn btn-lg btn-primary btn-block" id="btn" type="submit">Sign in</button>
   

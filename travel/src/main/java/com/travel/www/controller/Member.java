@@ -118,10 +118,12 @@ public class Member {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
+			return mv;
 		} else if(email_injeung != dice) {
 			System.out.println("불일치");
-			rv.setUrl("/member/email.kit");
-			mv.setView(rv);
+//			mv.setViewName("member/email");
+//			rv.setUrl("/member/email.kit");
 			response_equals.setContentType("text/html; charset=UTF-8");
 			
 			try {
@@ -131,6 +133,7 @@ public class Member {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			return mv;
 		}
 		
 		return mv;
