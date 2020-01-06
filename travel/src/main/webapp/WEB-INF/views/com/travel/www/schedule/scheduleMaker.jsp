@@ -135,7 +135,7 @@ body, html {
 						<li class="list-group-item">식비 : </li>
 						<li class="list-group-item">숙박비 : </li>
 						<li class="list-group-item">기타비용 : </li>
-						<li class="list-group-item">총액 : </li>
+						<li class="list-group-item">총액 :  </li>
 					</ul>
 				</div>
 			</div>

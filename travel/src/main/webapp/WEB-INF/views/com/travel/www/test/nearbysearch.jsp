@@ -277,6 +277,7 @@ html, body {
 		<div id="listing">
 			<table id="results"></table>
 		</div>
+		
 	</div>
 </body>
 </html>
