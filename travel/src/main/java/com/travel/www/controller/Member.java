@@ -118,22 +118,18 @@ public class Member {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-			return mv;
 		} else if(email_injeung != dice) {
 			System.out.println("불일치");
-//			mv.setViewName("member/email");
-//			rv.setUrl("/member/email.kit");
+			mv.setViewName("member/email");
 			response_equals.setContentType("text/html; charset=UTF-8");
 			
 			try {
 				PrintWriter out_equals = response_equals.getWriter();
-				out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.'); history.go(-1);</script>");
+				out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.');</script>");
 				out_equals.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			return mv;
 		}
 		
 		return mv;
