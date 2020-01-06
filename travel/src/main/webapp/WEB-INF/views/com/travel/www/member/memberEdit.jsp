@@ -60,7 +60,7 @@
 				if (!passRule.test($("#pw").val())) {
 			//정규식 false div 출력
 					$('.pwex').css('display', 'block');
-				} else {
+				} else { 
 					$('.pwex').css('display', 'none');
 				}
 			});

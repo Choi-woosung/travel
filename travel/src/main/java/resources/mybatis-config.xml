@@ -21,6 +21,7 @@
 		<typeAlias alias="moveVO" type="com.travel.www.vo.ScheduleMoveVO"/>
 		<typeAlias alias="restVO" type="com.travel.www.vo.ScheduleRestVO"/>
 		<typeAlias alias="untitleVO" type="com.travel.www.vo.ScheduleUntitleVO"/>
+		<typeAlias alias="QnABoardVO" type="com.travel.www.vo.QnABoardVO"/>
 	</typeAliases> 
 	
 	 
@@ -32,6 +33,7 @@
 		<mapper resource="com/travel/www/sql/ScheduleMoveSQL.xml"/>
 		<mapper resource="com/travel/www/sql/ScheduleDiningSQL.xml"/>
 		<mapper resource="com/travel/www/sql/ScheduleUntitleSQL.xml"/>
+		<mapper resource="com/travel/www/sql/QnABoardSQL.xml"/>
 	</mappers>
 	
 	
