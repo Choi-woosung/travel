@@ -373,11 +373,15 @@
 				});
 		
 		
-		$('#make').click(() => {
+		$('#make').click(function(){
+			
 			let url = '/schedule/scheduleMaker.kit';
+			$(location).attr('href', url);
+		}); 
+		
+		
 			
 
-			$(location).attr('href', url);
 		});
 	});
 	
@@ -429,7 +433,8 @@
 							placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
 					</div>
 					<div class="row">
-						<div class="form-group col-md-6 ">
+						<div class="form-group col-md-6 ">c
+						
 							<label for="calendarArea" id="calendarArea1"> 출발일 선택 </label> <input
 								type="text" class="form-control col-md-12" id="sSdate"
 								name="Sdate" placeholder="언제부터 ?" autocomplete="off">
@@ -470,7 +475,7 @@
 					</div>
 	<!-- 				<button type="button" class="btn btn-outline-info" id="make">스케쥴만들기</button> -->
 					<button type="button" class="btn btn-outline-info" id="search">검색</button>
-					<button type="button" class="btn btn-outline-info" id="certification">이메일인증</button>
+	<!--  			<button type="button" class="btn btn-outline-info" id="certification">이메일인증</button> -->
 					<button type="button" class="btn btn-outline-info" id="nearbysearch">근처검색</button>
 				</form>
 			</div>

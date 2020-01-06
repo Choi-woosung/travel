@@ -46,8 +46,8 @@
 				m_mobile, m_jdate, m_grade, m_point)
 		VALUES(
 			#{mNo}, #{mId}, #{mPw}, #{mName},
-			#{mMail}, #{mAddress}, #{sPcdate},
-			#{mMobile}, sysdate, #{mGrade}, #{mPoint}
+			#{mMail}, #{mAddress}, sysdate,
+			#{mMobile}, sysdate, 'bronze', 0
 		)
 	</insert>
 	
