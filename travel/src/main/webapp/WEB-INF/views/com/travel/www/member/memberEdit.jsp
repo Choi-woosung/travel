@@ -7,11 +7,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="shortcut icon" type="image/x-icon" href="/img/main/favicon2.ico" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="/img/main/favicon2.ico" />
 <title>Document</title>
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 <title>Document</title>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/js/bootstrap.min.js">
 
@@ -29,157 +31,170 @@
 .text1 {
 	width: 600px;
 }
-.add{
+
+.add {
 	display: none;
+}
+
+.barcolor {
+	background: #222222;
+}
+
+.nav-link {
+	font-size: 20px;
+}
+
+.use {
+	user-select: none;
+}
+
+.back {
+	background: #2cb5e9;
 }
 </style>
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(document)
+		.ready(
+			function() {
+				var passRule = /^(?=.*[0-9])(?=.*[a-z]).{8,20}$/;//숫자와 문자 포함 형태의 8~20자리  암호 정규식
+				var blank_pattern = /[\s]/g; // 공백입력 불가
 
-		var passRule = /^(?=.*[0-9])(?=.*[a-z]).{8,20}$/;//숫자와 문자 포함 형태의 8~20자리  암호 정규식
-		var blank_pattern =  /[\s]/g; // 공백입력 불가
-		
-		$('#pw').keyup(function() {
-			if (!passRule.test($("#pw").val())) {
-				//정규식 false div 출력
-				$('.pwex').css('display', 'block');
-			} else {
-				$('.pwex').css('display', 'none');
-			}
-		});
+					$('#pw').keyup(function() {
+						if (!passRule.test($("#pw").val())) {
+							//정규식 false div 출력
+							$('.pwex').css('display', 'block');
+						} else {
+							$('.pwex').css('display', 'none');
+						}
+					});
 
-		//입력한 비밀번호가 같은지
-		$('#pw2').keyup(function() {
-			var pw1 = $('#pw').val();
-			var pw2 = $('#pw2').val();
+					//입력한 비밀번호가 같은지
+					$('#pw2').keyup(function() {
+						var pw1 = $('#pw').val();
+						var pw2 = $('#pw2').val();
 
-			
-			if (pw1 == pw2) {
-				$('.pwok').css('display', 'block');
-				$('.pwx').css('display', 'none');
-			} else {
-				$('.pwok').css('display', 'none');
-				$('.pwx').css('display', 'block');
-			}
-		});
-		
-		// 취소 버튼 누르면 뒤로가기
-		$('#cancel').click(function() {
-			
+						if (pw1 == pw2) {
+							$('.pwok').css('display', 'block');
+							$('.pwx').css('display', 'none');
+						} else {
+							$('.pwok').css('display', 'none');
+							$('.pwx').css('display', 'block');
+						}
+					});
 
-	        
-			history.back();
-		})
-		
-		//저장
-		$('#save').click(function() {
-			var mId = $('#id').text();
-			var mPw = $('#pw').val();
-			var mPw2 = $('#pw2').val();
-			var mMail = $('#mail').val();
-			var mMobile = $('#tel').val();
-			var mAddress = $('#roadAddress').val() + " " + $('#detailAddress').val();
-			
-			alert(mAddress);
-			if (mPw != mPw2) {
-				alert("입력하신 비밀번호가 다릅니다.");
-				$('#pw').focus();
-			} else if (!passRule.test($("#pw").val())) {
-				alert("비밀번호 형식이 잘못되었습니다.");
-				$('#pw').focus();
-			} else if(blank_pattern.test($("#pw").val()) == true){
-				alert('공백이 포함되어있습니다.');
-				$('#pw').focus();
-			} 
-			else {
+					// 취소 버튼 누르면 뒤로가기
+					$('#cancel').click(function() {
+						$(location).attr('href', '/main.kit');
+					});
 
-				$.ajax({
-					url : "/member/memberEditProc.kit",
-					type : "POST",
-					dataType : "json",
-					data : {
+					//저장
+					$('#save').click(function() {
+						var mId = $('#id').text();
+						var mPw = $('#pw').val();
+						var mPw2 = $('#pw2').val();
+						var mMail = $('#mail').val();
+						var mMobile = $('#tel').val();
+						var mAddress = $('#roadAddress').val()+ " "+ $('#detailAddress').val();
+						alert(mAddress);
+						if (mPw != mPw2) {
+							alert("입력하신 비밀번호가 다릅니다.");
+						$('#pw').focus();
+						} else if (!passRule.test($("#pw").val())) {
+							alert("비밀번호 형식이 잘못되었습니다.");
+						$('#pw').focus();
+						} else if (blank_pattern.test($("#pw").val()) == true) {
+							alert('공백이 포함되어있습니다.');
+						$('#pw').focus();
+						} else {
+					$.ajax({
+						url : "/member/memberEditProc.kit",
+						type : "POST",
+						dataType : "json",
+						data : {
 						"mId" : mId,
 						"mPw" : mPw,
 						"mPw2" : mPw2,
 						"mMail" : mMail,
 						"mMobile" : mMobile,
 						"mAddress" : mAddress
-					},
-					success : function(data) {
-						if (data == 1) {
-							alert("변경완료");
-							$('#id').html('${DATA.mId}');
-							$('#name').html('${DATA.mName}');
-							$('#mail').html('${DATA.mMail}');
-							$('#tel').html('${DATA.mMobile}');
-							$('#adr').html('${DATA.mAddress}');
-							$('#adr').css('display', 'block');
-							$('.add').css('display', 'none');
-							$(location).attr('href', '/main.kit');
-						} else {
-							alert("변경실패");
-						}
-					},
-					error : function() {
-						alert("수정실패");
-					}
-				});
-			}
-		});
-		
-	
-	});
+						},
+						success : function(data) {
+								if (data == 1) {
+									alert("변경완료");
+									$('#id')
+									.html('${DATA.mId}');
+									$('#name').html('${DATA.mName}');
+									$('#mail').html('${DATA.mMail}');
+									$('#tel').html('${DATA.mMobile}');
+									$('#adr').html('${DATA.mAddress}');
+									$('#adr').css('display','block');
+									$('.add').css('display','none');
+									$(location).attr('href','/main.kit');
+								} else {
+									alert("변경실패");
+									}
+								},
+								error : function() {
+									alert("수정실패");
+									}
+								});
+							}
+						});
+					});
 	//주소 검색
-	 function sample4_execDaumPostcode() {
+	function sample4_execDaumPostcode() {
 		$('#adr').css('display', 'none');
 		$('.add').css('display', 'block');
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+		new daum.Postcode({
+			oncomplete : function(data) {
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
+				// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var roadAddr = data.roadAddress; // 도로명 주소 변수
+				var extraRoadAddr = ''; // 참고 항목 변수
 
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
+				// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+				// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+					extraRoadAddr += data.bname;
+				}
+				// 건물명이 있고, 공동주택일 경우 추가한다.
+				if (data.buildingName !== '' && data.apartment === 'Y') {
+					extraRoadAddr += (extraRoadAddr !== '' ? ', '
+							+ data.buildingName : data.buildingName);
+				}
+				// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+				if (extraRoadAddr !== '') {
+					extraRoadAddr = ' (' + extraRoadAddr + ')';
+				}
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('postcode').value = data.zonecode;
-                document.getElementById("roadAddress").value = roadAddr;
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				document.getElementById('postcode').value = data.zonecode;
+				document.getElementById("roadAddress").value = roadAddr;
 
+				var guideTextBox = document.getElementById("guide");
+				// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+				if (data.autoRoadAddress) {
+					var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+					guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr
+							+ ')';
+					guideTextBox.style.display = 'block';
 
-                var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    guideTextBox.style.display = 'block';
+				} else {
+					guideTextBox.innerHTML = '';
+					guideTextBox.style.display = 'none';
+				}
+			}
+		}).open();
 
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
-            }
-        }).open();
-
-    }
-	
+	}
 </script>
 </head>
 <body>
+	<header>
+		<c:import url="/navigationBar.kit"></c:import>
+	</header>
 
 	<!-- 회원 정보 수정 모달 -->
 
@@ -235,20 +250,20 @@
 				</div>
 				<div class="p-4 row">
 					<pre>주       소 :</pre>
-			<h5 class="ml-4">
-<input type="text" id="postcode" placeholder="우편번호" >
-<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-<input type="text" class=" text1" id="adr" name="mAddress" value="${DATA.mAddress }" required="required" style="display: block;">
-</h5>
-</div>
-<div class="p-4 row">
-<input type="text" class="text1 add" id="roadAddress" placeholder="도로명주소">
-<span id="guide" style="color:#999;display:none"></span>
-<input type="text" class="add" id="detailAddress" placeholder="상세주소">
-</div>
-
-					
-			
+					<h5 class="ml-4">
+						<input type="text" id="postcode" placeholder="우편번호"> <input
+							type="button" onclick="sample4_execDaumPostcode()"
+							value="우편번호 찾기"><br> <input type="text"
+							class=" text1" id="adr" name="mAddress" value="${DATA.mAddress }"
+							required="required" style="display: block;">
+					</h5>
+				</div>
+				<div class="p-4 row">
+					<input type="text" class="text1 add" id="roadAddress"
+						placeholder="도로명주소"> <span id="guide"
+						style="color: #999; display: none"></span> <input type="text"
+						class="add" id="detailAddress" placeholder="상세주소">
+				</div>
 				<div class="p-4 row">
 					<pre>가   입   일 :</pre>
 					<h5 class="ml-4" id="date">${DATA.mJdate }</h5>
