@@ -36,6 +36,12 @@ public class MainController {
 		return mv;
 	
 	}
+	
+	@RequestMapping("/mass2.kit")
+	public ModelAndView main2(ModelAndView mv) {
+		mv.setViewName("main2");
+		return mv;
+	}
 
 	@RequestMapping("/footer.kit")
 	public ModelAndView getFooter(ModelAndView mv) {

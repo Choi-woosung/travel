@@ -44,6 +44,9 @@
 			margin-top: 13px;
 			margin-left: 16px;
 		}
+		.c_header_left img:hover {
+			cursor: pointer;
+		}
 		/* right */
 		.c_header_right {
 			width: 50%;
@@ -201,7 +204,7 @@
 <body>
 	<div class="c_header">
 		<div class="c_header_left">
-			<img src="/img/main/logo2.png" alt="logo" height="50" width="153">
+			<img src="/img/main/logo2.png" alt="logo" height="50" width="153" id="logo">
 		</div>
 		<div class="c_header_right">
 			<div class="c_header_btn_box">
@@ -256,6 +259,7 @@
 			let nearbysearch = document.getElementById('nearbysearch');
 			let login = document.getElementById('login');
 			let signup = document.getElementById('signup');
+			let logo = document.getElementById('logo');
 
 			make.addEventListener('click', () => {
 				location.href = '/schedule/scheduleMaker.kit';
@@ -271,6 +275,9 @@
 			});
 			signup.addEventListener('click', () => {
 				location.href = '/member/join.kit';
+			});
+			logo.addEventListener('click', () => {
+				location.href = '/main2.kit';
 			});
 		});
 	</script>

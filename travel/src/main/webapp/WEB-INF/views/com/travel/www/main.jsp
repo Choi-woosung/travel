@@ -26,7 +26,6 @@
 	background-position: right center;
 	height: 800px;
 }
-
 .mainSearch {
 	width: 400px;
 	height: 500px;
@@ -36,33 +35,26 @@
 	left: -200px;
 	top: 50px;
 }
-
 .form-control {
 	width: 350px;
 }
-
 .mainSubmit {
 	float: right;
 }
-
 .disabled {
 	color: white;
 	margin-left: 50px;
 }
-
 .ui-datepicker select.ui-datepicker-month {
 	margin-left: 4%;
 	padding-bottom: 1.6%;
 }
-
 .ui-datepicker select.ui-datepicker-year {
 	padding-top: 1.6%;
 }
-
 .ui-widget-header {
 	background: white;
 }
-
 .ui-state-default, .ui-widget-content .ui-state-default,
 	.ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover,
 	html .ui-button.ui-state-disabled:active {
@@ -72,11 +64,9 @@
 	font-weight: normal;
 	color: #454545;
 }
-
 .city {
 	width: 359px;
 }
-
 .pCount {
 	width: 359px;
 	height: 120px;
@@ -88,43 +78,35 @@
 	margin-top: 2px;
 	display: none;
 }
-
 .pCount.view {
 	display: block;
 }
-
 .totalChange {
 	margin-bottom: 20px;
 }
-
 .left, .right, .total {
 	width: 13px;
 	height: 20px;
 	background: white;
 	float: right;
 }
-
 .barcolor {
 	background: #222222;
 }
-
 .nav-link {
 	font-size: 20px;
 }
-
 .adult {
 	display: flex;
 	font-size: 15px;
 	justify-content: space-between;
 }
-
 .count {
 	display: flex;
 	font-size: 15px;
 	justify-content: space-between;
 	
 }
-
 .section {
 	width: 400px;
 	text-align: center;
@@ -204,11 +186,9 @@
 		$('#login').click(function() {
 			$(location).attr('href', '/member/login.kit');
 		});
-
 		$('#logout').click(function() {
 			$(location).attr('href', '/www/member/logout.kit');
 		});
-
 		$('#join').click(function() {
 			$(location).attr('href', '/member/join.kit');
 		});
@@ -225,16 +205,13 @@
 			$(location).attr('href', '/test/nearbysearch.kit');
 		});
 		
-
 		/* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
 		$('#people').click(function() {
 			$('.pCount').addClass('view');
 		});
-
 		$('body').on('click', function(e) {
 			var pClass = $(e.target).hasClass('city');
 			var psClass = $(e.target).parents().hasClass('tCount');
-
 			if (!pClass && !psClass) {
 				$('.pCount').removeClass('view');
 			} else if (psClass) {
@@ -253,13 +230,11 @@
 		//예약발행 달력_시작 
 		$('#sSdate').datepicker(
 				{
-
 					dateFormat : 'yy/mm/dd',
 					showMonthAfterYear : true,
 					changeMonth : true,
 					changeYear : true,
 					numberOfMonths : 1,
-
 					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
 					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
 							'7월', '8월', '9월', '10월', '11월', '12월' ],
@@ -270,7 +245,6 @@
 						$('#sEdate').datepicker("option", "minDate", "maxDate",
 								selectedDate);
 					}
-
 				});
 		//기간발행_끝 
 		$("#sEdate").datepicker(
@@ -290,11 +264,8 @@
 						$('#sSdate').datepicker("option", "minDate", "maxDate",
 								selectedDate);
 					},
-
 				});
-
 	
-
 		// 인원수 기능 함수 	
 		var a = 0;
 		var b = 0;
@@ -305,7 +276,6 @@
 			var sp = $('#startbtn1').html();
 			var rp = $('#endbtn1').html();
 			var nCount = $(this).text();
-
 			if (nCount != sp || nCount != rp) {
 				$('#cCount').val();
 			}
@@ -316,7 +286,6 @@
 				a--;
 				$('#cCount').val(a);
 				$('#people').val('성인 : ' + a + ' 어린이 : ' + b);
-
 			}
 			if (nCount == rp) {
 				if (a == 99) {
@@ -332,7 +301,6 @@
 			var sp = $('#startbtn2').html();
 			var rp = $('#endbtn2').html();
 			var nCount = $(this).text();
-
 			var aCount = $('#aCount').text(b);
 			if (nCount != sp || nCount != rp) {
 				$('#aCount').val();
@@ -349,7 +317,6 @@
 				if (b == 99) {
 					return;
 				}
-
 				b++;
 				$('#aCount').val(b);
 				$('#people').val('성인 : ' + a + ' 어린이 : ' + b);
@@ -357,7 +324,6 @@
 		});
 		
 		$('.exbtn').click(function () {
-
 			$('.pCount').removeClass('view');
 			
 		})
@@ -381,8 +347,7 @@
 		
 		
 			
-
-		});
+		
 	});
 	
 	/* 	function getsearch() {
