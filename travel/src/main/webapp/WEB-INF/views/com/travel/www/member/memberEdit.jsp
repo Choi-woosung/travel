@@ -53,20 +53,17 @@
 }
 </style>
 <script type="text/javascript">
-	$(document)
-		.ready(
-			function() {
-				var passRule = /^(?=.*[0-9])(?=.*[a-z]).{8,20}$/;//숫자와 문자 포함 형태의 8~20자리  암호 정규식
-				var blank_pattern = /[\s]/g; // 공백입력 불가
-
-					$('#pw').keyup(function() {
-						if (!passRule.test($("#pw").val())) {
-							//정규식 false div 출력
-							$('.pwex').css('display', 'block');
-						} else {
-							$('.pwex').css('display', 'none');
-						}
-					});
+	$(document).ready(function() {
+		var passRule = /^(?=.*[0-9])(?=.*[a-z]).{8,20}$/;//숫자와 문자 포함 형태의 8~20자리  암호 정규식
+		var blank_pattern = /[\s]/g; // 공백입력 불가
+			$('#pw').keyup(function() {
+				if (!passRule.test($("#pw").val())) {
+			//정규식 false div 출력
+					$('.pwex').css('display', 'block');
+				} else {
+					$('.pwex').css('display', 'none');
+				}
+			});
 
 					//입력한 비밀번호가 같은지
 					$('#pw2').keyup(function() {

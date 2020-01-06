@@ -378,13 +378,8 @@
 			let url = '/schedule/scheduleMaker.kit';
 			$(location).attr('href', url);
 		}); 
-		
-		
-			
-
-		});
 	});
-	
+
 	/* 	function getsearch() {
 	 var formid = document.myform;
 	 if (formid.sCountry.value == "") {
