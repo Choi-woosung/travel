@@ -16,7 +16,6 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script type="text/javascript"
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&libraries=places"></script>
-<title>My Travel</title>
   
 <style>
 .jumbotron {

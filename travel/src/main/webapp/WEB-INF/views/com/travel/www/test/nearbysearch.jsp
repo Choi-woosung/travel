@@ -141,16 +141,22 @@ html, body {
 				$('#sidebar-toggle').toggleClass("sidebar-active");
 			});
 			
-			$('.icons').click(function(){
-				type = $(this).attr('id');
-				search();
-			});
-			
 			$(document).mousemove(function(e){
 			    $('.mouse_event').css("top", e.pageY);
 			    $('.mouse_event').css("left", e.pageX);
 			});
+			$('.icons').click(function(){
+				type = this.id;
+				search();
+			});
 		});
+		
+		function searchPlace(e){
+			console.log("들어옴??");
+			type = e;
+			search();
+		}
+		
 		function initialize() {
 			var myLatlng = new google.maps.LatLng(37.566535, 126.97796919999996); 
 			var myOptions = {

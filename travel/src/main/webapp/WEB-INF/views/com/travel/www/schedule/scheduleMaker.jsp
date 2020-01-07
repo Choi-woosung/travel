@@ -69,8 +69,8 @@ body, html {
 }
 .innerpage2 {
 	width : 300px;
+	height : 50px;
 	display : inline-block;
-    overflow : auto;
     text-align: center;
     margin: 150px 10px auto;
     
@@ -108,6 +108,8 @@ body, html {
 			var headContent = document.createTextNode(status + "일차");
 			scheduleDiv.appendChild(headContent);
 			scheduleDiv.setAttribute('class', 'innerpage2 bg-white shadow');
+			scheduleDiv.setAttribute('draggable', 'true');
+			scheduleDiv.setAttribute('ondragstart', 'moveStart(event)');
 			scheduleDiv.setAttribute('id', 'd'+status);
 			$('#dayCount').append(scheduleDiv);
 			
@@ -126,21 +128,48 @@ body, html {
 	}
 
 	function drag(ev) {
-	  ev.dataTransfer.setData("text", ev.target.id);
+	  ev.dataTransfer.setData("text/plain", ev.target.id);
 	}
 
 	function drop(ev) {
 	  ev.preventDefault();
-	  console.log(ev.target.className)
-	  if(ev.target.className == 'innerpage2 bg-white shadow' || ev.target.className == 'list-group-item list-group-item-action'){
-		  ev.target.innerHTML += '<a href="#" class="list-group-item list-group-item-action">'
-   								+ '<div class="d-flex w-100 justify-content-between">'
-   								+ '<h5 class="mb-1">List group item heading</h5>'
-   								+ '<small>3 days ago</small></div>'
-   								+ '<p class="mb-1">.</p>'
-   								+ '<small>Donec id elit non mi porta.</small>'
-   								+ '</a>';
+	  console.log(data);
+	  var data = event.dataTransfer.getData("text/plain");
+	  var tf = getParents(ev.target);
+	  var targetDiv;
+	  if(tf.className == 'innerpage2 bg-white shadow'){
+		  targetDiv = tf;
+		  var acode = document.createElement('a');
+		  var divcode = document.createElement('div');
+		  divcode.setAttribute('class' , 'list-group');
+		  divcode.setAttribute('data-toggle', 'modal');
+		  divcode.setAttribute('data-target', '#dataModal');
+		  divcode.setAttribute('onclick', 'searchPlace("'+data+'")');
+		  acode.setAttribute('class', 'list-group-item list-group-item-action');
+		  var textcode = document.createTextNode("+"); 
+		  divcode.appendChild(acode);
+		  acode.appendChild(textcode);
+		  targetDiv.appendChild(divcode);
 	  }
+	}
+	
+	function getParents(e){
+		var tf = false;
+		var parentData = e;
+		var tempNode;
+		while(parentData){
+			tempNode = parentData;
+			if(parentData.className == 'innerpage2 bg-white shadow'){
+				tf = true;
+				break;
+			};
+			parentData = tempNode.parentNode;
+		}
+		if(tf == true){
+			return parentData;
+		} else {
+			return tf;
+		}
 	}
 	
 </script>
