@@ -16,6 +16,7 @@ public class ScheduleDAO {
 	public List<ScheduleVO> scheduleList(String sarea) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("sarea", sarea);
+		
 		return sqlSession.selectList("sSQL.scheduleList", map);
 	}
 	
