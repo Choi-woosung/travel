@@ -7,7 +7,7 @@ public class QnABoardVO {
 	private int sq_writer;
 	public int getSq_no() {
 		return sq_no;
-	}
+	} 
 	public void setSq_no(int sq_no) {
 		this.sq_no = sq_no;
 	}

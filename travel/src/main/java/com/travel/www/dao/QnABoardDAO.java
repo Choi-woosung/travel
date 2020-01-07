@@ -11,7 +11,7 @@ public class QnABoardDAO {
 	
 	public int qnawriting(QnABoardVO vo) {
 		sqlSession.insert("");
-		
+		 
 		return 1;
 	}
 	

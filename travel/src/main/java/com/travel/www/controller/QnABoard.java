@@ -9,11 +9,11 @@ import com.travel.www.vo.QnABoardVO;
 @Controller
 @RequestMapping("/board/")
 public class QnABoard {
-
+ 
 	@RequestMapping("qnaboard.kit")
 	public ModelAndView qnaBoard(ModelAndView mv) {
 		mv.setViewName("board/qnaboard");
-		return mv;
+		return mv; 
 	}
 	
 	@RequestMapping("qnawriting.kit")
