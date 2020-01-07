@@ -63,9 +63,7 @@
 							<button class="btn btn-outline-light my-2 my-sm-0">회원정보보기</button>
 					</a></li> -->
 					<li class="profile_box">
-						<div class="" id="profile_btn">
-							<img alt="profile" src="">
-						</div>
+						<img alt="profile" src="" class="profile_img" id="profile_btn">
 						<ul class="profile_hide" id="profile_menu">
 							<li><a href="/member/memberForm.kit">회원정보보기</a></li>
 							<li><a href="/member/logout.kit">로그아웃</a></li>

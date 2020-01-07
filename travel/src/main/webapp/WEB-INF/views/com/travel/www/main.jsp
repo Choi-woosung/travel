@@ -388,6 +388,7 @@
 		width: 200px;
 		height: 50px;
 		border: 1px solid black;
+		user-select: none;
 	}
 	.profile_hide {
 		display: none;
@@ -395,7 +396,6 @@
 	.profile_show {
 		display: block;
 		text-align: center;
-		margin-top: 24px;
 		margin-left: -1px;
 	}
 	.profile_show li a {
@@ -418,12 +418,24 @@
 		text-decoration: none;
 		color: black;
 	}
+	.profile_img {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
 </style>
 <script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', () => {
 		let profile_btn = document.getElementById('profile_btn'); 
 		let profile_menu = document.getElementById('profile_menu');
 		
+		document.addEventListener('click', e => {
+			if (e.target != profile_btn) {
+				if (profile_menu.className == 'profile_show') {
+					profile_menu.className = 'profile_hide';
+				}
+			}
+		});
 		profile_btn.addEventListener('click', () => {
 			if (profile_menu.className == 'profile_hide') {
 				profile_menu.className = 'profile_show';
