@@ -7,14 +7,14 @@
 <mapper namespace="sSQL">
 	
 	<!-- 스케쥴리스트가져오기 -->
-	<select id="scheduleList" resultType="sVO" parameterType="sVO">
+	<select id="scheduleList" resultType="sVO" parameterType="hashmap">
 		SELECT
 			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_pic sPic
 		FROM
 			schedule
-		<if test="sArea != '' and sArea != null">
-		WHERE
-			s_area like #{sArea}
+		<if test="!(sarea eq null) and !(sarea.equals(''))">
+			WHERE
+				s_area like #{sarea}
 		</if>
 	</select>
 	

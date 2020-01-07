@@ -1,5 +1,6 @@
 package com.travel.www.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class QnABoard {
 		return qDAO.getprofile(vo);
 	}
 	
-	@RequestMapping("getname.kit")
+	@RequestMapping(value = "getname.kit", produces = "application/text;charset=utf8")
 	@ResponseBody
 	public String getname(QnABoardVO vo, HttpSession session) {
 		vo.setSid((String) session.getAttribute("SID"));
