@@ -325,8 +325,7 @@
       
       $('.exbtn').click(function () {
          $('.pCount').removeClass('view');
-         
-      })
+      });
       
          
       $('#search').click(function() {
