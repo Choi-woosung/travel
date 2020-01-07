@@ -344,13 +344,6 @@
 			let url = '/schedule/scheduleMaker.kit';
 			$(location).attr('href', url);
 		}); 
-<<<<<<< HEAD
-=======
-		
-		
-			
-		
->>>>>>> branch 'working' of https://github.com/Choi-woosung/travel.git
 	});
 
 	/* 	function getsearch() {
