@@ -375,6 +375,20 @@
 				};
 				autocomplete = new google.maps.places.Autocomplete(document
 						.getElementById('inputArea'), options);
+				google.maps.event.addListener(autocomplete, 'place_changed', function() {
+					var place = autocomplete.getPlace();
+					var components = place.address_components;
+					var component0 = components[0];
+					var component2 = components[2];
+					var street0 = component0['long_name'];
+					var street2 = component2['long_name'];
+					
+					console.log(street0);
+					console.log(street2);
+					
+					$('#sCountry').val(street2);
+					$('#sArea').val(street0);
+				});
 			});
 </script>
 </head>
@@ -390,12 +404,13 @@
 				<form method="POST" name="myform" id="frm">
 					<div class="form-group">
 						<label for="inputArea"> 여행가는 도시 </label> <input type="text"
-							class="form-control city" id="inputArea" name="sCountry"
+							class="form-control city" id="inputArea" name="address"
 							placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
+							<input type="hidden" name="sCountry" id="sCountry">
+							<input type="hidden" name="sArea" id="sArea">
 					</div>
 					<div class="row">
-						<div class="form-group col-md-6 ">c
-						
+						<div class="form-group col-md-6 ">
 							<label for="calendarArea" id="calendarArea1"> 출발일 선택 </label> <input
 								type="text" class="form-control col-md-12" id="sSdate"
 								name="Sdate" placeholder="언제부터 ?" autocomplete="off">
