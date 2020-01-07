@@ -167,7 +167,6 @@
 </script>
 <style>
    *{box-sizing: border-box;}
-   
 /*    인원수창 안보이기 */
 	.pCount {
 		width: 241px;
