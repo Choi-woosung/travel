@@ -24,7 +24,7 @@
 		$('#exit').click(function(){
 			$('#detailInfo').css('display', 'none'); 
 		});
-	});
+	}); 
 </script>
 <style>
 	*{box-sizing: border-box;}
