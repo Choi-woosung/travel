@@ -57,6 +57,11 @@ public class Schedule {
 		mv.setViewName("/schedule/scheduleMaker");
 		return mv;
 	}
+	@RequestMapping("/scheduleDetail.kit")
+	public ModelAndView shceduleDetail(ModelAndView mv) {
+		mv.setViewName("/schedule/scheduledetail");
+		return mv;
+	}
 	
 	
 
