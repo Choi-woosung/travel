@@ -23,6 +23,74 @@
 	background : #2cb5e9;
 }
 </style>
+<style type="text/css">
+	* {
+		box-sizing: border-box;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.profile_box {
+		width: 200px;
+		height: 50px;
+		border: 1px solid black;
+		user-select: none;
+	}
+	.profile_hide {
+		display: none;
+	}
+	.profile_show {
+		display: block;
+		text-align: center;
+		margin-left: -1px;
+	}
+	.profile_show li a {
+		display: block;
+		border: 1px solid black;
+		border-top: none;
+		padding-left: 8px;
+		padding-right: 8px;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		width: 200px;
+		background-color: white;
+	}
+	.profile_show li a:hover {
+		cursor: pointer;
+		background-color: aqua;
+		color: white;
+	}
+	.profile_show li a {
+		text-decoration: none;
+		color: black;
+	}
+	.profile_img {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', () => {
+		let profile_btn = document.getElementById('profile_btn'); 
+		let profile_menu = document.getElementById('profile_menu');
+		
+		document.addEventListener('click', e => {
+			if (e.target != profile_btn) {
+				if (profile_menu.className == 'profile_show') {
+					profile_menu.className = 'profile_hide';
+				}
+			}
+		});
+		profile_btn.addEventListener('click', () => {
+			if (profile_menu.className == 'profile_hide') {
+				profile_menu.className = 'profile_show';
+			} else {
+				profile_menu.className = 'profile_hide';
+			}
+		});
+	});
+</script>
 </head>
 <body>
 <%-- 공통 내비게이션 바 부분 --%>
@@ -63,7 +131,7 @@
 							<button class="btn btn-outline-light my-2 my-sm-0">회원정보보기</button>
 					</a></li> -->
 					<li class="profile_box">
-						<img alt="profile" src="" class="profile_img" id="profile_btn">
+						<img alt="profile" src="/img/profile/default.jpg" class="profile_img" id="profile_btn">
 						<ul class="profile_hide" id="profile_menu">
 							<li><a href="/member/memberForm.kit">회원정보보기</a></li>
 							<li><a href="/member/logout.kit">로그아웃</a></li>
