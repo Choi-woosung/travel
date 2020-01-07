@@ -24,11 +24,11 @@ public class Schedule {
 	ScheduleDAO sDAO;
 	
 	@RequestMapping("/scheduleList.kit")
-	public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO vo) {
+	public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO) {
 
 		mv.setViewName("/schedule/scheduleList");
 		
-		List<ScheduleVO> list = sDAO.scheduleList();
+		List<ScheduleVO> list = sDAO.scheduleList(sVO);
 		
 		mv.addObject("LIST", list);
 		

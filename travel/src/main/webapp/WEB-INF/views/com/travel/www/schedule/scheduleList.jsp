@@ -16,18 +16,17 @@
 		$('td').attr('class', 'w3-xlarge w3-center w3-col m4');
 		
 		//상세보기
-		$('.simpleInfo').click(function(){
-			$('#detailInfo').css('display', 'block');
-		});
-		
-		//상세보기 종료
-		$('#exit').click(function(){
-			$('#detailInfo').css('display', 'none');
+		$('#box').click(function(){
+			$(this).submit();
 		});
 	});
 </script>
 <style>
 	*{box-sizing: border-box;}
+	
+	.container {
+		
+	}
 </style>
 </head>
 <body>
@@ -92,6 +91,8 @@
 		</div>
 		<div class="w3-col m8 w3-padding w3-margin-top">
 		<c:forEach var="data" items="${LIST}">
+		<form action="/schedule/scheduleDetail.kit" method="post" id="box">
+			<input type="hidden" name="sNo" value="${data.sNo}">
 			<div class="w3-container w3-card w3-padding">
 				<div class="w3-col m6">
 					<img alt="mainpic" src="${data.sPic}" style="width: 300px; height: 300px">
@@ -100,6 +101,7 @@
 					<h4>${data.sName}</h4>
 				</div>
 			</div>
+		</form>
 		</c:forEach>
 		</div>
 	</div>
