@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.travel.www.dao.ScheduleDAO;
 import com.travel.www.vo.ScheduleVO;
@@ -21,17 +22,20 @@ public class Schedule {
    ScheduleDAO sDAO;
    
    @RequestMapping("/scheduleList.kit")
-   public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req) {
+   public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req, RedirectView rv) {
       String people = req.getParameter("people");
       String address = req.getParameter("address");
-      mv.setViewName("/schedule/scheduleList");
-      
-      List<ScheduleVO> list = sDAO.scheduleList(sVO);
+      String sarea = req.getParameter("sarea");
+      List<ScheduleVO> list = sDAO.scheduleList(sarea);
        
       mv.addObject("ADDRESS", address);
       mv.addObject("PEOPLE", people);
       mv.addObject("LIST", list);
       mv.addObject("SVO", sVO);
+      
+      mv.setViewName("/schedule/scheduleList");
+//      rv.setUrl("/schedule/scheduleList.kit");
+//      mv.setView(rv);
       
       return mv;
    }
@@ -63,7 +67,5 @@ public class Schedule {
       mv.setViewName("/schedule/scheduledetail");
       return mv;
    }
-   
-   
 
 }

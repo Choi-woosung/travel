@@ -1,5 +1,6 @@
 package com.travel.www.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -12,8 +13,11 @@ public class ScheduleDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public List<ScheduleVO> scheduleList(ScheduleVO sVO) {
-		return sqlSession.selectList("sSQL.scheduleList", sVO);
+	public List<ScheduleVO> scheduleList(String sarea) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("sarea", sarea);
+		
+		return sqlSession.selectList("sSQL.scheduleList", map);
 	}
 	
 	public ScheduleVO schedule() {
