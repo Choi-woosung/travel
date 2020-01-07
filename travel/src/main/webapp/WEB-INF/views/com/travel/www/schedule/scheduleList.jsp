@@ -16,10 +16,101 @@
       $('.box').click(function(){
          $(this).submit();
       });
+      
+      //인원수 창
+      $('#people').click(function() {
+          $('.pCount').addClass('view');
+       });
+       $('body').on('click', function(e) {
+          var pClass = $(e.target).hasClass('city');
+          var psClass = $(e.target).parents().hasClass('tCount');
+          if (!pClass && !psClass) {
+             $('.pCount').removeClass('view');
+          } else if (psClass) {
+             return false;
+          }
+       });
+       
+       //인원수 창 확인버튼
+       $('.exbtn').click(function () {
+           $('.pCount').removeClass('view');
+       });
+       
+       //인원수 증가 감소
+       $('.abtn').click(function() {
+           var tmp = $(this).attr('id');
+           var sp = $('#startbtn1').html();
+           var rp = $('#endbtn1').html();
+           var nCount = $(this).text();
+           if (nCount != sp || nCount != rp) {
+              $('#aCount').val();
+           }
+           if (nCount == sp) {
+              if (a == 0) {
+                 return;
+              }
+              a--;
+              $('#aCount').val(a);
+              $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
+           }
+           if (nCount == rp) {
+              if (a == 99) {
+                 return;
+              }
+              a++;
+              $('#aCount').val(a);
+              $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
+           }
+        });
+        
+       var a = $('#aCount').val();
+       var b = $('#cCount').val();
+        $('.cbtn').click(function() {
+           var sp = $('#startbtn2').html();
+           var rp = $('#endbtn2').html();
+           var nCount = $(this).text();
+           var aCount = $('#cCount').text(b);
+           if (nCount != sp || nCount != rp) {
+              $('#cCount').val();
+           }
+           if (nCount == sp) {
+              if (b == 0) {
+                 return;
+              }
+              b--;
+              $('#cCount').val(b);
+              $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
+           }
+           if (nCount == rp) {
+              if (b == 99) {
+                 return;
+              }
+              b++;
+              $('#cCount').val(b);
+              $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
+           }
+        });
    });
 </script>
 <style>
    *{box-sizing: border-box;}
+   
+/*    인원수창 안보이기 */
+	.pCount {
+	   height: 130px;
+	   background: white;
+	   position: absolute;
+	   border: 1px solid gray;
+	   border-radius: 3px;
+	   padding: 10px;
+	   margin-top: 2px;
+	   display: none;
+	}
+   
+/*     인원수창 */
+   .pCount.view {
+	   display: block;
+	}
 </style>
 </head>
 <body>
@@ -50,23 +141,23 @@
                </div>
                <div class="form-group tCount confirmDiv">
                   <label for="inputArea"> 인원수 </label> <input type="text"
-                     class="form-control city" id="people" value="${PEOPLE}" placeholder="인원수를 선택해주세요" autocomplete="off">
+                     class="form-control city" id="people" name="people" placeholder="인원수를 선택해주세요" autocomplete="off">
                   <div class="pCount" id="pCount">
                      <div class="adult topAdult">
                         <label> <span class="totalcount">성인</span>
                         </label>
-      
-                        <button class="cbtn col-md-2 btn leftBtn1" id="startbtn1" >&laquo;</button>
-                        <input type="text" class="col-md-4" id="cCount" value="${SVO.sAtotal}">
-                        <button class="cbtn col-md-2 btn rightBtn1" id="endbtn1" >&raquo;</button>
+
+                        <button class="abtn ml-4 btn leftBtn1" id="startbtn1" >&laquo;</button>
+                        <input type="text" class="pbtn topIpt" id="aCount" value="${SVO.sAtotal}">
+                        <button class="abtn btn rightBtn1" id="endbtn1" >&raquo;</button>
             
                      </div>
                      <div class="count">
                      <label> <span class="totalcount countAdult">어린이</span>
                      </label>
-                        <button class="abtn col-md-2 btn leftBtn2" id="startbtn2" >&laquo;</button>
-                        <input type="text" class="pbtn bottomIpt col-md-4" id="aCount" value="${SVO.sCtotal}">
-                        <button class="abtn col-md-2 btn rightBtn2" id="endbtn2">&raquo;</button>
+                        <button class="cbtn btn leftBtn2" id="startbtn2" >&laquo;</button>
+                        <input type="text" class="pbtn bottomIpt" id="cCount" value="${SVO.sCtotal}">
+                        <button class="cbtn btn rightBtn2" id="endbtn2">&raquo;</button>
                
                      </div>
                         <button class="btn btn-outline-info exbtn confirmBtn">확인</button>
