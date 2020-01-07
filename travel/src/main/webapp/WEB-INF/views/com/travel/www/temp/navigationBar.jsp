@@ -23,6 +23,8 @@
 	background : #2cb5e9;
 }
 </style>
+<script>
+</script>
 </head>
 <body>
 <%-- 공통 내비게이션 바 부분 --%>
@@ -98,10 +100,11 @@
 							top: 15px;
 							right: -75px;
 							color: white;
+							opacity: 0;
 						}
 					</style>
 					<li class="profile_box">
-						<div class="user_name" id="user_name"></div>
+						<div class="user_name" id="user_name">0</div>
 						<img class="profile_img" id="profile_btn">
 						<ul class="profile_hide" id="profile_menu">
 							<li><a href="/member/memberForm.kit">회원정보보기</a></li>
@@ -116,10 +119,7 @@
 						
 							fetch('/board/getprofile.kit').then(response => response.text())
 							.then(text => profile_btn.src = '/img/profile/' + text);
-							
-							fetch('/board/getname.kit').then(response => response.text())
-							.then(text => user_name.textContent = text);
-							
+
 							document.addEventListener('click', e => {
 								if (e.target != profile_btn) {
 									if (profile_menu.className == 'profile_show') {

@@ -12,7 +12,7 @@
 			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_pic sPic
 		FROM
 			schedule
-		<if test="sArea != ''">
+		<if test="sArea != '' and sArea != null">
 		WHERE
 			s_area like #{sArea}
 		</if>
