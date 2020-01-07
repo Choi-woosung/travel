@@ -4,7 +4,7 @@
 			PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 			
-<mapper namespace="sSQL"> 
+<mapper namespace="sSQL">
 	
 	<!-- 스케쥴리스트가져오기 -->
 	<select id="scheduleList" resultType="sVO" parameterType="sVO">
@@ -25,4 +25,4 @@
 			schedule
 	</select>
 	
-</mapper>
+</mapper> 

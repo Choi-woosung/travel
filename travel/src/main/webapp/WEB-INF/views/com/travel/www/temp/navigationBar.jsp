@@ -8,7 +8,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="/img/main/favicon2.ico" />
 	<title>ConsulTravel</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<style>
+<style>
 <%--내비게이션 바 관련 css --%>
 .barcolor {
 	background: #222222;
@@ -22,49 +22,6 @@
 .back {
 	background : #2cb5e9;
 }
-</style>
-<style type="text/css">
-	* {
-		box-sizing: border-box;
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-	.profile_box {
-		width: 200px;
-		height: 50px;
-		user-select: none;
-	}
-	.profile_hide {
-		display: none;
-	}
-	.profile_show {
-		display: block;
-		text-align: center;
-		margin-left: -1px;
-	}
-	.profile_show li a {
-		display: block;
-		border-top: none;
-		padding-left: 8px;
-		padding-right: 8px;
-		padding-top: 4px;
-		padding-bottom: 4px;
-		width: 200px;
-		background-color: #2CB5E9;
-		text-decoration: none;
-		color: white;
-	}
-	.profile_show li a:hover {
-		cursor: pointer;
-		color: #2CB5E9;
-		background-color: menu;
-	}
-	.profile_img {
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
 </style>
 </head>
 <body>
@@ -87,16 +44,51 @@
 						href="/member/join.kit">
 							<button class="btn btn-outline-light my-2 my-sm-0">회원가입</button>
 					</a></li>
-					<%-- <li class="nav-item"><a class="nav-link"
-						href="/hotelSearch.kit">
-							<button class="btn btn-outline-light my-2 my-sm-0">테스트</button>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/crawler.kit">
-							<button class="btn btn-outline-light my-2 my-sm-0">크롤러</button>
-					</a></li>--%>
 				</c:if>
 				<c:if test="${!empty SID }">
+					<style type="text/css">
+						* {
+							box-sizing: border-box;
+							list-style: none;
+							padding: 0;
+							margin: 0;
+						}
+						.profile_box {
+							width: 200px;
+							height: 50px;
+							user-select: none;
+						}
+						.profile_hide {
+							display: none;
+						}
+						.profile_show {
+							display: block;
+							text-align: center;
+							margin-left: -1px;
+						}
+						.profile_show li a {
+							display: block;
+							border-top: none;
+							padding-left: 8px;
+							padding-right: 8px;
+							padding-top: 4px;
+							padding-bottom: 4px;
+							width: 200px;
+							background-color: #2CB5E9;
+							text-decoration: none;
+							color: white;
+						}
+						.profile_show li a:hover {
+							cursor: pointer;
+							color: #2CB5E9;
+							background-color: menu;
+						}
+						.profile_img {
+							display: block;
+							width: 100%;
+							height: 100%;
+						}
+					</style>
 					<li class="profile_box">
 						<img class="profile_img" id="profile_btn">
 						<ul class="profile_hide" id="profile_menu">
