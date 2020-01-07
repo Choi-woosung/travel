@@ -21,9 +21,6 @@
 <style>
 	*{box-sizing: border-box;}
 	
-	.container {
-		
-	}
 </style>
 </head>
 <body>
