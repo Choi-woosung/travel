@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		//상세보기
-		$('#box').click(function(){
+		$('.box').click(function(){
 			$(this).submit();
 		});
 	});
@@ -88,7 +88,7 @@
 		</div>
 		<div class="w3-col m8 w3-padding w3-margin-top">
 		<c:forEach var="data" items="${LIST}">
-		<form action="/schedule/scheduleDetail.kit" method="post" id="box">
+		<form action="/schedule/scheduleDetail.kit" method="post" class="box">
 			<input type="hidden" name="sNo" value="${data.sNo}">
 			<div class="w3-container w3-card w3-padding">
 				<div class="w3-col m6">
