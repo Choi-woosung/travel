@@ -146,15 +146,10 @@ html, body {
 				search();
 			});
 			
-			$('.schedule_addBtn').click(function(){
-				alert("되냐?");
-			});
-			
 			$(document).mousemove(function(e){
 			    $('.mouse_event').css("top", e.pageY);
 			    $('.mouse_event').css("left", e.pageX);
 			});
-			$('.mouse_event').css('display', 'block');
 		});
 		function initialize() {
 			var myLatlng = new google.maps.LatLng(37.566535, 126.97796919999996); 
@@ -289,9 +284,10 @@ html, body {
 				results.appendChild(row);
 				
 				
-				row.onclick = function () {
+				row.onclick = function(){
 					google.maps.event.trigger(markers[i], 'click');
 				};
+				
 			});
 
 		}

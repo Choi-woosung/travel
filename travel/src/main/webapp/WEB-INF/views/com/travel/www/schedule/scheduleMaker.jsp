@@ -11,6 +11,7 @@
 <title>ConsulTravel</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&sensor=false&libraries=places"></script>
 <style>
@@ -58,7 +59,7 @@ body, html {
 }
 
 .innerpage {
-	height : 600px;
+	height : 700px;
 	width : 1200px;
 	 overflow-y:hidden;
     overflow-x:auto;
@@ -67,10 +68,9 @@ body, html {
 	 
 }
 .innerpage2 {
-	height: 300px;
 	width : 300px;
 	display : inline-block;
-    overflow:auto;
+    overflow : auto;
     text-align: center;
     margin: 150px 10px auto;
     
@@ -90,26 +90,11 @@ body, html {
 	overflow : hidden;
 }
 
-.mouse_event{
-	position : absolute;
-	top : 0;
-	left : 0;
-	width : 15px;
-	height : 15px;
-	background : red;
-	display : none;
-}
 </style>
 <script>
 
 	$(function() {
 		var status = 1;
-
-		$('#sName').click(function() {
-			$('#sNText').css('display', 'block');
-			$('#sName').css('display', 'none');
-		});
-		
 		$('#dayCount_minus').click(function() {
 			if(status == 1){
 				return;
@@ -127,25 +112,37 @@ body, html {
 			$('#dayCount').append(scheduleDiv);
 			
 			status++;
-			console.log(status);
 		});
 		
 		$('#dayCount_reset').click(function() {
 			$('.innerpage2').remove();
 				status = 1;
 		});
-		$('#sNText').keydown(function(e) {
-			if(e.keyCode == '13'){
-			$('#sNText').css('display', 'none');
-			$('#sName').css('display', 'block');
-			$('#sName').text($('#sNText').val());
-			}
-			
-		});
-		 
-
-
 	});
+	
+	
+	function allowDrop(ev) {
+	  ev.preventDefault();
+	}
+
+	function drag(ev) {
+	  ev.dataTransfer.setData("text", ev.target.id);
+	}
+
+	function drop(ev) {
+	  ev.preventDefault();
+	  console.log(ev.target.className)
+	  if(ev.target.className == 'innerpage2 bg-white shadow' || ev.target.className == 'list-group-item list-group-item-action'){
+		  ev.target.innerHTML += '<a href="#" class="list-group-item list-group-item-action">'
+   								+ '<div class="d-flex w-100 justify-content-between">'
+   								+ '<h5 class="mb-1">List group item heading</h5>'
+   								+ '<small>3 days ago</small></div>'
+   								+ '<p class="mb-1">.</p>'
+   								+ '<small>Donec id elit non mi porta.</small>'
+   								+ '</a>';
+	  }
+	}
+	
 </script>
 </head>
 <body>
@@ -193,7 +190,7 @@ body, html {
 <!--   		<a class="container col-xl-9" id="sName" href="#" style="height: 40px; font-size: 30px;">스케줄 이름<img src="/img/icon/pencil.svg"></a>
   		
   		<input type="text" id="sNText" class="container col-xl-9" style="height: 40px;display: none;"> -->
-  		<div class="innerpage bg-white shadow" id="dayCount" style="margin-top: -100px;">
+  		<div class="innerpage bg-white shadow" id="dayCount" style="margin-top: -100px;" ondrop="drop(event)" ondragover="allowDrop(event)">
   		</div>
   	</div>
   	<div class="col p-4">
@@ -205,10 +202,10 @@ body, html {
   		</div>
   		<hr>
   		<div class="list-group" >
- 			 <a href="#" class="list-group-item list-group-item-action icons" id="subway_station" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/bus.png" class="icon" >교통</a>
- 			 <a href="#" class="list-group-item list-group-item-action icons" id="lodging"  data-toggle="modal" data-target="#dataModal"><img src="/img/icon/hotel.png" class="icon">숙박</a>
- 			 <a href="#" class="list-group-item list-group-item-action icons" id="restaurant" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/Restaurant.png" class="icon">식사</a>
- 			 <a href="#" class="list-group-item list-group-item-action icons" id="type" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/text.png" class="icon">자유스케쥴</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="subway_station" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/bus.png" class="icon" >교통</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="lodging"  data-toggle="modal" data-target="#dataModal"><img src="/img/icon/hotel.png" class="icon">숙박</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="restaurant" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/Restaurant.png" class="icon">식사</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="type" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/text.png" class="icon">자유스케쥴</a>
   		</div>
   		<hr>
 		<div class="container bg-white">
@@ -249,6 +246,5 @@ body, html {
     </div>
   </div>
 </div>
-<div id="mouse_event" class="mouse_event"></div>
 </body>
 </html>
