@@ -10,6 +10,8 @@
 <link rel="shortcut icon" type="image/x-icon" href="/img/main/favicon2.ico" />
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
+<script type="text/javascript"
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&libraries=places"></script>
 <script type="text/javascript">
    $(document).ready(function(){
       //상세보기
@@ -90,6 +92,76 @@
               $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
            }
         });
+        
+        //구글 맵 api 자동완성
+        var autocomplete;
+        var options = {
+           types : [ 'geocode' ]
+        };
+        autocomplete = new google.maps.places.Autocomplete(document
+              .getElementById('inputArea'), options);
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+           var place = autocomplete.getPlace();
+           var components = place.address_components;
+           var component0 = components[0];
+           var component2 = components[2];
+           var street0 = component0['long_name'];
+           var street2 = component2['long_name'];
+           
+           console.log(street0);
+           console.log(street2);
+           
+           $('#sCountry').val(street2);
+           $('#sArea').val(street0);
+        });
+        
+        /*    캘린더  */
+        $('#calendarArea1').click(function(e) {
+           e.preventDefault();
+           $('#sSdate').focus();
+        });
+        $('#calendarArea2').click(function(e) {
+           e.preventDefault();
+           $("#sEdate").focus();
+        });
+        //예약발행 달력_시작 
+        $('#sSdate').datepicker(
+              {
+                 dateFormat : 'yy/mm/dd',
+                 showMonthAfterYear : true,
+                 changeMonth : true,
+                 changeYear : true,
+                 numberOfMonths : 1,
+                 dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+                 monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+                       '7월', '8월', '9월', '10월', '11월', '12월' ],
+                 minDate : -0
+                 //오늘날짜 이후부터만 설정되게 
+                 ,
+                 onClose : function(selectedDate) {
+                    $('#sEdate').datepicker("option", "minDate", "maxDate",
+                          selectedDate);
+                 }
+              });
+        //기간발행_끝 
+        $("#sEdate").datepicker(
+              {
+                 dateFormat : 'yy/mm/dd',
+                 showMonthAfterYear : true,
+                 changeMonth : true,
+                 changeYear : true,
+                 numberOfMonths : 1,
+                 dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+                 monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+                       '7월', '8월', '9월', '10월', '11월', '12월' ],
+                 minDate : -0
+                 //오늘날짜 이후부터만 설정되게 
+                 ,
+                 onClose : function(selectedDate) {
+                    $('#sSdate').datepicker("option", "minDate", "maxDate",
+                          selectedDate);
+                 },
+              });
    });
 </script>
 <style>
@@ -97,19 +169,36 @@
    
 /*    인원수창 안보이기 */
 	.pCount {
-	   height: 130px;
-	   background: white;
-	   position: absolute;
-	   border: 1px solid gray;
-	   border-radius: 3px;
-	   padding: 10px;
-	   margin-top: 2px;
-	   display: none;
+		width: 241px;
+		height: 130px;
+		background: white;
+		position: absolute;
+		border: 1px solid gray;
+		border-radius: 3px;
+		padding: 10px;
+		margin-top: 2px;
+		display: none;
+	}
+	
+/* 	검색창 위치 조정 */
+	.leftBtn2 {
+		margin-left: 7px;
+	}
+	
+/* 	검색창 input 크기 */
+	.pbtn {
+		width: 80px;
+		text-align: center;
 	}
    
 /*     인원수창 */
    .pCount.view {
 	   display: block;
+	}
+	
+/* 	검색창 크기 */
+	.searchbox {
+		height: 316px;
 	}
 </style>
 </head>
@@ -118,7 +207,7 @@
       <c:import url="/navigationBar.kit"></c:import>
    </header>
    <div class="container">
-      <div class="w3-col m3 w3-border w3-padding w3-margin-top">
+      <div class="w3-col m3 w3-border w3-padding w3-margin-top searchbox">
          <div class="mainSearch">
             <form method="POST" name="myform" id="frm">
                <div class="form-group">
@@ -141,7 +230,7 @@
                </div>
                <div class="form-group tCount confirmDiv">
                   <label for="inputArea"> 인원수 </label> <input type="text"
-                     class="form-control city" id="people" name="people" placeholder="인원수를 선택해주세요" autocomplete="off">
+                     class="form-control city" id="people" name="people" value="${PEOPLE}" placeholder="인원수를 선택해주세요" autocomplete="off">
                   <div class="pCount" id="pCount">
                      <div class="adult topAdult">
                         <label> <span class="totalcount">성인</span>
@@ -177,7 +266,7 @@
       <c:forEach var="data" items="${LIST}">
       <form action="/schedule/scheduleDetail.kit" method="post" class="box">
          <input type="hidden" name="sNo" value="${data.sNo}">
-         <div class="w3-container w3-card w3-padding">
+         <div class="w3-container w3-card w3-padding w3-margin-bottom">
             <div class="w3-col m6">
                <img alt="mainpic" src="${data.sPic}" style="width: 300px; height: 300px">
             </div>
