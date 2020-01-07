@@ -9,12 +9,13 @@
 	<!-- 스케쥴리스트가져오기 -->
 	<select id="scheduleList" resultType="sVO" parameterType="sVO">
 		SELECT
-			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, 
-			, s_pic sPic
+			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_pic sPic
 		FROM
 			schedule
+<!-- 		<if test="#{sArea} != null"> -->
 		WHERE
 			s_area like #{sArea}
+<!-- 		</if> -->
 	</select>
 	
 		<select id="schedule" resultType="sVO">

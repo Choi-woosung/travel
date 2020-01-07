@@ -12,19 +12,9 @@
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('th').attr('class', 'w3-xlarge w3-center w3-col m4');
-		$('td').attr('class', 'w3-xlarge w3-center w3-col m4');
-		
 		//상세보기
 		$('#box').click(function(){
 			$(this).submit();
-		$('.simpleInfo').click(function(){
-			$('#detailInfo').css('display', 'block');
-		});
-		
-		//상세보기 종료
-		$('#exit').click(function(){
-			$('#detailInfo').css('display', 'none'); 
 		});
 	});
 </script>
