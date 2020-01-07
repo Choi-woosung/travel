@@ -149,6 +149,7 @@ html, body {
 			$('.schedule_addBtn').click(function(){
 				alert("되냐?");
 			});
+			
 			$(document).mousemove(function(e){
 			    $('.mouse_event').css("top", e.pageY);
 			    $('.mouse_event').css("left", e.pageX);
