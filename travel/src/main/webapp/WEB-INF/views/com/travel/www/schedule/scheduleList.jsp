@@ -22,7 +22,7 @@
 		
 		//상세보기 종료
 		$('#exit').click(function(){
-			$('#detailInfo').css('display', 'none');
+			$('#detailInfo').css('display', 'none'); 
 		});
 	});
 </script>
