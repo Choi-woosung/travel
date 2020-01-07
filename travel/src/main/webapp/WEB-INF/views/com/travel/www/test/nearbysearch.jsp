@@ -71,6 +71,8 @@ html, body {
 	-ms-transition: all 0.2s;
 	-o-transition: all 0.2s;
 	transition: all 0.2s;
+	overflow-y : scroll;
+	overflow-x : hidden;
 }
 
 #sidebar-toggle {
@@ -104,15 +106,28 @@ html, body {
 	transition: all 0.2s;
 }
 
+.resultData{
+	display: flex;
+}
+
+.resultData-left{
+	flex : 8;
+}
+
+.resultData-right{
+	flex : 2;
+}
+
+
 
 </style>
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&sensor=false&libraries=places"></script>
 	<script type="text/javascript">
 		var type;
 		var map, places, iw;
 		var markers = [];
 		var autocomplete;
+		var options;
 		
 		$(function(){
 			$("#sidebar-toggle").click(function(){
@@ -125,11 +140,11 @@ html, body {
 				search();
 			})
 		});
-
+ 
 		function initialize() {
-			var myLatlng = new google.maps.LatLng(37.566535, 126.97796919999996);
+			var myLatlng = new google.maps.LatLng(37.566535, 126.97796919999996); 
 			var myOptions = {
-				zoom: 14,
+				zoom: 18,
 				center: myLatlng,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
@@ -205,23 +220,58 @@ html, body {
 		}
 
 		function addResult(result, i) {
-			var results = document.getElementById('results');
-			var tr = document.createElement('tr');
-			tr.style.backgroundColor = (i % 2 == 0 ? '#F0F0F0' : '#FFFFFF');
-			tr.onclick = function () {
-				google.maps.event.trigger(markers[i], 'click');
-			};
-			var iconTd = document.createElement('td');
-			var nameTd = document.createElement('td');
-			var icon = document.createElement('img');
-			icon.src = result.icon.replace('http:', '');
-			icon.setAttribute('class', 'placeIcon');
-			var name = document.createTextNode(result.name);
-			iconTd.appendChild(icon);
-			nameTd.appendChild(name);
-			tr.appendChild(iconTd);
-			tr.appendChild(nameTd);
-			results.appendChild(tr);
+			places.getDetails({placeId : result.place_id}, 
+					function(place, status){
+				var name = document.createTextNode(place.name);
+				var url = document.createTextNode(place.url);
+				var rating;
+				if(typeof place.rating == "undefined"){
+					rating = document.createTextNode("별점 없음");
+				} else {
+					rating = document.createTextNode(place.rating);
+				}
+				var address = document.createTextNode(place.formatted_address);
+				var photo;
+				
+				var results = document.getElementById('results');
+	 			var row = document.createElement('div');
+				row.setAttribute('class', 'resultData p-3 list-group-item list-group-item-action');
+				var leftDiv = document.createElement('div');
+				leftDiv.setAttribute('class', 'resultData-left');
+				var rightDiv = document.createElement('div');
+				rightDiv.setAttribute('class', 'resultData-right');
+				rightDiv.setAttribute('id', 'rightDiv');
+				var nameh4 = document.createElement('h6');
+				var addressh6 = document.createElement('h6');
+				var ratingh6 = document.createElement('h6');
+				ratingh6.appendChild(rating);
+				addressh6.appendChild(address);
+				try{
+					photo = place.photos[0].getUrl();
+				} catch (e) {
+					photo = "/img/icon/hotel.png";
+				}
+				var photoLink = document.createElement('img');
+				photoLink.src= photo;
+				photoLink.width = 100;
+				photoLink.height = 100;
+				
+				leftDiv.appendChild(nameh4);	
+				nameh4.appendChild(name);
+				leftDiv.appendChild(addressh6);
+				leftDiv.appendChild(address);
+				leftDiv.appendChild(ratingh6);
+				rightDiv.appendChild(photoLink);
+				row.appendChild(leftDiv);
+				row.appendChild(rightDiv);
+				results.appendChild(row);
+				
+				
+				row.onclick = function () {
+					google.maps.event.trigger(markers[i], 'click');
+				};
+			});
+
 		}
 
 		function clearResults() {
@@ -265,7 +315,7 @@ html, body {
 		
 	</script>
 </head>
-<body>﻿
+<body>
 	<div id="map_canvas"></div>
 	<div id="sidebar-toggle" class="shadow border-bottom border-left">
 		<img src="/img/icon/arrow-bar-left.svg" alt="" width="32" height="32" title="Bootstrap">
@@ -275,7 +325,7 @@ html, body {
 			<input id="autocomplete" type="text">
 		</div>
 		<div id="listing">
-			<table id="results"></table>
+			<div id="results"></div>
 		</div>
 		
 	</div>

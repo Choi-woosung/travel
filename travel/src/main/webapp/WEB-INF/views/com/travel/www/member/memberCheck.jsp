@@ -131,7 +131,7 @@ body {
 
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/js/bootstrap.min.js">
-<script type="text/javascript">
+<script type="text/javascript"> 
 	$(document).ready(function() {
 		$('#cancel').click(function() {
 			history.back();
