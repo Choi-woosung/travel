@@ -20,7 +20,6 @@
 </script>
 <style>
    *{box-sizing: border-box;}
-   
 </style>
 </head>
 <body>
@@ -28,7 +27,7 @@
       <c:import url="/navigationBar.kit"></c:import>
    </header>
    <div class="container">
-      <div class="w3-col m3 w3-border w3-padding w3-margin">
+      <div class="w3-col m3 w3-border w3-padding w3-margin-top">
          <div class="mainSearch">
             <form method="POST" name="myform" id="frm">
                <div class="form-group">
@@ -83,7 +82,7 @@
             </form>
          </div>
       </div>
-      <div class="w3-col m8 w3-padding w3-margin-top">
+      <div class="w3-col m8 w3-margin-top w3-margin-left">
       <c:forEach var="data" items="${LIST}">
       <form action="/schedule/scheduleDetail.kit" method="post" class="box">
          <input type="hidden" name="sNo" value="${data.sNo}">
