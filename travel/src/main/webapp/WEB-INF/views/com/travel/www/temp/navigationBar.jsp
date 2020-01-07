@@ -60,7 +60,7 @@
 							height: 50px;
 							user-select: none;
 							position: fixed;
-							right: 66px;
+							right: 66.6px;
 							top: 6px;
 						}
 						.profile_hide {
