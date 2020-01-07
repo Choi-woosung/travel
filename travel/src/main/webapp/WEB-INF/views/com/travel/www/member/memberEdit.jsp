@@ -202,7 +202,7 @@
 		for (var i = 0; i < 10; i++) {
 			let el = document.createElement('option');
 			el.textContent = '프로필 이미지 ' + (i + 1);
-			el.value = (i + 11);
+			el.value = (i + 11); 
 			if (el.value == '${DATA.mAvatar}') {
 				el.selected = true;
 			}
