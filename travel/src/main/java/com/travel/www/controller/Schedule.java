@@ -3,14 +3,11 @@ package com.travel.www.controller;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.travel.www.dao.ScheduleDAO;
@@ -19,50 +16,54 @@ import com.travel.www.vo.ScheduleVO;
 @Controller
 @RequestMapping("/schedule")
 public class Schedule {
-	
-	@Autowired
-	ScheduleDAO sDAO;
-	
-	@RequestMapping("/scheduleList.kit")
-	public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO) {
+   
+   @Autowired
+   ScheduleDAO sDAO;
+   
+   @RequestMapping("/scheduleList.kit")
+   public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req) {
+      String people = req.getParameter("people");
+      String address = req.getParameter("address");
+      mv.setViewName("/schedule/scheduleList");
+      
+      List<ScheduleVO> list = sDAO.scheduleList(sVO);
+       
+      mv.addObject("ADDRESS", address);
+      mv.addObject("PEOPLE", people);
+      mv.addObject("LIST", list);
+      mv.addObject("SVO", sVO);
+      
+      return mv;
+   }
+   
+   @RequestMapping("/scheduleUp.kit")
+   public ModelAndView scheduleUpForm(ModelAndView mv, ScheduleVO vo) {
+      if (vo.getsSdate() != null && vo.getsEdate() != null) {
+         long d1 = new Date(vo.getsSdate()).getTime();
+         long d2 = new Date(vo.getsEdate()).getTime(); 
+      
+         int sDay = ((int) Math.abs((d1 - d2) / ( 24 * 60 * 60 * 1000)));
+         
+         vo.setsDay(sDay);
+         
+         mv.addObject("LIST", vo);
+      }
+      mv.setViewName("/schedule/scheduleUp3");
 
-		mv.setViewName("/schedule/scheduleList");
-		
-		List<ScheduleVO> list = sDAO.scheduleList(sVO);
-		
-		mv.addObject("LIST", list);
-		
-		return mv;
-	}
-	
-	@RequestMapping("/scheduleUp.kit")
-	public ModelAndView scheduleUpForm(ModelAndView mv, ScheduleVO vo) {
-		if (vo.getsSdate() != null && vo.getsEdate() != null) {
-			long d1 = new Date(vo.getsSdate()).getTime();
-			long d2 = new Date(vo.getsEdate()).getTime(); 
-		
-			int sDay = ((int) Math.abs((d1 - d2) / ( 24 * 60 * 60 * 1000)));
-			
-			vo.setsDay(sDay);
-			
-			mv.addObject("LIST", vo);
-		}
-		mv.setViewName("/schedule/scheduleUp3");
-
-		return mv;
-	}
-	
-	@RequestMapping("/scheduleMaker.kit")
-	public ModelAndView shceduleMaker(ModelAndView mv) {
-		mv.setViewName("/schedule/scheduleMaker");
-		return mv;
-	}
-	@RequestMapping("/scheduleDetail.kit")
-	public ModelAndView shceduleDetail(ModelAndView mv) {
-		mv.setViewName("/schedule/scheduledetail");
-		return mv;
-	}
-	
-	
+      return mv;
+   }
+   
+   @RequestMapping("/scheduleMaker.kit")
+   public ModelAndView shceduleMaker(ModelAndView mv) {
+      mv.setViewName("/schedule/scheduleMaker");
+      return mv;
+   }
+   @RequestMapping("/scheduleDetail.kit")
+   public ModelAndView shceduleDetail(ModelAndView mv) {
+      mv.setViewName("/schedule/scheduledetail");
+      return mv;
+   }
+   
+   
 
 }
