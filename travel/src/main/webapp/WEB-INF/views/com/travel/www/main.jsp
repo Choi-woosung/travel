@@ -367,101 +367,15 @@
 </script>
 <script>
 	// 구글 맵 api 자동완성기능 //
-	$(document).ready(function() {
+	$(document).ready(
+			function() {
 				var autocomplete;
 				var options = {
 					types : [ 'geocode' ]
 				};
-				
 				autocomplete = new google.maps.places.Autocomplete(document
 						.getElementById('inputArea'), options);
-				
-				google.maps.event.addListener(autocomplete, 'place_changed', function(){
-					var place = autocomplete.getPlace();
-					var components = place.address_components;
-					var component0 = components[0];
-					var component2 = components[2];
-					var street0 = null;
-					var street2 = null;
-					
-					street0 = component0['long_name'];
-					street2 = component2['long_name'];
-					
-					console.log(street0);
-					console.log(street2);
-					
-					$('#sArea').val(street0);
-					$('#sCountry').val(street2);
-				});
 			});
-</script>
-<style type="text/css">
-	* {
-		box-sizing: border-box;
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-	.profile_box {
-		width: 200px;
-		height: 50px;
-		border: 1px solid black;
-		user-select: none;
-	}
-	.profile_hide {
-		display: none;
-	}
-	.profile_show {
-		display: block;
-		text-align: center;
-		margin-left: -1px;
-	}
-	.profile_show li a {
-		display: block;
-		border: 1px solid black;
-		border-bottom: none;
-		padding-left: 8px;
-		padding-right: 8px;
-		padding-top: 4px;
-		padding-bottom: 4px;
-		width: 200px;
-		background-color: white;
-	}
-	.profile_show li a:hover {
-		cursor: pointer;
-		background-color: aqua;
-		color: white;
-	}
-	.profile_show li a {
-		text-decoration: none;
-		color: black;
-	}
-	.profile_img {
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-</style>
-<script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', () => {
-		let profile_btn = document.getElementById('profile_btn'); 
-		let profile_menu = document.getElementById('profile_menu');
-		
-		document.addEventListener('click', e => {
-			if (e.target != profile_btn) {
-				if (profile_menu.className == 'profile_show') {
-					profile_menu.className = 'profile_hide';
-				}
-			}
-		});
-		profile_btn.addEventListener('click', () => {
-			if (profile_menu.className == 'profile_hide') {
-				profile_menu.className = 'profile_show';
-			} else {
-				profile_menu.className = 'profile_hide';
-			}
-		});
-	});
 </script>
 </head>
 <body>
@@ -476,13 +390,12 @@
 				<form method="POST" name="myform" id="frm">
 					<div class="form-group">
 						<label for="inputArea"> 여행가는 도시 </label> <input type="text"
-							class="form-control city" id="inputArea" name="address"
+							class="form-control city" id="inputArea" name="sCountry"
 							placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
-							<input type="hidden" name="sCountry" id="sCountry">
-							<input type="hidden" name="sArea" id="sArea">
 					</div>
 					<div class="row">
-						<div class="form-group col-md-6 ">
+						<div class="form-group col-md-6 ">c
+						
 							<label for="calendarArea" id="calendarArea1"> 출발일 선택 </label> <input
 								type="text" class="form-control col-md-12" id="sSdate"
 								name="Sdate" placeholder="언제부터 ?" autocomplete="off">
