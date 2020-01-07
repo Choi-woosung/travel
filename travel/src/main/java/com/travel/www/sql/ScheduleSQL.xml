@@ -12,10 +12,10 @@
 			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_pic sPic
 		FROM
 			schedule
-<!-- 		<if test="#{sArea} != null"> -->
+		<if test="sArea != ''">
 		WHERE
 			s_area like #{sArea}
-<!-- 		</if> -->
+		</if>
 	</select>
 	
 		<select id="schedule" resultType="sVO">
