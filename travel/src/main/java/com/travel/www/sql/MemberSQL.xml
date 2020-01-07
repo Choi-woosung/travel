@@ -72,7 +72,7 @@
 
 	<select id="Member" resultType="mVO" parameterType="mVO">
 		SELECT
-			m_id mId, m_name mName, m_mail mMail, m_mobile mMobile, m_address mAddress, m_jdate mJdate
+			m_id mId, m_name mName, m_mail mMail, m_mobile mMobile, m_address mAddress, m_jdate mJdate, m_avatar mAvatar
 		FROM
 			member
 		WHERE
@@ -95,7 +95,8 @@
 		set
 			m_pw = #{mPw},
 			m_mobile = #{mMobile},
-			m_address = #{mAddress}
+			m_address = #{mAddress},
+			m_avatar = #{mAvatar}
 		WHERE
 		m_id = #{mId}
 		

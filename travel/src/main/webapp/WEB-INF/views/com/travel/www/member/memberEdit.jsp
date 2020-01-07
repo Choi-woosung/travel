@@ -51,6 +51,11 @@
 .back {
 	background: #2cb5e9;
 }
+.profile_select {
+	width: 213px;
+	height: 28px;
+	margin-left: 15px;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -92,6 +97,7 @@
 						var mMail = $('#mail').val();
 						var mMobile = $('#tel').val();
 						var mAddress = $('#roadAddress').val()+ " "+ $('#detailAddress').val();
+						var mAvatar= $('#profile_select').val();
 						alert(mAddress);
 						if (mPw != mPw2) {
 							alert("입력하신 비밀번호가 다릅니다.");
@@ -113,7 +119,8 @@
 						"mPw2" : mPw2,
 						"mMail" : mMail,
 						"mMobile" : mMobile,
-						"mAddress" : mAddress
+						"mAddress" : mAddress,
+						"mAvatar" : mAvatar
 						},
 						success : function(data) {
 								if (data == 1) {
@@ -187,6 +194,30 @@
 
 	}
 </script>
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', () => {
+		let profile_select = document.getElementById('profile_select');
+		let profile_img = document.getElementById('profile_img');
+		
+		for (var i = 0; i < 10; i++) {
+			let el = document.createElement('option');
+			el.textContent = '프로필 이미지 ' + (i + 1);
+			el.value = (i + 11); 
+			if (el.value == '${DATA.mAvatar}') {
+				el.selected = true;
+			}
+			profile_select.appendChild(el);
+		}
+		
+		profile_img.src = '/img/profile/profile' + (${DATA.mAvatar} - 10) + '.png'; 
+		
+		profile_select.addEventListener('change', e => {
+			let num = e.target.value - 10;
+			
+			profile_img.src = '/img/profile/profile' + num + '.png'; 
+		});
+	});
+</script>
 </head>
 <body>
 	<header>
@@ -207,6 +238,11 @@
 				<div class="p-4 row">
 					<pre>회 원  이 름 :</pre>
 					<h5 class="ml-4" id="name">${DATA.mName }</h5>
+				</div>
+				<div class="p-4 row">
+					<pre>프로필 이미지 :</pre>
+					<select class="profile_select" id="profile_select"></select>
+					<img id="profile_img" width="128" height="128">
 				</div>
 				<div class="p-4 row">
 					<pre>비 밀  번 호 :</pre>
