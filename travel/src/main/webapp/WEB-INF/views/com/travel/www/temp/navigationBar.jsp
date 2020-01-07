@@ -59,6 +59,9 @@
 							width: 200px;
 							height: 50px;
 							user-select: none;
+							position: fixed;
+							right: 66px;
+							top: 6px;
 						}
 						.profile_hide {
 							display: none;
@@ -66,11 +69,11 @@
 						.profile_show {
 							display: block;
 							text-align: center;
-							position: relative;
-							top: -25px;  
-							right: -16px;
+							position: fixed;
+							right: 0;
+							top: 76px;
 						}
-						.profile_show li a {
+						.profile_show li a, .profile_show li div {
 							display: block;
 							border-top: none;
 							padding-left: 8px;
@@ -81,8 +84,9 @@
 							background-color: #2CB5E9;
 							text-decoration: none;
 							color: white;
+							clear: both;
 						}
-						.profile_show li a:hover {
+						.profile_show li a:hover, .profile_show li div:hover {
 							cursor: pointer;
 							color: #2CB5E9;
 							background-color: menu;
@@ -91,22 +95,16 @@
 							display: block;
 							width: 64px;
 							height: 64px;
-							position: relative;
-							top: -30px;
-							right: -145px;
+							float: right;
 						}
 						.user_name {
-							position: relative;
-							top: 15px;
-							right: -75px;
 							color: white;
-							opacity: 0;
 						}
 					</style>
 					<li class="profile_box">
-						<div class="user_name" id="user_name">0</div>
 						<img class="profile_img" id="profile_btn">
 						<ul class="profile_hide" id="profile_menu">
+							<li><div class="user_name" id="user_name"></div></li>
 							<li><a href="/member/memberForm.kit">회원정보보기</a></li>
 							<li><a href="/member/logout.kit">로그아웃</a></li>
 						</ul>
@@ -119,6 +117,9 @@
 						
 							fetch('/board/getprofile.kit').then(response => response.text())
 							.then(text => profile_btn.src = '/img/profile/' + text);
+							
+							fetch('/board/getname.kit').then(response => response.text())
+							.then(text => user_name.textContent = 'UserName : ' + text);
 
 							document.addEventListener('click', e => {
 								if (e.target != profile_btn) {
