@@ -18,12 +18,25 @@ public class MemberDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+	
+	// 비밀번호 변경
+	@Transactional
+	public int update_pw(MemberVO mVO) {
+		return sqlSession.update("mSQL.update_pw", mVO);
+	}	
+	
+	
 	// 로그인 전담 처리함수
 	public int loginProc(MemberVO mVO) {
 		return sqlSession.selectOne("mSQL.Login", mVO);
 	}
+	
+	// 비밀번호찾기에서 중복확인
+	public int findpw(String id) {
+		return sqlSession.update("mSQL.Check", id);
+	}
 
-	// 중복확인
+	// 회원가입에서 중복확인
 	public int idCheck(String id) {
 		return sqlSession.selectOne("mSQL.idCount", id);
 	}
@@ -50,12 +63,5 @@ public class MemberDAO {
 		return sqlSession.selectOne("mSQL.MemberCheck", mVO);
 	}
 	
-	// 비밀번호 변경
-	@Transactional
-	public int update_pw(MemberVO mVO) throws Exception{
-		return sqlSession.update("member.update_pw", mVO);
-	}
-	
 
-	
 }

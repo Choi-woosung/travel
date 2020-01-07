@@ -395,12 +395,71 @@
 				});
 			});
 </script>
+<style type="text/css">
+	* {
+		box-sizing: border-box;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.profile_box {
+		width: 200px;
+		height: 50px;
+		border: 1px solid black;
+		user-select: none;
+	}
+	.profile_hide {
+		display: none;
+	}
+	.profile_show {
+		display: block;
+		text-align: center;
+		margin-left: -1px;
+	}
+	.profile_show li a {
+		display: block;
+		border: 1px solid black;
+		border-bottom: none;
+		padding-left: 8px;
+		padding-right: 8px;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		width: 200px;
+		background-color: white;
+	}
+	.profile_show li a:hover {
+		cursor: pointer;
+		background-color: aqua;
+		color: white;
+	}
+	.profile_show li a {
+		text-decoration: none;
+		color: black;
+	}
+	.profile_img {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+</style>
 <script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', () => {
 		let profile_btn = document.getElementById('profile_btn'); 
+		let profile_menu = document.getElementById('profile_menu');
 		
+		document.addEventListener('click', e => {
+			if (e.target != profile_btn) {
+				if (profile_menu.className == 'profile_show') {
+					profile_menu.className = 'profile_hide';
+				}
+			}
+		});
 		profile_btn.addEventListener('click', () => {
-			alert(123);
+			if (profile_menu.className == 'profile_hide') {
+				profile_menu.className = 'profile_show';
+			} else {
+				profile_menu.className = 'profile_hide';
+			}
 		});
 	});
 </script>
@@ -463,7 +522,7 @@
 						<input type="hidden" name="sRn" value="1">				
 					</div>
 	<!-- 				<button type="button" class="btn btn-outline-info" id="make">스케쥴만들기</button> -->
-					<button type="button" class="btn btn-outline-info" id="search">검색</button>
+					<button type="button" class="btn btn-outline-info" id="search">여행추천</button>
 	<!--  			<button type="button" class="btn btn-outline-info" id="certification">이메일인증</button> -->
 					<button type="button" class="btn btn-outline-info" id="nearbysearch">근처검색</button>
 				</form>

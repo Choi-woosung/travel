@@ -9,6 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 
+
+
 .form-label-group{
 	padding-top : 30px;
 }
@@ -18,7 +20,7 @@
 	width: 50%;
 	line-height: 1.5;
 	align-items: center;
-}	
+}	  
 
 	
 </style>
@@ -34,7 +36,11 @@
 <script type="text/javascript">
  	$(document).ready(function(){
 		$('#find_btn').click(function(){
-			$(location).attr('href', '/member/find.kit');
+			$(location).attr('href', '/member/find_pw_form.kit');
+		});
+		
+		$('#find_pw_btn').click(function(){
+			$(location).attr('href', '/member/find_pw_form.kit');
 		});
 		
 		$('#btn').click(function(){
@@ -66,7 +72,9 @@
       	margin : 0 auto;
       }
       
-  
+  	body{
+	background-color: #f5f5f5;
+	}
 
 	.text-center{
 		margin-top:100px;
@@ -79,6 +87,7 @@
  <c:if test="${empty SID}">
     <form method="POST" action="/member/loginProc.kit" class="form-signin justify-content-md-center">
  <div class="text-center mb-1">
+  <img class="mb-4" src="/img/main/favicon2.ico" alt="" width="72" height="72" style="border-radius : 20px;">
   <h1 class="h3 mb-3 font-weight-normal">L O G I N </h1>
  
   <div class="w3-margin">
@@ -87,11 +96,14 @@
 
   <div class="w3-margin">
     <input type="password" id="userPw" name="mPw" class="form-control" placeholder="비밀번호" maxlength="8" required> 
+ 	<span id="find_pw_btn"></span>
   </div>
   
   <div class="checkbox mb-3 w3-center">
       <input type="checkbox" value="remember-me"> 기억하기
   </div>
+  
+    <div id="find_btn" class="w3-margin w3-center"> 아이디 | 비밀번호찾기</div>
   
       
   <button class="btn btn-lg btn-primary btn-block" id="btn" type="submit">Sign in</button>

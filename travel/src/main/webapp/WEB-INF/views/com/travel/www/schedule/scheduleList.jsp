@@ -18,6 +18,13 @@
 		//상세보기
 		$('#box').click(function(){
 			$(this).submit();
+		$('.simpleInfo').click(function(){
+			$('#detailInfo').css('display', 'block');
+		});
+		
+		//상세보기 종료
+		$('#exit').click(function(){
+			$('#detailInfo').css('display', 'none'); 
 		});
 	});
 </script>

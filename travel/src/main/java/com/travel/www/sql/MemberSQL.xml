@@ -25,7 +25,18 @@
 	</select>
 	
 	
-	<!-- 중복확인 -->
+	<!-- 비밀번호찾기에서 중복확인 -->
+	<update id="Check"  parameterType="mVO">
+		update
+			member
+		set
+			m_id = #{mId}
+
+	</update>
+	
+	
+	
+	<!-- 회원가입에서 중복확인 -->
 	<select id="idCount" resultType="int" parameterType="string">
 		 <include refid="selCNT" /> #{mId}
 	</select>
@@ -52,12 +63,12 @@
 	</insert>
 	
 	<!-- 비밀번호 변경 -->
-<!-- 	<update id="update_pw" parameterType="mVO">
+ 	<update id="update_pw" parameterType="mVO">
 		update member 
 		set pw = #{mPw} 
 		where id = #{mId}
 	</update>	
--->
+
 
 	<select id="Member" resultType="mVO" parameterType="mVO">
 		SELECT
