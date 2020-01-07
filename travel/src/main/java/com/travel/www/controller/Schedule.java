@@ -25,7 +25,8 @@ public class Schedule {
    public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req, RedirectView rv) {
       String people = req.getParameter("people");
       String address = req.getParameter("address");
-      List<ScheduleVO> list = sDAO.scheduleList(sVO);
+      String sarea = req.getParameter("sarea");
+      List<ScheduleVO> list = sDAO.scheduleList(sarea);
        
       mv.addObject("ADDRESS", address);
       mv.addObject("PEOPLE", people);

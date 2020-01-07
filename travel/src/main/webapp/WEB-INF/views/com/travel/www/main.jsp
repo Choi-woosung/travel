@@ -332,8 +332,10 @@
          $('#adult12').val(a);
          $('#child12').val(b);
          
+         var sarea = $('#sArea').val();
+         
                var formid = document.myform;
-                  $('#frm').attr('action', '/schedule/scheduleList.kit');
+                  $('#frm').attr('action', '/schedule/scheduleList.kit?sarea=' + sarea);
                   $('#frm').submit();
             });
       
