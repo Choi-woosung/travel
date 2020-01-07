@@ -44,24 +44,29 @@
 						href="/member/join.kit">
 							<button class="btn btn-outline-light my-2 my-sm-0">회원가입</button>
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
+					<%-- <li class="nav-item"><a class="nav-link"
 						href="/hotelSearch.kit">
 							<button class="btn btn-outline-light my-2 my-sm-0">테스트</button>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/crawler.kit">
 							<button class="btn btn-outline-light my-2 my-sm-0">크롤러</button>
-					</a></li>
+					</a></li>--%>
 				</c:if>
 				<c:if test="${!empty SID }">
-					<li class="nav-item"><a class="nav-link"
+					<!-- <li class="nav-item"><a class="nav-link"
 						href="/member/logout.kit">
 							<button class="btn btn-outline-light my-2 my-sm-0">로그아웃</button>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/member/memberForm.kit">
 							<button class="btn btn-outline-light my-2 my-sm-0">회원정보보기</button>
-					</a></li>
+					</a></li> -->
+					<li class="nav-item" id="profile_btn">
+						<div class="btn btn-outline-light my-2 my-sm-0">
+							<img alt="profile" src="">
+						</div>
+					</li>
 				</c:if>
 			</ul>
 		</div>
