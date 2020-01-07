@@ -39,19 +39,24 @@ body, html {
 .nav-scroller {
 	z-index : 10;
 }
+
 .first {
 	margin-left : 50px;
 }
+
 .logoText {
 	font-size : 20px;
 	color : black;
 }
+
 .m-content {
 	height : 90%;
 }
+
 .row {
 	height : 100%;
 }
+
 .innerpage {
 	height : 600px;
 	width : 1200px;
@@ -64,9 +69,8 @@ body, html {
 .innerpage2 {
 	height: 300px;
 	width : 300px;
-	 display:inline-block;
+	display : inline-block;
     overflow:auto;
-    
     text-align: center;
     margin: 150px 10px auto;
     
@@ -85,8 +89,15 @@ body, html {
 	height : 700px;
 	overflow : hidden;
 }
-.credel{
-	display: none;
+
+.mouse_event{
+	position : absolute;
+	top : 0;
+	left : 0;
+	width : 15px;
+	height : 15px;
+	background : red;
+	display : none;
 }
 </style>
 <script>
@@ -94,36 +105,34 @@ body, html {
 	$(function() {
 		var status = 1;
 
-		$('#sName').click(function () {
+		$('#sName').click(function() {
 			$('#sNText').css('display', 'block');
 			$('#sName').css('display', 'none');
 		});
 		
-		$('#didi1').click(function () {
+		$('#dayCount_minus').click(function() {
 			if(status == 1){
 				return;
 			}
-		$('#d'+(status-1)).remove();
+			$('#d'+(status-1)).remove();
 			   status--;
 		});
 		
-		$('#didi2').click(function () {
-			var div = document.createElement('div');
-			var headContent = document.createTextNode(status + "일차입니다");
-			div.append(headContent);
-			div.setAttribute('class', 'innerpage2 bg-white shadow');
-			div.setAttribute('id', 'd'+status);
-			div.setAttribute('ondrop', 'drop(event)');
-			$('#dldl').append(div);
+		$('#dayCount_plus').click(function() {
+			var scheduleDiv = document.createElement('div');
+			var headContent = document.createTextNode(status + "일차");
+			scheduleDiv.appendChild(headContent);
+			scheduleDiv.setAttribute('class', 'innerpage2 bg-white shadow');
+			scheduleDiv.setAttribute('id', 'd'+status);
+			$('#dayCount').append(scheduleDiv);
+			
 			status++;
+			console.log(status);
 		});
 		
-		$('#didi3').click(function () {
+		$('#dayCount_reset').click(function() {
 			$('.innerpage2').remove();
 				status = 1;
-		});
-		$('#didi').click(function () {
-			$('.credel').css('display', 'block');
 		});
 		$('#sNText').keydown(function(e) {
 			if(e.keyCode == '13'){
@@ -133,6 +142,9 @@ body, html {
 			}
 			
 		});
+		
+
+
 	});
 </script>
 </head>
@@ -163,7 +175,7 @@ body, html {
     <a class="nav-link dropdown-toggle" role="button" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">편집</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" href="#">스케쥴 추가</a>
-          <a class="dropdown-item" id="didi" href="#">일자 추가/삭제</a>
+          <a class="dropdown-item" id="dayCount_nav" href="#">일자 추가/삭제</a>
         </div>
     </div>
     <div class="dropdown">
@@ -177,38 +189,41 @@ body, html {
 </div>
 <div class="container-fluid m-content">
   <div class="row">
-  	<div class="col-xl-10 border main-container row">
-  		<a class="container col-xl-9" id="sName" href="#" style="height: 40px; font-size: 30px;">스케줄 이름<img src="/img/icon/pencil.svg"></a>
+  	<div class="col-xl-10 border main-container">
+<!--   		<a class="container col-xl-9" id="sName" href="#" style="height: 40px; font-size: 30px;">스케줄 이름<img src="/img/icon/pencil.svg"></a>
   		
-  		<input type="text" id="sNText" class="container col-xl-9" style="height: 40px;display: none;">
-  		<button type="button" class="btn credel" id="didi1"> - </button>
-  		<button type="button" class="btn credel" id="didi2"> + </button>
-  		<button type="button" class="btn credel" id="didi3"> 전체삭제 </button>
-
-  		<div class="innerpage bg-white shadow" id="dldl" style="margin-top: -100px;" dropzone="true">
+  		<input type="text" id="sNText" class="container col-xl-9" style="height: 40px;display: none;"> -->
+  		<div class="innerpage bg-white shadow" id="dayCount" style="margin-top: -100px;">
   		</div>
   	</div>
-  	<div class="col sidebar p-3">
-  		<div class="list-group " >
- 			 <a href="#" class="list-group-item list-group-item-action icons" id="subway_station" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/bus.png" class="icon" >교통</a>
- 			 <a href="#" class="list-group-item list-group-item-action icons" id="lodging"  data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/hotel.png" class="icon">숙박</a>
- 			 <a href="#" class="list-group-item list-group-item-action icons" id="restaurant" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/Restaurant.png" class="icon">식사</a>
- 			 <a href="#" class="list-group-item list-group-item-action icons" id="type" data-toggle="modal" data-target="#exampleModalCenter"><img src="/img/icon/text.png" class="icon">자유스케쥴</a>
+  	<div class="col p-4">
+  		<div class="btn_group text-center">
+  			<p class="font-weight-bold">스케쥴 일 추가하기</p>
+  			<button type="button" class="btn btn_outline_dark" id="dayCount_minus"> - </button>
+  			<button type="button" class="btn btn_outline_dark" id="dayCount_plus"> + </button>
+  			<button type="button" class="btn btn_outline_dark" id="dayCount_reset"> 전체삭제 </button>
   		</div>
   		<hr>
-				<div class="container bg-white">
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">교통비 : </li>
-						<li class="list-group-item">식비 : </li>
-						<li class="list-group-item">숙박비 : </li> 
-						<li class="list-group-item">기타비용 : </li>
-						<li class="list-group-item">총액 :  </li>
-					</ul>
-				</div>
-			</div>
+  		<div class="list-group" >
+ 			 <a href="#" class="list-group-item list-group-item-action icons" id="subway_station" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/bus.png" class="icon" >교통</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" id="lodging"  data-toggle="modal" data-target="#dataModal"><img src="/img/icon/hotel.png" class="icon">숙박</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" id="restaurant" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/Restaurant.png" class="icon">식사</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" id="type" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/text.png" class="icon">자유스케쥴</a>
+  		</div>
+  		<hr>
+		<div class="container bg-white">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">교통비 : </li>
+				<li class="list-group-item">식비 : </li>
+				<li class="list-group-item">숙박비 : </li> 
+				<li class="list-group-item">기타비용 : </li>
+				<li class="list-group-item">총액 :  </li>
+			</ul>
+		</div>
+	</div>
   </div>
 </div>
-<div class="modal fade bd-example-modal-xl" id="exampleModalCenter" tabindex="1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade bd-example-modal-xl" id="dataModal" tabindex="1" role="dialog" aria-labelledby="dataModalTiTle" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content searchBox">
 		<c:import url="/test/nearbysearch.kit"></c:import>
@@ -234,5 +249,6 @@ body, html {
     </div>
   </div>
 </div>
+<div id="mouse_event" class="mouse_event"></div>
 </body>
 </html>

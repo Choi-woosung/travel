@@ -118,11 +118,17 @@ html, body {
 	flex : 2;
 }
 
+.schedule_addBtn {
+	width : 100%;
+	height : 30px;
+	border-radius : 5px;
+}
+
 
 
 </style>
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript">
+<script type="text/javascript">
 		var type;
 		var map, places, iw;
 		var markers = [];
@@ -138,9 +144,17 @@ html, body {
 			$('.icons').click(function(){
 				type = $(this).attr('id');
 				search();
-			})
+			});
+			
+			$('.schedule_addBtn').click(function(){
+				alert("되냐?");
+			});
+			$(document).mousemove(function(e){
+			    $('.mouse_event').css("top", e.pageY);
+			    $('.mouse_event').css("left", e.pageX);
+			});
+			$('.mouse_event').css('display', 'block');
 		});
- 
 		function initialize() {
 			var myLatlng = new google.maps.LatLng(37.566535, 126.97796919999996); 
 			var myOptions = {
@@ -252,6 +266,12 @@ html, body {
 					photo = "/img/icon/hotel.png";
 				}
 				var photoLink = document.createElement('img');
+				var btn = document.createElement('button');
+				var btnText = document.createTextNode("스케쥴에 추가");
+				btn.setAttribute('class', 'schedule_addBtn');
+				btn.setAttribute('data-dismiss', 'modal');
+				btn.appendChild(btnText);
+				
 				photoLink.src= photo;
 				photoLink.width = 100;
 				photoLink.height = 100;
@@ -262,6 +282,7 @@ html, body {
 				leftDiv.appendChild(address);
 				leftDiv.appendChild(ratingh6);
 				rightDiv.appendChild(photoLink);
+				rightDiv.appendChild(btn);
 				row.appendChild(leftDiv);
 				row.appendChild(rightDiv);
 				results.appendChild(row);
