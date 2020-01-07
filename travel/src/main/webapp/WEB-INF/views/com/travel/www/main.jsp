@@ -333,9 +333,9 @@
          $('#child12').val(b);
          
          var sarea = $('#sArea').val();
-         
+         var address = $('#inputArea').val();
                var formid = document.myform;
-                  $('#frm').attr('action', '/schedule/scheduleList.kit?sarea=' + sarea);
+                  $('#frm').attr('action', '/schedule/scheduleList.kit?sarea=' + sarea + "&address=" + address);
                   $('#frm').submit();
             });
       

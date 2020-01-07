@@ -67,7 +67,5 @@ public class Schedule {
       mv.setViewName("/schedule/scheduledetail");
       return mv;
    }
-   
-   
 
 }
