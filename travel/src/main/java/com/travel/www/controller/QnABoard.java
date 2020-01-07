@@ -41,4 +41,11 @@ public class QnABoard {
 
 		return qDAO.getprofile(vo);
 	}
+	
+	@RequestMapping("getname.kit")
+	@ResponseBody
+	public String getname(QnABoardVO vo, HttpSession session) {
+		vo.setSid((String) session.getAttribute("SID"));
+		return qDAO.getname(vo);
+	}
 }

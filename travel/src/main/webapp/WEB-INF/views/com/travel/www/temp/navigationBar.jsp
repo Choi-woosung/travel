@@ -64,7 +64,9 @@
 						.profile_show {
 							display: block;
 							text-align: center;
-							margin-left: -1px;
+							position: relative;
+							top: -25px;  
+							right: -16px;
 						}
 						.profile_show li a {
 							display: block;
@@ -85,11 +87,21 @@
 						}
 						.profile_img {
 							display: block;
-							width: 100%;
-							height: 100%;
+							width: 64px;
+							height: 64px;
+							position: relative;
+							top: -30px;
+							right: -145px;
+						}
+						.user_name {
+							position: relative;
+							top: 15px;
+							right: -75px;
+							color: white;
 						}
 					</style>
 					<li class="profile_box">
+						<div class="user_name" id="user_name"></div>
 						<img class="profile_img" id="profile_btn">
 						<ul class="profile_hide" id="profile_menu">
 							<li><a href="/member/memberForm.kit">회원정보보기</a></li>
@@ -100,9 +112,13 @@
 						document.addEventListener('DOMContentLoaded', () => {
 							let profile_btn = document.getElementById('profile_btn'); 
 							let profile_menu = document.getElementById('profile_menu');
+							let user_name = document.getElementById('user_name');
 						
 							fetch('/board/getprofile.kit').then(response => response.text())
 							.then(text => profile_btn.src = '/img/profile/' + text);
+							
+							fetch('/board/getname.kit').then(response => response.text())
+							.then(text => user_name.textContent = text);
 							
 							document.addEventListener('click', e => {
 								if (e.target != profile_btn) {

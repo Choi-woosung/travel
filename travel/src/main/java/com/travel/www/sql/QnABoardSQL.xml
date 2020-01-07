@@ -25,4 +25,13 @@
 		    a_img_no = (SELECT m_avatar FROM member WHERE m_id = #{sid})
 	</select>
 	
+	<select id="getname" parameterType="QnABoardVO" resultType="string">
+		SELECT
+		    m_name
+		FROM
+		    member
+		WHERE
+		    m_id = #{sid}
+	</select>
+	
 </mapper>
