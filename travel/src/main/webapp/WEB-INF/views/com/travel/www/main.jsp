@@ -379,7 +379,7 @@
 </script>
 <script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', () => {
-		let profile_btn = document.getElementById('profile_btn');
+		let profile_btn = document.getElementById('profile_btn'); 
 		
 		profile_btn.addEventListener('click', () => {
 			alert(123);
