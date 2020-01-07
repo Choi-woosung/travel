@@ -170,7 +170,7 @@ html, body {
 				showSelectedPlace();
 			}); 
 		}
-
+ 
 		function tilesLoaded() {
 			google.maps.event.clearListeners(map, 'tilesloaded');
 			google.maps.event.addListener(map, 'zoom_changed', search);
