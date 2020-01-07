@@ -15,4 +15,8 @@ public class QnABoardDAO {
 		return 1;
 	}
 	
+	public String getprofile(QnABoardVO vo) {
+		return sqlSession.selectOne("QnABoardSQL.getprofile", vo);
+	}
+	
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org/DTD Config 3.0/EN"
+			"http://mybatis.org/dtd/mybatis-3-config.dtd">
+			
+<configuration>
+ 
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="useGeneratedKeys" value="true"/>
+		<setting name="defaultExecutorType" value="REUSE"/>
+	</settings>
+	
+ 
+	 <typeAliases>
+		<typeAlias alias="mVO" type="com.travel.www.vo.MemberVO"/>
+		<typeAlias alias="sVO" type="com.travel.www.vo.ScheduleVO"/>
+		<typeAlias alias="fVO" type="com.travel.www.vo.FileVO"/>
+		<typeAlias alias="detailVO" type="com.travel.www.vo.ScheduleDetailVO"/>
+		<typeAlias alias="diningVO" type="com.travel.www.vo.ScheduleDiningVO"/>
+		<typeAlias alias="moveVO" type="com.travel.www.vo.ScheduleMoveVO"/>
+		<typeAlias alias="restVO" type="com.travel.www.vo.ScheduleRestVO"/>
+		<typeAlias alias="untitleVO" type="com.travel.www.vo.ScheduleUntitleVO"/>
+		<typeAlias alias="QnABoardVO" type="com.travel.www.vo.QnABoardVO"/>
+	</typeAliases> 
+	
+	 
+ 	<mappers>
+		<mapper resource="com/travel/www/sql/MemberSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleDetailSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleRestSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleMoveSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleDiningSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleUntitleSQL.xml"/>
+		<mapper resource="com/travel/www/sql/QnABoardSQL.xml"/>
+	</mappers>
+	
+	
+</configuration>

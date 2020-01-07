@@ -5,6 +5,7 @@ public class QnABoardVO {
 	private String sq_qst;
 	private int sq_sno;
 	private int sq_writer;
+	private String sid;
 	public int getSq_no() {
 		return sq_no;
 	} 
@@ -28,6 +29,12 @@ public class QnABoardVO {
 	}
 	public void setSq_writer(int sq_writer) {
 		this.sq_writer = sq_writer;
+	}
+	public String getSid() {
+		return sid;
+	}
+	public void setSid(String sid) {
+		this.sid = sid;
 	}
 	
 }

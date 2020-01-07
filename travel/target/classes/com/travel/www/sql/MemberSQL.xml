@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ 
+<!DOCTYPE mapper
+			PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="mSQL"> 
+	
+	<sql id="selCNT">
+		SELECT
+			count(*)
+		FROM
+			member
+		WHERE
+			m_id = 
+	</sql>
+	
+	
+	<!-- 로그인 처리 -->
+	<select id="Login" resultType="int" parameterType="mVO">
+		<include refid="selCNT" /> #{mId}
+			AND m_pw = #{mPw}
+	</select>
+	
+	
+	<!-- 비밀번호찾기에서 중복확인 -->
+	<update id="Check"  parameterType="mVO">
+		update
+			member
+		set
+			m_id = #{mId}
+
+	</update>
+	
+	
+	
+	<!-- 회원가입에서 중복확인 -->
+	<select id="idCount" resultType="int" parameterType="string">
+		 <include refid="selCNT" /> #{mId}
+	</select>
+	
+  	
+	<!-- 회원가입 추가 -->
+	<insert id="addMember" parameterType="mVO">
+		<selectKey keyProperty="mNo" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(m_no) + 1, 1001)
+			FROM
+				member
+		</selectKey>
+		INSERT INTO
+			member(
+				m_no, m_id, m_pw, m_name, 
+				m_mail, m_address, m_pcdate,
+				m_mobile, m_jdate, m_grade, m_point)
+		VALUES(
+			#{mNo}, #{mId}, #{mPw}, #{mName},
+			#{mMail}, #{mAddress}, sysdate,
+			#{mMobile}, sysdate, 'bronze', 0
+		)
+	</insert>
+	
+	<!-- 비밀번호 변경 -->
+ 	<update id="update_pw" parameterType="mVO">
+		update member 
+		set pw = #{mPw} 
+		where id = #{mId}
+	</update>	
+
+
+	<select id="Member" resultType="mVO" parameterType="mVO">
+		SELECT
+			m_id mId, m_name mName, m_mail mMail, m_mobile mMobile, m_address mAddress, m_jdate mJdate
+		FROM
+			member
+		WHERE
+			m_id = #{mId}
+	</select>
+	
+	<select id="MemberCheck" resultType="int" parameterType="mVO">
+		SELECT
+			count(*)
+		FROM
+			member
+		WHERE
+			m_id = #{mId}
+		AND m_pw = #{mPw}
+	</select>
+	
+	<update id="MemberEdit" parameterType="mVO">
+		update
+			member		
+		set
+			m_pw = #{mPw},
+			m_mobile = #{mMobile},
+			m_address = #{mAddress}
+		WHERE
+		m_id = #{mId}
+		
+	</update>
+</mapper>
