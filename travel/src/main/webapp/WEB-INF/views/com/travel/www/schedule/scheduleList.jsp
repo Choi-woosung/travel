@@ -198,7 +198,20 @@
 	
 /* 	검색창 크기 */
 	.searchbox {
+		height: 382px;
+	}
+	
+/* 	정렬기준 */
+	.sortbox {
+		width: 100%;
+		height: 50px;
+		padding: 13px;
+	}
+	
+/* 	콘텐트박스 */
+	.content {
 		height: 316px;
+		padding: 30px;
 	}
 </style>
 </head>
@@ -263,12 +276,17 @@
          </div>
       </div>
       <div class="w3-col m8 w3-margin-top w3-margin-left">
+      <div class="sortbox w3-card w3-margin-bottom">
+   			<span>정렬기준</span>
+   			<a href="#">평점순</a>
+   			<a href="#">최신순</a>
+   		</div>
       <c:forEach var="data" items="${LIST}">
       <form action="/schedule/scheduleDetail.kit" method="post" class="box">
          <input type="hidden" name="sNo" value="${data.sNo}">
-         <div class="w3-container w3-card w3-padding w3-margin-bottom">
+         <div class="w3-container w3-card w3-margin-bottom content">
             <div class="w3-col m6">
-               <img alt="mainpic" src="${data.sPic}" style="width: 300px; height: 300px">
+               <img alt="mainpic" src="${data.sPic}" style="width: 250px; height: 250px">
             </div>
             <div class="w3-col m6">
                <h4>${data.sName}</h4> 
