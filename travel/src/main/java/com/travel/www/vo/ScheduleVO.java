@@ -23,8 +23,30 @@ public class ScheduleVO {
 	private String sDel;
 	private String sPic; 
 	private int sCost;
+	private int cnt;
+	private int idCheck;
+	private double likeAvg;
 	
 	
+	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public int getIdCheck() {
+		return idCheck;
+	}
+	public void setIdCheck(int idCheck) {
+		this.idCheck = idCheck;
+	}
+	public double getLikeAvg() {
+		return likeAvg;
+	}
+	public void setLikeAvg(double likeAvg) {
+		this.likeAvg = likeAvg;
+	}
 	public String getmId() {
 		return mId;
 	}

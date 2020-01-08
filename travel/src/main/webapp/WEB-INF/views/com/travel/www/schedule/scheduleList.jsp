@@ -186,6 +186,14 @@
 	        	}
 	        });
         });
+        
+        $('#searchmonth').click(function(){
+        	var sarea = $('#sArea').val();
+            var address = $('#inputArea').val();
+            var month = $('#month').val();
+        	
+        	$(location).attr('href', '/schedule/sortmonth.kit?sarea=' + sarea + "&address=" + address + "&month=" + month);
+        });
    });
 </script>
 <style>
@@ -319,11 +327,30 @@
    			<span class="standard">정렬기준</span>
    			<a href="#" class="sortmenu" id="ratinglist">평점순</a>
    			<a href="#" class="sortmenu" id="recentlist">최신순</a>
+   			<a class="sortmenu">
+	   			<select name="month" id="month">
+	   				<optgroup label="월별검색">
+		   				<option value="01">1월</option>
+		   				<option value="02">2월</option>
+		   				<option value="03">3월</option>
+		   				<option value="04">4월</option>
+		   				<option value="05">5월</option>
+		   				<option value="06">6월</option>
+		   				<option value="07">7월</option>
+		   				<option value="08">8월</option>
+		   				<option value="09">9월</option>
+		   				<option value="10">10월</option>
+		   				<option value="11">11월</option>
+		   				<option value="12">12월</option>
+		   			</optgroup>
+	   			</select>
+	   			<input type="button" value="검색" id="searchmonth">
+   			</a>
    		</div>
 		<div class="add" id="add">
 			<div class="delete">
 				<c:forEach var="data" items="${LIST}">
-					<form action="/schedule/scheduleDetail.kit" method="post" class="box">
+					<form action="/schedule/scheduleDetail.kit" method="get" class="box">
 						<div class="w3-container w3-card w3-margin-bottom content">
 							<input type="hidden" name="sNo" value="${data.sNo}">
 							<input type="hidden" name="sCountry">

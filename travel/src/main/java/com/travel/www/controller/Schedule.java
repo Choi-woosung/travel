@@ -26,6 +26,7 @@ public class Schedule {
    @Autowired
    ScheduleDetailDAO sdDAO;
    
+   //리스트 불러오기
    @RequestMapping("/scheduleList.kit")
    public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req, RedirectView rv) {
       String people = req.getParameter("people");
@@ -59,6 +60,7 @@ public class Schedule {
       return mv;
    }
    
+   //최신순으로 리스트 불러오기
    @RequestMapping("/recentlist.kit")
    @ResponseBody
    public List<ScheduleVO> recentlist(HttpServletRequest req) {
@@ -79,6 +81,20 @@ public class Schedule {
 		   list.get(i).setsEdate(edate);
 		   list.get(i).setsWdate(wdate);
 	   }
+	   
+	   return list;
+   }
+   
+   //월별순으로 리스트 가져오기
+   @RequestMapping("/sortmonth.kit")
+   @ResponseBody
+   public List<ScheduleVO> sortmonth(HttpServletRequest req) {
+	   String tmp = req.getParameter("sarea");
+	   String sarea = tmp.substring(tmp.indexOf('=') + 1);
+	   tmp = req.getParameter("month");
+	   String month = tmp.substring(tmp.indexOf('=') + 1);
+	   
+	   List<ScheduleVO> list = sDAO.scheduleList(sarea, month);
 	   
 	   return list;
    }
@@ -106,62 +122,58 @@ public class Schedule {
       return mv;
    }
 
+
    @RequestMapping("/scheduleDetail.kit")
    public ModelAndView shceduleDetail(ModelAndView mv, ScheduleVO sVO, RedirectView rv) {
-	   if(sVO.getsNo() == 0 ) {
-		   rv.setUrl("/main.kit"); 
-		   mv.setView(rv);
-		   return mv;
-	   }
+		
+		  if(sVO.getsNo() == 0 ) { 
+			  rv.setUrl("/main.kit"); 
+			  mv.setView(rv); 
+			  return mv; 
+			}
 	   // 게시물 좋아요 총 평점
 	   	double like = sdDAO.LikeBoardLikeTotal(sVO);
-	   	System.out.println(like);
 	   // 게시물 좋아요 총 사람 수
 	   	double likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
-	   	System.out.println(likeCount);
 	   // 평균값
 	   	double likeAvg = like/likeCount;
-	   System.out.println(sVO.getsNo());
 	   sVO = sdDAO.scheduleDetail(sVO);
-	   System.out.println(sVO.getsArea());
 	   mv.addObject("DATA", sVO);
 	   mv.addObject("likeAvg", likeAvg);
-	   mv.setViewName("/schedule/scheduleDetail");
+	   mv.setViewName("/schedule/scheduleDetail");	   
       return mv;
    }
    
    @RequestMapping("/scheduleStar.kit")
    @ResponseBody
-   public int shceduleGood(ScheduleVO sVO) {
-	   System.out.println("여기오긴하니 ?");
-	   System.out.println(sVO.getsRate());
-	   System.out.println(sVO.getmId());
-	   System.out.println(sVO.getsNo());
+   public ScheduleVO shceduleGood(ScheduleVO sVO) {
+	    
 	   // 한 아이디 좋아요 체크 처리
-	   int idCheck = sdDAO.LikeBoardLikeCheck(sVO);
-	  
-	   System.out.println(idCheck + "아이디 체크 하니 ?");
+	    int idCheck = sdDAO.LikeBoardLikeCheck(sVO);
 	   if(idCheck > 0) {
-		   return idCheck;
+		   sVO.setIdCheck(idCheck);
+		   return sVO;
 	   }
 	   // 게시판 좋아요 점수 업데이트
 	   	int cnt = sdDAO.scheduleStar(sVO);
-	   	System.out.println(cnt);
+	   	
 	  // 좋아요 테이블 업데이트
 	   	cnt += sdDAO.scheduleLikeBoard(sVO);
-	   	System.out.println(cnt);
+	   	
 	   // 게시물 좋아요 총 평점
 	   	double like = sdDAO.LikeBoardLikeTotal(sVO);
-	   	System.out.println(like);
+	   	
 	   // 게시물 좋아요 총 사람 수
 	   	double likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
-	   	System.out.println(likeCount);
+	   	
 	   // 평균값
 	   	double likeAvg = like/likeCount;
-	   	System.out.println(likeAvg);
+	   	
 	   if(cnt == 2) {
 		   System.out.println("등록완료");
 	   }
-	   return cnt;
+	   sVO.setCnt(cnt);
+	   sVO.setLikeAvg(likeAvg);
+	   return sVO;
    }
 }

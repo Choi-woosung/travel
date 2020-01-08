@@ -61,19 +61,17 @@ body, html {
 .innerpage {
 	height : 700px;
 	width : 1200px;
-	 overflow-y:hidden;
+	 overflow-y : auto;
     overflow-x:auto;
     white-space:nowrap;
   text-align: center;
-	 
+	 padding : 50px;
 }
 .innerpage2 {
 	width : 300px;
 	height : 50px;
-	display : inline-block;
-    text-align: center;
-    margin: 150px 10px auto;
-    
+	display : inline-table;   
+	margin : 20px;
 }
 .main-container {
 	display : flex;
@@ -121,8 +119,8 @@ body, html {
 			$('.innerpage2').remove();
 				status = 1;
 		});
-	});
-	
+
+	})
 	
 	function allowDrop(ev) {
 	  ev.preventDefault();
@@ -133,25 +131,39 @@ body, html {
 	}
 
 	function drop(ev) {
-	  console.log(data);
 	  var data = event.dataTransfer.getData("text");
 	  var tf = getParents(ev.target);
 	  var targetDiv;
 	  if(tf.className == 'innerpage2 bg-white shadow'){
 		  targetDiv = tf;
-		  var acode = document.createElement('li');
-		  var divcode = document.createElement('ul');
-		  divcode.setAttribute('class' , 'list-group');
-		  divcode.setAttribute('data-toggle', 'modal');
-		  divcode.setAttribute('data-target', '#dataModal'); 
-		  divcode.setAttribute('onclick', 'searchPlace("'+data+'")');
-		  divcode.setAttribute('draggable', 'false');
-		  acode.setAttribute('class', 'list-group-item');
-		  acode.setAttribute('draggable', 'false');
-		  var textcode = document.createTextNode("+"); 
-		  divcode.appendChild(acode);
-		  acode.appendChild(textcode);
-		  targetDiv.appendChild(divcode);
+		  var liId = idGenerater(targetDiv);
+		  var cnt = targetDiv.querySelectorAll('li').length + 1;
+		  console.log(cnt);
+		  var ulDiv;
+		  if(targetDiv.querySelector('ul') == null){
+			  var createUl = document.createElement('ul');
+			  createUl.setAttribute('class', 'list-group');
+			  createUl.setAttribute('data-toggle' , 'modal');
+			  createUl.setAttribute('data-target' , '#dataModal');
+			  targetDiv.appendChild(createUl);
+			  ulDiv = targetDiv.querySelector('ul');
+			  var licode = document.createElement('li');
+			  licode.setAttribute('onclick', 'searchPlace("'+data+'", "'+liId+'", "'+cnt+'")');
+			  licode.setAttribute('class', 'list-group-item list-group-item-action');
+			  licode.setAttribute('id' , liId);
+			  var textcode = document.createTextNode("+"); 
+			  ulDiv.appendChild(licode);
+			  licode.appendChild(textcode);
+		  } else {
+			  ulDiv = targetDiv.querySelector('ul');
+			  var licode = document.createElement('li');
+			  licode.setAttribute('class', 'list-group-item list-group-item-action');
+			  licode.setAttribute('onclick', 'searchPlace("'+data+'", "'+liId+'", "'+cnt+'")');
+			  licode.setAttribute('id' , liId);
+			  var textcode = document.createTextNode("+"); 
+			  ulDiv.appendChild(licode);
+			  licode.appendChild(textcode);
+		  }
 	  }
 	}
 	
@@ -173,6 +185,13 @@ body, html {
 			return tf;
 		}
 	}
+	
+	function idGenerater(e){
+		var id = e.id;
+		var cnt = e.querySelectorAll('li').length;
+		var result = e.id+"li"+cnt;
+		return result;
+	}
 	 
 </script>
 </head>
@@ -187,7 +206,7 @@ body, html {
           <a class="dropdown-item" href="#">스케쥴 저장하기</a>
           <a class="dropdown-item" href="#">스케쥴 불러오기</a>
           <a class="dropdown-item" href="#">스케쥴 삭제하기</a>
-          <a class="dropdown-item" href="#">스케쥴이름 바꾸기</a>
+          <a class="dropdown-item" href="#">스케쥴이름바꾸기</a>
           <a class="dropdown-item" href="/main.kit">스케쥴만들기 종료</a>
         </div>
     </div>

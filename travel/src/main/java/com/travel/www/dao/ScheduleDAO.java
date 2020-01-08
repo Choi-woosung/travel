@@ -21,6 +21,15 @@ public class ScheduleDAO {
 		return sqlSession.selectList("sSQL.scheduleList", map);
 	}
 	
+	//월별 리스트 가져오기
+	public List<ScheduleVO> scheduleList(String sarea, String month) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("sarea", sarea);
+		map.put("month", month);
+		
+		return sqlSession.selectList("sSQL.scheduleList", map);
+	}
+	
 	//리스트 최신순으로 가져오기
 	public List<ScheduleVO> recentList(String sarea) {
 		HashMap<String, String> map = new HashMap<String, String>();
