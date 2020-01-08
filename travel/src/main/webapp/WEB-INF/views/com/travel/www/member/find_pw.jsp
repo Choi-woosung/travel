@@ -27,12 +27,11 @@ $(function(){
 			success : function(result){
 				alert(result);
 			},
+			
 		});
 	});
 	
-	$('#edit').click(function(){
-		
-	});
+
 	
 
 	

@@ -72,6 +72,13 @@
 		update member 
 		set pw = #{mPw} 
 		where mail = #{mMail}
+	</update>
+
+	
+	 <update id="new_pw" parameterType="mVO">
+		update member 
+		set pw = #{mPw} 
+		where mail = #{mMail}
 	</update>	
 
 

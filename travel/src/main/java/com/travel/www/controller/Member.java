@@ -69,7 +69,8 @@ public class Member {
 		mv.setViewName("/member/new_pw");
 		
 		Random r = new Random();
-		int pass = r.nextInt(4589362) + 49311;
+		int pass = r.nextInt(4589372) + 49311;
+
 		
 		String setfrom = "test@naver.com";
 		String tomail = req.getParameter("email");
@@ -82,7 +83,7 @@ public class Member {
 				System.getProperty("line.separator") +
 				" 회원님의 " +
 				System.getProperty("line.separator") +
-				System.getProperty("line.separator") +
+				System.getProperty("li	ne.separator") +
 				" 임시 비밀번호는 " + pass + " 입니다. " ;
 		
 		try {

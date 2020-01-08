@@ -24,6 +24,8 @@ public class MemberDAO {
 		return sqlSession.update("mSQL.update_pw", mVO);
 	}	
 	
+	
+	
 
 	// 로그인 전담 처리함수
 	public int loginProc(MemberVO mVO) {
