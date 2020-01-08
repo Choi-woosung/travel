@@ -158,7 +158,6 @@
 	        		for(var i = 0; i < list.length; i++){
 	        			content += '<div class="delete">';
 	        			content += '	<form action="/schedule/scheduleDetail.kit" method="post" class="box" onclick="this.submit();">';
-// 	        			content += '	<form action="/schedule/scheduleDetail.kit" method="post" class="box" onclick="this.submit();">';
 	        			content += '		<div class="w3-container w3-card w3-margin-bottom content">';
 	        			content += '    		<input type="hidden" name="sNo" value="' + list[i].sNo + '"' + '>';
 	        			content += '        		<div class="w3-col m6">';
