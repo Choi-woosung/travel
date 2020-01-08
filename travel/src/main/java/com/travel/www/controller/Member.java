@@ -401,7 +401,7 @@ public class Member {
 		
 		return cnt;
 	}
-	
+	 
 
 //	myProfile.jsp 매핑
 	@RequestMapping("myProfile.kit")
