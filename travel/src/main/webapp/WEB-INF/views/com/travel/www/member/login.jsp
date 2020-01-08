@@ -35,6 +35,18 @@
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript">
  	$(document).ready(function(){
+		var passRule = /^(?=.*[0-9])(?=.*[a-z]).{8,20}$/;//숫자와 문자 포함 형태의 8~20자리  암호 정규식
+		var blank_pattern = /[\s]/g; // 공백입력 불가
+		
+ 		$('#userPw').keyup(function(){
+ 			if(!passRule.test($('#userPw').val())){
+ 				// 정규식 false div 출력
+ 				$('.pwex').css('display', 'block');
+ 			} else{
+ 				$('.pwex').css('display', 'none');
+ 			}
+ 		});
+ 		
 		$('#find_btn').click(function(){
 			$(location).attr('href', '/member/find_pw.kit');
 		});
@@ -55,7 +67,9 @@
 		$('#btn').click(function(){
 			$(location).attr('href', '/member/main.kit')
 		});
+		
 	}); 
+ 	
 </script>
 <style>
       .bd-placeholder-img {
@@ -99,6 +113,10 @@
  	<span id="find_pw_btn"></span>
   </div>
   
+  <div class="pwex" style="display: none; color: red;">
+	<h6 class="">숫자와 문자 포함 형태의 8~20자리 이내의 비밀번호를 입력해주세요</h6>
+  </div>
+  
   <div class="checkbox mb-3 w3-center">
       <input type="checkbox" value="remember-me"> 기억하기
   </div>
@@ -121,4 +139,4 @@
 
 
 </body>
-</html>
+</html>	
