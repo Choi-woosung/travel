@@ -401,8 +401,12 @@ public class Member {
 		
 		return cnt;
 	}
-	
+	 
 
-	
-	
+//	myProfile.jsp 매핑
+	@RequestMapping("myProfile.kit")
+	public ModelAndView myProfile(ModelAndView mv) {
+		mv.setViewName("member/myProfile");
+		return mv;
+	}
 }
