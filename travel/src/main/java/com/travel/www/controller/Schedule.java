@@ -33,13 +33,17 @@ public class Schedule {
       List<ScheduleVO> list = sDAO.scheduleList(sarea);
       
       for(int i = 0; i < list.size(); i++) {
-		   String date = list.get(i).getsWdate();
-		   System.out.println(date);
-		   date = date.substring(0, date.indexOf(' '));
+    	  String sdate = list.get(i).getsSdate();
+    	  String edate = list.get(i).getsEdate();
+		  String wdate = list.get(i).getsWdate();
+		  
+		  sdate = sdate.substring(0, sdate.indexOf(' '));
+		  edate = edate.substring(0, edate.indexOf(' '));
+		  wdate = wdate.substring(0, wdate.indexOf(' '));
 		   
-		   list.get(i).setsWdate(date);
-		   
-		   System.out.println(list.get(i).getsWdate());
+		  list.get(i).setsSdate(sdate);
+		  list.get(i).setsEdate(edate);
+		  list.get(i).setsWdate(wdate);
 	   }
        
       mv.addObject("ADDRESS", address);
@@ -62,10 +66,17 @@ public class Schedule {
 	   List<ScheduleVO> list = sDAO.recentList(sarea);
 	   
 	   for(int i = 0; i < list.size(); i++) {
-		   String date = list.get(i).getsWdate();
-		   date = date.substring(0, date.indexOf(' '));
+		   String sdate = list.get(i).getsSdate();
+		   String edate = list.get(i).getsEdate();
+		   String wdate = list.get(i).getsWdate();
+		  
+		   sdate = sdate.substring(0, sdate.indexOf(' '));
+		   edate = edate.substring(0, edate.indexOf(' '));
+		   wdate = wdate.substring(0, wdate.indexOf(' '));
 		   
-		   list.get(i).setsWdate(date);
+		   list.get(i).setsSdate(sdate);
+		   list.get(i).setsEdate(edate);
+		   list.get(i).setsWdate(wdate);
 	   }
 	   
 	   return list;

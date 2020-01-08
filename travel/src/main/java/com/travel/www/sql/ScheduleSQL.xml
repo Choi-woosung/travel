@@ -9,7 +9,7 @@
 	<!-- 스케쥴리스트가져오기 -->
 	<select id="scheduleList" resultType="sVO" parameterType="hashmap">
 		SELECT
-			s_no sNo, s_name sName, s_sdate sSdate, s_wdate sWdate, s_edate sEdate, s_pic sPic
+			s_no sNo, s_name sName, s_sdate sSdate, s_wdate sWdate, s_edate sEdate, s_pic sPic, s_cost sCost
 		FROM
 			schedule
 		<if test="!(sarea eq null) and !(sarea.equals(''))">
@@ -21,7 +21,7 @@
 	<!-- 리스트 최신순 정렬 -->
 	<select id="recentList" resultType="sVO" parameterType="hashmap">
 		SELECT
-			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_pic sPic
+			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_pic sPic, s_cost sCost
 		FROM
 			schedule
 		<if test="!(sarea eq null) and !(sarea.equals(''))">

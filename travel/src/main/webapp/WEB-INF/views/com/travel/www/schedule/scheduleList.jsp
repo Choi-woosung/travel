@@ -117,6 +117,16 @@
            $('#sArea').val(street0);
         });
         
+        //검색
+        $('#search').click(function(){
+        	console.log("들어오냐?");
+        	var sarea = $('#sArea').val();
+            var address = $('#inputArea').val();
+        	
+        	$('#frm').attr('action', '/schedule/scheduleList.kit?sarea=' + sarea + "&address=" + address);
+        	$('#frm').submit();
+        });
+        
         //리스트 최신순
         $('#recentlist').click(function(){
         	var url = decodeURIComponent(location.href);
@@ -159,8 +169,13 @@
 	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
 	        			content += '        		</div>';
 	        			content += '        		<div class="w3-col m6">';
-	        			content += '           			<h4 class="name">' + list[i].sName + '</h4>'; 
-	        			content += '           			<p>' + list[i].sWdate + '</p>';
+	        			content += '           			<h5 class="w3-bottombar w3-border-blue w3-padding">스케쥴제목 : ' + list[i].sName + '</h5>'; 
+	        			content += '           			<div class="info w3-padding">'; 
+	        			content += '           				<p>여행시작일 : ' + list[i].sSdate + '</p>';
+	        			content += '           				<p>여행종료일 : ' + list[i].sEdate + '</p>';
+	        			content += '           				<p>작성일 : ' + list[i].sWdate + '</p>';
+	        			content += '           				<p>총금액 : ' + list[i].sCost + ' 원</p>';
+	        			content += '        			</div>';
 	        			content += '        		</div>';
 	        			content += ' 		</div>';
 	        			content += '	</form>';
@@ -212,7 +227,8 @@
 	
 /* 	검색창 크기 */
 	.searchbox {
-		height: 382px;
+		height: auto;
+/* 		background-color: #c8d6db; */
 	}
 	
 /* 	정렬기준 */
@@ -220,11 +236,11 @@
 		width: 100%;
 		height: 50px;
 		padding: 10px;
+/* 		background-color: #c8d6db; */
 	}
 	.standard {
 		font-size: 20px;
 		font-weight: bold;
-/* 		border-right: 1px solid black; */
 		padding: 5px;
 	}
 	.sortmenu {
@@ -239,6 +255,19 @@
 	.content {
 		height: 316px;
 		padding: 30px;
+/* 		background-color: #c8d6db; */
+	}
+	
+/* 	스케쥴제목 */
+	.sname{
+		border-bottom: 8px solid rgba(44, 181, 233, 0.4);
+		font-weight: bold;
+	}
+	
+/* 	스케쥴정보박스 */
+	.info {
+		margin-top: 20px;
+		border: 3px solid rgba(0, 73, 191, 0.3);
 	}
 </style>
 </head>
@@ -252,36 +281,38 @@
             <form method="POST" name="myform" id="frm">
                <div class="form-group">
                   <label for="inputArea"> 여행가는 도시 </label> <input type="text"
-                     class="form-control city" id="inputArea" name="sCountry" value="${ADDRESS}"
+                     class="form-control city" id="inputArea" name="address" value="${ADDRESS}"
                      placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
+                     <input type="hidden" name="sCountry" id="sCountry">
+                     <input type="hidden" name="sArea" id="sArea">
                </div>
-               <div class="form-group tCount confirmDiv">
-                  <label for="inputArea"> 인원수 </label> <input type="text"
-                     class="form-control city" id="people" name="people" value="${PEOPLE}" placeholder="인원수를 선택해주세요" autocomplete="off">
-                  <div class="pCount" id="pCount">
-                     <div class="adult topAdult">
-                        <label> <span class="totalcount">성인</span>
-                        </label>
+<!--                <div class="form-group tCount confirmDiv"> -->
+<!--                   <label for="inputArea"> 인원수 </label> <input type="text" -->
+<%--                      class="form-control city" id="people" name="people" value="${PEOPLE}" placeholder="인원수를 선택해주세요" autocomplete="off"> --%>
+<!--                   <div class="pCount" id="pCount"> -->
+<!--                      <div class="adult topAdult"> -->
+<!--                         <label> <span class="totalcount">성인</span> -->
+<!--                         </label> -->
 
-                        <button class="abtn ml-4 btn leftBtn1" id="startbtn1" >&laquo;</button>
-                        <input type="text" class="pbtn topIpt" id="aCount" value="${SVO.sAtotal}">
-                        <button class="abtn btn rightBtn1" id="endbtn1" >&raquo;</button>
+<!--                         <button class="abtn ml-4 btn leftBtn1" id="startbtn1" >&laquo;</button> -->
+<%--                         <input type="text" class="pbtn topIpt" id="aCount" value="${SVO.sAtotal}"> --%>
+<!--                         <button class="abtn btn rightBtn1" id="endbtn1" >&raquo;</button> -->
             
-                     </div>
-                     <div class="count">
-                     <label> <span class="totalcount countAdult">어린이</span>
-                     </label>
-                        <button class="cbtn btn leftBtn2" id="startbtn2" >&laquo;</button>
-                        <input type="text" class="pbtn bottomIpt" id="cCount" value="${SVO.sCtotal}">
-                        <button class="cbtn btn rightBtn2" id="endbtn2">&raquo;</button>
+<!--                      </div> -->
+<!--                      <div class="count"> -->
+<!--                      <label> <span class="totalcount countAdult">어린이</span> -->
+<!--                      </label> -->
+<!--                         <button class="cbtn btn leftBtn2" id="startbtn2" >&laquo;</button> -->
+<%--                         <input type="text" class="pbtn bottomIpt" id="cCount" value="${SVO.sCtotal}"> --%>
+<!--                         <button class="cbtn btn rightBtn2" id="endbtn2">&raquo;</button> -->
                
-                     </div>
-                        <button class="btn btn-outline-info exbtn confirmBtn">확인</button>
-                  </div>
-                  <input type="hidden" name="sAtotal" id="adult12">
-                  <input type="hidden" name="sCtotal" id="child12">   
-                  <input type="hidden" name="sRn" value="1">            
-               </div>
+<!--                      </div> -->
+<!--                         <button class="btn btn-outline-info exbtn confirmBtn">확인</button> -->
+<!--                   </div> -->
+<!--                   <input type="hidden" name="sAtotal" id="adult12"> -->
+<!--                   <input type="hidden" name="sCtotal" id="child12">    -->
+<!--                   <input type="hidden" name="sRn" value="1">             -->
+<!--                </div> -->
       <!--             <button type="button" class="btn btn-outline-info" id="make">스케쥴만들기</button> -->
                <button type="button" class="btn btn-outline-info" id="search">검색</button>
 <!--                <button type="button" class="btn btn-outline-info" id="certification">이메일인증</button> -->
@@ -305,8 +336,13 @@
 								<img alt="mainpic" src="${data.sPic}" style="width: 250px; height: 250px">
 							</div>
 							<div class="w3-col m6">
-								<h4 class="name">${data.sName}</h4> 
-								<p>${data.sWdate}</p>
+								<h5 class="sname w3-padding">${data.sName}</h5>
+								<div class="info w3-padding">
+									<p>여행시작일 : ${data.sSdate}</p>
+									<p>여행종료일 : ${data.sEdate}</p>
+									<p>작성일 : ${data.sWdate}</p>
+									<p>총금액 : ${data.sCost} 원</p>
+								</div>
 							</div>
 						</div>
 					</form>
