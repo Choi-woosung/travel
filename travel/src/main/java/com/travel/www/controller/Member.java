@@ -46,6 +46,7 @@ public class Member {
 	MemberDAO mDAO;
 	
 
+
 	// 비밀번호 찾기
 	@RequestMapping("find_pw.kit")
 	public ModelAndView find_pw(ModelAndView mv){
