@@ -39,6 +39,15 @@ public class ScheduleDAO {
 		return sqlSession.selectList("sSQL.recentList", map);
 	}
 	
+	//리스트 평점순으로 가져오기
+	public List<ScheduleVO> ratingList(String sarea, String month) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("sarea", sarea);
+		map.put("month", month);
+		
+		return sqlSession.selectList("sSQL.ratingList", map);
+	}
+	
 	public ScheduleVO schedule() {
 		return sqlSession.selectOne("sSQL.schedule");
 	}

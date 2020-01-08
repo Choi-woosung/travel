@@ -36,9 +36,6 @@
            var street0 = component0['long_name'];
            var street2 = component2['long_name'];
            
-//            console.log(street0);
-//            console.log(street2);
-           
            $('#sCountry').val(street2);
            $('#sArea').val(street0);
         });
@@ -91,13 +88,79 @@
 	        			content += '        		<div class="w3-col m4">';
 	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
 	        			content += '        		</div>';
-	        			content += '        		<div class="w3-col m8">';
+	        			content += '        		<div class="w3-col m8 infobox">';
 	        			content += '           			<h5 class="sname w3-padding">스케쥴제목 : ' + list[i].sName + '</h5>'; 
 	        			content += '           			<div class="info w3-padding">'; 
 	        			content += '           				<p>여행시작일 : ' + list[i].sSdate + '</p>';
 	        			content += '           				<p>여행종료일 : ' + list[i].sEdate + '</p>';
 	        			content += '           				<p>작성일 : ' + list[i].sWdate + '</p>';
 	        			content += '           				<p>총금액 : ' + list[i].sCost + ' 원</p>';
+	        			content += '           				<p>평점 : ' + list[i].sRate + ' 점</p>';
+	        			content += '        			</div>';
+	        			content += '        		</div>';
+	        			content += ' 		</div>';
+	        			content += '	</form>';
+	        			content += '</div>';
+	        			
+	        			$('.add').append(content);
+	        			
+	        			content = "";
+	        		}
+	        	},
+	        	error : function(){
+	        		alert("통신오류");
+	        	}
+	        });
+        });
+        
+        //평점순 리스트
+        $('#ratinglist').click(function(){
+        	var sarea = $('#sArea').val();
+            var address = $('#inputArea').val();
+            var month = $('#month').val();
+            
+            var url = decodeURIComponent(location.href);
+        	var params;
+        	var param;
+        	
+        	params = url.substring(url.indexOf('?') + 1, url.length);
+        	params = params.split('&');
+        	
+        	param = params[0];
+        	
+	        $.ajax({
+	        	url : "/schedule/sortrating.kit?sarea=" + param + "&month=" + month,
+	        	type : "post",
+	        	dataType : "json",
+	        	data : {
+	        		"sarea" : param,
+	        		"month" : month
+	        	},
+	        	
+	        	success : function(data){
+	        		var list = data;
+	        		var content = "";
+	        		
+	        		alert("성공");
+	        		
+	        		$('.delete').remove();
+	        		
+	        		for(var i = 0; i < list.length; i++){
+	        			content += '<div class="delete">';
+	        			content += '	<form action="/schedule/scheduleDetail.kit" method="get" class="box" onclick="this.submit();">';
+	        			content += '		<div class="w3-container w3-card w3-margin-bottom content">';
+	        			content += '    		<input type="hidden" name="sNo" value="' + list[i].sNo + '"' + '>';
+	        			content += '        		<div class="w3-col m4">';
+	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
+	        			content += '        		</div>';
+	        			content += '        		<div class="w3-col m8 infobox">';
+	        			content += '           			<h5 class="sname w3-padding">스케쥴제목 : ' + list[i].sName + '</h5>'; 
+	        			content += '           			<div class="info w3-padding">'; 
+	        			content += '           				<p>여행시작일 : ' + list[i].sSdate + '</p>';
+	        			content += '           				<p>여행종료일 : ' + list[i].sEdate + '</p>';
+	        			content += '           				<p>작성일 : ' + list[i].sWdate + '</p>';
+	        			content += '           				<p>총금액 : ' + list[i].sCost + ' 원</p>';
+	        			content += '           				<p>평점 : ' + list[i].sRate + ' 점</p>';
 	        			content += '        			</div>';
 	        			content += '        		</div>';
 	        			content += ' 		</div>';
@@ -155,13 +218,14 @@
 	        			content += '        		<div class="w3-col m4">';
 	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
 	        			content += '        		</div>';
-	        			content += '        		<div class="w3-col m8">';
+	        			content += '        		<div class="w3-col m8 infobox">';
 	        			content += '           			<h5 class="sname w3-padding">스케쥴제목 : ' + list[i].sName + '</h5>'; 
 	        			content += '           			<div class="info w3-padding">'; 
 	        			content += '           				<p>여행시작일 : ' + list[i].sSdate + '</p>';
 	        			content += '           				<p>여행종료일 : ' + list[i].sEdate + '</p>';
 	        			content += '           				<p>작성일 : ' + list[i].sWdate + '</p>';
 	        			content += '           				<p>총금액 : ' + list[i].sCost + ' 원</p>';
+	        			content += '           				<p>평점 : ' + list[i].sRate + ' 점</p>';
 	        			content += '        			</div>';
 	        			content += '        		</div>';
 	        			content += ' 		</div>';
@@ -238,8 +302,14 @@
 	}
 	
 /* 	스케쥴정보박스 */
+	.infobox {
+		position: relative;
+		top: -11px;
+	}
+	
+/* 	스케쥴정보 */
 	.info {
-		margin-top: 20px;
+		margin-top: 10px;
 		border: 3px solid rgba(0, 73, 191, 0.3);
 	}
 </style>
@@ -250,16 +320,15 @@
    </header>
    <div class="container">
       <div class="w3-container w3-margin-top mainSearch">
-<!--          <div class="mainSearch"> -->
-            <form method="POST" name="myform" id="frm">
-                 <input type="text" class="city pbtn" id="inputArea" name="address" value="${ADDRESS}"
-                    placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
-                    
-                    <input type="hidden" name="sCountry" id="sCountry">
-                    <input type="hidden" name="sArea" id="sArea">
-              		<button type="button" class="btn btn-outline-info" id="search">검색</button>
-            </form>
-<!--          </div> -->
+          <form method="POST" name="myform" id="frm">
+               <input type="text" class="city pbtn" id="inputArea" name="address" value="${ADDRESS}"
+                  placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
+                  
+                  <input type="hidden" name="sCountry" id="sCountry">
+                  <input type="hidden" name="sArea" id="sArea">
+<!--                   <input type="hidden" name="sRate" id="sRate"> -->
+            		<button type="button" class="btn btn-outline-info" id="search">검색</button>
+          </form>
       </div>
       
       <div class="w3-container w3-margin-top w3-margin-left">
@@ -297,13 +366,14 @@
 							<div class="w3-col m4"> 
 								<img alt="mainpic" src="${data.sPic}" style="width: 250px; height: 250px">
 							</div>
-							<div class="w3-col m8">
+							<div class="w3-col m8 infobox">
 								<h5 class="sname w3-padding">${data.sName}</h5>
 								<div class="info w3-padding">
 									<p>여행시작일 : ${data.sSdate}</p>
 									<p>여행종료일 : ${data.sEdate}</p>
 									<p>작성일 : ${data.sWdate}</p>
 									<p>총금액 : ${data.sCost} 원</p>
+									<p>평점 : ${data.sRate} 점</p>
 								</div>
 							</div>
 						</div>
