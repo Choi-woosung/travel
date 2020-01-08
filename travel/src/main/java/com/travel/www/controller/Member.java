@@ -3,6 +3,7 @@ package com.travel.www.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -25,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -408,8 +410,24 @@ public class Member {
 
 //	myProfile.jsp 매핑
 	@RequestMapping("myProfile.kit")
-	public ModelAndView myProfile(ModelAndView mv) {
-		mv.setViewName("member/myProfile");
+	public ModelAndView myProfile(ModelAndView mv, MemberVO mvo, HttpSession session, RedirectView rv) {
+		String sid = (String) session.getAttribute("SID");
+		String url =  "/main.kit";
+		
+		if (sid == null) {
+			rv.setUrl(url);
+			mv.setView(rv);
+			return mv;
+		}
+		
+		mvo.setmId(sid);
+		mvo = mDAO.getMyProfile(mvo);
+		
+		mv.addObject("LIST", mvo);
+		url = "member/myProfile";
+		
+		mv.setViewName(url);
+		
 		return mv;
 	}
 }

@@ -77,7 +77,7 @@
 
 	<select id="Member" resultType="mVO" parameterType="mVO">
 		SELECT
-			m_id mId, m_name mName, m_mail mMail, m_mobile mMobile, m_address mAddress, m_jdate mJdate
+			m_id mId, m_name mName, m_mail mMail, m_mobile mMobile, m_address mAddress, m_jdate mJdate, m_avatar mAvatar
 		FROM
 			member
 		WHERE
@@ -105,4 +105,16 @@
 		m_id = #{mId}
 		
 	</update>
+	
+	<!-- myProfile -->
+	<select id="getMyProfile" parameterType="mVO" resultType="mVO">
+		SELECT
+		    m_mail mMail, m_name mName, m_address mAddress, 
+		    m_mobile mMobile, m_jdate mJdate, 
+		    m_grade mGrade, m_avatar mAvatar, m_point mPoint
+		FROM
+		    member
+		WHERE
+		    m_id = #{mId}
+	</select>
 </mapper>

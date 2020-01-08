@@ -18,7 +18,7 @@
    $(document).ready(function(){
       //상세보기
       $('.box').click(function(){
-         $(this).submit();
+    	  $(this).submit();
       });
       
       //인원수 창
@@ -110,8 +110,8 @@
            var street0 = component0['long_name'];
            var street2 = component2['long_name'];
            
-           console.log(street0);
-           console.log(street2);
+//            console.log(street0);
+//            console.log(street2);
            
            $('#sCountry').val(street2);
            $('#sArea').val(street0);
@@ -119,7 +119,6 @@
         
         //검색
         $('#search').click(function(){
-        	console.log("들어오냐?");
         	var sarea = $('#sArea').val();
             var address = $('#inputArea').val();
         	
@@ -138,10 +137,10 @@
         	
         	param = params[0];
         	
-        	console.log(param);
+//         	console.log(param);
         	
 	        $.ajax({
-	        	url : "/schedule/recentlist.kit?sarea" + param,
+	        	url : "/schedule/recentlist.kit?sarea=" + param,
 	        	type : "post",
 	        	dataType : "json",
 	        	data : {
@@ -154,17 +153,13 @@
 	        		
 	        		alert("성공");
 	        		
-	        		console.log(list);
-	        		
 	        		$('.delete').remove();
 	        		
 	        		for(var i = 0; i < list.length; i++){
-	        			console.log(i + "번째");
-	        			
 	        			content += '<div class="delete">';
-	        			content += '	<form action="/schedule/scheduleDetail.kit" method="post" class="box">';
+	        			content += '	<form action="/schedule/scheduleDetail.kit" method="post" class="box" onclick="this.submit();">';
 	        			content += '		<div class="w3-container w3-card w3-margin-bottom content">';
-	        			content += '    		<input type="hidden" name="sNo" value="' + list[i].sNO + '"' + '>';
+	        			content += '    		<input type="hidden" name="sNo" value="' + list[i].sNo + '"' + '>';
 	        			content += '        		<div class="w3-col m6">';
 	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
 	        			content += '        		</div>';
@@ -184,7 +179,6 @@
 	        			$('.add').append(content);
 	        			
 	        			content = "";
-	        			console.log(content + "초기화");
 	        		}
 	        	},
 	        	error : function(){
@@ -326,12 +320,14 @@
    			<a href="#" class="sortmenu" id="ratinglist">평점순</a>
    			<a href="#" class="sortmenu" id="recentlist">최신순</a>
    		</div>
-		<div class="add">
+		<div class="add" id="add">
 			<div class="delete">
 				<c:forEach var="data" items="${LIST}">
 					<form action="/schedule/scheduleDetail.kit" method="post" class="box">
 						<div class="w3-container w3-card w3-margin-bottom content">
 							<input type="hidden" name="sNo" value="${data.sNo}">
+							<input type="hidden" name="sCountry">
+                     		<input type="hidden" name="sArea">
 							<div class="w3-col m6">
 								<img alt="mainpic" src="${data.sPic}" style="width: 250px; height: 250px">
 							</div>
