@@ -12,7 +12,7 @@ public class ScheduleVO {
 	private String sCountry; 
 	private String sArea;  
 	private int sWriter;
-	private Date sWdate;
+	private String sWdate;
 	private Date sWedate; 
 	private String sBody;
 	private int sCtotal;
@@ -97,10 +97,10 @@ public class ScheduleVO {
 	public void setsWriter(int sWriter) {
 		this.sWriter = sWriter;
 	}
-	public Date getsWdate() {
+	public String getsWdate() {
 		return sWdate;
 	}
-	public void setsWdate(Date sWdate) {
+	public void setsWdate(String sWdate) {
 		this.sWdate = sWdate;
 	}
 	public Date getsWedate() {

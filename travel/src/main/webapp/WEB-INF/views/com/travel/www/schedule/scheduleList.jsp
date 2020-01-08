@@ -141,17 +141,19 @@
 	        	success : function(data){
 	        		var list = data;
 	        		var content = "";
-	        		var date = list[0].sWdate;
 	        		
 	        		alert("성공");
 	        		
 	        		console.log(list);
-	        		console.log(list[0].sWdate);
 	        		
 	        		$('.delete').remove();
 	        		
 	        		for(var i = 0; i < list.length; i++){
 	        			console.log(i + "번째");
+	        			
+// 	        			var date = list[i].sWdate;
+// 	        			date = date.substring(0, date.indexOf(' '));
+// 	        			console.log(date);
 	        			
 	        			content += '<div class="delete">';
 	        			content += '	<form action="/schedule/scheduleDetail.kit" method="post" class="box">';
