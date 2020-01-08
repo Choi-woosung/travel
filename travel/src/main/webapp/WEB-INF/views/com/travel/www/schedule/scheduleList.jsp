@@ -151,10 +151,6 @@
 	        		for(var i = 0; i < list.length; i++){
 	        			console.log(i + "번째");
 	        			
-// 	        			var date = list[i].sWdate;
-// 	        			date = date.substring(0, date.indexOf(' '));
-// 	        			console.log(date);
-	        			
 	        			content += '<div class="delete">';
 	        			content += '	<form action="/schedule/scheduleDetail.kit" method="post" class="box">';
 	        			content += '		<div class="w3-container w3-card w3-margin-bottom content">';
