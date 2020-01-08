@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.travel.www.dao.ScheduleDAO;
 import com.travel.www.util.PageUtil;
 import com.travel.www.vo.ScheduleVO;
+import com.travel.www.vo.TestVO;
 
 @Controller
 public class MainController {
@@ -49,4 +50,17 @@ public class MainController {
 		return mv;
 	}
 
+	@RequestMapping("/testview.kit")
+	public ModelAndView getTest(ModelAndView mv) {
+		mv.setViewName("test/test");
+		return mv;
+	}
+	
+	@RequestMapping("/testResponse.kit")
+	public ModelAndView getTestResponse(ModelAndView mv, TestVO vo) {
+		System.out.println(vo.getDat());
+		mv.setViewName("/testview.kit");	
+		return mv;
+		
+	}
 }

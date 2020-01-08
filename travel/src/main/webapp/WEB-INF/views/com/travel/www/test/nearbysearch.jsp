@@ -178,8 +178,6 @@ html, body {
  
 		function tilesLoaded() {
 			google.maps.event.clearListeners(map, 'tilesloaded');
-			google.maps.event.addListener(map, 'zoom_changed', search);
-			google.maps.event.addListener(map, 'dragend', search);
 			search();
 		}
 
@@ -211,12 +209,6 @@ html, body {
 					clearResults();
 					clearMarkers();
 					for (var i = 0; i < results.length; i++) {
-						markers[i] = new google.maps.Marker({
-							position: results[i].geometry.location,
-							animation: google.maps.Animation.DROP
-						});
-						google.maps.event.addListener(markers[i], 'click', getDetails(results[i], i));
-						setTimeout(dropMarker(i), i * 100);
 						addResult(results[i], i);
 					}
 				}
@@ -241,73 +233,12 @@ html, body {
 		function addResult(result, i) {
 			places.getDetails({placeId : result.place_id}, 
 					function(place, status){
-				var name = document.createTextNode(place.name);
-				var url = document.createTextNode(place.url);
-				var rating;
-				if(typeof place.rating == "undefined"){
-					rating = document.createTextNode("별점 없음");
-				} else {
-					rating = document.createTextNode(place.rating);
-				}
-				var address = document.createTextNode(place.formatted_address);
-				var photo;
-				
-				var results = document.getElementById('results');
-	 			var row = document.createElement('div');
-				row.setAttribute('class', 'resultData p-3 list-group-item list-group-item-action');
-				var leftDiv = document.createElement('div');
-				leftDiv.setAttribute('class', 'resultData-left');
-				var rightDiv = document.createElement('div');
-				rightDiv.setAttribute('class', 'resultData-right');
-				rightDiv.setAttribute('id', 'rightDiv');
-				var nameh4 = document.createElement('h6');
-				var addressh6 = document.createElement('h6');
-				var ratingh6 = document.createElement('h6');
-				ratingh6.appendChild(rating);
-				addressh6.appendChild(address);
-				try{
-					photo = place.photos[0].getUrl();
-				} catch (e) {
-					photo = "/img/icon/hotel.png";
-				}
-				var photoLink = document.createElement('img');
-				var btn = document.createElement('button');
-				var btnText = document.createTextNode("스케쥴에 추가");
-				btn.setAttribute('class', 'schedule_addBtn');
-				btn.setAttribute('data-dismiss', 'modal');
-				btn.appendChild(btnText);
-				
-				photoLink.src= photo;
-				photoLink.width = 100;
-				photoLink.height = 100;
-				
-				leftDiv.appendChild(nameh4);	
-				nameh4.appendChild(name);
-				leftDiv.appendChild(addressh6);
-				leftDiv.appendChild(address);
-				leftDiv.appendChild(ratingh6);
-				rightDiv.appendChild(photoLink);
-				rightDiv.appendChild(btn);
-				row.appendChild(leftDiv);
-				row.appendChild(rightDiv);
-				results.appendChild(row);
-				
-				row.onclick = function(){
-					google.maps.event.trigger(markers[i], 'click');
-				};
-				
-				btn.onclick = function(){
-					var targetLi = document.getElementById(eventId);
-					targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
-										+ '<h5 class="mb-1">' + place.name + '</h5>'
-										+ '<small class="text-muted">' + liCnt + '</small>'
-										+ '</div>'
-										+ '<p class="mb-1 text-left">' +place.formatted_address+ '</p>'
-										+ '<input type="text" name="body">';
-				}
-				
+				console.log(status);
+				  if (status == google.maps.places.PlacesServiceStatus.OK) {
+					addResultMarker(result, i);
+					addResultList(place);
+				 } 				  
 			});
-
 		}
 
 		function clearResults() {
@@ -347,6 +278,93 @@ html, body {
 			content += '</td></tr></table>';
 			return content;
 		}
+		
+		function addResultList(place){
+			var name = document.createTextNode(place.name);
+			var url = document.createTextNode(place.url);
+			var rating;
+			if(typeof place.rating == "undefined"){
+				rating = document.createTextNode("별점 없음");
+			} else {
+				rating = document.createTextNode(place.rating);
+			}
+			var address = document.createTextNode(place.formatted_address);
+			var photo;
+			
+			var results = document.getElementById('results');
+ 			var row = document.createElement('div');
+			row.setAttribute('class', 'resultData p-3 list-group-item list-group-item-action');
+			var leftDiv = document.createElement('div');
+			leftDiv.setAttribute('class', 'resultData-left');
+			var rightDiv = document.createElement('div');
+			rightDiv.setAttribute('class', 'resultData-right');
+			rightDiv.setAttribute('id', 'rightDiv');
+			var nameh4 = document.createElement('h6');
+			var addressh6 = document.createElement('h6');
+			var ratingh6 = document.createElement('h6');
+			ratingh6.appendChild(rating);
+			addressh6.appendChild(address);
+			try{
+				photo = place.photos[0].getUrl();
+			} catch (e) {
+				photo = "/img/icon/hotel.png";
+			}
+			var photoLink = document.createElement('img');
+			var btn = document.createElement('button');
+			var btnText = document.createTextNode("스케쥴에 추가");
+			btn.setAttribute('class', 'schedule_addBtn');
+			btn.setAttribute('data-dismiss', 'modal');
+			btn.appendChild(btnText);
+			
+			photoLink.src= photo;
+			photoLink.width = 100;
+			photoLink.height = 100;
+			
+			leftDiv.appendChild(nameh4);	
+			nameh4.appendChild(name);
+			leftDiv.appendChild(addressh6);
+			leftDiv.appendChild(address);
+			leftDiv.appendChild(ratingh6);
+			rightDiv.appendChild(photoLink);
+			rightDiv.appendChild(btn);
+			row.appendChild(leftDiv);
+			row.appendChild(rightDiv);
+			results.appendChild(row);
+			
+			row.onclick = function(){
+				google.maps.event.trigger(markers[i], 'click');
+			};
+			
+			btn.onclick = function(){
+				var targetLi = document.getElementById(eventId);
+				targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
+									+ '<h5 class="mb-1">' + place.name + '</h5>'
+									+ '<small class="text-muted">' + liCnt + '</small>'
+									+ '</div>'
+									+ '<p class="mb-1 text-left">' +place.formatted_address+ '</p>'
+									+ '<input type="text" name="body">';
+				}
+		}
+		
+		function addResultMarker(result, i){
+			console.log(result.geometry.location);
+			console.log(i);
+			markers[i] = new google.maps.Marker({
+				position: result.geometry.location,
+				animation: google.maps.Animation.DROP
+			});/* 
+			google.maps.event.addListener(markers[i], 'click', getDetails(result, i)); */
+			setTimeout(dropMarker(i), i * 100);
+		}
+		
+		function sleep(milliseconds) {
+			  var start = new Date().getTime();
+			  for (var i = 0; i < 1e7; i++) {
+			    if ((new Date().getTime() - start) > milliseconds){
+			      break;
+			    }
+			  }
+			}
 		
 		google.maps.event.addDomListener(window, 'load', initialize);
 		
