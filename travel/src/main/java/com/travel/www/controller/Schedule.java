@@ -26,6 +26,7 @@ public class Schedule {
    @Autowired
    ScheduleDetailDAO sdDAO;
    
+   //리스트 불러오기
    @RequestMapping("/scheduleList.kit")
    public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req, RedirectView rv) {
       String people = req.getParameter("people");
@@ -59,6 +60,7 @@ public class Schedule {
       return mv;
    }
    
+   //최신순으로 리스트 불러오기
    @RequestMapping("/recentlist.kit")
    @ResponseBody
    public List<ScheduleVO> recentlist(HttpServletRequest req) {
@@ -79,6 +81,20 @@ public class Schedule {
 		   list.get(i).setsEdate(edate);
 		   list.get(i).setsWdate(wdate);
 	   }
+	   
+	   return list;
+   }
+   
+   //월별순으로 리스트 가져오기
+   @RequestMapping("/sortmonth.kit")
+   @ResponseBody
+   public List<ScheduleVO> sortmonth(HttpServletRequest req) {
+	   String tmp = req.getParameter("sarea");
+	   String sarea = tmp.substring(tmp.indexOf('=') + 1);
+	   tmp = req.getParameter("month");
+	   String month = tmp.substring(tmp.indexOf('=') + 1);
+	   
+	   List<ScheduleVO> list = sDAO.scheduleList(sarea, month);
 	   
 	   return list;
    }
