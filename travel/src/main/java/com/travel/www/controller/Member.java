@@ -74,6 +74,7 @@ public class Member {
 		String setfrom = "test@naver.com";
 		String tomail = req.getParameter("email");
 		String title = "임시 비밀번호 입니다.";
+		
 		System.out.println(tomail);
 		
 		String content = 
