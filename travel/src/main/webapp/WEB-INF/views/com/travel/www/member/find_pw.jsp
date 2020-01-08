@@ -15,27 +15,6 @@
 <script>
 $(function(){
 	
-	
-	$('#findBtn').click(function(){
-		$.ajax({
-			url : "/member/find_pw.kit",
-			type : "post",
-			data : {
-				id : $('#id').val(),
-				email : $('#email').val()
-			},
-			success : function(result){
-				alert(result);
-			},
-			
-		});
-	});
-	
-
-	
-
-	
-	
 	$('#Check').click(function(){
 		var sid = $('#id').val();
 		
@@ -61,17 +40,56 @@ $(function(){
 			error : function(){
 				alert("Error");
 			}
-	});
-});
-	
-	
-	$('#Injeung').click(function(){
-		$(location).attr('href', 'pw_email.kit');
-		
+		});
 	});
 	
+ /* 	$('#findBtn').click(function(){
+		var cid = $('#id').val();
+		var cmail = $('#email').val();
+		$.ajax({
+			url : "/member/new_pw.kit",
+			type : "POST",
+			dataType : "text",
+			data : {			
+				"email" : cmail
+			},
+			success : function(data){
+				console.log(data);
+				if(data == 1){
+					alert("메일로 임시 비밀번호를 전송했습니다");
+				} else{
+					alert("전송 실패");		
+				}
+					
+			},
+				
+			error : function(){
+				alert("error");
+		}
+	});
 	
+});  */
+ 
+
 });
+
+
+	/*	
+	$('#findBtn').click(function(){
+		$.ajax({
+			url : "/member/find_pw.kit",
+			type : "post",
+			data : {
+				id : $('#id').val(),
+				email : $('#email').val()
+			},
+			success : function(result){
+				alert(result);
+			},
+			
+		});
+	});
+*/
 
 </script>
 <style>
@@ -106,6 +124,7 @@ $(function(){
 <title>비밀번호 찾기</title>
 </head>
 <body  class="text-center">
+	<form method="post" action="/member/new_pw.kit">
 	<div id="container" class="text-center mb-1">
 		<div class="w3-container w3-card-4">
 			<div class="h3 mb-3 font-weight-normal">
@@ -119,8 +138,11 @@ $(function(){
 				</p>
 				<p>
 					<label class="w3-margin">이메일
-					<button type="button" id="Injeung" class="w3-blue">이메일 인증</button></label>
-					<input class="w3-input" type="hidden" id="email" name="mMail" required>
+					<input class="w3-input" type="email" id="email" name="email"  required></label>
+					<input class="w3-input" type="hidden"  >
+					<!--  <button type="button" id="Injeung" class="w3-blue">이메일 인증</button> -->
+					
+					
 				</p>
 				<p class="w3-center">
 					<button type="submit" id="findBtn" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">OK</button>
@@ -129,7 +151,6 @@ $(function(){
 			</div>
 		</div>
 	</div>
-	
-
+</form>
 </body>
 </html>

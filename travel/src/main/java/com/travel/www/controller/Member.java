@@ -66,6 +66,66 @@ public class Member {
 	}	
 	
 	// 임시 비밀번호
+	@RequestMapping(value = "new_pw.kit" , method=RequestMethod.POST )
+	public ModelAndView path(ModelAndView mv, HttpServletRequest req, MemberVO mVO, String email, HttpServletResponse resp, RedirectView rv) {
+	
+		Random r = new Random();
+		int pass = r.nextInt(4589372) + 49311;
+		
+		
+		
+		String setfrom = "test@naver.com";
+		String tomail = req.getParameter("email");
+		String title = "임시 비밀번호 입니다.";
+		
+		String content = 
+				System.getProperty("line.separator") +
+				System.getProperty("line.separator") +
+				" 회원님의 " +
+				System.getProperty("line.separator") +
+				System.getProperty("li	ne.separator") +
+				" 임시 비밀번호는 " + pass + " 입니다. " ;
+		
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+			
+			messageHelper.setFrom(setfrom);
+			messageHelper.setTo(tomail);
+			messageHelper.setSubject(title);
+			messageHelper.setText(content);
+			
+			mailSender.send(message);
+			mVO.setmPw2(pass);
+			mVO.setmMail(email);
+			int cnt = mDAO.update_pw(mVO);
+			if(cnt > 0) {
+				System.out.println("변경완료");
+			}
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("pass", pass);
+		
+		resp.setContentType("text/html; charset=UTF-8");
+		rv.setUrl("/main.kit");
+		mv.setView(rv);
+//		try {
+//			PrintWriter out_email = resp.getWriter();
+//			out_email.println("<script>alert('이메일로 발송되었습니다. 인증번호를 입력해주세요.');</script>");
+//			out_email.flush();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+		return mv;
+	}		
+	
+		
+	
+/*	
+	// 임시 비밀번호
 	@RequestMapping(value = "passwordProc.kit" , method=RequestMethod.POST )
 	public ModelAndView newpassword(ModelAndView mv, HttpServletRequest req, String email, HttpServletResponse resp) {
 		mv.setViewName("/member/new_pw");
@@ -115,6 +175,7 @@ public class Member {
 		
 		return mv;
 	}	
+*/
 	
 	@RequestMapping(value = "new_pass{pass}.kit", method = RequestMethod.POST)
 	public ModelAndView new_pass(ModelAndView mv, String email_injeung2, @PathVariable String pass, HttpServletResponse response_equals, RedirectView rv) {
