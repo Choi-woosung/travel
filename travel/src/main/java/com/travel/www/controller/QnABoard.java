@@ -1,6 +1,5 @@
 package com.travel.www.controller;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class QnABoard {
 	@Autowired
 	QnABoardDAO qDAO;
 	
-	@RequestMapping("qnaboard.kit")
+	@RequestMapping("qnaBoard.kit")
 	public ModelAndView qnaBoard(ModelAndView mv) {
 		mv.setViewName("board/qnaboard");
 		return mv; 

@@ -70,9 +70,16 @@
 	<!-- 비밀번호 변경 -->
  	<update id="update_pw" parameterType="mVO">
 		update member 
+		set m_pw = #{mPw2} 
+		where m_id = #{mId}
+	</update>
+
+	
+	<!--  <update id="new_pw" parameterType="mVO">
+		update member 
 		set pw = #{mPw} 
 		where mail = #{mMail}
-	</update>	
+	</update>	 -->
 
 
 	<select id="Member" resultType="mVO" parameterType="mVO">

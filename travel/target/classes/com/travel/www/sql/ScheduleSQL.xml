@@ -9,27 +9,74 @@
 	<!-- 스케쥴리스트가져오기 -->
 	<select id="scheduleList" resultType="sVO" parameterType="hashmap">
 		SELECT
-			s_no sNo, s_name sName, s_sdate sSdate, s_wdate sWdate, s_edate sEdate, s_pic sPic, s_cost sCost
+			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_rate sRate, s_pic sPic, s_cost sCost
 		FROM
 			schedule
-		<if test="!(sarea eq null) and !(sarea.equals(''))">
+		<if test="!(sarea eq null) and !(sarea.equals('')) or !(month eq null) and !(month.equals(''))">
 			WHERE
+		</if>
+		
+		<if test="!(sarea eq null) and !(sarea.equals(''))">
 				s_area like #{sarea}
+		</if>
+		
+		<if test="!(sarea eq null) and !(sarea.equals('')) and !(month eq null) and !(month.equals(''))">
+			and
+		</if>
+		
+		<if test="!(month eq null) and !(month.equals(''))">
+				to_char(s_sdate, 'MM') = #{month}
 		</if>
 	</select>
 	
 	<!-- 리스트 최신순 정렬 -->
 	<select id="recentList" resultType="sVO" parameterType="hashmap">
 		SELECT
-			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_pic sPic, s_cost sCost
+			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_rate sRate, s_pic sPic, s_cost sCost
 		FROM
 			schedule
-		<if test="!(sarea eq null) and !(sarea.equals(''))">
+		<if test="!(sarea eq null) and !(sarea.equals('')) or !(month eq null) and !(month.equals(''))">
 			WHERE
+		</if>	
+		
+		<if test="!(sarea eq null) and !(sarea.equals(''))">
 				s_area like #{sarea}
+		</if>
+		
+		<if test="!(sarea eq null) and !(sarea.equals('')) and !(month eq null) and !(month.equals(''))">
+			and
+		</if>
+		
+		<if test="!(month eq null) and !(month.equals(''))">
+				to_char(s_sdate, 'MM') = #{month}
 		</if>
 		ORDER BY
 			s_wdate desc
+	</select>
+	
+	<!-- 리스트 평점순 정렬 -->
+	<select id="ratingList" resultType="sVO" parameterType="hashmap">
+		SELECT
+			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_rate sRate, s_pic sPic, s_cost sCost
+		FROM
+			schedule
+		<if test="!(sarea eq null) and !(sarea.equals('')) or !(month eq null) and !(month.equals(''))">
+			WHERE
+		</if>	
+		
+		<if test="!(sarea eq null) and !(sarea.equals(''))">
+				s_area like #{sarea}
+		</if>
+		
+		<if test="!(sarea eq null) and !(sarea.equals('')) and !(month eq null) and !(month.equals(''))">
+			and
+		</if>
+		
+		<if test="!(month eq null) and !(month.equals(''))">
+				to_char(s_sdate, 'MM') = #{month}
+		</if>
+		ORDER BY
+			s_rate desc
 	</select>
 	
 	<select id="schedule" resultType="sVO">
