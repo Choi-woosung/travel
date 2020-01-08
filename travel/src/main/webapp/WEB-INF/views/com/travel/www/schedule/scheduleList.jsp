@@ -130,8 +130,6 @@
         	
         	param = params[0];
         	
-//         	console.log(param);
-        	
 	        $.ajax({
 	        	url : "/schedule/sortmonth.kit?sarea=" + param + "&month=" + month,
 	        	type : "post",
