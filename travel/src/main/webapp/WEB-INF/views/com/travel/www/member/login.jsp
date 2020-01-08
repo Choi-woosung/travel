@@ -35,12 +35,24 @@
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript">
  	$(document).ready(function(){
+		var passRule = /^(?=.*[0-9])(?=.*[a-z]).{8,20}$/;//숫자와 문자 포함 형태의 8~20자리  암호 정규식
+		var blank_pattern = /[\s]/g; // 공백입력 불가
+		
+ 		$('#userPw').keyup(function(){
+ 			if(!passRule.test($('#userPw').val())){
+ 				// 정규식 false div 출력
+ 				$('.pwex').css('display', 'block');
+ 			} else{
+ 				$('.pwex').css('display', 'none');
+ 			}
+ 		});
+ 		
 		$('#find_btn').click(function(){
-			$(location).attr('href', '/member/find_pw_form.kit');
+			$(location).attr('href', '/member/find_pw.kit');
 		});
 		
 		$('#find_pw_btn').click(function(){
-			$(location).attr('href', '/member/find_pw_form.kit');
+			$(location).attr('href', '/member/find_pw.kit');
 		});
 		
 		$('#btn').click(function(){
@@ -55,7 +67,9 @@
 		$('#btn').click(function(){
 			$(location).attr('href', '/member/main.kit')
 		});
+		
 	}); 
+ 	
 </script>
 <style>
       .bd-placeholder-img {
@@ -99,11 +113,15 @@
  	<span id="find_pw_btn"></span>
   </div>
   
+  <div class="pwex" style="display: none; color: red;">
+	<h6 class="">숫자와 문자 포함 형태의 8~20자리 이내의 비밀번호를 입력해주세요</h6>
+  </div>
+  
   <div class="checkbox mb-3 w3-center">
       <input type="checkbox" value="remember-me"> 기억하기
   </div>
   
-    <div id="find_btn" class="w3-margin w3-center"> 아이디 | 비밀번호찾기</div>
+    <button id="find_btn" class="w3-margin w3-center w3-button w3-hover-#f5f5f5"> 아이디 | 비밀번호찾기</button>
   
       
   <button class="btn btn-lg btn-primary btn-block" id="btn" type="submit">Sign in</button>
@@ -121,4 +139,4 @@
 
 
 </body>
-</html>
+</html>	

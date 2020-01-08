@@ -20,12 +20,11 @@ public class MemberDAO {
 	
 	
 	// 비밀번호 변경
-	@Transactional
 	public int update_pw(MemberVO mVO) {
 		return sqlSession.update("mSQL.update_pw", mVO);
 	}	
 	
-	
+
 	// 로그인 전담 처리함수
 	public int loginProc(MemberVO mVO) {
 		return sqlSession.selectOne("mSQL.Login", mVO);

@@ -173,6 +173,12 @@
 	background: #2cb5e9;
 }
 
+
+
+.avtChoose{
+	float:right;
+}
+
     </style>
 
 
@@ -265,6 +271,30 @@
 			$(location).attr('href', '/member/email.kit');
 	});
 	
+	var passRule = /^(?=.*[0-9])(?=.*[a-z]).{8,20}$/;//숫자와 문자 포함 형태의 8~20자리  암호 정규식
+	var blank_pattern = /[\s]/g; // 공백입력 불가
+		$('#userPw').keyup(function() {
+			if (!passRule.test($("#userPw").val())) {
+		//정규식 false div 출력
+				$('.pwex').css('display', 'block');
+			} else { 
+				$('.pwex').css('display', 'none');
+			}
+		});	
+		//입력한 비밀번호가 같은지
+		$('#userPw2').keyup(function() {
+			var pw1 = $('#userPw').val();
+			var pw2 = $('#userPw2').val();
+
+			if (pw1 == pw2) {
+				$('.pwok').css('display', 'block');
+				$('.pwx').css('display', 'none');
+			} else {
+				$('.pwok').css('display', 'none');
+				$('.pwx').css('display', 'block');
+			}
+		});
+	
 	$('#btn1').click(function(){
 		var tadr2 = $('#detailAddress').val();
 		var tadr1 = $('#adr').val() + tadr2;
@@ -293,13 +323,24 @@
                <li id="id_container">
                		<label for="pw" class="pw_form w3-serif"><b>비밀번호</b></label>
                     <input type="password" id="userPw" name="mPw" required class="" >   
+                <div class="pwex" style="display: none; color: red;">
+					<h5 class="">숫자와 문자 포함 형태의 8~20자리 이내의 비밀번호를 입력해주세요</h5>
+  				</div>
                </li>
                 
                 
                <li><label for="pw_e" class="pw2_form w3-serif"><b>비밀번호 확인</b></label>
   					<input type="password" id="userPw2" name="mPw2" required class="">
                     <p class="pw2" id="pw2_check"></p>
+                    
+               	<div class="pwx" style="display: none; color: red;">
+					<h5 class="">비밀번호가 틀립니다.</h5>
+				</div>
+				<div class="pwok" style="display: none; color: green;">
+					<h5 class="">비밀번호가 일치합니다.</h5>
+				</div>     
                </li>
+               
                     
                 <li>
                     <label for="name" class="name_form w3-serif"><b>이름</b></label>
@@ -309,7 +350,7 @@
                     
                 <li>
                     <label for="email" class="email_form w3-serif"><b>이메일</b></label>
-                    <button type="submit" id="mail_in" class="w3-teal w3-text-light-gray"><a href="http://localhost/member/join.kit" target="_blank">이메일 인증</a></button>
+                    <button type="submit" id="mail_in" class="w3-teal w3-text-light-gray">이메일 인증</button>
                     <input type="email" id="email" name="mMail" >
                 </li>
 				<br>
@@ -336,11 +377,46 @@
                    	<label for="num" class="phone_form w3-serif"><b>핸드폰</b></label>
                     <input type="text" id="userMobile" name="mMobile" required class="">
                 </li>
+                
+                
+		<li id="avtChoose">
+				<label for="avt" class="phone_form w3-serif"><b>프로필</b></label>
+				<div class="w3-col avtM">
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="11">
+						<div>
+							<img src="/img/avatar/pro1.PNG" width="90" height="90" class="avt_form">
+						</div>
+					</div>
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="12">
+						<div>
+							<img src="/img/avatar/pro2.PNG" width="90" height="90" class="avt_form">
+						</div>
+					</div>
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="13">
+						<div>
+							<img src="/img/avatar/pro3.PNG" width="90" height="90" class="avt_form">
+						</div>
+					</div>
+				</div>
+		</li>	
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+			
     
                <li class="li_button">  
-               		<button type="button" id="btn1" class="w3-margin w3-left w3-center w3-col m2 w3-cyan">가입</button>     
-            		<button type="button" onclick="history.go(-1);" id="btn2" class="w3-margin w3-right w3-center w3-col m2 w3-gray">취소</button>	
+               		<button type="button" id="btn1" class="w3-margin w3-center w3-cyan">가입</button>     
+            		<button type="button" onclick="history.go(-1);" id="btn2" class="w3-margin w3-center w3-gray">취소</button>	
 			   </li>
+		<br>
+		<br>			   
+
             </ul>
         </form>
             
