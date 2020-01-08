@@ -67,7 +67,7 @@
 				<div>회원 등급 : ${LIST.mGrade}</div>
 				<div>포인트 : ${LIST.mPoint}</div>
 				<div>이메일 : ${LIST.mMail}</div>
-				<div>휴대전화 : ${LIST.mMobile}</div>
+				<div>휴대전화 : ${LIST.mMobile}</div> 
 				<div>주소 : ${LIST.mAddress}</div>
 				<div>가입일 : ${LIST.mJdate}</div>
 			</div>
