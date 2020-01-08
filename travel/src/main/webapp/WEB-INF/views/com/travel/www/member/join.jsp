@@ -173,6 +173,12 @@
 	background: #2cb5e9;
 }
 
+
+
+.avtChoose{
+	float:right;
+}
+
     </style>
 
 
@@ -309,7 +315,7 @@
                     
                 <li>
                     <label for="email" class="email_form w3-serif"><b>이메일</b></label>
-                    <button type="submit" id="mail_in" class="w3-teal w3-text-light-gray"><a href="http://localhost/member/join.kit" target="_blank">이메일 인증</a></button>
+                    <button type="submit" id="mail_in" class="w3-teal w3-text-light-gray">이메일 인증</button>
                     <input type="email" id="email" name="mMail" >
                 </li>
 				<br>
@@ -336,11 +342,46 @@
                    	<label for="num" class="phone_form w3-serif"><b>핸드폰</b></label>
                     <input type="text" id="userMobile" name="mMobile" required class="">
                 </li>
+                
+                
+		<li id="avtChoose">
+				<label for="avt" class="phone_form w3-serif"><b>프로필</b></label>
+				<div class="w3-col avtM">
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="11">
+						<div>
+							<img src="/img/avatar/pro1.PNG" width="90" height="90" class="avt_form">
+						</div>
+					</div>
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="12">
+						<div>
+							<img src="/img/avatar/pro2.PNG" width="90" height="90" class="avt_form">
+						</div>
+					</div>
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="13">
+						<div>
+							<img src="/img/avatar/pro3.PNG" width="90" height="90" class="avt_form">
+						</div>
+					</div>
+				</div>
+		</li>	
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+			
     
                <li class="li_button">  
-               		<button type="button" id="btn1" class="w3-margin w3-left w3-center w3-col m2 w3-cyan">가입</button>     
-            		<button type="button" onclick="history.go(-1);" id="btn2" class="w3-margin w3-right w3-center w3-col m2 w3-gray">취소</button>	
+               		<button type="button" id="btn1" class="w3-margin w3-center w3-cyan">가입</button>     
+            		<button type="button" onclick="history.go(-1);" id="btn2" class="w3-margin w3-center w3-gray">취소</button>	
 			   </li>
+		<br>
+		<br>			   
+
             </ul>
         </form>
             

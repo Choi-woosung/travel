@@ -36,11 +36,11 @@
 <script type="text/javascript">
  	$(document).ready(function(){
 		$('#find_btn').click(function(){
-			$(location).attr('href', '/member/find_pw_form.kit');
+			$(location).attr('href', '/member/find_pw.kit');
 		});
 		
 		$('#find_pw_btn').click(function(){
-			$(location).attr('href', '/member/find_pw_form.kit');
+			$(location).attr('href', '/member/find_pw.kit');
 		});
 		
 		$('#btn').click(function(){
@@ -103,7 +103,7 @@
       <input type="checkbox" value="remember-me"> 기억하기
   </div>
   
-    <div id="find_btn" class="w3-margin w3-center"> 아이디 | 비밀번호찾기</div>
+    <button id="find_btn" class="w3-margin w3-center w3-button w3-hover-#f5f5f5"> 아이디 | 비밀번호찾기</button>
   
       
   <button class="btn btn-lg btn-primary btn-block" id="btn" type="submit">Sign in</button>

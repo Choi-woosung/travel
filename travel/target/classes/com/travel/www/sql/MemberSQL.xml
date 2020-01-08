@@ -26,12 +26,17 @@
 	
 	
 	<!-- 비밀번호찾기에서 중복확인 -->
-	<update id="Check"  parameterType="mVO">
+	<select id="Check"  parameterType="mVO">
 		update
 			member
 		set
 			m_id = #{mId}
 
+	</select>
+	
+	<update id="">
+		
+	
 	</update>
 	
 	
@@ -66,13 +71,13 @@
  	<update id="update_pw" parameterType="mVO">
 		update member 
 		set pw = #{mPw} 
-		where id = #{mId}
+		where mail = #{mMail}
 	</update>	
 
 
 	<select id="Member" resultType="mVO" parameterType="mVO">
 		SELECT
-			m_id mId, m_name mName, m_mail mMail, m_mobile mMobile, m_address mAddress, m_jdate mJdate, m_avatar mAvatar
+			m_id mId, m_name mName, m_mail mMail, m_mobile mMobile, m_address mAddress, m_jdate mJdate
 		FROM
 			member
 		WHERE
@@ -95,8 +100,7 @@
 		set
 			m_pw = #{mPw},
 			m_mobile = #{mMobile},
-			m_address = #{mAddress},
-			m_avatar = #{mAvatar}
+			m_address = #{mAddress}
 		WHERE
 		m_id = #{mId}
 		
