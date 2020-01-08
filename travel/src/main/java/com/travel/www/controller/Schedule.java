@@ -57,20 +57,15 @@ public class Schedule {
    @RequestMapping("/recentlist.kit")
    @ResponseBody
    public List<ScheduleVO> recentlist(HttpServletRequest req) {
-//	   System.out.println("recent 입성");
 	   String tmp = req.getParameter("sarea");
 	   String sarea = tmp.substring(tmp.indexOf('=') + 1);
-//	   System.out.println(sarea);
 	   List<ScheduleVO> list = sDAO.recentList(sarea);
 	   
 	   for(int i = 0; i < list.size(); i++) {
 		   String date = list.get(i).getsWdate();
-		   System.out.println(date);
 		   date = date.substring(0, date.indexOf(' '));
 		   
 		   list.get(i).setsWdate(date);
-		   
-		   System.out.println(list.get(i).getsWdate());
 	   }
 	   
 	   return list;

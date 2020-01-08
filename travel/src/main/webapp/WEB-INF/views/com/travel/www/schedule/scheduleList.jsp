@@ -131,7 +131,7 @@
         	console.log(param);
         	
 	        $.ajax({
-	        	url : "/schedule/recentlist.kit",
+	        	url : "/schedule/recentlist.kit?sarea" + param,
 	        	type : "post",
 	        	dataType : "json",
 	        	data : {
