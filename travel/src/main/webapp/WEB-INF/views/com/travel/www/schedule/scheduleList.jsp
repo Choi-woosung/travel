@@ -20,80 +20,6 @@
       $('.box').click(function(){
     	  $(this).submit();
       });
-      
-      //인원수 창
-      $('#people').click(function() {
-          $('.pCount').addClass('view');
-       });
-       $('body').on('click', function(e) {
-          var pClass = $(e.target).hasClass('city');
-          var psClass = $(e.target).parents().hasClass('tCount');
-          if (!pClass && !psClass) {
-             $('.pCount').removeClass('view');
-          } else if (psClass) {
-             return false;
-          }
-       });
-       
-       //인원수 창 확인버튼
-       $('.exbtn').click(function () {
-           $('.pCount').removeClass('view');
-       });
-       
-       //인원수 증가 감소
-       $('.abtn').click(function() {
-           var tmp = $(this).attr('id');
-           var sp = $('#startbtn1').html();
-           var rp = $('#endbtn1').html();
-           var nCount = $(this).text();
-           if (nCount != sp || nCount != rp) {
-              $('#aCount').val();
-           }
-           if (nCount == sp) {
-              if (a == 0) {
-                 return;
-              }
-              a--;
-              $('#aCount').val(a);
-              $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
-           }
-           if (nCount == rp) {
-              if (a == 99) {
-                 return;
-              }
-              a++;
-              $('#aCount').val(a);
-              $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
-           }
-        });
-        
-       var a = $('#aCount').val();
-       var b = $('#cCount').val();
-        $('.cbtn').click(function() {
-           var sp = $('#startbtn2').html();
-           var rp = $('#endbtn2').html();
-           var nCount = $(this).text();
-           var aCount = $('#cCount').text(b);
-           if (nCount != sp || nCount != rp) {
-              $('#cCount').val();
-           }
-           if (nCount == sp) {
-              if (b == 0) {
-                 return;
-              }
-              b--;
-              $('#cCount').val(b);
-              $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
-           }
-           if (nCount == rp) {
-              if (b == 99) {
-                 return;
-              }
-              b++;
-              $('#cCount').val(b);
-              $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
-           }
-        });
         
         //구글 맵 api 자동완성
         var autocomplete;
@@ -128,6 +54,8 @@
         
         //리스트 최신순
         $('#recentlist').click(function(){
+        	var month = $('#month').val();
+        	
         	var url = decodeURIComponent(location.href);
         	var params;
         	var param;
@@ -140,11 +68,12 @@
 //         	console.log(param);
         	
 	        $.ajax({
-	        	url : "/schedule/recentlist.kit?sarea=" + param,
+	        	url : "/schedule/recentlist.kit?sarea=" + param + "&month=" + month,
 	        	type : "post",
 	        	dataType : "json",
 	        	data : {
-	        		"sarea" : param
+	        		"sarea" : param,
+	        		"month" : month
 	        	},
 	        	
 	        	success : function(data){
@@ -152,6 +81,7 @@
 	        		var content = "";
 	        		
 	        		alert("성공");
+	        		console.log(list);
 	        		
 	        		$('.delete').remove();
 	        		
@@ -160,11 +90,11 @@
 	        			content += '	<form action="/schedule/scheduleDetail.kit" method="post" class="box" onclick="this.submit();">';
 	        			content += '		<div class="w3-container w3-card w3-margin-bottom content">';
 	        			content += '    		<input type="hidden" name="sNo" value="' + list[i].sNo + '"' + '>';
-	        			content += '        		<div class="w3-col m6">';
+	        			content += '        		<div class="w3-col m4">';
 	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
 	        			content += '        		</div>';
-	        			content += '        		<div class="w3-col m6">';
-	        			content += '           			<h5 class="w3-bottombar w3-border-blue w3-padding">스케쥴제목 : ' + list[i].sName + '</h5>'; 
+	        			content += '        		<div class="w3-col m8">';
+	        			content += '           			<h5 class="sname w3-padding">스케쥴제목 : ' + list[i].sName + '</h5>'; 
 	        			content += '           			<div class="info w3-padding">'; 
 	        			content += '           				<p>여행시작일 : ' + list[i].sSdate + '</p>';
 	        			content += '           				<p>여행종료일 : ' + list[i].sEdate + '</p>';
@@ -187,30 +117,82 @@
 	        });
         });
         
+        //월별순 리스트
         $('#searchmonth').click(function(){
         	var sarea = $('#sArea').val();
             var address = $('#inputArea').val();
             var month = $('#month').val();
+            
+            var url = decodeURIComponent(location.href);
+        	var params;
+        	var param;
         	
-        	$(location).attr('href', '/schedule/sortmonth.kit?sarea=' + sarea + "&address=" + address + "&month=" + month);
+        	params = url.substring(url.indexOf('?') + 1, url.length);
+        	params = params.split('&');
+        	
+        	param = params[0];
+        	
+//         	console.log(param);
+        	
+	        $.ajax({
+	        	url : "/schedule/sortmonth.kit?sarea=" + param + "&month=" + month,
+	        	type : "post",
+	        	dataType : "json",
+	        	data : {
+	        		"sarea" : param,
+	        		"month" : month
+	        	},
+	        	
+	        	success : function(data){
+	        		var list = data;
+	        		var content = "";
+	        		
+	        		alert("성공");
+	        		
+	        		$('.delete').remove();
+	        		
+	        		for(var i = 0; i < list.length; i++){
+	        			content += '<div class="delete">';
+	        			content += '	<form action="/schedule/scheduleDetail.kit" method="get" class="box" onclick="this.submit();">';
+	        			content += '		<div class="w3-container w3-card w3-margin-bottom content">';
+	        			content += '    		<input type="hidden" name="sNo" value="' + list[i].sNo + '"' + '>';
+	        			content += '        		<div class="w3-col m4">';
+	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
+	        			content += '        		</div>';
+	        			content += '        		<div class="w3-col m8">';
+	        			content += '           			<h5 class="sname w3-padding">스케쥴제목 : ' + list[i].sName + '</h5>'; 
+	        			content += '           			<div class="info w3-padding">'; 
+	        			content += '           				<p>여행시작일 : ' + list[i].sSdate + '</p>';
+	        			content += '           				<p>여행종료일 : ' + list[i].sEdate + '</p>';
+	        			content += '           				<p>작성일 : ' + list[i].sWdate + '</p>';
+	        			content += '           				<p>총금액 : ' + list[i].sCost + ' 원</p>';
+	        			content += '        			</div>';
+	        			content += '        		</div>';
+	        			content += ' 		</div>';
+	        			content += '	</form>';
+	        			content += '</div>';
+	        			
+	        			$('.add').append(content);
+	        			
+	        			content = "";
+	        		}
+	        	},
+	        	error : function(){
+	        		alert("통신오류");
+	        	}
+	        });
         });
    });
 </script>
 <style>
    *{box-sizing: border-box;}
-/*    인원수창 안보이기 */
-	.pCount {
-		width: 241px;
-		height: 130px;
-		background: white;
-		position: absolute;
-		border: 1px solid gray;
-		border-radius: 3px;
+   
+/*    검색창 박스 크기 */
+	.mainSearch {
 		padding: 10px;
-		margin-top: 2px;
-		display: none;
+		margin-left: 21px;
 	}
-	
+   
 /* 	검색창 위치 조정 */
 	.leftBtn2 {
 		margin-left: 7px;
@@ -218,19 +200,14 @@
 	
 /* 	검색창 input 크기 */
 	.pbtn {
-		width: 80px;
+		width: 500px;
+		padding: 4px;
 		text-align: center;
 	}
-   
-/*     인원수창 */
-   .pCount.view {
-	   display: block;
-	}
 	
-/* 	검색창 크기 */
-	.searchbox {
-		height: auto;
-/* 		background-color: #c8d6db; */
+/* 	검색버튼 */
+	#search {
+		margin-bottom: 4px;
 	}
 	
 /* 	정렬기준 */
@@ -238,7 +215,6 @@
 		width: 100%;
 		height: 50px;
 		padding: 10px;
-/* 		background-color: #c8d6db; */
 	}
 	.standard {
 		font-size: 20px;
@@ -257,7 +233,6 @@
 	.content {
 		height: 316px;
 		padding: 30px;
-/* 		background-color: #c8d6db; */
 	}
 	
 /* 	스케쥴제목 */
@@ -278,71 +253,39 @@
       <c:import url="/navigationBar.kit"></c:import>
    </header>
    <div class="container">
-      <div class="w3-col m3 w3-border w3-padding w3-margin-top searchbox">
-         <div class="mainSearch">
+      <div class="w3-container w3-margin-top mainSearch">
+<!--          <div class="mainSearch"> -->
             <form method="POST" name="myform" id="frm">
-               <div class="form-group">
-                  <label for="inputArea"> 여행가는 도시 </label> <input type="text"
-                     class="form-control city" id="inputArea" name="address" value="${ADDRESS}"
-                     placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
-                     <input type="hidden" name="sCountry" id="sCountry">
-                     <input type="hidden" name="sArea" id="sArea">
-               </div>
-<!--                <div class="form-group tCount confirmDiv"> -->
-<!--                   <label for="inputArea"> 인원수 </label> <input type="text" -->
-<%--                      class="form-control city" id="people" name="people" value="${PEOPLE}" placeholder="인원수를 선택해주세요" autocomplete="off"> --%>
-<!--                   <div class="pCount" id="pCount"> -->
-<!--                      <div class="adult topAdult"> -->
-<!--                         <label> <span class="totalcount">성인</span> -->
-<!--                         </label> -->
-
-<!--                         <button class="abtn ml-4 btn leftBtn1" id="startbtn1" >&laquo;</button> -->
-<%--                         <input type="text" class="pbtn topIpt" id="aCount" value="${SVO.sAtotal}"> --%>
-<!--                         <button class="abtn btn rightBtn1" id="endbtn1" >&raquo;</button> -->
-            
-<!--                      </div> -->
-<!--                      <div class="count"> -->
-<!--                      <label> <span class="totalcount countAdult">어린이</span> -->
-<!--                      </label> -->
-<!--                         <button class="cbtn btn leftBtn2" id="startbtn2" >&laquo;</button> -->
-<%--                         <input type="text" class="pbtn bottomIpt" id="cCount" value="${SVO.sCtotal}"> --%>
-<!--                         <button class="cbtn btn rightBtn2" id="endbtn2">&raquo;</button> -->
-               
-<!--                      </div> -->
-<!--                         <button class="btn btn-outline-info exbtn confirmBtn">확인</button> -->
-<!--                   </div> -->
-<!--                   <input type="hidden" name="sAtotal" id="adult12"> -->
-<!--                   <input type="hidden" name="sCtotal" id="child12">    -->
-<!--                   <input type="hidden" name="sRn" value="1">             -->
-<!--                </div> -->
-      <!--             <button type="button" class="btn btn-outline-info" id="make">스케쥴만들기</button> -->
-               <button type="button" class="btn btn-outline-info" id="search">검색</button>
-<!--                <button type="button" class="btn btn-outline-info" id="certification">이메일인증</button> -->
-<!--                <button type="button" class="btn btn-outline-info" id="nearbysearch">근처검색</button> -->
+                 <input type="text" class="city pbtn" id="inputArea" name="address" value="${ADDRESS}"
+                    placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
+                    
+                    <input type="hidden" name="sCountry" id="sCountry">
+                    <input type="hidden" name="sArea" id="sArea">
+              		<button type="button" class="btn btn-outline-info" id="search">검색</button>
             </form>
-         </div>
+<!--          </div> -->
       </div>
-      <div class="w3-col m8 w3-margin-top w3-margin-left">
+      
+      <div class="w3-container w3-margin-top w3-margin-left">
       <div class="sortbox w3-card w3-margin-bottom">
    			<span class="standard">정렬기준</span>
    			<a href="#" class="sortmenu" id="ratinglist">평점순</a>
    			<a href="#" class="sortmenu" id="recentlist">최신순</a>
    			<a class="sortmenu">
 	   			<select name="month" id="month">
-	   				<optgroup label="월별검색">
-		   				<option value="01">1월</option>
-		   				<option value="02">2월</option>
-		   				<option value="03">3월</option>
-		   				<option value="04">4월</option>
-		   				<option value="05">5월</option>
-		   				<option value="06">6월</option>
-		   				<option value="07">7월</option>
-		   				<option value="08">8월</option>
-		   				<option value="09">9월</option>
-		   				<option value="10">10월</option>
-		   				<option value="11">11월</option>
-		   				<option value="12">12월</option>
-		   			</optgroup>
+   					<option value="">월별검색</option>
+	   				<option value="01">1월</option>
+	   				<option value="02">2월</option>
+	   				<option value="03">3월</option>
+	   				<option value="04">4월</option>
+	   				<option value="05">5월</option>
+	   				<option value="06">6월</option>
+	   				<option value="07">7월</option>
+	   				<option value="08">8월</option>
+	   				<option value="09">9월</option>
+	   				<option value="10">10월</option>
+	   				<option value="11">11월</option>
+	   				<option value="12">12월</option>
 	   			</select>
 	   			<input type="button" value="검색" id="searchmonth">
    			</a>
@@ -355,10 +298,10 @@
 							<input type="hidden" name="sNo" value="${data.sNo}">
 							<input type="hidden" name="sCountry">
                      		<input type="hidden" name="sArea">
-							<div class="w3-col m6">
+							<div class="w3-col m4"> 
 								<img alt="mainpic" src="${data.sPic}" style="width: 250px; height: 250px">
 							</div>
-							<div class="w3-col m6">
+							<div class="w3-col m8">
 								<h5 class="sname w3-padding">${data.sName}</h5>
 								<div class="info w3-padding">
 									<p>여행시작일 : ${data.sSdate}</p>

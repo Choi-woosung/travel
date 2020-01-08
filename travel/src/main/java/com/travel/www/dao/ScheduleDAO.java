@@ -31,9 +31,10 @@ public class ScheduleDAO {
 	}
 	
 	//리스트 최신순으로 가져오기
-	public List<ScheduleVO> recentList(String sarea) {
+	public List<ScheduleVO> recentList(String sarea, String month) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("sarea", sarea);
+		map.put("month", month);
 		
 		return sqlSession.selectList("sSQL.recentList", map);
 	}

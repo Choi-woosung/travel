@@ -66,7 +66,11 @@ public class Schedule {
    public List<ScheduleVO> recentlist(HttpServletRequest req) {
 	   String tmp = req.getParameter("sarea");
 	   String sarea = tmp.substring(tmp.indexOf('=') + 1);
-	   List<ScheduleVO> list = sDAO.recentList(sarea);
+	   tmp = req.getParameter("month");
+	   String month = tmp.substring(tmp.indexOf('=') + 1);
+	   System.out.println(month);
+	   
+	   List<ScheduleVO> list = sDAO.recentList(sarea, month);
 	   
 	   for(int i = 0; i < list.size(); i++) {
 		   String sdate = list.get(i).getsSdate();
@@ -95,6 +99,20 @@ public class Schedule {
 	   String month = tmp.substring(tmp.indexOf('=') + 1);
 	   
 	   List<ScheduleVO> list = sDAO.scheduleList(sarea, month);
+	   
+	   for(int i = 0; i < list.size(); i++) {
+		   String sdate = list.get(i).getsSdate();
+		   String edate = list.get(i).getsEdate();
+		   String wdate = list.get(i).getsWdate();
+		  
+		   sdate = sdate.substring(0, sdate.indexOf(' '));
+		   edate = edate.substring(0, edate.indexOf(' '));
+		   wdate = wdate.substring(0, wdate.indexOf(' '));
+		   
+		   list.get(i).setsSdate(sdate);
+		   list.get(i).setsEdate(edate);
+		   list.get(i).setsWdate(wdate);
+	   }
 	   
 	   return list;
    }
