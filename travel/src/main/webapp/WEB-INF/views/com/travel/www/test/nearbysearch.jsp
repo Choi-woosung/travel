@@ -382,7 +382,6 @@ html, body {
 		<div id="listing">
 			<div id="results"></div>
 		</div>
-		
 	</div>
 </body>
 </html>
