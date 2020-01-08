@@ -169,6 +169,7 @@
 	        			content += '</div>';
 	        			
 	        			$('.add').append(content);
+	        			
 	        			content = "";
 	        			console.log(content + "초기화");
 	        		}
