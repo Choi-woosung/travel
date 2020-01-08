@@ -65,8 +65,6 @@
         	
         	param = params[0];
         	
-//         	console.log(param);
-        	
 	        $.ajax({
 	        	url : "/schedule/recentlist.kit?sarea=" + param + "&month=" + month,
 	        	type : "post",
