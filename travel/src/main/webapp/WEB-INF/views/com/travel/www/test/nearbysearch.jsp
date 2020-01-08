@@ -156,7 +156,7 @@ html, body {
 			type = e;
 			search();
 		}
-		
+		 
 		function initialize() {
 			var myLatlng = new google.maps.LatLng(37.566535, 126.97796919999996); 
 			var myOptions = {
