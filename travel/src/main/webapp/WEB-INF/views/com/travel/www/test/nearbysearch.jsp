@@ -130,10 +130,12 @@ html, body {
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 		var type;
+		var eventId;
 		var map, places, iw;
 		var markers = [];
 		var autocomplete;
 		var options;
+		var liCnt;
 		
 		$(function(){
 			$("#sidebar-toggle").click(function(){
@@ -151,9 +153,10 @@ html, body {
 			});
 		});
 		
-		function searchPlace(e){
-			console.log("들어옴??");
-			type = e;
+		function searchPlace(listType, eId, cnt){
+			type = listType;
+			eventId = eId;
+			liCnt = cnt;
 			search();
 		}
 		 
@@ -289,10 +292,19 @@ html, body {
 				row.appendChild(rightDiv);
 				results.appendChild(row);
 				
-				
 				row.onclick = function(){
 					google.maps.event.trigger(markers[i], 'click');
 				};
+				
+				btn.onclick = function(){
+					var targetLi = document.getElementById(eventId);
+					targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
+										+ '<h5 class="mb-1">' + place.name + '</h5>'
+										+ '<small class="text-muted">' + liCnt + '</small>'
+										+ '</div>'
+										+ '<p class="mb-1 text-left">' +place.formatted_address+ '</p>'
+										+ '<input type="text" name="body">';
+				}
 				
 			});
 
@@ -335,6 +347,7 @@ html, body {
 			content += '</td></tr></table>';
 			return content;
 		}
+		
 		google.maps.event.addDomListener(window, 'load', initialize);
 		
 	</script>
