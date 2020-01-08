@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/css/w3.css" >
 <link rel="shortcut icon" type="image/x-icon" href="/img/main/favicon2.ico" />
 <link rel="stylesheet" href="/css/bootstrap.min.css">
+
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript"
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&libraries=places"></script>
@@ -116,53 +117,67 @@
            $('#sArea').val(street0);
         });
         
-        /*    캘린더  */
-        $('#calendarArea1').click(function(e) {
-           e.preventDefault();
-           $('#sSdate').focus();
+        //리스트 최신순
+        $('#recentlist').click(function(){
+        	var url = decodeURIComponent(location.href);
+        	var params;
+        	var param;
+        	
+        	params = url.substring(url.indexOf('?') + 1, url.length);
+        	params = params.split('&');
+        	
+        	param = params[0];
+        	
+        	console.log(param);
+        	
+	        $.ajax({
+	        	url : "/schedule/recentlist.kit",
+	        	type : "post",
+	        	dataType : "json",
+	        	data : {
+	        		"sarea" : param
+	        	},
+	        	
+	        	success : function(data){
+	        		var list = data;
+	        		var content = "";
+	        		var date = list[0].sWdate;
+	        		
+	        		alert("성공");
+	        		
+	        		console.log(list);
+	        		console.log(list[0].sWdate);
+	        		
+	        		$('.delete').remove();
+	        		
+	        		for(var i = 0; i < list.length; i++){
+	        			console.log(i + "번째");
+	        			
+	        			content += '<div class="delete">';
+	        			content += '	<form action="/schedule/scheduleDetail.kit" method="post" class="box">';
+	        			content += '		<div class="w3-container w3-card w3-margin-bottom content">';
+	        			content += '    		<input type="hidden" name="sNo" value="' + list[i].sNO + '"' + '>';
+	        			content += '        		<div class="w3-col m6">';
+	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
+	        			content += '        		</div>';
+	        			content += '        		<div class="w3-col m6">';
+	        			content += '           			<h4 class="name">' + list[i].sName + '</h4>'; 
+	        			content += '           			<p>' + list[i].sWdate + '</p>';
+	        			content += '        		</div>';
+	        			content += ' 		</div>';
+	        			content += '	</form>';
+	        			content += '</div>';
+	        			
+	        			$('.add').append(content);
+	        			content = "";
+	        			console.log(content + "초기화");
+	        		}
+	        	},
+	        	error : function(){
+	        		alert("통신오류");
+	        	}
+	        });
         });
-        $('#calendarArea2').click(function(e) {
-           e.preventDefault();
-           $("#sEdate").focus();
-        });
-        //예약발행 달력_시작 
-        $('#sSdate').datepicker(
-              {
-                 dateFormat : 'yy/mm/dd',
-                 showMonthAfterYear : true,
-                 changeMonth : true,
-                 changeYear : true,
-                 numberOfMonths : 1,
-                 dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-                 monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
-                       '7월', '8월', '9월', '10월', '11월', '12월' ],
-                 minDate : -0
-                 //오늘날짜 이후부터만 설정되게 
-                 ,
-                 onClose : function(selectedDate) {
-                    $('#sEdate').datepicker("option", "minDate", "maxDate",
-                          selectedDate);
-                 }
-              });
-        //기간발행_끝 
-        $("#sEdate").datepicker(
-              {
-                 dateFormat : 'yy/mm/dd',
-                 showMonthAfterYear : true,
-                 changeMonth : true,
-                 changeYear : true,
-                 numberOfMonths : 1,
-                 dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-                 monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
-                       '7월', '8월', '9월', '10월', '11월', '12월' ],
-                 minDate : -0
-                 //오늘날짜 이후부터만 설정되게 
-                 ,
-                 onClose : function(selectedDate) {
-                    $('#sSdate').datepicker("option", "minDate", "maxDate",
-                          selectedDate);
-                 },
-              });
    });
 </script>
 <style>
@@ -205,7 +220,20 @@
 	.sortbox {
 		width: 100%;
 		height: 50px;
-		padding: 13px;
+		padding: 10px;
+	}
+	.standard {
+		font-size: 20px;
+		font-weight: bold;
+/* 		border-right: 1px solid black; */
+		padding: 5px;
+	}
+	.sortmenu {
+		font-size: 20px;
+		margin-left: 30px;
+	}
+	.sortmenu:hover {
+		text-decoration: none;
 	}
 	
 /* 	콘텐트박스 */
@@ -227,19 +255,6 @@
                   <label for="inputArea"> 여행가는 도시 </label> <input type="text"
                      class="form-control city" id="inputArea" name="sCountry" value="${ADDRESS}"
                      placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
-               </div>
-               <div class="row">
-                  <div class="form-group col-md-6 ">
-                     <label for="calendarArea" id="calendarArea1"> 출발일 선택 </label> <input
-                        type="text" class="form-control col-md-12" id="sSdate"
-                        name="Sdate" value="${SVO.sSdate}" placeholder="언제부터 ?" autocomplete="off">
-                  </div>
-                  <div class="form-group col-md-6">
-                     <label for="calendarArea"> 도착일 선택 </label> <input type="text"
-                        class="form-control col-md-12" id="sEdate" name="Edate" value="${SVO.sEdate}"
-                        placeholder="언제까지 ?" autocomplete="off">
-      
-                  </div>
                </div>
                <div class="form-group tCount confirmDiv">
                   <label for="inputArea"> 인원수 </label> <input type="text"
@@ -277,23 +292,28 @@
       </div>
       <div class="w3-col m8 w3-margin-top w3-margin-left">
       <div class="sortbox w3-card w3-margin-bottom">
-   			<span>정렬기준</span>
-   			<a href="#">평점순</a>
-   			<a href="#">최신순</a>
+   			<span class="standard">정렬기준</span>
+   			<a href="#" class="sortmenu" id="ratinglist">평점순</a>
+   			<a href="#" class="sortmenu" id="recentlist">최신순</a>
    		</div>
-      <c:forEach var="data" items="${LIST}">
-      <form action="/schedule/scheduleDetail.kit" method="post" class="box">
-         <input type="hidden" name="sNo" value="${data.sNo}">
-         <div class="w3-container w3-card w3-margin-bottom content">
-            <div class="w3-col m6">
-               <img alt="mainpic" src="${data.sPic}" style="width: 250px; height: 250px">
-            </div>
-            <div class="w3-col m6">
-               <h4>${data.sName}</h4> 
-            </div>
-         </div>
-      </form>
-      </c:forEach> 
+		<div class="add">
+			<div class="delete">
+				<c:forEach var="data" items="${LIST}">
+					<form action="/schedule/scheduleDetail.kit" method="post" class="box">
+						<div class="w3-container w3-card w3-margin-bottom content">
+							<input type="hidden" name="sNo" value="${data.sNo}">
+							<div class="w3-col m6">
+								<img alt="mainpic" src="${data.sPic}" style="width: 250px; height: 250px">
+							</div>
+							<div class="w3-col m6">
+								<h4 class="name">${data.sName}</h4> 
+								<p>${data.sWdate}</p>
+							</div>
+						</div>
+					</form>
+				</c:forEach>
+			</div>
+		</div>
       </div>
    </div>
 </body>

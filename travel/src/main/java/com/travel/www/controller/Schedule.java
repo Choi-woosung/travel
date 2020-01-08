@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -38,6 +39,18 @@ public class Schedule {
 //      mv.setView(rv);
       
       return mv;
+   }
+   
+   @RequestMapping("/recentlist.kit")
+   @ResponseBody
+   public List<ScheduleVO> recentlist(HttpServletRequest req) {
+	   System.out.println("recent 입성");
+	   String tmp = req.getParameter("sarea");
+	   String sarea = tmp.substring(tmp.indexOf('=') + 1);
+	   System.out.println(sarea);
+	   List<ScheduleVO> list = sDAO.recentList(sarea);
+	   
+	   return list;
    }
    
    @RequestMapping("/scheduleUp.kit")
