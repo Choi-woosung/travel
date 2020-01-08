@@ -22,7 +22,7 @@ public class ScheduleDetailDAO {
 	}
 	public int LikeBoardLikeCheckTotal(ScheduleVO sVO) {
 		return sqlSession.selectOne("sdSQL.LikeCheckTotal", sVO);
-	}
+	} 
 	public int LikeBoardLikeCheck(ScheduleVO sVO) {
 		return sqlSession.selectOne("sdSQL.LikeCheck", sVO);
 	}

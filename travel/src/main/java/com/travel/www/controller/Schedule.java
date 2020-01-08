@@ -82,7 +82,7 @@ public class Schedule {
    @RequestMapping("/scheduleDetail.kit")
    public ModelAndView shceduleDetail(ModelAndView mv, ScheduleVO sVO, RedirectView rv) {
 	   if(sVO.getsNo() == 0 ) {
-		   rv.setUrl("/main.kit");
+		   rv.setUrl("/main.kit"); 
 		   mv.setView(rv);
 		   return mv;
 	   }

@@ -9,7 +9,7 @@ public class ScheduleVO {
 	private String sName; 
 	private String mId; 
 	private String sSdate;
-	private String sEdate; 
+	private String sEdate;  
 	private String sCountry; 
 	private String sArea;  
 	private int sWriter;

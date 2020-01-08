@@ -46,7 +46,7 @@
     		LS_NO = #{sNo}
    </select>
    <select id="LikeCheck" parameterType="sVO" resultType="int">
-   		SELECT
+   		SELECT 
    			count(*)
 		FROM
     		LIKEBOARD
