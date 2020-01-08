@@ -4,15 +4,62 @@
 			PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 			
-<mapper namespace="diningSQL"> 
-	
-	<insert id="makeDetail" parameterType="detailVO">
-		INSERT INTO
-			scheduledetail
+<mapper namespace="sdSQL"> 
+	<select id="scheduleDetail" parameterType="sVO" resultType="sVO">
+      SELECT
+         s_no sNo, s_name sName, s_country sCountry, s_area sArea, s_pic sPic, s_body sBody, s_cost sCost, s_rate sRate
+      FROM
+         schedule
+      WHERE
+      	s_no = ${sNo}
+   </select>
+   
+   <update id="scheduleStar" parameterType="sVO">
+   	UPDATE 
+   		SCHEDULE
+	SET 
+		s_rate = (SELECT s_rate from SCHEDULE WHERE s_no = #{sNo})+ #{sRate}
+	WHERE
+    	s_no = #{sNo}
+   </update>
+   <insert id="LikeBoard" parameterType="sVO">
+   INSERT INTO
+			LIKEBOARD(
+				LS_NO, LM_ID, L_RATE)
 		VALUES(
-			#{sdno}, #{sdday}, #{sdono}, #{type},
-			#{sdotype}, #{sdbody}
-		)
-	</insert>
-	
+			#{sNo}, #{mId}, #{sRate})
+   </insert>
+<!--    <update id="LikeBoard" parameterType="sVO">
+   	UPDATE 
+   		Likeboard
+	SET 
+		LS_NO  = #{sNo} 
+		AND	LM_ID = #{mId}
+		AND L_Rate = #{sRate}
+   </update> -->
+   <select id="LikeCheckTotal" parameterType="sVO" resultType="int">
+   		SELECT
+   			count(lm_id)
+		FROM
+    		LIKEBOARD
+		WHERE
+    		LS_NO = #{sNo}
+   </select>
+   <select id="LikeCheck" parameterType="sVO" resultType="int">
+   		SELECT
+   			count(*)
+		FROM
+    		LIKEBOARD
+		WHERE
+    		LM_ID = #{mId}
+    	AND LS_NO = #{sNo}
+   </select>
+   <select id="LikeTotal" parameterType="sVO" resultType="int">
+   		SELECT
+ 		  s_rate
+		FROM
+    		SCHEDULE
+		WHERE
+    		s_no = #{sNo}
+   </select>
 </mapper>
