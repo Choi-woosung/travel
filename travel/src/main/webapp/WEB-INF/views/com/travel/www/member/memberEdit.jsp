@@ -199,7 +199,7 @@
 		let profile_select = document.getElementById('profile_select');
 		let profile_img = document.getElementById('profile_img');
 		
-		for (var i = 0; i < 10; i++) {
+		for (var i = 0; i < 9; i++) {
 			let el = document.createElement('option');
 			el.textContent = '프로필 이미지 ' + (i + 1);
 			el.value = (i + 11); 
@@ -209,7 +209,7 @@
 			profile_select.appendChild(el);
 		}
 		
-		profile_img.src = '/img/profile/profile' + (${DATA.mAvatar} - 10) + '.png'; 
+		profile_img.src = '/img/profile/profile${DATA.mAvatar - 10}.png'; 
 		
 		profile_select.addEventListener('change', e => {
 			let num = e.target.value - 10;

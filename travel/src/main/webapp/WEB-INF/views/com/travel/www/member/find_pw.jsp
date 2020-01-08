@@ -30,6 +30,10 @@ $(function(){
 		});
 	});
 	
+	$('#edit').click(function(){
+		
+	});
+	
 
 	
 	
@@ -66,6 +70,8 @@ $(function(){
 		$(location).attr('href', 'pw_email.kit');
 		
 	});
+	
+	
 });
 
 </script>
@@ -124,5 +130,7 @@ $(function(){
 			</div>
 		</div>
 	</div>
+	
+
 </body>
 </html>
