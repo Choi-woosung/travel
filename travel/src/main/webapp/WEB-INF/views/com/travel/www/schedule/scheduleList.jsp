@@ -131,7 +131,7 @@
         	console.log(param);
         	
 	        $.ajax({
-	        	url : "/schedule/recentlist.kit",
+	        	url : "/schedule/recentlist.kit?sarea" + param,
 	        	type : "post",
 	        	dataType : "json",
 	        	data : {
@@ -141,12 +141,10 @@
 	        	success : function(data){
 	        		var list = data;
 	        		var content = "";
-	        		var date = list[0].sWdate;
 	        		
 	        		alert("성공");
 	        		
 	        		console.log(list);
-	        		console.log(list[0].sWdate);
 	        		
 	        		$('.delete').remove();
 	        		

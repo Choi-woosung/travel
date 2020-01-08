@@ -3,11 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset='utf-8'>
-	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-	<link rel="shortcut icon" type="image/x-icon" href="/img/main/favicon2.ico" />
-	<title>ConsulTravel</title>
-	<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
 <style>
 <%--내비게이션 바 관련 css --%>
 .barcolor {
@@ -23,14 +19,10 @@
 	background : #2cb5e9;
 }
 </style>
-<script>
-</script>
 </head>
 <body>
 <%-- 공통 내비게이션 바 부분 --%>
-
-
-	<nav class="navbar navbar-expand-lg navbar-dark back">
+	<nav class="navbar navbar-expand-lg navbar-dark back nav_size">
 		<a class="navbar-brand use" href="/main.kit">
 			<img src="/img/main/logo2.png">		
 		</a>
@@ -60,7 +52,7 @@
 							height: 50px;
 							user-select: none;
 							position: fixed;
-							right: 66.6px;
+							right: 6px;
 							top: 6px;
 						}
 						.profile_hide {
@@ -105,7 +97,7 @@
 						<img class="profile_img" id="profile_btn">
 						<ul class="profile_hide" id="profile_menu">
 							<li><div class="user_name" id="user_name"></div></li>
-							<li><a href="/member/memberForm.kit">회원정보보기</a></li>
+							<li><a href="/member/memberForm.kit">내 정보</a></li>
 							<li><a href="/member/logout.kit">로그아웃</a></li>
 						</ul>
 					</li>
@@ -119,7 +111,7 @@
 							.then(text => profile_btn.src = '/img/profile/' + text);
 							
 							fetch('/board/getname.kit').then(response => response.text())
-							.then(text => user_name.textContent = 'UserName : ' + text);
+							.then(text => user_name.textContent = text);
 
 							document.addEventListener('click', e => {
 								if (e.target != profile_btn) {
@@ -134,6 +126,9 @@
 								} else {
 									profile_menu.className = 'profile_hide';
 								}
+							});
+							user_name.addEventListener('click', () => {
+								location.href = '#';
 							});
 						});
 					</script>

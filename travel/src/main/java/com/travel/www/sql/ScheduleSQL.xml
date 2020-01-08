@@ -19,13 +19,15 @@
 	</select>
 	
 	<!-- 리스트 최신순 정렬 -->
-	<select id="recentList" resultType="sVO" parameterType="String">
+	<select id="recentList" resultType="sVO" parameterType="hashmap">
 		SELECT
 			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_pic sPic
 		FROM
 			schedule
-		WHERE
-			s_area like #{sarea}
+		<if test="!(sarea eq null) and !(sarea.equals(''))">
+			WHERE
+				s_area like #{sarea}
+		</if>
 		ORDER BY
 			s_wdate desc
 	</select>
