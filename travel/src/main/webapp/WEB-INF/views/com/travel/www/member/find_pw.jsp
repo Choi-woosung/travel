@@ -27,26 +27,14 @@ $(function(){
 			success : function(result){
 				alert(result);
 			},
-			error : function(re)
 		});
 	});
 	
-/*
-	$("#findBtn").click(function(){
-		$.ajax({
-			url : "/member/find_pw.kit",
-			type : "POST",
-			data : {
-				id : $("#id").val(),
-				email : $("#email").val()
-			},
-			success : function(result) {
-				alert(result);
-			},
+	$('#edit').click(function(){
 		
-		});
 	});
-*/
+	
+
 	
 	
 	$('#Check').click(function(){
@@ -82,6 +70,8 @@ $(function(){
 		$(location).attr('href', 'pw_email.kit');
 		
 	});
+	
+	
 });
 
 </script>
@@ -107,12 +97,17 @@ $(function(){
 	.text-center{
 		margin-top:100px;
 	}
+	
+	#container{
+		margin:0 auto;
+	}
+
 
 </style>
 <title>비밀번호 찾기</title>
 </head>
-<body class="text-center">
-	<div class="text-center mb-1">
+<body  class="text-center">
+	<div id="container" class="text-center mb-1">
 		<div class="w3-container w3-card-4">
 			<div class="h3 mb-3 font-weight-normal">
 				<h3>비밀번호 찾기</h3>
@@ -135,5 +130,7 @@ $(function(){
 			</div>
 		</div>
 	</div>
+	
+
 </body>
 </html>

@@ -23,7 +23,10 @@ public class ScheduleDAO {
 	
 	//리스트 최신순으로 가져오기
 	public List<ScheduleVO> recentList(String sarea) {
-		return sqlSession.selectList("sSQL.recentList", sarea);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("sarea", sarea);
+		
+		return sqlSession.selectList("sSQL.recentList", map);
 	}
 	
 	public ScheduleVO schedule() {

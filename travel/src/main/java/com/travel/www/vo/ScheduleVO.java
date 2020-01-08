@@ -7,23 +7,30 @@ public class ScheduleVO {
 	private int sRn;
 	private int sNo;
 	private String sName; 
+	private String mId; 
 	private String sSdate;
-	private String sEdate; 
+	private String sEdate;  
 	private String sCountry; 
 	private String sArea;  
 	private int sWriter;
-	private Date sWdate;
+	private String sWdate;
 	private Date sWedate; 
 	private String sBody;
 	private int sCtotal;
 	private int sAtotal;
 	private int sDay;
-	private int sRate;
+	private double sRate;
 	private String sDel;
 	private String sPic; 
 	private int sCost;
 	
 	
+	public String getmId() {
+		return mId;
+	}
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
 	public int getsCost() {
 		return sCost;
 	}
@@ -97,10 +104,10 @@ public class ScheduleVO {
 	public void setsWriter(int sWriter) {
 		this.sWriter = sWriter;
 	}
-	public Date getsWdate() {
+	public String getsWdate() {
 		return sWdate;
 	}
-	public void setsWdate(Date sWdate) {
+	public void setsWdate(String sWdate) {
 		this.sWdate = sWdate;
 	}
 	public Date getsWedate() {
@@ -115,10 +122,10 @@ public class ScheduleVO {
 	public void setsBody(String sBody) {
 		this.sBody = sBody;
 	}
-	public int getsRate() {
+	public double getsRate() {
 		return sRate;
 	}
-	public void setsRate(int sRate) {
+	public void setsRate(double sRate) {
 		this.sRate = sRate;
 	}
 	public String getsDel() {
