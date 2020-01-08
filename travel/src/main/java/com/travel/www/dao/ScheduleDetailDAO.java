@@ -26,7 +26,7 @@ public class ScheduleDetailDAO {
 	public int LikeBoardLikeCheck(ScheduleVO sVO) {
 		return sqlSession.selectOne("sdSQL.LikeCheck", sVO);
 	}
-	public int LikeBoardLikeTotal(ScheduleVO sVO) {
+	public double LikeBoardLikeTotal(ScheduleVO sVO) {
 		return sqlSession.selectOne("sdSQL.LikeTotal", sVO);
 	}
 }

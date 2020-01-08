@@ -54,7 +54,7 @@
     		LM_ID = #{mId}
     	AND LS_NO = #{sNo}
    </select>
-   <select id="LikeTotal" parameterType="sVO" resultType="int">
+   <select id="LikeTotal" parameterType="sVO" resultType="double">
    		SELECT
  		  s_rate
 		FROM
