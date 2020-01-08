@@ -105,4 +105,16 @@
 		m_id = #{mId}
 		
 	</update>
+	
+	<!-- myProfile -->
+	<select id="getMyProfile" parameterType="mVO" resultType="mVO">
+		SELECT
+		    m_mail mMail, m_name mName, m_address mAddress, 
+		    m_mobile mMobile, m_jdate mJdate, 
+		    m_grade mGrade, m_avatar mAvatar, m_point mPoint
+		FROM
+		    member
+		WHERE
+		    m_id = #{mId}
+	</select>
 </mapper>

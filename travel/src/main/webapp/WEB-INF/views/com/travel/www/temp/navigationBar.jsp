@@ -97,7 +97,7 @@
 						<img class="profile_img" id="profile_btn">
 						<ul class="profile_hide" id="profile_menu">
 							<li><div class="user_name" id="user_name"></div></li>
-							<li><a href="/member/memberForm.kit">내 정보</a></li>
+							<li><a href="/member/myProfile.kit">내 정보</a></li>
 							<li><a href="/member/logout.kit">로그아웃</a></li>
 						</ul>
 					</li>
