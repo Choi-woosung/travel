@@ -89,6 +89,8 @@ body, html {
 	height : 700px;
 	overflow : hidden;
 }
+.no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;}
+
 
 </style>
 <script>
@@ -108,8 +110,7 @@ body, html {
 			var headContent = document.createTextNode(status + "일차");
 			scheduleDiv.appendChild(headContent);
 			scheduleDiv.setAttribute('class', 'innerpage2 bg-white shadow');
-			scheduleDiv.setAttribute('draggable', 'true');
-			scheduleDiv.setAttribute('ondragstart', 'moveStart(event)');
+			scheduleDiv.setAttribute('draggable', 'false');
 			scheduleDiv.setAttribute('id', 'd'+status);
 			$('#dayCount').append(scheduleDiv);
 			
@@ -128,24 +129,25 @@ body, html {
 	}
 
 	function drag(ev) {
-	  ev.dataTransfer.setData("text/plain", ev.target.id);
+	 ev.dataTransfer.setData("text", ev.target.id);
 	}
 
 	function drop(ev) {
-	  ev.preventDefault();
 	  console.log(data);
-	  var data = event.dataTransfer.getData("text/plain");
+	  var data = event.dataTransfer.getData("text");
 	  var tf = getParents(ev.target);
 	  var targetDiv;
 	  if(tf.className == 'innerpage2 bg-white shadow'){
 		  targetDiv = tf;
-		  var acode = document.createElement('a');
-		  var divcode = document.createElement('div');
+		  var acode = document.createElement('li');
+		  var divcode = document.createElement('ul');
 		  divcode.setAttribute('class' , 'list-group');
 		  divcode.setAttribute('data-toggle', 'modal');
-		  divcode.setAttribute('data-target', '#dataModal');
+		  divcode.setAttribute('data-target', '#dataModal'); 
 		  divcode.setAttribute('onclick', 'searchPlace("'+data+'")');
-		  acode.setAttribute('class', 'list-group-item list-group-item-action');
+		  divcode.setAttribute('draggable', 'false');
+		  acode.setAttribute('class', 'list-group-item');
+		  acode.setAttribute('draggable', 'false');
 		  var textcode = document.createTextNode("+"); 
 		  divcode.appendChild(acode);
 		  acode.appendChild(textcode);
@@ -174,7 +176,7 @@ body, html {
 	
 </script>
 </head>
-<body>
+<body class="no-drag">
 <div class="nav-scroller bg-light border-bottom bg-light">
     <a class="nav-link active font-weight-bold logoText" href="/main.kit">ConsulTravel</a>
   	<nav class="nav nav-underline">

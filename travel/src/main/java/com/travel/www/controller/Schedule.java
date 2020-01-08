@@ -22,6 +22,7 @@ public class Schedule {
    
    @Autowired
    ScheduleDAO sDAO;
+   
    @Autowired
    ScheduleDetailDAO sdDAO;
    
