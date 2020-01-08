@@ -1,5 +1,6 @@
 package com.travel.www.controller;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -137,6 +138,9 @@ public class Schedule {
 	   	double likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
 	   // 평균값
 	   	double likeAvg = like/likeCount;
+	   	DecimalFormat form = new DecimalFormat("#.#");
+	   	String likeAvg1 = form.format(likeAvg);
+	   	likeAvg = Double.parseDouble(likeAvg1);
 	   sVO = sdDAO.scheduleDetail(sVO);
 	   mv.addObject("DATA", sVO);
 	   mv.addObject("likeAvg", likeAvg);
@@ -168,10 +172,13 @@ public class Schedule {
 	   	
 	   // 평균값
 	   	double likeAvg = like/likeCount;
-	   	
-	   if(cnt == 2) {
+
+	   	DecimalFormat form = new DecimalFormat("#.#");
+	   	String likeAvg1 = form.format(likeAvg);
+	   	likeAvg = Double.parseDouble(likeAvg1);
+	   	if(cnt == 2) {
 		   System.out.println("등록완료");
-	   }
+	   	}
 	   sVO.setCnt(cnt);
 	   sVO.setLikeAvg(likeAvg);
 	   return sVO;

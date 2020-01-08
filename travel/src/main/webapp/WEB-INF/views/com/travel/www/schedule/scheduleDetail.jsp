@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>ConsulTravel</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -16,8 +16,6 @@
 body, html {
 	margin: 0;
 	padding: 0;
-	height: 100%;
-	overflow-y: scroll;
 	overflow-x: hidden;
 }
 
@@ -76,6 +74,9 @@ body, html {
 .city, .travelbody, .sBody{
 
 	margin: 30px;
+}
+.city{
+	font-size: 20px;
 }
 .travelbody{
 	font-size: 15px;
