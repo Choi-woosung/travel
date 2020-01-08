@@ -91,8 +91,8 @@
 			resize: none;
 			font-size: 12px;
 			padding-top: 10px;
-			/* border: none;
-			border-bottom: 1px solid #EBEBEB; */
+			border: none;
+			border-bottom: 1px solid #EBEBEB;
 			margin-top: 8px;
 			margin-left: 8px;
 			margin-right: 8px;
@@ -105,7 +105,7 @@
 			height: calc(90% - 22px);
 			font-size: 12px;
 			resize: none;
-			/* border: none; */
+			border: none;
 			padding-top: 8px;
 			margin-left: 8px;
 			margin-right: 8px;
