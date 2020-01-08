@@ -156,6 +156,10 @@
 		.overflow {
 			overflow: hidden;
 		}
+		.moon {
+			background-color: #212529;
+			color: #F9FAFA;
+		}
 	</style>
 </head>
 <body>
@@ -166,10 +170,11 @@
 		<div class="left_bar">
 			<ul>
 				<li id="writing">문의하기</li>
-				<li>내 문의내역</li>
+				<li id="moon">내 문의내역</li>
+				<li id="help">도움말</li>
 			</ul>
 		</div>
-		<div class="board">
+		<div class="hide" id="board">
 			<div class="board_list">
 				<div>번호</div>
 				<div>제목</div>
@@ -194,44 +199,65 @@
 
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
-			let writing = document.getElementById('writing');
-			let body = document.querySelector('body');
-			let modal_box = document.getElementById('modal_box');
 			let modal_contents = document.getElementById('modal_contents');
 			let modal_cancel = document.getElementById('modal_cancel');
-			let modal_btn = document.getElementById('modal_btn');
 			let modal_text = document.getElementById('modal_text');
-
+			let modal_box = document.getElementById('modal_box');
+			let modal_btn = document.getElementById('modal_btn');
+			let writing = document.getElementById('writing');
+			let board = document.getElementById('board');
+			let moon = document.getElementById('moon');
+			let help = document.getElementById('help');
+			let body = document.querySelector('body');
+			
+			moon.addEventListener('click', () => {
+				removeCls();	
+				isCls1(moon, 'moon');
+				isCls2(board, 'hide', 'board');
+			});
+			
+			moon.click();
+			
 			writing.addEventListener('click', () => {
-				if (body.className == '') {
-					body.className = 'overflow';
-				} else {
-					body.className = '';
-				}
-				if (modal_box.className == 'hide') {
-					modal_box.className = 'modal_box';
-				} else {
-					modal_box.className = 'hide';
-				}
-				if (modal_contents.className == 'hide') {
-					modal_contents.className = 'modal_contents';
-				} else {
-					modal_contents.className = 'hide';
-				}
+				isCls1(body, 'overflow');
+				isCls2(modal_box, 'hide', 'modal_box');
+				removeCls();
+				isCls1(writing, 'moon');
+				isCls2(modal_contents, 'hide', 'modal_contents');
+			});
+			help.addEventListener('click', () => {
+				removeCls();
+				isCls1(help, 'moon');
 			});
 			modal_cancel.addEventListener('click', () => {
 				writing.click();
+				moon.click();
 			});
 			modal_btn.addEventListener('click', () => {
-				fetch('/board/qnawriting.kit', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-					},
-					body: "Sq_no=" + modal_text.value
-				});
 				writing.click();
-			});
+				moon.click();
+			});		
+			function removeCls() {
+				let el = moon.parentElement.children;
+				for (var i = 0; i < el.length; i++) {
+					el[i].className = '';
+					board.className = 'hide';
+				}
+			}
+			function isCls1(el, cls) {
+				if (el.className == '') {
+					el.className = cls;
+				} else {
+					el.className = '';
+				}
+			}
+			function isCls2(el, cls1, cls2) {
+				if (el.className == cls1) {
+					el.className = cls2;
+				} else {
+					el.className = cls1;
+				}
+			}
 		});
 	</script>
 </body>
