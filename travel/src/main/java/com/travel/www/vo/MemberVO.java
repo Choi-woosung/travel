@@ -11,7 +11,8 @@ public class MemberVO {
 	private int mNo;
 	private String mId;
 	private String mPw;
-	private int mPw2;
+	private String mPw2;
+	private int nPw2;
 	private Date mPcdate;
 	private String sPcdate;
 	private String mMail;
@@ -40,11 +41,19 @@ public class MemberVO {
 	public void setmPw(String mPw) {
 		this.mPw = mPw;
 	}
-	public int getmPw2() {
+
+	public String getmPw2() {
 		return mPw2;
 	}
-	public void setmPw2(int mPw2) {
+	public void setmPw2(String mPw2) {
 		this.mPw2 = mPw2;
+	}
+	
+	public int getnPw2() {
+		return nPw2;
+	}
+	public void setnPw2(int nPw2) {
+		this.nPw2 = nPw2;
 	}
 	public Date getmPcdate() {
 		return mPcdate;
