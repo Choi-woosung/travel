@@ -410,7 +410,6 @@ input[type="number"]::-webkit-inner-spin-button {
 			}
 		
 		// 리스트 내 li 제거 기능
-		
 		function removeChildNode(e){
 			e.parentNode.removeChild(e);
 		}
