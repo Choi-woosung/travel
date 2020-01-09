@@ -372,14 +372,14 @@ input[type="number"]::-webkit-inner-spin-button {
 									+ '</div>'
 									+ '<div class="flex-fill">'
 									+ '</div>'
-									+ '<div class="flex-fill">
+									+ '<div class="flex-fill">'
 									+ '</div>'
 									+ '</div>'
 									+ '</div>'
 									+ '<div class="row">'
 									+ '<div class="col-sm border mx-3" style="display : none; " onclick="modifyContent('+eventId+')"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
 									+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
-									+ '<div class="col-sm border mx-3" onclick="viewThisContent('+place.geometry')"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
+									+ '<div class="col-sm border mx-3" onclick="viewThisContent('+place.geometry+')"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
 									+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+')"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
 									+ '</div>';
 				}
