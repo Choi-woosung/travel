@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -124,6 +125,24 @@ html, body {
 	border-radius : 5px;
 }
 
+.rowmargin {
+	margin-left : 1px;
+}
+
+.bodycontext {
+	border-bottom : 1px solid #dee2e6;
+	text-align : left;
+	padding-left : 1px;
+	width : 42px;
+}
+
+
+<!-- 인풋 타입 넘버 애로우 제거 -->
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 
 </style>
@@ -142,16 +161,9 @@ html, body {
 				$("#infobox").toggleClass("sidebar-active");
 				$('#sidebar-toggle').toggleClass("sidebar-active");
 			});
-			
-			$(document).mousemove(function(e){
-			    $('.mouse_event').css("top", e.pageY);
-			    $('.mouse_event').css("left", e.pageX);
-			});
-			$('.icons').click(function(){
-				type = this.id;
-				search();
-			});
 		});
+		
+		// 현재 클릭한 li의 구글 맵 타입과 아이디, cnt 반환해주는 기능
 		
 		function searchPlace(listType, eId, cnt){
 			type = listType;
@@ -236,7 +248,7 @@ html, body {
 				console.log(status);
 				  if (status == google.maps.places.PlacesServiceStatus.OK) {
 					addResultMarker(result, i);
-					addResultList(place);
+					addResultList(place, i);
 				 } 				  
 			});
 		}
@@ -255,9 +267,11 @@ html, body {
 				}, showInfoWindow(i));
 			}
 		}
+		
+		// InfoWindow 보여주는 기능
 
 		function showInfoWindow(i) {
-			return function (place, status) {
+			return function(place, status){
 				if (iw) {
 					iw.close();
 					iw = null;
@@ -271,6 +285,8 @@ html, body {
 			}
 		}
 
+		//Infowindow 안 내용
+		
 		function getIWContent(place) {
 			var content = '<table style="border:0"><tr><td style="border:0;">';
 			content += '<img class="placeIcon" src="' + place.icon + '"></td>';
@@ -279,7 +295,9 @@ html, body {
 			return content;
 		}
 		
-		function addResultList(place){
+		// 맵 좌측 창에 리스트 반환해주는 기능
+		
+		function addResultList(place, i){
 			var name = document.createTextNode(place.name);
 			var url = document.createTextNode(place.url);
 			var rating;
@@ -332,19 +350,42 @@ html, body {
 			results.appendChild(row);
 			
 			row.onclick = function(){
-				google.maps.event.trigger(markers[i], 'click');
+				google.maps.event.trigger(markers[i], 'click', showInfoWindow(place, i));
 			};
 			
 			btn.onclick = function(){
 				var targetLi = document.getElementById(eventId);
+				targetLi.setAttribute('data-toggle' , null);
+				targetLi.setAttribute('data-target' , null);
+				targetLi.setAttribute('onclick' , null);
 				targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
 									+ '<h5 class="mb-1">' + place.name + '</h5>'
 									+ '<small class="text-muted">' + liCnt + '</small>'
 									+ '</div>'
 									+ '<p class="mb-1 text-left">' +place.formatted_address+ '</p>'
-									+ '<input type="text" name="body">';
+									+ '<div class="content-body-text input-group-sm mb-1" name="body" style="display : none;">'
+									+ '<input type="text" class="bodycontext" name="body" placeholder="메모">'
+									+ '<div class="d-flex">'
+									+ '<div class="flex-fill">예산 : '
+									+ '</div>'
+									+ '<div class="flex-fill"><input type="number" name="price">'
+									+ '</div>'
+									+ '<div class="flex-fill">'
+									+ '</div>'
+									+ '<div class="flex-fill">
+									+ '</div>'
+									+ '</div>'
+									+ '</div>'
+									+ '<div class="row">'
+									+ '<div class="col-sm border mx-3" style="display : none; " onclick="modifyContent('+eventId+')"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
+									+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
+									+ '<div class="col-sm border mx-3" onclick="viewThisContent('+place.geometry')"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
+									+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+')"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
+									+ '</div>';
 				}
 		}
+		
+		// 맵에 마커 추가 기능
 		
 		function addResultMarker(result, i){
 			console.log(result.geometry.location);
@@ -352,10 +393,12 @@ html, body {
 			markers[i] = new google.maps.Marker({
 				position: result.geometry.location,
 				animation: google.maps.Animation.DROP
-			});/* 
-			google.maps.event.addListener(markers[i], 'click', getDetails(result, i)); */
+			});
+			google.maps.event.addListener(markers[i], 'click', getDetails(result, i));
 			setTimeout(dropMarker(i), i * 100);
 		}
+		
+		// 쓰레드 슬립
 		
 		function sleep(milliseconds) {
 			  var start = new Date().getTime();
@@ -365,6 +408,50 @@ html, body {
 			    }
 			  }
 			}
+		
+		// 리스트 내 li 제거 기능
+		
+		function removeChildNode(e){
+			e.parentNode.removeChild(e);
+		}
+		
+		// list 내 li에 body 컨텐츠 추가, 금액 추가  하는 기능
+		
+		function modifyContent(eventId, e){
+			e.style.display = 'none';
+			e.previousSibling.style.display = 'block';
+			var bodyText = eventId.querySelector('.content-body-text');
+			console.log(bodyText);
+			bodyText.style.display = 'block';
+		}
+		
+		function confirmContent(eventId, e){
+			
+		}
+		
+		function viewThisContent(markerData) {
+			clearResults();
+			clearMarkers();
+			map.panTo(markerData);
+			markers[0] = new google.maps.Marker({
+				position: markerData,
+				map: map
+			});
+			iw = new google.maps.InfoWindow({
+				content: getIWContent(place)
+			});
+			iw.open(map, markers[0]);
+		}
+
+		
+	
+		function textcommit(ele){
+			if(event.key == 'Enter'){
+				alert(ele.value)
+			}
+		}
+		
+		// 구글 맵 실행되는 함수
 		
 		google.maps.event.addDomListener(window, 'load', initialize);
 		

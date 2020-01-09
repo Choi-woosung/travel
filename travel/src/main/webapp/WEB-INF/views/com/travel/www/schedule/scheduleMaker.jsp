@@ -143,11 +143,11 @@ body, html {
 		  if(targetDiv.querySelector('ul') == null){
 			  var createUl = document.createElement('ul');
 			  createUl.setAttribute('class', 'list-group');
-			  createUl.setAttribute('data-toggle' , 'modal');
-			  createUl.setAttribute('data-target' , '#dataModal');
 			  targetDiv.appendChild(createUl);
 			  ulDiv = targetDiv.querySelector('ul');
 			  var licode = document.createElement('li');
+			  licode.setAttribute('data-toggle' , 'modal');
+			  licode.setAttribute('data-target' , '#dataModal');
 			  licode.setAttribute('onclick', 'searchPlace("'+data+'", "'+liId+'", "'+cnt+'")');
 			  licode.setAttribute('class', 'list-group-item list-group-item-action');
 			  licode.setAttribute('id' , liId);
@@ -157,6 +157,8 @@ body, html {
 		  } else {
 			  ulDiv = targetDiv.querySelector('ul');
 			  var licode = document.createElement('li');
+			  licode.setAttribute('data-toggle' , 'modal');
+			  licode.setAttribute('data-target' , '#dataModal');
 			  licode.setAttribute('class', 'list-group-item list-group-item-action');
 			  licode.setAttribute('onclick', 'searchPlace("'+data+'", "'+liId+'", "'+cnt+'")');
 			  licode.setAttribute('id' , liId);
@@ -252,10 +254,10 @@ body, html {
   		</div>
   		<hr>
   		<div class="list-group" >
- 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="subway_station" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/bus.png" class="icon" >교통</a>
- 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="lodging"  data-toggle="modal" data-target="#dataModal"><img src="/img/icon/hotel.png" class="icon">숙박</a>
- 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="restaurant" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/Restaurant.png" class="icon">식사</a>
- 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="type" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/text.png" class="icon">자유스케쥴</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="subway_station"><img src="/img/icon/bus.png" class="icon" >교통</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="lodging"><img src="/img/icon/hotel.png" class="icon">숙박</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="restaurant"><img src="/img/icon/Restaurant.png" class="icon">식사</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="type"><img src="/img/icon/text.png" class="icon">자유스케쥴</a>
   		</div>
   		<hr>
 		<div class="container bg-white">
