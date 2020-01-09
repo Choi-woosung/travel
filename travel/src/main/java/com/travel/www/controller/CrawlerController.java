@@ -1,13 +1,12 @@
 package com.travel.www.controller;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.*;
+import java.nio.charset.*;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.*;
 
 
 @Controller
@@ -15,25 +14,49 @@ public class CrawlerController {
 	
 	@RequestMapping("/hotelSearch.kit")
 	public ModelAndView getSearch(ModelAndView mv) {
-		System.out.println("들어오고있니?");
-		Elements elem = getHotel();
-		mv.addObject("data", elem);
+		
+		String str = getHotel();
+		
+		mv.addObject("data", str);
 		mv.setViewName("schedule/hotelSearch");
+		
 		return mv;
+		
 	}
 	
-	public Elements getHotel() {
-		Elements elem = null;
-		String url = "https://kr.hotels.com/search.do?resolved-location=CITY%3A728660%3AUNKNOWN%3AUNKNOWN&destination-id=728660&q-destination=%EC%98%A4%EC%82%AC%EC%B9%B4,%20%EC%9D%BC%EB%B3%B8&q-check-in=2020-01-06&q-check-out=2020-01-07&q-rooms=1&q-room-0-adults=2&q-room-0-children=0";
+	public String getHotel() {
+		String str = "https://www.google.com/maps";
+//		Document doc = null;
+//		
+//		try {
+//			doc = Jsoup.connect(url).get();	
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+		URL url;
+		BufferedReader br = null;
+		StringBuffer line = new StringBuffer();
+		
 		try {
-			Document doc = Jsoup.connect(url).get();
-			elem = doc.select(".h-listing");
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			url = new URL(str);
+			br = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
+
+			while(br.readLine() != null) {
+				line.append(br.readLine() + "\n\r");
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		return elem;
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+		}	
+		
+		return line.toString();
 		
 	}
 

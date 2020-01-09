@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.travel.www.dao.QnABoardDAO;
 import com.travel.www.vo.QnABoardVO;
@@ -18,18 +19,23 @@ public class QnABoard {
 	QnABoardDAO qDAO;
 	
 	@RequestMapping("qnaBoard.kit")
-	public ModelAndView qnaBoard(ModelAndView mv) {
+	public ModelAndView qnaBoard(ModelAndView mv, HttpSession session, RedirectView rv) {
+		String sid = (String) session.getAttribute("SID");
+		String url =  "/main.kit";
+		
+		if (sid == null) {
+			rv.setUrl(url);
+			mv.setView(rv);
+			return mv;
+		}
+		
 		mv.setViewName("board/qnaboard");
+		
 		return mv; 
 	}
 	
-	@RequestMapping("qnawriting.kit")
+	@RequestMapping("qnaWriting.kit")
 	public int qnawriting(QnABoardVO vo) {
-		
-		System.out.println(vo.getSq_no());
-		System.out.println(vo.getSq_qst());
-		System.out.println(vo.getSq_sno());
-		System.out.println(vo.getSq_writer());
 
 		return 1;
 	}
@@ -47,5 +53,6 @@ public class QnABoard {
 	public String getname(QnABoardVO vo, HttpSession session) {
 		vo.setSid((String) session.getAttribute("SID"));
 		return qDAO.getname(vo);
+		
 	}
 }
