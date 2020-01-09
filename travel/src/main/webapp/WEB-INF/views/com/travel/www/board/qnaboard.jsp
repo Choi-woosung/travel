@@ -226,29 +226,15 @@
 			padding-top: 20px;
 			user-select: none;
 		}
-		.file_upload_btn {
-			border: 1px solid #EBEBEB;
-			font-weight: 700;
-			width: 50%;
-			height: 50%;
-			float: left;
-			border-radius: 4px;
-			padding-top: 20px;
-			user-select: none;
-		}
 		.file_cancel_btn {
 			border: 1px solid #EBEBEB;
 			font-weight: 700;
-			width: 50%;
+			width: 100%;
 			height: 50%;
 			float: right;
 			border-radius: 4px;
 			padding-top: 20px;
 			user-select: none;
-		}
-		.file_upload_btn:hover {
-			background-color: #666666;
-			color: #FFFFFF;
 		}
 		.file_cancel_btn:hover {
 			background-color: #666666;
@@ -334,8 +320,7 @@
 			</div>
 			<div class="m_btn_box">
 				<div id="file_add_btn" class="file_add_btn">추가</div>
-				<div class="file_upload_btn" id="file_upload_btn">파일 업로드</div>
-				<div class="file_cancel_btn" id="file_cancel_btn">취소</div>
+				<div class="file_cancel_btn" id="file_cancel_btn">뒤로 가기</div>
 			</div>
 		</div>
 	</div>
@@ -375,6 +360,29 @@
 			help.addEventListener('click', () => {
 				removeCls(help_box, '', 'hide', 'help_box');
 				isCls(help, '', 'backColor');
+			});
+			w_btn.addEventListener('click', () => {
+				let input = new_file.children;
+				let data = new FormData();
+
+				data.append('q_head', w_haed.textContent);
+				data.append('q_body', w_body.textContent);		
+				
+				if (input.files != null) {
+					for (let i = 0; i < input.length; i++) {
+						data.append('files', input[i].files[0]);
+					}
+				}
+				
+				let options = {
+					method: 'POST',
+					body: data
+				};
+				
+				if (w_haed.textContent != '' && w_body != '') {
+					fetch('/board/qnaWriting.kit', options)
+				}
+				
 			});
 			w_cancel.addEventListener('click', () => {
 				reSet();
@@ -429,6 +437,11 @@
 			function reSet() {
 				w_haed.innerHTML = '';
 				w_body.innerHTML = '';
+				new_file.innerHTML = '';
+				let el = document.createElement('input');
+				el.type = 'file';
+				el.className = 'file_item1';
+				new_file.appendChild(el);
 			}
 		});
 	</script>

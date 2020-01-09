@@ -22,7 +22,7 @@
 		FROM
 		    member_avatar
 		WHERE
-		    a_img_no = (SELECT m_avatar FROM member WHERE m_id = #{sid})
+		    a_img_no = (SELECT m_avatar FROM member WHERE m_id = #{m_id})
 	</select>
 	
 	<select id="getname" parameterType="QnABoardVO" resultType="string">
@@ -31,7 +31,7 @@
 		FROM
 		    member
 		WHERE
-		    m_id = #{sid}
+		    m_id = #{m_id}
 	</select>
 	
 </mapper>
