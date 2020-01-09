@@ -131,12 +131,18 @@ body, html {
 	}
 
 	function drop(ev) {
+		console.log(event.dataTransfer.getData("text"));
+		if(event.dataTransfer.getData("text") != "subway_station" && event.dataTransfer.getData("text") != "lodging" && event.dataTransfer.getData("text") != "restaurant" && event.dataTransfer.getData("text") != "freeSchedule"){
+			ev.preventDefault();
+			return;
+		}
+	  document.getElementById('infobox').style.display = 'block';
 	  var data = event.dataTransfer.getData("text");
 	  var tf = getParents(ev.target);
 	  var targetDiv;
 	  if(tf.className == 'innerpage2 bg-white shadow'){
 		  targetDiv = tf;
-		  var liId = idGenerater(targetDiv);
+		  var liId = idGenerator(targetDiv);
 		  var cnt = targetDiv.querySelectorAll('li').length + 1;
 		  console.log(cnt);
 		  var ulDiv;
@@ -188,12 +194,13 @@ body, html {
 		}
 	}
 	
-	function idGenerater(e){
+	function idGenerator(e){
 		var id = e.id;
 		var cnt = e.querySelectorAll('li').length;
 		var result = e.id+"li"+cnt;
 		return result;
 	}
+
 	 
 </script>
 </head>
@@ -257,7 +264,7 @@ body, html {
  			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="subway_station"><img src="/img/icon/bus.png" class="icon" >교통</a>
  			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="lodging"><img src="/img/icon/hotel.png" class="icon">숙박</a>
  			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="restaurant"><img src="/img/icon/Restaurant.png" class="icon">식사</a>
- 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="type"><img src="/img/icon/text.png" class="icon">자유스케쥴</a>
+ 			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="freeSchedule"><img src="/img/icon/text.png" class="icon">자유스케쥴</a>
   		</div>
   		<hr>
 		<div class="container bg-white">

@@ -125,19 +125,30 @@ html, body {
 	border-radius : 5px;
 }
 
-.rowmargin {
-	margin-left : 1px;
-}
-
 .bodycontext {
+	border : 0px;
 	border-bottom : 1px solid #dee2e6;
 	text-align : left;
 	padding-left : 1px;
-	width : 42px;
+	width : 265px;
+}
+
+.inputPrice {
+	margin-top : 5px;
+}
+
+.priceLeft {
+	margin-left : 128px;
+}
+
+.pricecontext {
+	width : 100px;
+	border : 0px;
+	border-bottom : 1px solid #dee2e6;
+	text-align : center;
 }
 
 
-<!-- 인풋 타입 넘버 애로우 제거 -->
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -155,6 +166,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		var autocomplete;
 		var options;
 		var liCnt;
+		var placeObject;
 		
 		$(function(){
 			$("#sidebar-toggle").click(function(){
@@ -169,7 +181,29 @@ input[type="number"]::-webkit-inner-spin-button {
 			type = listType;
 			eventId = eId;
 			liCnt = cnt;
-			search();
+			if(type == "freeSchedule"){
+				document.getElementById('infobox').style.display = 'none';
+				selfAddedMarker();
+			} else{
+				search();
+			}
+		}
+		
+
+		// 자유 스케쥴 마커 추가하는 기능
+		
+		function selfAddedMarker(){
+			console.log("자유스케쥴 작성 돌입했슴");
+			clearResults();
+			clearMarkers();/* 
+			google.maps.event.addListenerOnce(map, 'click', createMarker);
+			 */
+		}
+		
+		function createMarker(){
+			console.log("여기 들어옴?");
+			var thisLatlng = google.maps.Map.click();
+			console.log(thisLatlng);
 		}
 		 
 		function initialize() {
@@ -180,12 +214,12 @@ input[type="number"]::-webkit-inner-spin-button {
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
-			places = new google.maps.places.PlacesService(map);
- 			google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
+			places = new google.maps.places.PlacesService(map);/* 
+ 			google.maps.event.addListener(map, 'tilesloaded', tilesLoaded); */
  			autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
 			google.maps.event.addListener(autocomplete, 'place_changed', function () {
 				showSelectedPlace();
-			}); 
+			});
 		}
  
 		function tilesLoaded() {
@@ -358,28 +392,22 @@ input[type="number"]::-webkit-inner-spin-button {
 				targetLi.setAttribute('data-toggle' , null);
 				targetLi.setAttribute('data-target' , null);
 				targetLi.setAttribute('onclick' , null);
+				placeObject = place;
 				targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
 									+ '<h5 class="mb-1">' + place.name + '</h5>'
 									+ '<small class="text-muted">' + liCnt + '</small>'
 									+ '</div>'
 									+ '<p class="mb-1 text-left">' +place.formatted_address+ '</p>'
 									+ '<div class="content-body-text input-group-sm mb-1" name="body" style="display : none;">'
-									+ '<input type="text" class="bodycontext" name="body" placeholder="메모">'
-									+ '<div class="d-flex">'
-									+ '<div class="flex-fill">예산 : '
-									+ '</div>'
-									+ '<div class="flex-fill"><input type="number" name="price">'
-									+ '</div>'
-									+ '<div class="flex-fill">'
-									+ '</div>'
-									+ '<div class="flex-fill">'
-									+ '</div>'
+									+ '<input type="text" class="bodycontext" name="body" placeholder="메모" />'
+									+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
+									+ '<input type="number" class="pricecontext" name="price" placeholder="예상비용" /></div>'
 									+ '</div>'
 									+ '</div>'
 									+ '<div class="row">'
-									+ '<div class="col-sm border mx-3" style="display : none; " onclick="modifyContent('+eventId+')"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
+									+ '<div class="col-sm border mx-3" onclick="textcommit(this,'+eventId+')" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
 									+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
-									+ '<div class="col-sm border mx-3" onclick="viewThisContent('+place.geometry+')"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
+									+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
 									+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+')"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
 									+ '</div>';
 				}
@@ -416,24 +444,30 @@ input[type="number"]::-webkit-inner-spin-button {
 		
 		// list 내 li에 body 컨텐츠 추가, 금액 추가  하는 기능
 		
-		function modifyContent(eventId, e){
-			e.style.display = 'none';
-			e.previousSibling.style.display = 'block';
+		function modifyContent(eventId, ev){
+			ev.style.display = 'none';
+			ev.previousSibling.style.display = 'block';
 			var bodyText = eventId.querySelector('.content-body-text');
-			console.log(bodyText);
 			bodyText.style.display = 'block';
-		}
-		
-		function confirmContent(eventId, e){
+			if(eventId.querySelector('input').hasAttribute('readonly')){
+				var allInput = eventId.querySelectorAll('input');
+
+				allInput.forEach(e => {
+					e.removeAttribute('readonly');
+				});
+			}
 			
 		}
 		
-		function viewThisContent(markerData) {
+		
+		// 돋보기 눌렀을때 맵 켜지는 버튼 
+		function viewThisContent(place) {
+			document.getElementById('infobox').style.display = 'none';
 			clearResults();
 			clearMarkers();
-			map.panTo(markerData);
+			map.panTo(place.geometry.location);
 			markers[0] = new google.maps.Marker({
-				position: markerData,
+				position: place.geometry.location,
 				map: map
 			});
 			iw = new google.maps.InfoWindow({
@@ -444,11 +478,17 @@ input[type="number"]::-webkit-inner-spin-button {
 
 		
 	
-		function textcommit(ele){
-			if(event.key == 'Enter'){
-				alert(ele.value)
-			}
+		function textcommit(e, etarget){
+			console.log(e);
+			console.log(etarget);
+			e.style.display = "none";
+			e.nextSibling.style.display = 'block';
+			var allInput = etarget.querySelectorAll('input');
+			allInput.forEach(e => {
+				e.setAttribute('readonly', 'true');
+			});	
 		}
+		
 		
 		// 구글 맵 실행되는 함수
 		
