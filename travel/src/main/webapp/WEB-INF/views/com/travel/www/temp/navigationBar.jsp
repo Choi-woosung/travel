@@ -18,11 +18,14 @@
 .back {
 	background : #2cb5e9;
 }
+.navs {
+	z-index: 2;
+}
 </style>
 </head>
 <body>
 <%-- 공통 내비게이션 바 부분 --%>
-	<nav class="navbar navbar-expand-lg navbar-dark back nav_size">
+	<nav class="navbar navbar-expand-lg navbar-dark back nav_size navs">
 		<a class="navbar-brand use" href="/main.kit">
 			<img src="/img/main/logo2.png">		
 		</a>
@@ -98,7 +101,7 @@
 						<ul class="profile_hide" id="profile_menu">
 							<li><div class="user_name" id="user_name"></div></li>
 							<li><a href="/member/myProfile.kit">내 정보</a></li>
-							<li><a href="/board/qnaBoard.kit">내 문의내역</a></li>
+							<li><a href="/board/qnaBoard.kit">고객센터</a></li>
 							<li><a href="/member/logout.kit">로그아웃</a></li>
 						</ul>
 					</li>

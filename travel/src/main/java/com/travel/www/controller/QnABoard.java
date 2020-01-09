@@ -23,13 +23,8 @@ public class QnABoard {
 		return mv; 
 	}
 	
-	@RequestMapping("qnawriting.kit")
+	@RequestMapping("qnaWriting.kit")
 	public int qnawriting(QnABoardVO vo) {
-		
-		System.out.println(vo.getSq_no());
-		System.out.println(vo.getSq_qst());
-		System.out.println(vo.getSq_sno());
-		System.out.println(vo.getSq_writer());
 
 		return 1;
 	}

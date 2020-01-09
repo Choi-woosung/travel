@@ -10,8 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	호텔검색 테스트용 페이지
-	${data}
-	
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', () => {
+			document.write(${data});'
+		});
+	</script>
 </body>
 </html>
