@@ -1,6 +1,7 @@
 package com.travel.www.controller;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,26 +30,50 @@ public class Schedule {
    
    //리스트 불러오기
    @RequestMapping("/scheduleList.kit")
-   public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req, RedirectView rv) {
+   public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req) {
       String people = req.getParameter("people");
       String address = req.getParameter("address");
       String sarea = req.getParameter("sarea");
+      double like = 0;
+      double likeCount = 0;
+      double likeAvg = 0;
+      ArrayList<Double> likeAvgList = new ArrayList<Double>();
+      
       List<ScheduleVO> list = sDAO.scheduleList(sarea);
       
       for(int i = 0; i < list.size(); i++) {
+    	  int sno = list.get(i).getsNo();
     	  String sdate = list.get(i).getsSdate();
-		  String wdate = list.get(i).getsWdate();
-		  
-		  sdate = sdate.substring(0, sdate.indexOf(' '));
-		  wdate = wdate.substring(0, wdate.indexOf(' '));
-		   
-		  list.get(i).setsSdate(sdate);
-		  list.get(i).setsWdate(wdate);
-	   }
+    	  String wdate = list.get(i).getsWdate();
+    	  
+    	  sdate = sdate.substring(0, sdate.indexOf(' '));
+    	  wdate = wdate.substring(0, wdate.indexOf(' '));
+    	  
+    	  sVO.setsNo(sno);
+    	  list.get(i).setsSdate(sdate);
+    	  list.get(i).setsWdate(wdate);
+    	  
+    	  // 게시물 좋아요 총 평점
+    	  like = sdDAO.LikeBoardLikeTotal(sVO);
+    	  // 게시물 좋아요 총 사람 수
+    	  likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
+    	  // 평균값
+    	  likeAvg = like / likeCount;
+    	  
+    	  DecimalFormat form = new DecimalFormat("#.#");
+    	  String likeAvg1 = form.format(likeAvg);
+    	  likeAvg = Double.parseDouble(likeAvg1);
+    	  
+    	  System.out.println(i);
+    	  likeAvgList.add(likeAvg);
+      }
+      
+      
        
       mv.addObject("ADDRESS", address);
       mv.addObject("PEOPLE", people);
       mv.addObject("LIST", list);
+      mv.addObject("LIKELIST", likeAvgList);
       mv.addObject("SVO", sVO);
       
       mv.setViewName("/schedule/scheduleList");
@@ -64,7 +89,7 @@ public class Schedule {
 	   String sarea = tmp.substring(tmp.indexOf('=') + 1);
 	   tmp = req.getParameter("month");
 	   String month = tmp.substring(tmp.indexOf('=') + 1);
-	   System.out.println(month);
+//	   System.out.println(month);
 	   
 	   List<ScheduleVO> list = sDAO.recentList(sarea, month);
 	   
