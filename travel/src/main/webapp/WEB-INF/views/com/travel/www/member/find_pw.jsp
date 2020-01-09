@@ -124,30 +124,34 @@ $(function(){
 <title>비밀번호 찾기</title>
 </head>
 <body  class="text-center">
-	<form method="post" action="/member/new_pw.kit">
+	<form method="post" action="/member/new_pw.kit" class="form-signin justify-content-md-center">
 	<div id="container" class="text-center mb-1">
-		<div class="w3-container w3-card-4">
+	<img class="mb-4" src="/img/main/favicon2.ico" alt="" width="80" height="80" style="border-radius : 20px;">
+		<div class="w3-container w3-card w3-round-xlarge">
 			<div class="h3 mb-3 font-weight-normal">
 				<h3>비밀번호 찾기</h3>
 			</div>
 			<div>
 				<p>
-					<label class="w3-margin">아이디
-					<button type="button" id="Check" class="w3-green">아이디 체크</button></label>
-					<input class="w3-input" type="text" id="id" name="mId" required>
+					<label class="w3-margin">
+					<input class="form-control" size="20" type="text" id="id" name="mId"  placeholder="아이디" required maxlength="10"></label>
+					<input type="submit" id="Check" size="10" class="w3-light-gray w3-text-gray" value="아이디 체크">
 				</p>
+				
 				<p>
-					<label class="w3-margin">이메일
-					<input class="w3-input" type="email" id="email" name="email"  required></label>
+					<label class="w3-margin">
+					<input class="form-control" size="31" type="email" id="email" name="email" placeholder="이메일" required="" maxlength="30"> </label>
+					<span id="find_email"></span>	
 					<input class="w3-input" type="hidden"  >
-					<!--  <button type="button" id="Injeung" class="w3-blue">이메일 인증</button> -->
 					
 					
 				</p>
 				<p class="w3-center">
-					<button type="submit" id="findBtn" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">OK</button>
-					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
+					<button type="submit" id="findBtn" style="border-radius:10px" class="w3-button w3-block w3-Light-Blue w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">OK</button>
 				</p>
+				<p class="w3-center">
+					<button type="button" onclick="history.go(-1);" style="border-radius:10px" class="w3-button w3-block w3-Light-Blue w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
+				</p>	
 			</div>
 		</div>
 	</div>

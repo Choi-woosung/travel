@@ -47,6 +47,7 @@
 	</select>
 	
   	
+  	
 	<!-- 회원가입 추가 -->
 	<insert id="addMember" parameterType="mVO">
 		<selectKey keyProperty="mNo" resultType="int" order="BEFORE">
@@ -67,6 +68,7 @@
 		)
 	</insert>
 	
+	
 	<!-- 비밀번호 변경 -->
  	<update id="update_pw" parameterType="mVO">
 		update member 
@@ -75,11 +77,7 @@
 	</update>
 
 	
-	<!--  <update id="new_pw" parameterType="mVO">
-		update member 
-		set pw = #{mPw} 
-		where mail = #{mMail}
-	</update>	 -->
+
 
 
 	<select id="Member" resultType="mVO" parameterType="mVO">

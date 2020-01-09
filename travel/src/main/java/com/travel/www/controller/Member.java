@@ -83,7 +83,7 @@ public class Member {
 				System.getProperty("line.separator") +
 				" 회원님의 " +
 				System.getProperty("line.separator") +
-				System.getProperty("li	ne.separator") +
+				System.getProperty("line.separator") +
 				" 임시 비밀번호는 " + pass + " 입니다. " ;
 		
 		try {
@@ -96,7 +96,7 @@ public class Member {
 			messageHelper.setText(content);
 			
 			mailSender.send(message);
-			mVO.setmPw2(pass);
+			mVO.setnPw2(pass);
 			mVO.setmMail(email);
 			int cnt = mDAO.update_pw(mVO);
 			if(cnt > 0) {

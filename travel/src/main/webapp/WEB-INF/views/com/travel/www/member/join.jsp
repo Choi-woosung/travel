@@ -176,6 +176,7 @@
 
 
 .avtChoose{
+	width:1500px;
 	float:right;
 }
 
@@ -378,8 +379,77 @@
                     <input type="text" id="userMobile" name="mMobile" required class="">
                 </li>
                 
-                
+          
 		<li id="avtChoose">
+				<label for="avt" class="phone_form w3-serif"><b>프로필</b></label>
+				<div class="w3-col avtM">
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="11">
+						<div>
+							<img src="/img/profile/profile1.png" width="55" height="55" class="avt_form">
+						</div>
+					</div>
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="12">
+						<div>
+							<img src="/img/profile/profile2.png" width="55" height="55" class="avt_form">
+						</div>
+					</div>
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="13">
+						<div>
+							<img src="/img/profile/profile3.png" width="55" height="55" class="avt_form">
+						</div>
+					</div>
+				</div>	
+					
+					
+				<div class="w3-col avtM">					
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="14">
+						<div>
+							<img src="/img/profile/profile4.png" width="55" height="55" class="avt_form">
+						</div>
+					</div>
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="15">
+						<div>
+							<img src="/img/profile/profile5.png" width="55" height="55" class="avt_form">
+						</div>
+					</div>
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="16">
+						<div>
+							<img src="/img/profile/profile6.png" width="55" height="55" class="avt_form">
+						</div>
+					</div>	
+				</div>
+			<br>
+				
+				
+				<div class="w3-col avtM">					
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="17">
+						<div>
+							<img src="/img/profile/profile7.png" width="55" height="55" class="avt_form">
+						</div>
+					</div>
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="18">
+						<div>
+							<img src="/img/profile/profile8.png" width="55" height="55" class="avt_form">
+						</div>
+					</div>
+					<div class="w3-col m4">
+						<input type="radio" name="mAvatar" value="19">
+						<div>
+							<img src="/img/profile/profile9.png" width="55" height="55" class="avt_form">
+						</div>
+					</div>									
+				</div>
+		</li>          
+                
+<!-- 		<li id="avtChoose">
 				<label for="avt" class="phone_form w3-serif"><b>프로필</b></label>
 				<div class="w3-col avtM">
 					<div class="w3-col m4">
@@ -401,7 +471,7 @@
 						</div>
 					</div>
 				</div>
-		</li>	
+		</li>	 -->
 
 		<br>
 		<br>
