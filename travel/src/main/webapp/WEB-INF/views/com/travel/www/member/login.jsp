@@ -101,7 +101,7 @@
  <c:if test="${empty SID}">
     <form method="POST" action="/member/loginProc.kit" class="form-signin justify-content-md-center">
  <div class="text-center mb-1">
-  <img class="mb-4" src="/img/main/favicon2.ico" alt="" width="72" height="72" style="border-radius : 20px;">
+  <img class="mb-4" src="/img/main/favicon2.ico" alt="" width="80" height="80" style="border-radius : 20px;">
   <h1 class="h3 mb-3 font-weight-normal">L O G I N </h1>
  
   <div class="w3-margin">
@@ -121,7 +121,7 @@
       <input type="checkbox" value="remember-me"> 기억하기
   </div>
   
-    <button id="find_btn" class="w3-margin w3-center w3-button w3-hover-#f5f5f5"> 아이디 | 비밀번호찾기</button>
+    <button id="find_btn" class="w3-margin w3-center w3-button w3-hover-#f5f5f5">| 비밀번호찾기 |</button>
   
       
   <button class="btn btn-lg btn-primary btn-block" id="btn" type="submit">Sign in</button>
