@@ -241,7 +241,7 @@ input[type="number"]::-webkit-inner-spin-button {
 			});
 			iw.open(map, markers[0]);
 		}
-
+ 
 		function search() {
 			
 			autocomplete.setBounds(map.getBounds());
