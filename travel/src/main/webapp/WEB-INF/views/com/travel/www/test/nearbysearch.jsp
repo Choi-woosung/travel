@@ -401,11 +401,11 @@ input[type="number"]::-webkit-inner-spin-button {
 									+ '<div class="content-body-text input-group-sm mb-1" name="body" style="display : none;">'
 									+ '<input type="text" class="bodycontext" name="body" placeholder="메모" />'
 									+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
-									+ '<input type="number" class="pricecontext" name="price" placeholder="예상비용" /></div>'
-									+ '</div>'
+									+ '<input type="number" class="pricecontext"  name="'+type+'" placeholder="예상비용" /></div>'
+									+ '</div>' 
 									+ '</div>'
 									+ '<div class="row">'
-									+ '<div class="col-sm border mx-3" onclick="textcommit(this,'+eventId+')" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
+									+ '<div class="col-sm border mx-3" onclick="textcommit(this,'+eventId+', type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
 									+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
 									+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
 									+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+')"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
@@ -478,17 +478,32 @@ input[type="number"]::-webkit-inner-spin-button {
 
 		
 	
-		function textcommit(e, etarget){
-			console.log(e);
-			console.log(etarget);
+		function textcommit(e, etarget, type){
 			e.style.display = "none";
 			e.nextSibling.style.display = 'block';
 			var allInput = etarget.querySelectorAll('input');
 			allInput.forEach(e => {
 				e.setAttribute('readonly', 'true');
-			});	
+			});
+			var price = etarget.querySelector('.pricecontext').value;
+			priceCalc(type, price);
 		}
 		
+		function priceCalc(type, addedPrice){
+			var priceId;
+			if(type == 'subway_station'){
+				priceId = 'trafficPrice';
+			} else if(type == "lodging"){
+				pricdId = 'lodgingPrice';
+			} else if(type == "'restaurant'"){
+				priceId = "eatPrice";
+			} else {
+				priceId = 'otherPrice';
+			}
+			var thisPrice = document.getElementById(priceId);
+			var currentVal = parseInt(thisPrice.value);
+			thisPrice.innerHTML = currentVal + addedPrice;
+		}
 		
 		// 구글 맵 실행되는 함수
 		

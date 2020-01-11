@@ -269,11 +269,11 @@ body, html {
   		<hr>
 		<div class="container bg-white">
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">교통비 : </li>
-				<li class="list-group-item">식비 : </li>
-				<li class="list-group-item">숙박비 : </li> 
-				<li class="list-group-item">기타비용 : </li>
-				<li class="list-group-item">총액 :  </li>
+				<li class="list-group-item">교통비 : <span id="trafficPrice" class="prices"></span></li>
+				<li class="list-group-item">식비 : <span id="eatPrice" class="prices"></span></li>
+				<li class="list-group-item">숙박비 : <span id="lodgingPrice" class="prices"></span></li> 
+				<li class="list-group-item">기타비용 : <span id="otherPrice" class="prices"></span></li>
+				<li class="list-group-item">총액 : <span id="totalPrice" class="prices"></span></li>
 			</ul>
 		</div>
 	</div>
