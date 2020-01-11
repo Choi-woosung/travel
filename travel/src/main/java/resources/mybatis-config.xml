@@ -22,6 +22,8 @@
 		<typeAlias alias="restVO" type="com.travel.www.vo.ScheduleRestVO"/>
 		<typeAlias alias="untitleVO" type="com.travel.www.vo.ScheduleUntitleVO"/>
 		<typeAlias alias="QnABoardVO" type="com.travel.www.vo.QnABoardVO"/>
+		<typeAlias alias="SOVO" type="com.travel.www.vo.ScheduleOrderVO"/>
+		
 	</typeAliases> 
 	
 	 

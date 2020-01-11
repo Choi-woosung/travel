@@ -474,14 +474,12 @@
 								<img alt="mainpic" src="${data.sPic}" style="width: 250px; height: 250px">
 							</div>
 							<div class="w3-col m8 infobox">
-								<c:forEach var="like" items="${LIKELIST}" begin="${status.count - 1}" end="${status.count - 1}">
 								<div class="star_score row">
 								    <span class="st_off">
-								   		<span class="st_on" style="width: ${like * 20}%;" ></span>
+								   		<span class="st_on" style="width: ${data.likeAvg * 20}%;" ></span>
 									</span>
 									<div class="avg" id="avg"></div>
 								</div>
-								</c:forEach>
 								<h5 class="sname w3-padding">${data.sName}</h5>
 								<div class="info w3-padding">
 									<p>여행시작일 : ${data.sSdate}</p>

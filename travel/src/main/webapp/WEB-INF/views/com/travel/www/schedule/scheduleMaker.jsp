@@ -119,8 +119,10 @@ body, html {
 			$('.innerpage2').remove();
 				status = 1;
 		});
-
-	})
+		$('#submitBtn').click(function(){
+			$('#send').submit();
+		});
+	});
 	
 	function allowDrop(ev) {
 	  ev.preventDefault();
@@ -248,9 +250,11 @@ body, html {
   	<div class="col-xl-10 border main-container">
 <!--   		<a class="container col-xl-9" id="sName" href="#" style="height: 40px; font-size: 30px;">스케줄 이름<img src="/img/icon/pencil.svg"></a>
   		
-  		<input type="text" id="sNText" class="container col-xl-9" style="height: 40px;display: none;"> -->
-  		<div class="innerpage bg-white shadow" id="dayCount" style="margin-top: -100px;" ondrop="drop(event)" ondragover="allowDrop(event)">
-  		</div>
+  		<input type="text" id="sNText" class="container col-xl-9" style="height: 40px;display: none;"> -->\
+  		<form id="send" action="/schedule/scheduleListing.kit" method="post">
+  			<div class="innerpage bg-white shadow" id="dayCount" style="margin-top: -100px;" ondrop="drop(event)" ondragover="allowDrop(event)">
+  			</div>
+  		</form>
   	</div>
   	<div class="col p-4">
   		<div class="btn_group text-center">
@@ -269,12 +273,15 @@ body, html {
   		<hr>
 		<div class="container bg-white">
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">교통비 : <span id="trafficPrice" class="prices"></span></li>
-				<li class="list-group-item">식비 : <span id="eatPrice" class="prices"></span></li>
-				<li class="list-group-item">숙박비 : <span id="lodgingPrice" class="prices"></span></li> 
-				<li class="list-group-item">기타비용 : <span id="otherPrice" class="prices"></span></li>
-				<li class="list-group-item">총액 : <span id="totalPrice" class="prices"></span></li>
+				<li class="list-group-item">교통비 : <span id="trafficPrice" class="prices">0</span></li>
+				<li class="list-group-item">식비 : <span id="eatPrice" class="prices">0</span></li>
+				<li class="list-group-item">숙박비 : <span id="lodgingPrice" class="prices">0</span></li> 
+				<li class="list-group-item">기타비용 : <span id="otherPrice" class="prices">0</span></li>
+				<li class="list-group-item">총액 : <span id="totalPrice" class="prices">0</span></li>
 			</ul>
+		</div>
+		<div class="container">
+			<button id="submitBtn">누르셈</button>
 		</div>
 	</div>
   </div>

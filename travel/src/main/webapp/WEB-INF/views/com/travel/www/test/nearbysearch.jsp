@@ -394,14 +394,16 @@ input[type="number"]::-webkit-inner-spin-button {
 				targetLi.setAttribute('onclick' , null);
 				placeObject = place;
 				targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
-									+ '<h5 class="mb-1">' + place.name + '</h5>'
-									+ '<small class="text-muted">' + liCnt + '</small>'
+									+ '<h5 class="mb-1" name="placeName">' + place.name + '</h5>'
+									+ '<small class="text-muted" name="liCnt">' + liCnt + '</small>'
 									+ '</div>'
-									+ '<p class="mb-1 text-left">' +place.formatted_address+ '</p>'
+									+ '<p class="mb-1 text-left" name="placeAddress">' +place.formatted_address+ '</p>'
 									+ '<div class="content-body-text input-group-sm mb-1" name="body" style="display : none;">'
-									+ '<input type="text" class="bodycontext" name="body" placeholder="메모" />'
+									+ '<input type="text" class="bodycontext" name="body" placeholder="메모"/>'
 									+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
-									+ '<input type="number" class="pricecontext"  name="'+type+'" placeholder="예상비용" /></div>'
+									+ '<input type="number" class="pricecontext" name="price" placeholder="예상비용" /></div>'
+									+ '<div name ="pid" style="display : none;" value="'+place.place_id+'"></div>'
+									+ '<div name ="type" style="display : none;" value="'+type+'"></div>'
 									+ '</div>' 
 									+ '</div>'
 									+ '<div class="row">'
@@ -485,11 +487,12 @@ input[type="number"]::-webkit-inner-spin-button {
 			allInput.forEach(e => {
 				e.setAttribute('readonly', 'true');
 			});
-			var price = etarget.querySelector('.pricecontext').value;
+			var price = parseInt(etarget.querySelector('.pricecontext').value);
+			console.log(price);
 			priceCalc(type, price);
 		}
 		
-		function priceCalc(type, addedPrice){
+		function priceCalc(type, price){
 			var priceId;
 			if(type == 'subway_station'){
 				priceId = 'trafficPrice';
@@ -501,8 +504,11 @@ input[type="number"]::-webkit-inner-spin-button {
 				priceId = 'otherPrice';
 			}
 			var thisPrice = document.getElementById(priceId);
-			var currentVal = parseInt(thisPrice.value);
-			thisPrice.innerHTML = currentVal + addedPrice;
+			console.log("thisPrice : " + thisPrice);
+// 			console.log("thisPrice text : " + thisPrice.text);
+			var currentVal = parseInt(thisPrice.innerHTML);
+			console.log(currentVal);
+			thisPrice.innerHTML = currentVal + price;
 		}
 		
 		// 구글 맵 실행되는 함수

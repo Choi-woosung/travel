@@ -2,6 +2,7 @@ package com.travel.www.controller;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.travel.www.dao.ScheduleDAO;
 import com.travel.www.dao.ScheduleDetailDAO;
+import com.travel.www.vo.ScheduleOrderVO;
 import com.travel.www.vo.ScheduleVO;
 
 @Controller
@@ -28,7 +30,7 @@ public class Schedule {
    @Autowired
    ScheduleDetailDAO sdDAO;
    
-   //리스트 불러오기
+   //由ъ뒪�듃 遺덈윭�삤湲�
    @RequestMapping("/scheduleList.kit")
    public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req) {
       String people = req.getParameter("people");
@@ -37,7 +39,6 @@ public class Schedule {
       double like = 0;
       double likeCount = 0;
       double likeAvg = 0;
-      ArrayList<Double> likeAvgList = new ArrayList<Double>();
       
       List<ScheduleVO> list = sDAO.scheduleList(sarea);
       
@@ -53,19 +54,19 @@ public class Schedule {
     	  list.get(i).setsSdate(sdate);
     	  list.get(i).setsWdate(wdate);
     	  
-    	  // 게시물 좋아요 총 평점
+    	  // 寃뚯떆臾� 醫뗭븘�슂 珥� �룊�젏
     	  like = sdDAO.LikeBoardLikeTotal(sVO);
-    	  // 게시물 좋아요 총 사람 수
+    	  // 寃뚯떆臾� 醫뗭븘�슂 珥� �궗�엺 �닔
     	  likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
-    	  // 평균값
+    	  // �룊洹좉컪
     	  likeAvg = like / likeCount;
     	  
     	  DecimalFormat form = new DecimalFormat("#.#");
     	  String likeAvg1 = form.format(likeAvg);
     	  likeAvg = Double.parseDouble(likeAvg1);
     	  
-    	  System.out.println(i);
-    	  likeAvgList.add(likeAvg);
+//    	  System.out.println(i);
+    	  list.get(i).setLikeAvg(likeAvg);
       }
       
       
@@ -73,7 +74,6 @@ public class Schedule {
       mv.addObject("ADDRESS", address);
       mv.addObject("PEOPLE", people);
       mv.addObject("LIST", list);
-      mv.addObject("LIKELIST", likeAvgList);
       mv.addObject("SVO", sVO);
       
       mv.setViewName("/schedule/scheduleList");
@@ -81,7 +81,7 @@ public class Schedule {
       return mv;
    }
    
-   //최신순으로 리스트 불러오기
+   //理쒖떊�닚�쑝濡� 由ъ뒪�듃 遺덈윭�삤湲�
    @RequestMapping("/recentlist.kit")
    @ResponseBody
    public List<ScheduleVO> recentlist(HttpServletRequest req) {
@@ -110,7 +110,7 @@ public class Schedule {
 	   return list;
    }
    
-   //월별순으로 리스트 가져오기
+   //�썡蹂꾩닚�쑝濡� 由ъ뒪�듃 媛��졇�삤湲�
    @RequestMapping("/sortmonth.kit")
    @ResponseBody
    public List<ScheduleVO> sortmonth(HttpServletRequest req) {
@@ -138,7 +138,7 @@ public class Schedule {
 	   return list;
    }
    
-   //평점순 리스트 가져오기
+   //�룊�젏�닚 由ъ뒪�듃 媛��졇�삤湲�
    @RequestMapping("/sortrating.kit")
    @ResponseBody
    public List<ScheduleVO> sortrating(HttpServletRequest req) {
@@ -198,11 +198,11 @@ public class Schedule {
 			  mv.setView(rv); 
 			  return mv; 
 			}
-	   // 게시물 좋아요 총 평점
+	   // 寃뚯떆臾� 醫뗭븘�슂 珥� �룊�젏
 	   	double like = sdDAO.LikeBoardLikeTotal(sVO);
-	   // 게시물 좋아요 총 사람 수
+	   // 寃뚯떆臾� 醫뗭븘�슂 珥� �궗�엺 �닔
 	   	double likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
-	   // 평균값
+	   // �룊洹좉컪
 	   	double likeAvg = like/likeCount;
 	   	DecimalFormat form = new DecimalFormat("#.#");
 	   	String likeAvg1 = form.format(likeAvg);
@@ -218,35 +218,42 @@ public class Schedule {
    @ResponseBody
    public ScheduleVO shceduleGood(ScheduleVO sVO) {
 	    
-	   // 한 아이디 좋아요 체크 처리
+	   // �븳 �븘�씠�뵒 醫뗭븘�슂 泥댄겕 泥섎━
 	    int idCheck = sdDAO.LikeBoardLikeCheck(sVO);
 	   if(idCheck > 0) {
 		   sVO.setIdCheck(idCheck);
 		   return sVO;
 	   }
-	   // 게시판 좋아요 점수 업데이트
+	   // 寃뚯떆�뙋 醫뗭븘�슂 �젏�닔 �뾽�뜲�씠�듃
 	   	int cnt = sdDAO.scheduleStar(sVO);
 	   	
-	  // 좋아요 테이블 업데이트
+	  // 醫뗭븘�슂 �뀒�씠釉� �뾽�뜲�씠�듃
 	   	cnt += sdDAO.scheduleLikeBoard(sVO);
 	   	
-	   // 게시물 좋아요 총 평점
+	   // 寃뚯떆臾� 醫뗭븘�슂 珥� �룊�젏
 	   	double like = sdDAO.LikeBoardLikeTotal(sVO);
 	   	
-	   // 게시물 좋아요 총 사람 수
+	   // 寃뚯떆臾� 醫뗭븘�슂 珥� �궗�엺 �닔
 	   	double likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
 	   	
-	   // 평균값
+	   // �룊洹좉컪
 	   	double likeAvg = like/likeCount;
 
 	   	DecimalFormat form = new DecimalFormat("#.#");
 	   	String likeAvg1 = form.format(likeAvg);
 	   	likeAvg = Double.parseDouble(likeAvg1);
 	   	if(cnt == 2) {
-		   System.out.println("등록완료");
+		   System.out.println("�벑濡앹셿猷�");
 	   	}
 	   sVO.setCnt(cnt);
 	   sVO.setLikeAvg(likeAvg);
 	   return sVO;
+   }
+   
+   @RequestMapping("/scheduleListing.kit")
+   public void scheduleListing(ScheduleOrderVO SOVO) {
+	   System.out.println("여기 들어옴?");
+	   String bodyList = SOVO.getBody();
+	   System.out.println(bodyList);
    }
 }
