@@ -155,6 +155,9 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+.pac-container {
+	z-index : 1060;
+}
 
 </style>
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
@@ -168,6 +171,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		var liCnt;
 		var placeObject;
 		
+		
 		$(function(){
 			$("#sidebar-toggle").click(function(){
 				$("#infobox").toggleClass("sidebar-active");
@@ -175,25 +179,10 @@ input[type="number"]::-webkit-inner-spin-button {
 			});
 		});
 		
-		// 현재 클릭한 li의 구글 맵 타입과 아이디, cnt 반환해주는 기능
-		
-		function searchPlace(listType, eId, cnt){
-			type = listType;
-			eventId = eId;
-			liCnt = cnt;
-			if(type == "freeSchedule"){
-				document.getElementById('infobox').style.display = 'none';
-				selfAddedMarker();
-			} else{
-				search();
-			}
-		}
-		
 
 		// 자유 스케쥴 마커 추가하는 기능
 		
 		function selfAddedMarker(){
-			console.log("자유스케쥴 작성 돌입했슴");
 			clearResults();
 			clearMarkers();/* 
 			google.maps.event.addListenerOnce(map, 'click', createMarker);
@@ -201,9 +190,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		}
 		
 		function createMarker(){
-			console.log("여기 들어옴?");
 			var thisLatlng = google.maps.Map.click();
-			console.log(thisLatlng);
 		}
 		 
 		function initialize() {
@@ -226,12 +213,27 @@ input[type="number"]::-webkit-inner-spin-button {
 			google.maps.event.clearListeners(map, 'tilesloaded');
 			search();
 		}
+		
 
+		// 현재 클릭한 li의 구글 맵 타입과 아이디, cnt 반환해주는 기능
+		
+		function searchPlace(listType, eId, cnt){
+			type = listType;
+			eventId = eId;
+			liCnt = cnt;
+			if(type != "freeSchedule"){
+				search();
+			} else{
+				document.getElementById('infobox').style.display = 'none';
+				selfAddedMarker();
+			}
+		}
+		
 		function showSelectedPlace() {
 			clearResults();
 			clearMarkers();
 			var place = autocomplete.getPlace();
-			map.panTo(place.geometry.location);
+			map.panTo(place.geometry.location);/* 
 			markers[0] = new google.maps.Marker({
 				position: place.geometry.location,
 				map: map
@@ -239,11 +241,11 @@ input[type="number"]::-webkit-inner-spin-button {
 			iw = new google.maps.InfoWindow({
 				content: getIWContent(place)
 			});
-			iw.open(map, markers[0]);
+			iw.open(map, markers[0]); */
+			search();
 		}
  
 		function search() {
-			
 			autocomplete.setBounds(map.getBounds());
 			var search = {
 				bounds: map.getBounds()
@@ -279,7 +281,6 @@ input[type="number"]::-webkit-inner-spin-button {
 		function addResult(result, i) {
 			places.getDetails({placeId : result.place_id}, 
 					function(place, status){
-				console.log(status);
 				  if (status == google.maps.places.PlacesServiceStatus.OK) {
 					addResultMarker(result, i);
 					addResultList(place, i);
@@ -394,16 +395,14 @@ input[type="number"]::-webkit-inner-spin-button {
 				targetLi.setAttribute('onclick' , null);
 				placeObject = place;
 				targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
-									+ '<h5 class="mb-1" name="placeName">' + place.name + '</h5>'
-									+ '<small class="text-muted" name="liCnt">' + liCnt + '</small>'
+									+ '<h5 class="mb-1">' + place.name + '</h5>'
+									+ '<small class="text-muted">' + liCnt + '</small>'
 									+ '</div>'
-									+ '<p class="mb-1 text-left" name="placeAddress">' +place.formatted_address+ '</p>'
-									+ '<div class="content-body-text input-group-sm mb-1" name="body" style="display : none;">'
-									+ '<input type="text" class="bodycontext" name="body" placeholder="메모"/>'
+									+ '<p class="mb-1 text-left">' +place.formatted_address+ '</p>'
+									+ '<div class="content-body-text input-group-sm mb-1" style="display : none;">'
+									+ '<input type="text" class="bodycontext" name="body" placeholder="메모" id="testtest"/>'
 									+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
 									+ '<input type="number" class="pricecontext" name="price" placeholder="예상비용" /></div>'
-									+ '<div name ="pid" style="display : none;" value="'+place.place_id+'"></div>'
-									+ '<div name ="type" style="display : none;" value="'+type+'"></div>'
 									+ '</div>' 
 									+ '</div>'
 									+ '<div class="row">'
@@ -411,15 +410,18 @@ input[type="number"]::-webkit-inner-spin-button {
 									+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
 									+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
 									+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+')"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
-									+ '</div>';
+									+ '</div>'
+									+ '<input type="text" class="d-none" name ="pid" value="'+place.place_id+'">'
+									+ '<input type="text" class="d-none" name ="type" value="'+type+'">'
+									+ '<input type="text" class="d-none" name ="placeName" value="'+place.name+'">'
+									+ '<input type="text" class="d-none" name ="liCnt" value="'+liCnt+'">'
+									+ '<input type="text" class="d-none" name ="placeAddress" value="'+place.formatted_address+'">';
 				}
 		}
 		
 		// 맵에 마커 추가 기능
 		
 		function addResultMarker(result, i){
-			console.log(result.geometry.location);
-			console.log(i);
 			markers[i] = new google.maps.Marker({
 				position: result.geometry.location,
 				animation: google.maps.Animation.DROP
@@ -479,7 +481,8 @@ input[type="number"]::-webkit-inner-spin-button {
 		}
 
 		
-	
+		// 수정 완료 했을때 작동하는 기능
+		
 		function textcommit(e, etarget, type){
 			e.style.display = "none";
 			e.nextSibling.style.display = 'block';
@@ -488,29 +491,36 @@ input[type="number"]::-webkit-inner-spin-button {
 				e.setAttribute('readonly', 'true');
 			});
 			var price = parseInt(etarget.querySelector('.pricecontext').value);
-			console.log(price);
-			priceCalc(type, price);
+			priceCalc(type, price, etarget);
 		}
 		
-		function priceCalc(type, price){
+		
+		// 비용 계산하는 함수
+		function priceCalc(type, price, etarget){
 			var priceId;
 			if(type == 'subway_station'){
 				priceId = 'trafficPrice';
 			} else if(type == "lodging"){
-				pricdId = 'lodgingPrice';
-			} else if(type == "'restaurant'"){
+				priceId = 'lodgingPrice';
+			} else if(type == "restaurant"){
 				priceId = "eatPrice";
 			} else {
 				priceId = 'otherPrice';
 			}
 			var thisPrice = document.getElementById(priceId);
-			console.log("thisPrice : " + thisPrice);
-// 			console.log("thisPrice text : " + thisPrice.text);
 			var currentVal = parseInt(thisPrice.innerHTML);
-			console.log(currentVal);
 			thisPrice.innerHTML = currentVal + price;
+			totalCalc();
 		}
 		
+		function totalCalc(){
+			var total = document.getElementById('totalPrice');
+			var tP = parseInt(document.getElementById('trafficPrice').innerHTML);
+			var eP = parseInt(document.getElementById('eatPrice').innerHTML);
+			var lP = parseInt(document.getElementById('lodgingPrice').innerHTML);
+			var oP = parseInt(document.getElementById('otherPrice').innerHTML);
+			total.innerHTML = tP + eP + lP + oP;
+		}
 		// 구글 맵 실행되는 함수
 		
 		google.maps.event.addDomListener(window, 'load', initialize);

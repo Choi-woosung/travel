@@ -87,11 +87,48 @@ body, html {
 	height : 700px;
 	overflow : hidden;
 }
+
+/* 드래그 방지용 */
 .no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;}
+
+/* 스케쥴 이름 수정 */
+
+.nameEdit {
+	display : flex;
+	height : 43px;
+}
+
+.nameEditLeft{
+	flex : 1;
+}
+
+.nameEditRight {
+	flex : 9;
+}
+
+.scheduleName {
+	display : none;
+	border : 0px;
+	border-bottom : 1px solid black;
+	width : 90%;
+	resize: none;
+	overflow : hidden;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+input:focus {
+	outline : none;
+}
+
+
 
 
 </style>
 <script>
+	var nameBool = false;
 
 	$(function() {
 		var status = 1;
@@ -119,8 +156,28 @@ body, html {
 			$('.innerpage2').remove();
 				status = 1;
 		});
+		
+		$('#nameEdit').click(function(){
+			$('#scheduleName').css("display" , 'block');
+			$('#scheduleNameDiv').css("display" , "none");
+			$('#scheduleName').focus();
+		});
+
+		$("textarea[name=scheduleName]").keydown(function (key) {
+			if(key.keyCode == 13){
+				console.log($('#scheduleName').val());
+				if($('#scheduleName').val() == ''){
+					$('#scheduleNameDiv').text("제목 설정하기");
+					$("#scheduleName").val('');
+				} else {
+					$('#scheduleNameDiv').text($("#scheduleName").val());
+				}
+				$('#scheduleName').css("display" , 'none');
+				$('#scheduleNameDiv').css("display" , "block");
+			}
+		});
 		$('#submitBtn').click(function(){
-			$('#send').submit();
+			
 		});
 	});
 	
@@ -248,15 +305,20 @@ body, html {
 <div class="container-fluid m-content">
   <div class="row">
   	<div class="col-xl-10 border main-container">
-<!--   		<a class="container col-xl-9" id="sName" href="#" style="height: 40px; font-size: 30px;">스케줄 이름<img src="/img/icon/pencil.svg"></a>
-  		
-  		<input type="text" id="sNText" class="container col-xl-9" style="height: 40px;display: none;"> -->\
-  		<form id="send" action="/schedule/scheduleListing.kit" method="post">
+  		<form id="send" action="/schedule/test.kit" method="post">
   			<div class="innerpage bg-white shadow" id="dayCount" style="margin-top: -100px;" ondrop="drop(event)" ondragover="allowDrop(event)">
   			</div>
   		</form>
   	</div>
   	<div class="col p-4">
+  		<div id="nameEdit" class="nameEdit">
+  			<div class="nameEditLeft"><img src="/img/icon/document-text.svg"></div>
+  			<div class="nameEditRight">
+  				<span id="scheduleNameDiv" class="font-weight-bold mx-1">제목 설정하기</span>
+  				<textarea name="scheduleName" id="scheduleName" class="scheduleName" rows="2"></textarea>
+  			</div>
+  		</div>
+  		<hr>
   		<div class="btn_group text-center">
   			<p class="font-weight-bold">스케쥴 일 추가하기</p>
   			<button type="button" class="btn btn_outline_dark" id="dayCount_minus"> - </button>

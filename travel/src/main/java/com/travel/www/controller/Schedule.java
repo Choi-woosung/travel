@@ -253,7 +253,5 @@ public class Schedule {
    @RequestMapping("/scheduleListing.kit")
    public void scheduleListing(ScheduleOrderVO SOVO) {
 	   System.out.println("여기 들어옴?");
-	   String bodyList = SOVO.getBody();
-	   System.out.println(bodyList);
    }
 }
