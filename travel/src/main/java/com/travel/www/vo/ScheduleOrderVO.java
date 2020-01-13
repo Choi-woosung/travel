@@ -7,16 +7,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ScheduleOrderVO {
 	private ArrayList<ScheduleOrderVO> Schedules;
-	private String pid;
 	private String type;
 	private String placeName;
+	private String body;
+	private String price;
 	private String liCnt;
+	private String dayCount;
+	private String pid;
 	private String placeAddress;
 	private String placeLat;
 	private String placeLng;
-	private String body;
-	private String price;
-	private String dayCount;
 	private ArrayList<MultipartFile> scheduleImg;
 	private String scheduleName;
 	private String scheduleBody;
