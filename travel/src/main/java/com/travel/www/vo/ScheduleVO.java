@@ -26,9 +26,14 @@ public class ScheduleVO {
 	private int cnt;
 	private int idCheck;
 	private double likeAvg;
+	private String avatarName;
 	
-	
-	
+	public String getAvatarName() {
+		return avatarName;
+	}
+	public void setAvatarName(String avatarName) {
+		this.avatarName = avatarName;
+	}
 	public int getCnt() {
 		return cnt;
 	}

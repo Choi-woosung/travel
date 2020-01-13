@@ -13,6 +13,11 @@ public class ScheduleDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+	//메인리스트 가져오기
+	public List<ScheduleVO> mainList() {
+		return sqlSession.selectList("sSQL.mainList");
+	}
+	
 	//리스트 가져오기
 	public List<ScheduleVO> scheduleList(String sarea) {
 		HashMap<String, String> map = new HashMap<String, String>();

@@ -72,7 +72,6 @@
 	        		"sarea" : param,
 	        		"month" : month
 	        	},
-	        	
 	        	success : function(data){
 	        		var list = data;
 	        		
@@ -91,6 +90,11 @@
 	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
 	        			content += '        		</div>';
 	        			content += '        		<div class="w3-col m8 infobox">';
+	        			content += '        			<div class="star_score row">';
+	        			content += '        				<span class="st_off">';
+	        			content += '        					<span class="st_on" style="width: ' + list[i].likeAvg * 20 + '%;"></span>';
+	        			content += '        				</span>';
+	        			content += '        			</div>';
 	        			content += '           			<h5 class="sname w3-padding">' + list[i].sName + '</h5>'; 
 	        			content += '           			<div class="info w3-padding">'; 
 	        			content += '           				<p>여행시작일 : ' + list[i].sSdate + '</p>';
@@ -118,6 +122,7 @@
         	var sarea = $('#sArea').val();
             var address = $('#inputArea').val();
             var month = $('#month').val();
+            var sNo = $('#sNo').val();
             
             var url = decodeURIComponent(location.href);
         	var params;
@@ -136,9 +141,10 @@
 	        		"sarea" : param,
 	        		"month" : month
 	        	},
-	        	
 	        	success : function(data){
 	        		var list = data;
+	        		
+	        		alert("성공");
 	        		
 	        		$('.delete').remove();
 	        		
@@ -153,6 +159,11 @@
 	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
 	        			content += '        		</div>';
 	        			content += '        		<div class="w3-col m8 infobox">';
+	        			content += '        			<div class="star_score row">';
+	        			content += '        				<span class="st_off">';
+	        			content += '        					<span class="st_on" style="width: ' + list[i].likeAvg * 20 + '%;"></span>';
+	        			content += '        				</span>';
+	        			content += '        			</div>';
 	        			content += '           			<h5 class="sname w3-padding">' + list[i].sName + '</h5>'; 
 	        			content += '           			<div class="info w3-padding">'; 
 	        			content += '           				<p>여행시작일 : ' + list[i].sSdate + '</p>';
@@ -168,7 +179,6 @@
 	        			
 	        			$('.add').append(content);
 	        		}
-        			
 	        	},
 	        	error : function(){
 	        		alert("통신오류");
@@ -199,7 +209,6 @@
 	        		"sarea" : param,
 	        		"month" : month
 	        	},
-	        	
 	        	success : function(data){
 	        		var list = data;
 	        		
@@ -208,16 +217,21 @@
 	        		$('.delete').remove();
 	        		
 	        		for(var i = 0; i < list.length; i++){
-		        		var content = "";
-		        		
+	        			var content = "";
+	        			
 	        			content += '<div class="delete">';
-	        			content += '	<form action="/schedule/scheduleDetail.kit" method="get" class="box" onclick="this.submit();">';
+	        			content += '	<form action="/schedule/scheduleDetail.kit" method="post" class="box" onclick="this.submit();">';
 	        			content += '		<div class="w3-container w3-card w3-margin-bottom content">';
 	        			content += '    		<input type="hidden" name="sNo" value="' + list[i].sNo + '"' + '>';
 	        			content += '        		<div class="w3-col m4">';
 	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
 	        			content += '        		</div>';
 	        			content += '        		<div class="w3-col m8 infobox">';
+	        			content += '        			<div class="star_score row">';
+	        			content += '        				<span class="st_off">';
+	        			content += '        					<span class="st_on" style="width: ' + list[i].likeAvg * 20 + '%;"></span>';
+	        			content += '        				</span>';
+	        			content += '        			</div>';
 	        			content += '           			<h5 class="sname w3-padding">' + list[i].sName + '</h5>'; 
 	        			content += '           			<div class="info w3-padding">'; 
 	        			content += '           				<p>여행시작일 : ' + list[i].sSdate + '</p>';

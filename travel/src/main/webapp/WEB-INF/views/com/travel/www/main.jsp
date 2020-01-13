@@ -179,6 +179,89 @@
 #make {
    float : right;
 }
+
+/* 별만들기 */
+.starL{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+	}
+	
+	.starR{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px; 
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starL.on{background-position:0 0;}
+	.starR.on{background-position:-15px 0;}
+	
+	.star_score span{display:inline-block;
+	height:30px;
+	background:url(/img/icon/sp_ico3.png) no-repeat -9999px -9999px}
+	.star_score span.st_off{
+	position:relative;
+	width:115px;
+	margin-right:2px; 
+	background-position: 0 -895px;
+	}
+	.star_score{
+		float: right;
+/* 		margin-top: 10px; */
+		
+	}
+	.star_score span.st_on{overflow:hidden;
+	position:absolute;
+	top: 0px;
+	left:0;
+	z-index:10;
+	background-position:0 -920px;
+	text-indent:-9999px}
+	
+	.avg, .score{
+	font-size: 20px;
+	}
+	.score{
+		margin-top: 10px;
+		margin-left: 5px;
+	}
+	.avg{
+	margin-left: 5px;
+	margin-right: 10px;
+	}
+	
+	.star_rate{
+	display: inline-block;
+	    font-weight: 400;
+	    color: #212529;
+	    text-align: center;
+	    vertical-align: middle;
+		float: right;
+		user-select: none;
+	    background-color: lavender;
+	    border: 1px solid transparent;
+	    padding: .375rem .75rem;
+	    font-size: 1rem;
+	    line-height: 1.5;
+	    border-radius: .25rem;
+	    
+	}
+	.star_rating{
+		margin-top: 10px;
+		margin-left: 50px;
+		display: none;
+	}
+	img{
+		width: 100%;
+		height: 100%;
+	}
 </style>
 <script>
    $(function() {
@@ -462,32 +545,22 @@
       </div>
    </div>
    <section>
-      <div class="container-fluid" style="width: 90%;">
+      <div class="container-fluid">
          <div class="row">
-            <div class="section col-md-1 m-5"></div>
+         <c:forEach var="data" items="${LIST}" begin="0" end="2">
             <div class="section col-md-2 ">
-
-               <img src="${DATA.sPic}" class="form-group" style="height: 300px;">
-               <div class="form-group">추천수 : ${DATA.sRate }</div>
-               <div class="form-group">${DATA.sName }</div>
-               <div class="form-group">${DATA.sBody }</div>
-               <div class="form-group">가격 : ${DATA.sCost }</div>
+            	<p>${data.sName}</p>
+            	<img alt="photo" src="${data.sPic}" style="width: 300px; height: 300px;">
+            	<div class="star_score row">
+				    <span class="st_off">
+				   		<span class="st_on" style="width: ${data.likeAvg * 20}%;" ></span>
+					</span>
+				</div>
+				<p>${data.sBody}</p>
+				<img alt="profile" src="/img/profile/${data.avatarName}" style="width: 50px; height: 50px;">
+				<p>${data.mId}</p>
             </div>
-            <div class="section col-md-1 m-5"></div>
-            <div class="section col-md-2 ">
-               <div class="form-group"
-                  style="background: url('/img/main/hongkong.jpg'); height: 300px;">
-                  여기는 사진</div>
-               <div class="form-group">여기는 스케쥴 내용</div>
-            </div>
-            <div class="section col-md-1 m-5"></div>
-            <div class="section col-md-2 ">
-               <div class="form-group"
-                  style="background: url('/img/main/hongkong.jpg'); height: 300px;">
-                  여기는 사진</div>
-               <div class="form-group">여기는 스케쥴 내용</div> 
-            </div>
-            <div class="section col-md-1"></div>
+         </c:forEach>
          </div>
       </div>
    </section>

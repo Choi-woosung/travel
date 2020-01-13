@@ -30,12 +30,13 @@ public class Schedule {
    @Autowired
    ScheduleDetailDAO sdDAO;
    
-   //由ъ뒪�듃 遺덈윭�삤湲�
+   //리스트 가져오기
    @RequestMapping("/scheduleList.kit")
    public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req) {
       String people = req.getParameter("people");
       String address = req.getParameter("address");
       String sarea = req.getParameter("sarea");
+      
       double like = 0;
       double likeCount = 0;
       double likeAvg = 0;
@@ -54,18 +55,14 @@ public class Schedule {
     	  list.get(i).setsSdate(sdate);
     	  list.get(i).setsWdate(wdate);
     	  
-    	  // 寃뚯떆臾� 醫뗭븘�슂 珥� �룊�젏
     	  like = sdDAO.LikeBoardLikeTotal(sVO);
-    	  // 寃뚯떆臾� 醫뗭븘�슂 珥� �궗�엺 �닔
     	  likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
-    	  // �룊洹좉컪
     	  likeAvg = like / likeCount;
     	  
     	  DecimalFormat form = new DecimalFormat("#.#");
     	  String likeAvg1 = form.format(likeAvg);
     	  likeAvg = Double.parseDouble(likeAvg1);
     	  
-//    	  System.out.println(i);
     	  list.get(i).setLikeAvg(likeAvg);
       }
       
@@ -81,86 +78,139 @@ public class Schedule {
       return mv;
    }
    
-   //理쒖떊�닚�쑝濡� 由ъ뒪�듃 遺덈윭�삤湲�
+   //최신순 리스트 가져오기
    @RequestMapping("/recentlist.kit")
    @ResponseBody
-   public List<ScheduleVO> recentlist(HttpServletRequest req) {
+   public List<ScheduleVO> recentlist(HttpServletRequest req, ScheduleVO sVO) {
 	   String tmp = req.getParameter("sarea");
 	   String sarea = tmp.substring(tmp.indexOf('=') + 1);
 	   tmp = req.getParameter("month");
 	   String month = tmp.substring(tmp.indexOf('=') + 1);
-//	   System.out.println(month);
+	   
+	   double like = 0;
+	   double likeCount = 0;
+	   double likeAvg = 0;
 	   
 	   List<ScheduleVO> list = sDAO.recentList(sarea, month);
 	   
 	   for(int i = 0; i < list.size(); i++) {
+		   int sno = list.get(i).getsNo();
 		   String sdate = list.get(i).getsSdate();
 		   String edate = list.get(i).getsEdate();
 		   String wdate = list.get(i).getsWdate();
+		   
+		   sVO.setsNo(sno);
 		  
 		   sdate = sdate.substring(0, sdate.indexOf(' '));
 		   edate = edate.substring(0, edate.indexOf(' '));
 		   wdate = wdate.substring(0, wdate.indexOf(' '));
 		   
+		   list.get(i).setsNo(sno);
 		   list.get(i).setsSdate(sdate);
 		   list.get(i).setsEdate(edate);
 		   list.get(i).setsWdate(wdate);
+		   
+		   like = sdDAO.LikeBoardLikeTotal(sVO);
+		   likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
+		   likeAvg = like / likeCount;
+  
+		   DecimalFormat form = new DecimalFormat("#.#");
+		   String likeAvg1 = form.format(likeAvg);
+		   likeAvg = Double.parseDouble(likeAvg1);
+  
+		   list.get(i).setLikeAvg(likeAvg);
 	   }
 	   
 	   return list;
    }
    
-   //�썡蹂꾩닚�쑝濡� 由ъ뒪�듃 媛��졇�삤湲�
+   //월별순 리스트 가져오기
    @RequestMapping("/sortmonth.kit")
    @ResponseBody
-   public List<ScheduleVO> sortmonth(HttpServletRequest req) {
+   public List<ScheduleVO> sortmonth(HttpServletRequest req, ScheduleVO sVO) {
 	   String tmp = req.getParameter("sarea");
 	   String sarea = tmp.substring(tmp.indexOf('=') + 1);
 	   tmp = req.getParameter("month");
 	   String month = tmp.substring(tmp.indexOf('=') + 1);
+	   
+	   double like = 0;
+	   double likeCount = 0;
+	   double likeAvg = 0;
 	   
 	   List<ScheduleVO> list = sDAO.scheduleList(sarea, month);
 	   
 	   for(int i = 0; i < list.size(); i++) {
+		   int sno = list.get(i).getsNo();
 		   String sdate = list.get(i).getsSdate();
 		   String edate = list.get(i).getsEdate();
 		   String wdate = list.get(i).getsWdate();
+		   
+		   sVO.setsNo(sno);
 		  
 		   sdate = sdate.substring(0, sdate.indexOf(' '));
 		   edate = edate.substring(0, edate.indexOf(' '));
 		   wdate = wdate.substring(0, wdate.indexOf(' '));
 		   
+		   list.get(i).setsNo(sno);
 		   list.get(i).setsSdate(sdate);
 		   list.get(i).setsEdate(edate);
 		   list.get(i).setsWdate(wdate);
+		   
+		   like = sdDAO.LikeBoardLikeTotal(sVO);
+		   likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
+		   likeAvg = like / likeCount;
+  
+		   DecimalFormat form = new DecimalFormat("#.#");
+		   String likeAvg1 = form.format(likeAvg);
+		   likeAvg = Double.parseDouble(likeAvg1);
+  
+		   list.get(i).setLikeAvg(likeAvg);
 	   }
 	   
 	   return list;
    }
    
-   //�룊�젏�닚 由ъ뒪�듃 媛��졇�삤湲�
+   //평점순 리스트 가져오기
    @RequestMapping("/sortrating.kit")
    @ResponseBody
-   public List<ScheduleVO> sortrating(HttpServletRequest req) {
+   public List<ScheduleVO> sortrating(HttpServletRequest req, ScheduleVO sVO) {
 	   String tmp = req.getParameter("sarea");
 	   String sarea = tmp.substring(tmp.indexOf('=') + 1);
 	   tmp = req.getParameter("month");
 	   String month = tmp.substring(tmp.indexOf('=') + 1);
 	   
+	   double like = 0;
+	   double likeCount = 0;
+	   double likeAvg = 0;
+	   
 	   List<ScheduleVO> list = sDAO.ratingList(sarea, month);
 	   
 	   for(int i = 0; i < list.size(); i++) {
+		   int sno = list.get(i).getsNo();
 		   String sdate = list.get(i).getsSdate();
 		   String edate = list.get(i).getsEdate();
 		   String wdate = list.get(i).getsWdate();
+		   
+		   sVO.setsNo(sno);
 		  
 		   sdate = sdate.substring(0, sdate.indexOf(' '));
 		   edate = edate.substring(0, edate.indexOf(' '));
 		   wdate = wdate.substring(0, wdate.indexOf(' '));
 		   
+		   list.get(i).setsNo(sno);
 		   list.get(i).setsSdate(sdate);
 		   list.get(i).setsEdate(edate);
 		   list.get(i).setsWdate(wdate);
+		   
+		   like = sdDAO.LikeBoardLikeTotal(sVO);
+		   likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
+		   likeAvg = like / likeCount;
+  
+		   DecimalFormat form = new DecimalFormat("#.#");
+		   String likeAvg1 = form.format(likeAvg);
+		   likeAvg = Double.parseDouble(likeAvg1);
+  
+		   list.get(i).setLikeAvg(likeAvg);
 	   }
 	   
 	   return list;
