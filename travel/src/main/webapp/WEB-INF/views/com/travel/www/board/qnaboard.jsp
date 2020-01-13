@@ -16,6 +16,10 @@
 			padding: 0;
 			margin: 0;
 		}
+		body div:not(#nav) {
+    		font-family: 'Nanum Brush Script', cursive;
+			font-family: 'Gothic A1', sans-serif;
+		}
 		/* container */
 		.b_container {
 			width: 70%;
@@ -55,13 +59,15 @@
 			text-align: center;
 			grid-template-columns: 10% 65% 12.5% 12.5%;
 			border-bottom: 1px solid #EBEBEB;
-			font-weight: 700;
 			background-color: #FFFFFF;
-			font-size: 15px;
+			font-size: 14px;
 			padding-left: 8px;
 			padding-right: 8px; 
 			padding-top: 9px;
 			padding-bottom: 9px;
+		}
+		.font_we div {
+			font-weight: 700;
 		}
 		/* writing */
 		.writing_box {
@@ -256,9 +262,10 @@
 			height: 90%;
 		}
 	</style>
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Nanum+Brush+Script&display=swap" rel="stylesheet">
 </head>
 <body>
-	<div>
+	<div id="nav">
 		<c:import url="/navigationBar.kit"></c:import>
 	</div>
 	<div class="b_container" id="b_container">
@@ -280,11 +287,21 @@
 			<div class="w_cancel" id="w_cancel">취소</div>
 		</div>
 		<div class="hide" id="board">
-			<div class="board_list">
+			<div class="board_list font_we">
 				<div>번호</div>
 				<div>제목</div>
 				<div>날짜</div>
 				<div>상태</div>
+			</div>
+			<div id="board_items">
+				<c:forEach var="data" items="${LIST}">
+					<div class="board_list">
+						<div>${data.q_no}</div>
+						<div>${data.q_head}</div>
+						<div>${data.q_wdate}</div>
+						<div>${data.q_status}</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 		<div class="hide" id="help_box">
@@ -336,6 +353,15 @@
 			let file_upload_btn = document.getElementById('file_upload_btn');
 			let file_cancel_btn = document.getElementById('file_cancel_btn');
 			let file_size = document.getElementById('file_size');
+			let board_items = document.getElementById('board_items').children;
+			
+			for (var i = 0; i < board_items.length; i++) {
+				if (board_items[i].children[3].textContent == 'N') {
+					board_items[i].children[3].textContent = '처리중'; 
+				} else {
+					board_items[i].children[3].textContent = '처리완료';
+				}
+			}
 			
 			writing.addEventListener('click', () => {
 				removeCls(writing_box, '', 'hide', 'writing_box');
@@ -369,7 +395,9 @@
 				};
 				
 				if (w_haed.textContent != '' && w_body != '') {
-					fetch('/board/qnaWriting.kit', options)
+					fetch('/board/qnaWriting.kit', options).then(() => {
+						location.reload();
+					});
 				}
 				
 			});

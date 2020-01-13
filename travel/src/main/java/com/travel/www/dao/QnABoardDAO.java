@@ -1,5 +1,7 @@
 package com.travel.www.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,8 +12,11 @@ public class QnABoardDAO {
 	SqlSessionTemplate sqlSession; 
 	
 	public int qnawriting(QnABoardVO vo) {
-		 
 		return sqlSession.insert("QnABoardSQL.qnawriting", vo);
+	}
+	
+	public List<QnABoardVO> qnaboard(QnABoardVO vo) {
+		return sqlSession.selectList("QnABoardSQL.qnaboard", vo);
 	}
 	
 	public String getprofile(QnABoardVO vo) {

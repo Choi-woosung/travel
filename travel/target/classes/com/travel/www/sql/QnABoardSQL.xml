@@ -16,6 +16,17 @@
 		)
 	</insert>
 	
+	<select id="qnaboard" resultType="QnABoardVO" parameterType="QnABoardVO">
+		SELECT
+		    ROWNUM q_no, q_head, q_wdate, q_status
+		FROM
+		    (SELECT * FROM qnaboard ORDER BY q_no)
+		WHERE
+		    m_id = #{m_id}
+		ORDER BY
+		    q_no desc
+	</select>
+	
 	<select id="getprofile" parameterType="QnABoardVO" resultType="string">
 		SELECT
 		    a_img_name

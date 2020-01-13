@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,7 +28,7 @@ public class QnABoard {
 	QnABoardDAO qDAO;
 	
 	@RequestMapping("qnaBoard.kit")
-	public ModelAndView qnaBoard(ModelAndView mv, HttpSession session, RedirectView rv) {
+	public ModelAndView qnaBoard(ModelAndView mv, HttpSession session, RedirectView rv, QnABoardVO vo) {
 		String sid = (String) session.getAttribute("SID");
 		String url =  "/main.kit";
 		
@@ -37,6 +38,11 @@ public class QnABoard {
 			return mv;
 		}
 		
+		vo.setM_id(sid);
+		
+		List<QnABoardVO> list = qDAO.qnaboard(vo);
+
+		mv.addObject("LIST", list);
 		mv.setViewName("board/qnaboard");
 		
 		return mv; 
@@ -53,8 +59,8 @@ public class QnABoard {
 		
 		int writing = qDAO.qnawriting(vo);
 		
-		System.out.println(vo.getQ_head());
-		System.out.println(vo.getQ_body());
+//		System.out.println(vo.getQ_head());
+//		System.out.println(vo.getQ_body());
 		
 		if (vo.getFiles() != null) {
 			Iterator<MultipartFile> itor = vo.getFiles().iterator();
