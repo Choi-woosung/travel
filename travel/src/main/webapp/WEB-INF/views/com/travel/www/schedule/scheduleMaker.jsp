@@ -529,7 +529,7 @@ p {
 			<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target=".bodyData">본문작성</button>
 			<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target=".dateSelector">날짜 설정하기</button>
   		</div>
-  		<hr>
+  		<hr> 
   		<div class="btn_group text-center">
   			<p class="font-weight-bold text-center">스케쥴 일 추가하기</p>
   			<button type="button" class="btn btn_outline_dark" id="dayCount_minus"> - </button>
