@@ -171,6 +171,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		var liCnt;
 		var placeObject;
 		var dayCount;
+		var markerLocation;
 		
 		$(function(){
 			$("#sidebar-toggle").click(function(){
@@ -201,17 +202,18 @@ input[type="number"]::-webkit-inner-spin-button {
 		function selfAddedMarker(){
 			google.maps.event.addListener(map, 'click', function(event) {
 			if(type != "freeSchedule") return;
+			markerLocation = event.latLng;
 			createMarker(event.latLng);
 			});
 		}
 		
-		function createMarker(location){
+		function createMarker(markerLocation){
 			markers[0] = new google.maps.Marker({
-				position: location,
+				position: markerLocation,
 				map: map
 				});
 			
-			var contentString = '<div data-toggle="modal" data-target="#dataModal" onclick="addFreeResult()">'
+			var contentString = '<div data-toggle="modal" data-target="#dataModal" onclick="addFreeResult(markerLocation)">'
 								+ "이 장소를 스케쥴에 추가"
 								+ '</div>';
 
@@ -246,7 +248,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		
 		// 자유 스케쥴 li에 추가하는 기능
 		
-		function addFreeResult(){
+		function addFreeResult(markerLocation){
 			var targetLi = document.getElementById(eventId);
 			console.log(targetLi);
 			targetLi.setAttribute('data-toggle' , null);
@@ -268,7 +270,9 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
 								+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
 								+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+')"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
-								+ '</div>';
+								+ '</div>'
+								+ '<input type="text" class="d-none" name ="placeLat" value="'+markerLocation.lat()+'">'
+								+ '<input type="text" class="d-none" name ="placeLng" value="'+markerLocation.lng()+'">';
 		}
 		
 		function showSelectedPlace() {
@@ -466,7 +470,9 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '<input type="text" class="d-none" name ="placeName" value="'+place.name+'">'
 								+ '<input type="text" class="d-none" name ="liCnt" value="'+liCnt+'">'
 								+ '<input type="text" class="d-none" name ="placeAddress" value="'+place.formatted_address+'">'
-								+ '<input type="text" class="d-none" name ="dayCount" value="'+dayCount+'">';
+								+ '<input type="text" class="d-none" name ="dayCount" value="'+dayCount+'">'
+								+ '<input type="text" class="d-none" name ="placeLat" value="'+place.geometry.location.lat()+'">'
+								+ '<input type="text" class="d-none" name ="placeLng" value="'+place.geometry.location.lng()+'">';
 		}
 		
 		// 맵에 마커 추가 기능

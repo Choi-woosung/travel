@@ -391,7 +391,7 @@ input:focus {
 	document.getElementById('submitBtn').addEventListener('click', e => {
 		alert("버튼 작동");
 		let data = new FormData();
-		let nameValue = ['pid', 'type', 'placeName', 'liCnt', 'placeAddress', 'body', 'price', 'dayCount'];
+		let nameValue = ['pid', 'type', 'placeName', 'liCnt', 'placeAddress', 'body', 'price', 'dayCount', 'placeLat' , 'placeLng'];
 
 		for (var i = 0; i < nameValue.length; i++) {
 			document.querySelectorAll("input[name="+nameValue[i]+"]").forEach(function(e, index){

@@ -19,10 +19,24 @@ public class ScheduleOrderVO {
 	private ArrayList<String> placeName;
 	private ArrayList<String> liCnt;
 	private ArrayList<String> placeAddress;
+	private ArrayList<String> placeLat;
+	private ArrayList<String> placeLng;
 	private ArrayList<MultipartFile> scheduleImg;
 	private String scheduleName;
 	private String scheduleBody;
 	
+	public ArrayList<String> getPlaceLat() {
+		return placeLat;
+	}
+	public void setPlaceLat(ArrayList<String> placeLat) {
+		this.placeLat = placeLat;
+	}
+	public ArrayList<String> getPlaceLng() {
+		return placeLng;
+	}
+	public void setPlaceLng(ArrayList<String> placeLng) {
+		this.placeLng = placeLng;
+	}
 	public String getScheduleName() {
 		return scheduleName;
 	}
