@@ -173,6 +173,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		var placeObject;
 		var dayCount;
 		var markerLocation;
+		var tempPrice = 0;
 
 		
 		$(function(){
@@ -284,10 +285,10 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '</div>' 
 								+ '</div>'
 								+ '<div class="row">'
-								+ '<div class="col-sm border mx-3" onclick="textcommit(this,'+eventId+', type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
-								+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" onclick="textcommit(this, eventId, type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" onclick="modifyContent(eventId, this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
 								+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
-								+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+')"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
+								+ '<div class="col-sm border mx-3" onclick="removeChildNode(eventId, type)"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
 								+ '</div>'
 								+ '<input type="text" class="d-none" name ="placeLat" value="'+markerLocation.lat()+'">'
 								+ '<input type="text" class="d-none" name ="placeLng" value="'+markerLocation.lng()+'">';
@@ -323,9 +324,6 @@ input[type="number"]::-webkit-inner-spin-button {
 					for (var i = 0; i < results.length; i++) {
 						addResult(results[i], i);
 					}
-				} else {
-					sleep(2000);
-					searchPlace(type, eventId, liCnt, dayCount);
 				}
 			});
 		}
@@ -481,7 +479,7 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '<div class="col-sm border mx-3" onclick="textcommit(this,'+eventId+', type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
 								+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
 								+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
-								+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+')"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
+								+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+', type)"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
 								+ '</div>'
 								+ '<input type="text" class="d-none" name ="pid" value="'+place.place_id+'">'
 								+ '<input type="text" class="d-none" name ="type" value="'+type+'">'
@@ -515,9 +513,31 @@ input[type="number"]::-webkit-inner-spin-button {
 			  }
 			}
 		
-		// 리스트 내 li 제거 기능
-		function removeChildNode(e){
-			e.parentNode.removeChild(e);
+		// 리스트 내 li 제거 기능 + 리스트에서 제거 시 비용 다시 계산해주는 함수
+		function removeChildNode(eventId, type){
+			if(eventId != eventId.parentNode.lastElementChild){
+				var targetLi = eventId.parentNode;
+				var thisid = eventId.id;
+				targetLi.removeChild(eventId);
+				var counter = 1;
+				var smalls = targetLi.querySelectorAll('small');
+				smalls.forEach(e => {
+					e.innerHTML = counter;
+					counter++;
+				});
+				counter = 1;
+				var liCounter = targetLi.querySelectorAll('input[name="liCnt"]');
+				liCounter.forEach(e => {
+					e.value = counter;
+					counter++;
+				});
+				var dayCounter = thisid.substring(1, thisid.indexOf("li"));
+				var allLis = targetLi.querySelectorAll('li');
+				counter = 0;
+			} else {
+				eventId.parentNode.removeChild(eventId);
+			}
+			priceCalc(type);
 		}
 		
 		// list 내 li에 body 컨텐츠 추가, 금액 추가  하는 기능
@@ -558,19 +578,35 @@ input[type="number"]::-webkit-inner-spin-button {
 		// 수정 완료 했을때 작동하는 기능
 		
 		function textcommit(e, etarget, type){
+			var thisbool = false;
 			e.style.display = "none";
 			e.nextSibling.style.display = 'block';
 			var allInput = etarget.querySelectorAll('input');
+			var bodyInput = etarget.querySelector('input[name="body"]');
+			var priceInput = etarget.querySelector('input[name="price"]');
 			allInput.forEach(e => {
 				e.setAttribute('readonly', 'true');
 			});
+			if(bodyInput.value == '' && priceInput.value == ''){
+				thisbool = true;
+			}
+			console.log(thisbool);
+			if(thisbool == true){
+				var bodyText = etarget.querySelector('.content-body-text');
+				bodyText.style.display = 'none';
+			}
 			var price = parseInt(etarget.querySelector('.pricecontext').value);
-			priceCalc(type, price, etarget);
+			console.log(price);
+			if(isNaN(price) == false){
+				priceCalc(type);
+			}
 		}
 		
 		
 		// 비용 계산하는 함수
-		function priceCalc(type, price, etarget){
+		function priceCalc(type){
+			alert("안들어와?");
+			tempPrice = 0;
 			var priceId;
 			if(type == 'subway_station'){
 				priceId = 'trafficPrice';
@@ -582,8 +618,18 @@ input[type="number"]::-webkit-inner-spin-button {
 				priceId = 'otherPrice';
 			}
 			var thisPrice = document.getElementById(priceId);
-			var currentVal = parseInt(thisPrice.innerHTML);
-			thisPrice.innerHTML = currentVal + price;
+			var allPrice = document.querySelectorAll('input[name="price"]');
+			
+			allPrice.forEach(e => {
+				console.log(e);
+				console.log(e.value);
+				if(e.value == ''){
+					return;
+				} else {
+					tempPrice = tempPrice + parseInt(e.value);
+				}
+			});
+			thisPrice.innerHTML = tempPrice;
 			totalCalc();
 		}
 		

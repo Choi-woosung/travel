@@ -406,8 +406,6 @@ p {
 		  liId = idGenerator(targetDiv);
 		  cnt = targetDiv.querySelectorAll('li').length + 1;
 		  dayCnt = liId.substring(1, liId.indexOf("li"));
-		  console.log(liId);
-		  console.log(dayCnt);
 		  var ulDiv;
 		  if(targetDiv.querySelector('ul') == null){
 			  var createUl = document.createElement('ul');
@@ -429,7 +427,7 @@ p {
 			  licode.setAttribute('data-toggle' , 'modal');
 			  licode.setAttribute('data-target' , '#dataModal');
 			  licode.setAttribute('class', 'list-group-item list-group-item-action');
-			  licode.setAttribute('onclick', 'searchPlace("'+data+'", "'+liId+'", "'+cnt+'")');
+			  licode.setAttribute('onclick', 'searchPlace("'+data+'", "'+liId+'", "'+cnt+'" , "'+dayCnt+'")');
 			  licode.setAttribute('id' , liId);
 			  var textcode = document.createTextNode("+"); 
 			  ulDiv.appendChild(licode);
@@ -633,27 +631,30 @@ p {
 	</div>
 
 	<script>
+	var nameValue = ['pid', 'type', 'placeName', 'liCnt', 'placeAddress', 'body', 'price', 'dayCount', 'placeLat' , 'placeLng'];
+	var idValue = ['scheduleName', 'scheduleBody', 'sCountry','sArea'];
+	var submitCheck = false;
 	document.getElementById('submitBtn').addEventListener('click', e => {
 		alert("버튼 작동");
 		let data = new FormData();
-		let nameValue = ['pid', 'type', 'placeName', 'liCnt', 'placeAddress', 'body', 'price', 'dayCount', 'placeLat' , 'placeLng'];
-		let idValue = ['scheduleName', 'scheduleBody', 'sCountry','sArea'];
 		let idData;
 		let querys;
+		let valuePrice
 
 		for (var i = 0; i < nameValue.length; i++) {
 			querys = document.querySelectorAll("input[name="+nameValue[i]+"]");
 			querys.forEach(function(e, index){
-				e.name = "Schedules[" + index + "]."+nameValue[i];
+				var valueName = "Schedules[" + index + "]."+nameValue[i];
 				if(e.value == '' && nameValue[i] == 'price'){
 					e.value = '0';
 				} else if(e.value == ''){
 					e.value = 'empty Data';
 				}
-				console.log("nameValue : " + nameValue[i] + " ename : " + e.name + " , e.value : " + e.value);
-				data.append(e.name, e.value);
-				e.name = nameValue[i];
-				e.value = '';
+				console.log("nameValue : " + nameValue[i] + " ename : " + valueName + " , e.value : " + e.value);
+				data.append(valueName, e.value);
+				if(e.value == 'empty Data' || e.value == '0'){
+					e.value = '';
+				}
 			});
 		}
 		
@@ -661,9 +662,10 @@ p {
 			idData = document.getElementById(idValue[i]).value;
 			if(idData == null || idData == '' || idData == 'undefiend'){
 				idData = 'empty Data';
+			} else {
+				data.append(idValue[i], idData);
 			}
 			console.log(idValue[i], idData);
-			data.append(idValue[i], idData);
 		}
 		
 		var sSdate = document.getElementById("sSdate").innerHTML;
@@ -692,6 +694,10 @@ p {
 
 		fetch("/scheduleMaker/test.kit", options);
 	});
+	
+	function checkData(){
+		
+	}
 	
 </script>
 </body>
