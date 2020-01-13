@@ -3,6 +3,8 @@ package com.travel.www.vo;
 import java.awt.List;
 import java.util.ArrayList;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ScheduleOrderVO {
 	private ArrayList<ScheduleOrderVO> Schedules;
 
@@ -17,7 +19,28 @@ public class ScheduleOrderVO {
 	private ArrayList<String> placeName;
 	private ArrayList<String> liCnt;
 	private ArrayList<String> placeAddress;
+	private ArrayList<MultipartFile> scheduleImg;
+	private String scheduleName;
+	private String scheduleBody;
 	
+	public String getScheduleName() {
+		return scheduleName;
+	}
+	public void setScheduleName(String scheduleName) {
+		this.scheduleName = scheduleName;
+	}
+	public String getScheduleBody() {
+		return scheduleBody;
+	}
+	public void setScheduleBody(String scheduleBody) {
+		this.scheduleBody = scheduleBody;
+	}
+	public ArrayList<MultipartFile> getScheduleImg() {
+		return scheduleImg;
+	}
+	public void setScheduleImg(ArrayList<MultipartFile> scheduleImg) {
+		this.scheduleImg = scheduleImg;
+	}
 	public ArrayList<String> getPid() {
 		return pid;
 	}

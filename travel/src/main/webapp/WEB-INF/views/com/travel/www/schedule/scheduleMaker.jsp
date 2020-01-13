@@ -351,12 +351,16 @@ input:focus {
 				<li class="list-group-item">총액 : <span id="totalPrice" class="prices">0</span></li>
 			</ul>
 		</div>
+		<div id="flieUpload" class="nameEdit">
+			<input type="file" name="scheduleImg" accept="image/gif, image/jpeg, image/png" multiple="multiple">
+  		</div>
 		<div class="container">
 			<button id="submitBtn">누르셈</button>
 		</div>
 	</div>
   </div>
 </div>
+<textarea name="scheduleBody" class="d-none">임시데이터 입니다</textarea>
 <div class="modal fade bd-example-modal-xl" id="dataModal" tabindex="1" role="dialog" aria-labelledby="dataModalTiTle" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content searchBox">
@@ -391,13 +395,17 @@ input:focus {
 
 		for (var i = 0; i < nameValue.length; i++) {
 			document.querySelectorAll("input[name="+nameValue[i]+"]").forEach(function(e, index){
-				console.log(index);
-				console.log(e);
-				console.log(e.value);
 				e.name = "Schedules[" + index + "]."+nameValue[i];
 				data.append(e.name, e.value);
 			});
 		}
+		var nameData = document.getElementById("scheduleNameDiv").value;
+		var bodyData = document.getElementById("scheduleBody").value;
+		data.append("scheduleName", nameData);
+		data.append("scheduleBody", bodyData);
+		document.querySelector("input[type=file]").files.forEach(function(e, index){
+			data.append("scheduleImg", e);
+		});
 		
 		let options = {
 			method: 'POST',
