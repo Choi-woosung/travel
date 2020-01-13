@@ -687,6 +687,7 @@ p {
 
 		fetch("/scheduleMaker/test.kit", options);
 	});
+	
 </script>
 </body>
 </html>
