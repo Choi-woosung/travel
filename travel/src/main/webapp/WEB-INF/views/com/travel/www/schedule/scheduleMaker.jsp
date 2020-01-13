@@ -188,7 +188,25 @@ p {
   color: #d8d8d8 !important;
 }
 
+/* 도시 검색 */
+.citySelector {
+	width : 90%;
+	border : 0px;
+	border-bottom : 1px solid #dee2e6;
+}
 
+.buttonClass{
+	display : flex;
+	justify-content : space-around;
+}
+
+.scheduleBody {
+	width : 100%;
+	height : 400px;
+	border : 1px solid #dee2e6;
+	padding : 10px;
+	resize: none;
+}
 
 </style>
 <script>
@@ -499,21 +517,28 @@ p {
   				<textarea name="scheduleName" id="scheduleName" class="scheduleName" rows="2"></textarea>
   			</div>
   		</div>
-  		<div>
-  			<input type="text" id="citySelector" placeholder="여행할 도시를 선택하세요">
-  			<input type="text" id="sCountry" class="d-none">
-  			<input type="text" id="sArea" class="d-none">
+  		<div class="nameEdit my-1">
+  			<div class="nameEditLeft"><img src="/img/icon/search.svg"></div>
+  			<div class="nameEditRight">
+  				<input type="text" id="citySelector" class="citySelector" placeholder="여행할 도시를 선택하세요">
+  				<input type="text" id="sCountry" class="d-none">
+  				<input type="text" id="sArea" class="d-none">
+  			</div>
   		</div>
-  		<div>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".dateSelector">날짜 설정하기</button>
+  		<div class="buttonClass">
+			<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target=".bodyData">본문작성</button>
+			<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target=".dateSelector">날짜 설정하기</button>
   		</div>
   		<hr>
   		<div class="btn_group text-center">
   			<p class="font-weight-bold text-center">스케쥴 일 추가하기</p>
   			<button type="button" class="btn btn_outline_dark" id="dayCount_minus"> - </button>
-  			<button type="button" class="btn btn_outline_dark" id="dayCount_plus"> + </button>
-  			<button type="button" class="btn btn_outline_dark" id="dayCount_reset"> 전체삭제 </button>
+ 				<button type="button" class="btn btn_outline_dark" id="dayCount_plus"> + </button>
+ 				<button type="button" class="btn btn_outline_dark" id="dayCount_reset"> 전체삭제 </button>
   		</div>
+  		<div id="flieUpload">
+			<input type="file" name="scheduleImg" accept="image/gif, image/jpeg, image/png" multiple="multiple">
+		</div>
   		<hr>
   		<div class="list-group" >
  			 <a href="#" class="list-group-item list-group-item-action icons" draggable="true" ondragstart="drag(event)" id="subway_station"><img src="/img/icon/bus.png" class="icon" >교통</a>
@@ -531,12 +556,8 @@ p {
 				<li class="list-group-item">총액 : <span id="totalPrice" class="prices">0</span></li>
 			</ul>
 		</div>
-		<div id="flieUpload" class="nameEdit">
-			<input type="file" name="scheduleImg" accept="image/gif, image/jpeg, image/png" multiple="multiple">
-  		</div>
 		<div class="container">
-			<button id="submitBtn">누르셈</button>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bodyData">임시 바디</button>
+			<button type="button" class="btn btn-secondary btn-lg float-right" id="submitBtn">저장하기</button>
 		</div>
 	</div>
   </div>
@@ -569,13 +590,21 @@ p {
 </div>
 <!-- 본문 내용 작성하는 모달 -->
 
-<div class="modal fade bd-example-modal-lg bodyData" tabindex="-1" role="dialog" aria-labelledby="bodyData" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-		<textarea id="scheduleBody" name="scheduleBody">임시 데이터 입니다.</textarea>
-    </div>
-  </div>
-</div>
+	<div class="modal fade bd-example-modal-lg bodyData" tabindex="-1" role="dialog" aria-labelledby="bodyData" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">여행 계획을 작성해보세요</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<textarea id="scheduleBody" name="scheduleBody" class="scheduleBody" placeholder="이곳에 전반적인 여행 계획을 작성하세요"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="modal fade bd-example-modal-lg dateSelector" tabindex="-1"
 		role="dialog" aria-labelledby="dateSelector" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">

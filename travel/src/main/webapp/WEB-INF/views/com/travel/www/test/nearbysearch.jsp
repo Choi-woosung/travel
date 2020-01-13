@@ -159,9 +159,6 @@ input[type="number"]::-webkit-inner-spin-button {
 	z-index : 1060;
 }
 
-.citySelector {
-
-}
 
 </style>
 <script type="text/javascript">
