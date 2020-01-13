@@ -101,7 +101,7 @@
 						<ul class="profile_hide" id="profile_menu">
 							<li><div class="user_name" id="user_name"></div></li>
 							<li><a href="/member/myProfile.kit">내 정보</a></li>
-							<li><a href="/board/qnaBoard.kit">고객센터</a></li>
+							<%-- <li><a href="/board/qnaBoard.kit">고객센터</a></li> --%>
 							<li><a href="/member/logout.kit">로그아웃</a></li>
 						</ul>
 					</li>

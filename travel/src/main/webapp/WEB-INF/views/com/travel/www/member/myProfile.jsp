@@ -56,24 +56,16 @@
 	<div>
 		<c:import url="/navigationBar.kit"></c:import>
 	</div>
-	<div class="my_profile">
-		<div class="item" id="item">
-			<div class="p_img_box1 user_none">
-				<img id="profile" width="128" height="128" draggable="false">
-				<div>이름 : ${LIST.mName}</div>
-			</div>
-			<div></div>
-			<div class="p_box2 user_none">
-				<div>회원 등급 : ${LIST.mGrade}</div>
-				<div>포인트 : ${LIST.mPoint}</div>
-				<div>이메일 : ${LIST.mMail}</div>
-				<div>휴대전화 : ${LIST.mMobile}</div> 
-				<div>주소 : ${LIST.mAddress}</div>
-				<div>가입일 : ${LIST.mJdate}</div>
-			</div>
-			<div></div>
-			<div class="p_box3 user_none" id="edit_btn">수정</div>
-		</div>
+	<div>
+		<img id="profile" width="128" height="128" draggable="false">
+		<div>이름 : ${LIST.mName}</div>
+		<div>회원 등급 : ${LIST.mGrade}</div>
+		<div>포인트 : ${LIST.mPoint}</div>
+		<div>이메일 : ${LIST.mMail}</div>
+		<div>휴대전화 : ${LIST.mMobile}</div> 
+		<div>주소 : ${LIST.mAddress}</div>
+		<div>가입일 : ${LIST.mJdate}</div>
+		<div class="p_box3 user_none" id="edit_btn">수정</div>
 	</div>
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', () => {
