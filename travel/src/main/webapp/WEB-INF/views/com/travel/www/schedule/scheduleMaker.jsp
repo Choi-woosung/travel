@@ -9,11 +9,15 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="shortcut icon" type="image/x-icon" href="/img/main/favicon2.ico" />
 <title>ConsulTravel</title>
-<link rel="stylesheet" href="/css/bootstrap.min.css">
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&sensor=false&libraries=places"></script>
+<script type="text/javascript" src="/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/css/bootstrap-datepicker3.min.css">
+
+
 <style>
 body, html {
 	margin: 0;
@@ -80,8 +84,8 @@ body, html {
   background : #f0f0f0;
 }
 .icon {
-	width : 50px;
-	height : 50px;
+	width : 35px;
+	height : 35px;
 }
 .searchBox {
 	height : 700px;
@@ -123,6 +127,66 @@ input:focus {
 	outline : none;
 }
 
+/* datePicker */
+
+.well {
+  margin-top: 20px;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.date-range {
+  margin: auto;
+  text-align: center;
+}
+
+.date-range > div {
+  display: inline-block;
+  margin: 10px;
+}
+
+p {
+  text-align: right;
+  margin-bottom: 0;
+}
+
+.is-selected {
+  background-color: #286090;
+  color: white;
+}
+
+.is-selected:hover {
+  background-color: #204d74 !important;
+}
+
+.is-between {
+  border-radius: 0 !important;
+  background-color: #5599d4;
+  color: white;
+}
+
+.is-between:hover {
+  background-color: #204d74 !important;
+}
+
+.checkin-picker .active,
+.checkout-picker .is-selected {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.checkout-picker .active,
+.checkin-picker .is-selected {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.disabled {
+  color: #d8d8d8 !important;
+}
 
 
 
@@ -175,20 +239,128 @@ input:focus {
 				$('#scheduleNameDiv').css("display" , "block");
 			}
 		});
-		/* $('#submitBtn').click(function(){
-		    $("#form").each( function (index) {
-		        $(this).find("input[name=pid]").attr("name", "Schedules[" + index + "].pid");
-		        $(this).find("input[name=type]").attr("name", "Schedules[" + index + "].type");
-		        $(this).find("input[name=placeName]").attr("name", "Schedules[" + index + "].placeName");
-		        $(this).find("input[name=liCnt]").attr("name", "Schedules[" + index + "].liCnt");
-		        $(this).find("input[name=placeAddress]").attr("name", "Schedules[" + index + "].placeAddress");
-		        $(this).find("input[name=body]").attr("name", "Schedules[" + index + "].body");
-		        $(this).find("input[name=price]").attr("name", "Schedules[" + index + "].price");
-		        $(this).find("input[name=dayCount]").attr("name", "Schedules[" + index + "].dayCount");
-		        $(this).submit();
-		    });
-		}); */
+		
+		// datePicker
+		
+		let checkin_date, checkin_div, checkin_dp,
+		  checkout_date, checkout_div, checkout_dp;
 
+		// function for udpating displayed date in button
+		function update() {
+		  if (checkin_date !== undefined) {
+		    $('#display-checkin').html(checkin_date.toLocaleDateString());
+		  }
+		  if (checkout_date !== undefined) {
+		    $('#display-checkout').html(checkout_date.toLocaleDateString());
+		  }
+		}
+
+		// create checkin datepicker
+		checkin_div = $('.checkin-picker').datepicker({
+		  autoclose: false,
+		  beforeShowDay: function(date) {
+		    if (checkout_date !== undefined) {
+		      // disabled date selection for day after checkout date
+		      if (date > checkout_date) {
+		        return false;
+		      }
+		      // display checkout date in checkin datepicker
+		      if (date.getDate() === checkout_date.getDate() &&
+		        date.getMonth() === checkout_date.getMonth() &&
+		        date.getFullYear() === checkout_date.getFullYear()) {
+		        return {
+		          classes: 'is-selected'
+		        };
+		      }
+		    }
+		    // display range dates in checkin datepicker
+		    if (checkin_date !== undefined && checkout_date !== undefined) {
+		      if (date > checkin_date && date < checkout_date) {
+		        return {
+		          classes: 'is-between'
+		        };
+		      }
+		    }
+		    // display checkin date
+		    if (checkin_date !== undefined) {
+		      if (date.getDate() === checkin_date.getDate() &&
+		        date.getMonth() === checkin_date.getMonth() &&
+		        date.getFullYear() === checkin_date.getFullYear()) {
+		        return {
+		          classes: 'active'
+		        };
+		      }
+		    }
+		    return true;
+		  }
+		});
+
+		// save checkin datepicker for later
+		checkin_dp = checkin_div.data('datepicker');
+
+		// update datepickers on checkin date change
+		checkin_div.on('changeDate', (event) => {
+		  // save checkin date
+		  checkin_date = event.date;
+		  // update checkout datepicker so range dates are displayed
+		  checkout_dp.update();
+		  checkin_dp.update();
+		  update();
+		});
+
+		// create checkout datepicker
+		checkout_div = $('.checkout-picker').datepicker({
+		  autoclose: false,
+		  beforeShowDay: function(date) {
+		    if (checkin_date !== undefined) {
+		      // disabled date selection for day before checkin date
+		      if (date < checkin_date) {
+		        return false;
+		      }
+		      // display checkin date in checkout datepicker
+		      if (date.getDate() === checkin_date.getDate() &&
+		        date.getMonth() === checkin_date.getMonth() &&
+		        date.getFullYear() === checkin_date.getFullYear()) {
+		        return {
+		          classes: 'is-selected'
+		        };
+		      }
+		    }
+		    // display range dates in checkout datepicker
+		    if (checkin_date !== undefined && checkout_date !== undefined) {
+		      if (date > checkin_date && date < checkout_date) {
+		        return {
+		          classes: 'is-between'
+		        };
+		      }
+		    }
+		    // display checkout date
+		    if (checkout_date !== undefined) {
+		      if (date.getDate() === checkout_date.getDate() &&
+		        date.getMonth() === checkout_date.getMonth() &&
+		        date.getFullYear() === checkout_date.getFullYear()) {
+		        return {
+		          classes: 'active'
+		        };
+		      }
+		    }
+		    return true;
+		  }
+		});
+
+		// save checkout datepicker for later
+		checkout_dp = checkout_div.data('datepicker');
+
+		// update datepickers on checkout date change
+		checkout_div.on('changeDate', (event) => {
+		  // save checkout date
+		  checkout_date = event.date;
+		  // update checkin datepicker so range dates are displayed
+		  checkin_dp.update();
+		  checkout_dp.update();
+		  update();
+		});
+		
 	});
 	
 	function allowDrop(ev) {
@@ -327,9 +499,17 @@ input:focus {
   				<textarea name="scheduleName" id="scheduleName" class="scheduleName" rows="2"></textarea>
   			</div>
   		</div>
+  		<div>
+  			<input type="text" id="citySelector" placeholder="여행할 도시를 선택하세요">
+  			<input type="text" id="sCountry" class="d-none">
+  			<input type="text" id="sArea" class="d-none">
+  		</div>
+  		<div>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".dateSelector">날짜 설정하기</button>
+  		</div>
   		<hr>
   		<div class="btn_group text-center">
-  			<p class="font-weight-bold">스케쥴 일 추가하기</p>
+  			<p class="font-weight-bold text-center">스케쥴 일 추가하기</p>
   			<button type="button" class="btn btn_outline_dark" id="dayCount_minus"> - </button>
   			<button type="button" class="btn btn_outline_dark" id="dayCount_plus"> + </button>
   			<button type="button" class="btn btn_outline_dark" id="dayCount_reset"> 전체삭제 </button>
@@ -356,11 +536,11 @@ input:focus {
   		</div>
 		<div class="container">
 			<button id="submitBtn">누르셈</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bodyData">임시 바디</button>
 		</div>
 	</div>
   </div>
 </div>
-<textarea name="scheduleBody" class="d-none">임시데이터 입니다</textarea>
 <div class="modal fade bd-example-modal-xl" id="dataModal" tabindex="1" role="dialog" aria-labelledby="dataModalTiTle" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content searchBox">
@@ -387,7 +567,39 @@ input:focus {
     </div>
   </div>
 </div>
-<script>
+<!-- 본문 내용 작성하는 모달 -->
+
+<div class="modal fade bd-example-modal-lg bodyData" tabindex="-1" role="dialog" aria-labelledby="bodyData" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+		<textarea id="scheduleBody" name="scheduleBody">임시 데이터 입니다.</textarea>
+    </div>
+  </div>
+</div>
+	<div class="modal fade bd-example-modal-lg dateSelector" tabindex="-1"
+		role="dialog" aria-labelledby="dateSelector" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="container">
+					<div class="well">
+						<h1>여행 일자를 선택하세요 :</h1>
+						<div class="date-range">
+							<div class="checkin-picker"></div>
+							<div class="checkout-picker"></div>
+						</div>
+						<p>
+							<a class="btn btn-success" href="#" role="button" data-toggle="modal" data-target=".dateSelector"> 출발일자  <span id="display-checkin"></span> 에서
+							<span id="display-checkout"> 까지 입니다.</span>
+							</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
 	document.getElementById('submitBtn').addEventListener('click', e => {
 		alert("버튼 작동");
 		let data = new FormData();
@@ -399,13 +611,26 @@ input:focus {
 				data.append(e.name, e.value);
 			});
 		}
-		var nameData = document.getElementById("scheduleNameDiv").value;
+		
+		var nameData = document.getElementById("scheduleName").value;
 		var bodyData = document.getElementById("scheduleBody").value;
+		var fileData = document.querySelector("input[type=file]").files;
+		var sSdate = document.getElementById("display-checkin").innerHTML;
+		var sEdate = document.getElementById("display-checkout").innerHTML;
+		var sCountry = document.getElementById("sCountry").value;
+		var sArea = document.getElementById("sArea").value;
 		data.append("scheduleName", nameData);
 		data.append("scheduleBody", bodyData);
-		document.querySelector("input[type=file]").files.forEach(function(e, index){
-			data.append("scheduleImg", e);
-		});
+		data.append("sSdate", sSdate);
+		data.append("sEdate", sEdate);
+		data.append("sCountry", sCountry);
+		data.append("sArea", sArea);
+		
+		if (fileData != null) {
+			for (let i = 0; i < fileData.length; i++) {
+				data.append('scheduleImg['+i+']', fileData[i]);
+			}
+		}
 		
 		let options = {
 			method: 'POST',

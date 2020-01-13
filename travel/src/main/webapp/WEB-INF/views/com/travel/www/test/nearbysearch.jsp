@@ -159,19 +159,24 @@ input[type="number"]::-webkit-inner-spin-button {
 	z-index : 1060;
 }
 
+.citySelector {
+
+}
+
 </style>
-<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 		var type;
 		var eventId;
 		var map, places, iw;
 		var markers = [];
 		var autocomplete;
+		var citySelector;
 		var options;
 		var liCnt;
 		var placeObject;
 		var dayCount;
 		var markerLocation;
+
 		
 		$(function(){
 			$("#sidebar-toggle").click(function(){
@@ -188,9 +193,25 @@ input[type="number"]::-webkit-inner-spin-button {
 				center: myLatlng,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
+	        var options = {
+	           types : [ 'geocode' ]
+	        };
 			map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
 			places = new google.maps.places.PlacesService(map);
  			autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+ 			citySelector = new google.maps.places.Autocomplete(document.getElementById('citySelector'), options);
+
+            google.maps.event.addListener(citySelector, 'place_changed', function() {
+               var place = citySelector.getPlace();
+               var components = place.address_components;
+               var component0 = components[0];
+               var component2 = components[2];
+               var street0 = component0['long_name'];
+               var street2 = component2['long_name'];
+               
+               $('#sCountry').val(street2);
+               $('#sArea').val(street0);
+            });
 			google.maps.event.addListener(autocomplete, 'place_changed', function () {
 				showSelectedPlace();
 			});

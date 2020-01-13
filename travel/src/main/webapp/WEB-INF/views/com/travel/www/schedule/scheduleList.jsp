@@ -447,7 +447,6 @@
                   
                   <input type="hidden" name="sCountry" id="sCountry">
                   <input type="hidden" name="sArea" id="sArea">
-<!--                   <input type="hidden" name="sRate" id="sRate"> -->
             		<button type="button" class="btn btn-outline-info" id="search">검색</button>
           </form>
       </div>

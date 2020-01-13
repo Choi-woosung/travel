@@ -24,6 +24,10 @@ public class ScheduleOrderVO {
 	private ArrayList<MultipartFile> scheduleImg;
 	private String scheduleName;
 	private String scheduleBody;
+	private String country;
+	private String city;
+	private String sSdate;
+	private String sEdate;
 	
 	public ArrayList<String> getPlaceLat() {
 		return placeLat;
