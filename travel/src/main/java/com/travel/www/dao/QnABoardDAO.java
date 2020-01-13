@@ -10,9 +10,8 @@ public class QnABoardDAO {
 	SqlSessionTemplate sqlSession; 
 	
 	public int qnawriting(QnABoardVO vo) {
-		sqlSession.insert("");
 		 
-		return 1;
+		return sqlSession.insert("QnABoardSQL.qnawriting", vo);
 	}
 	
 	public String getprofile(QnABoardVO vo) {

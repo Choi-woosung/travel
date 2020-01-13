@@ -230,17 +230,13 @@
 			border: 1px solid #EBEBEB;
 			font-weight: 700;
 			width: 100%;
-			height: 50%;
+			height: 100%;
 			float: right;
 			border-radius: 4px;
 			padding-top: 20px;
 			user-select: none;
 		}
 		.file_cancel_btn:hover {
-			background-color: #666666;
-			color: #FFFFFF;
-		}
-		.file_add_btn:hover {
 			background-color: #666666;
 			color: #FFFFFF;
 		}
@@ -251,19 +247,13 @@
 			margin-left: 16px;
 			margin-right: 16px;
 		}
-		.file_item2 {
-			width: calc(100% - 32px);
-			margin-bottom: 16px;
-			margin-left: 16px;
-			margin-right: 16px;
-		}
 		.m_btn_box {
 			width: 100%;
-			height: 20%;
+			height: 10%;
 		}
 		.new_file {
 			width: 100%;
-			height: 80%;
+			height: 90%;
 		}
 	</style>
 </head>
@@ -282,7 +272,7 @@
 		<div class="hide" id="writing_box">
 			<div class="w_head" contenteditable="true" placeholder="제목" id="w_haed"></div>
 			<div class="w_file">
-				<div id="w_file_add_btn">파일첨부</div>
+				<div id="w_file_add_btn">파일첨부<span id="file_size"></span></div>
 			</div>
 			<div class="w_body" contenteditable="true" placeholder="본문" id="w_body"></div>
 			<div class="w_col"></div>
@@ -316,10 +306,9 @@
 	<div class="hide" id="modal_file_box">
 		<div class="modal_contents">
 			<div id="new_file" class="new_file">
-				<input type="file" class="file_item1">
+				<input type="file" class="file_item1" multiple="multiple">
 			</div>
 			<div class="m_btn_box">
-				<div id="file_add_btn" class="file_add_btn">추가</div>
 				<div class="file_cancel_btn" id="file_cancel_btn">뒤로 가기</div>
 			</div>
 		</div>
@@ -344,9 +333,9 @@
 			let modal_box = document.getElementById('modal_box');
 			let modal_file_box = document.getElementById('modal_file_box');
 			let new_file = document.getElementById('new_file');
-			let file_add_btn = document.getElementById('file_add_btn');
 			let file_upload_btn = document.getElementById('file_upload_btn');
 			let file_cancel_btn = document.getElementById('file_cancel_btn');
+			let file_size = document.getElementById('file_size');
 			
 			writing.addEventListener('click', () => {
 				removeCls(writing_box, '', 'hide', 'writing_box');
@@ -362,15 +351,15 @@
 				isCls(help, '', 'backColor');
 			});
 			w_btn.addEventListener('click', () => {
-				let input = new_file.children;
+				let files = document.querySelector('.file_item1').files;
 				let data = new FormData();
 
 				data.append('q_head', w_haed.textContent);
 				data.append('q_body', w_body.textContent);		
 				
-				if (input.files != null) {
-					for (let i = 0; i < input.length; i++) {
-						data.append('files', input[i].files[0]);
+				if (files.files != null) {
+					for (var i = 0; i < files.length; i++) {
+						data.append('files', files[i]);
 					}
 				}
 				
@@ -387,24 +376,23 @@
 			w_cancel.addEventListener('click', () => {
 				reSet();
 				moon.click();
+				file_size_reset();
 			});
 			w_file_add_btn.addEventListener('click', () => {
 				isCls(body, '', 'overflow');
 				isCls(modal_box, 'hide', 'modal_box');
 				isCls(modal_file_box, 'hide', 'modal_file_box');
 			});
-			file_add_btn.addEventListener('click', () => {
-				if (new_file.children.length < 10) {
-					let ipt = document.createElement('input');
-					ipt.type = 'file';
-					ipt.className = 'file_item2';
-					new_file.appendChild(ipt);
-				}
-			});
 			file_cancel_btn.addEventListener('click', () => {
 				isCls(body, 'overflow', '');
 				isCls(modal_box, 'modal_box', 'hide');
 				isCls(modal_file_box, 'modal_file_box', 'hide');
+				let files = document.querySelector('.file_item1').files;				
+				if (files.length == 0) {
+					file_size_reset();
+				} else {
+					file_size.textContent = ' ' + files.length + '개';
+				}
 			});
 			
 			
@@ -442,6 +430,9 @@
 				el.type = 'file';
 				el.className = 'file_item1';
 				new_file.appendChild(el);
+			}
+			function file_size_reset() {
+				file_size.textContent = '';
 			}
 		});
 	</script>

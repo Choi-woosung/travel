@@ -79,11 +79,17 @@
 			s_rate desc
 	</select>
 	
-	<select id="schedule" resultType="sVO">
+	<!-- 메인리스트 가져오기 -->
+	<select id="mainList" resultType="sVO">
 		SELECT
-			s_name sName, s_sdate sSdate, s_area sArea, s_edate sEdate, s_pic sPic, s_body sBody, s_cost sCost, s_rate sRate
+			s.s_no sNo, s.s_name sName, s.s_body sBody, s.s_rate sRate, s.s_pic sPic,
+			m.m_id mId, a.a_img_name avatarName
 		FROM
-			schedule
+			schedule s, member m, member_avatar a
+		WHERE
+			m.m_avatar = a.a_img_no and s.s_writer = m.m_no
+		ORDER BY
+			s_rate desc
 	</select>
 	
 </mapper> 

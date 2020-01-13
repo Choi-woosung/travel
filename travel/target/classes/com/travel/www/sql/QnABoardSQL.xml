@@ -7,12 +7,12 @@
 <mapper namespace="QnABoardSQL"> 
 	 
 	<insert id="qnawriting" parameterType="QnABoardVO">
-		INSERT INTO schedulequestion
+		INSERT INTO qnaboard(q_no, q_head, q_body, m_id)
 		VALUES(
-		    (SELECT MAX(NVL(sq_no, 1)) FROM schedulequestion),
-		    #{sq_qst},
-		    #,
-		    (SELECT m_no FROM member WHERE m_id = #)
+		    (SELECT NVL(MAX(q_no) + 1, 1) FROM qnaboard),
+		    #{q_head},
+		    #{q_body},
+		    #{m_id}  
 		)
 	</insert>
 	
