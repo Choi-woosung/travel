@@ -211,6 +211,9 @@ p {
 </style>
 <script>
 	var nameBool = false;
+	var liId;
+	var cnt;
+	var dayCnt;
 
 	$(function() {
 		var statusCnt = 1;
@@ -400,9 +403,11 @@ p {
 	  var targetDiv;
 	  if(tf.className == 'innerpage2 bg-white shadow'){
 		  targetDiv = tf;
-		  var liId = idGenerator(targetDiv);
-		  var cnt = targetDiv.querySelectorAll('li').length + 1;
-		  var dayCnt = liId.substring(1, liId.indexOf("li"));
+		  liId = idGenerator(targetDiv);
+		  cnt = targetDiv.querySelectorAll('li').length + 1;
+		  dayCnt = liId.substring(1, liId.indexOf("li"));
+		  console.log(liId);
+		  console.log(dayCnt);
 		  var ulDiv;
 		  if(targetDiv.querySelector('ul') == null){
 			  var createUl = document.createElement('ul');
