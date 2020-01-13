@@ -2,15 +2,12 @@ package com.travel.www.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.travel.www.dao.QnABoardDAO;
-import com.travel.www.util.FileUtil;
 import com.travel.www.vo.QnABoardVO;
-import com.travel.www.util.*;
 
 @Controller
 @RequestMapping("/board/")
@@ -49,11 +44,14 @@ public class QnABoard {
 	
 	@RequestMapping("qnaWriting.kit")
 	@ResponseBody
-	public void qnawriting(QnABoardVO vo) throws IOException {
-		String path = "D:\\project\\git\\travel\\travel\\src\\main\\webapp\\resources\\img\\board";
+	public void qnawriting(QnABoardVO vo, HttpSession session) throws IOException {
+		String path = "";
 		File file = null;
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
+		vo.setM_id((String) session.getAttribute("SID"));
+		
+		int writing = qDAO.qnawriting(vo);
 		
 		System.out.println(vo.getQ_head());
 		System.out.println(vo.getQ_body());
@@ -62,9 +60,12 @@ public class QnABoard {
 			Iterator<MultipartFile> itor = vo.getFiles().iterator();
 			
 			while (itor.hasNext()) {
+				path = "D:\\project\\git\\travel\\travel\\src\\main\\webapp\\resources\\img\\board";
 				MultipartFile part = itor.next();
 				path += "\\" + part.getOriginalFilename();
 				file = new File(path);
+				
+				System.out.println(part.getOriginalFilename());
 				
 				while (file.exists()) {
 					int n = 0;
@@ -85,6 +86,8 @@ public class QnABoard {
 				fos.close();
 				bos.close();
 			}
+			
+			
 			
 		}
 		
