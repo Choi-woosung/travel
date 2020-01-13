@@ -5,61 +5,69 @@ import java.util.ArrayList;
 
 public class ScheduleOrderVO {
 	private ArrayList<ScheduleOrderVO> Schedules;
-	private String placeName;
-	private String liCnt;
-	private String placeAddress;
-	private String body;
-	private String price;
-	private String pid;
-	
+
 	public ArrayList<ScheduleOrderVO> getSchedules() {
 		return Schedules;
 	}
 	public void setSchedules(ArrayList<ScheduleOrderVO> schedules) {
 		Schedules = schedules;
 	}
-	public String getPlaceName() {
-		return placeName;
-	}
-	public void setPlaceName(String placeName) {
-		this.placeName = placeName;
-	}
-	public String getLiCnt() {
-		return liCnt;
-	}
-	public void setLiCnt(String liCnt) {
-		this.liCnt = liCnt;
-	}
-	public String getPlaceAddress() {
-		return placeAddress;
-	}
-	public void setPlaceAddress(String placeAddress) {
-		this.placeAddress = placeAddress;
-	}
-	public String getBody() {
-		return body;
-	}
-	public void setBody(String body) {
-		this.body = body;
-	}
-	public String getPrice() {
-		return price;
-	}
-	public void setPrice(String price) {
-		this.price = price;
-	}
-	public String getPid() {
+	private ArrayList<String> pid;
+	private ArrayList<String> type;
+	private ArrayList<String> placeName;
+	private ArrayList<String> liCnt;
+	private ArrayList<String> placeAddress;
+	
+	public ArrayList<String> getPid() {
 		return pid;
 	}
-	public void setPid(String pid) {
+	public void setPid(ArrayList<String> pid) {
 		this.pid = pid;
 	}
-	public String getType() {
+	public ArrayList<String> getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(ArrayList<String> type) {
 		this.type = type;
 	}
-	private String type;
-	
+	public ArrayList<String> getPlaceName() {
+		return placeName;
+	}
+	public void setPlaceName(ArrayList<String> placeName) {
+		this.placeName = placeName;
+	}
+	public ArrayList<String> getLiCnt() {
+		return liCnt;
+	}
+	public void setLiCnt(ArrayList<String> liCnt) {
+		this.liCnt = liCnt;
+	}
+	public ArrayList<String> getPlaceAddress() {
+		return placeAddress;
+	}
+	public void setPlaceAddress(ArrayList<String> placeAddress) {
+		this.placeAddress = placeAddress;
+	}
+	public ArrayList<String> getBody() {
+		return body;
+	}
+	public void setBody(ArrayList<String> body) {
+		this.body = body;
+	}
+	public ArrayList<String> getPrice() {
+		return price;
+	}
+	public void setPrice(ArrayList<String> price) {
+		this.price = price;
+	}
+	public ArrayList<String> getDayCount() {
+		return dayCount;
+	}
+	public void setDayCount(ArrayList<String> dayCount) {
+		this.dayCount = dayCount;
+	}
+	private ArrayList<String> body;
+	private ArrayList<String> price;
+	private ArrayList<String> dayCount;
+
 }

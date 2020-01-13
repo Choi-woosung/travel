@@ -131,30 +131,30 @@ input:focus {
 	var nameBool = false;
 
 	$(function() {
-		var status = 1;
+		var statusCnt = 1;
 		$('#dayCount_minus').click(function() {
-			if(status == 1){
+			if(statusCnt == 1){
 				return;
 			}
-			$('#d'+(status-1)).remove();
-			   status--;
+			$('#d'+(statusCnt-1)).remove();
+			   statusCnt--;
 		});
 		
 		$('#dayCount_plus').click(function() {
 			var scheduleDiv = document.createElement('div');
-			var headContent = document.createTextNode(status + "일차");
+			var headContent = document.createTextNode(statusCnt + "일차");
 			scheduleDiv.appendChild(headContent);
 			scheduleDiv.setAttribute('class', 'innerpage2 bg-white shadow');
 			scheduleDiv.setAttribute('draggable', 'false');
-			scheduleDiv.setAttribute('id', 'd'+status);
+			scheduleDiv.setAttribute('id', 'd'+statusCnt);
 			$('#dayCount').append(scheduleDiv);
 			
-			status++;
+			statusCnt++;
 		});
 		
 		$('#dayCount_reset').click(function() {
 			$('.innerpage2').remove();
-				status = 1;
+				statusCnt = 1;
 		});
 		
 		$('#nameEdit').click(function(){
@@ -165,7 +165,6 @@ input:focus {
 
 		$("textarea[name=scheduleName]").keydown(function (key) {
 			if(key.keyCode == 13){
-				console.log($('#scheduleName').val());
 				if($('#scheduleName').val() == ''){
 					$('#scheduleNameDiv').text("제목 설정하기");
 					$("#scheduleName").val('');
@@ -176,9 +175,20 @@ input:focus {
 				$('#scheduleNameDiv').css("display" , "block");
 			}
 		});
-		$('#submitBtn').click(function(){
-			
-		});
+		/* $('#submitBtn').click(function(){
+		    $("#form").each( function (index) {
+		        $(this).find("input[name=pid]").attr("name", "Schedules[" + index + "].pid");
+		        $(this).find("input[name=type]").attr("name", "Schedules[" + index + "].type");
+		        $(this).find("input[name=placeName]").attr("name", "Schedules[" + index + "].placeName");
+		        $(this).find("input[name=liCnt]").attr("name", "Schedules[" + index + "].liCnt");
+		        $(this).find("input[name=placeAddress]").attr("name", "Schedules[" + index + "].placeAddress");
+		        $(this).find("input[name=body]").attr("name", "Schedules[" + index + "].body");
+		        $(this).find("input[name=price]").attr("name", "Schedules[" + index + "].price");
+		        $(this).find("input[name=dayCount]").attr("name", "Schedules[" + index + "].dayCount");
+		        $(this).submit();
+		    });
+		}); */
+
 	});
 	
 	function allowDrop(ev) {
@@ -190,7 +200,6 @@ input:focus {
 	}
 
 	function drop(ev) {
-		console.log(event.dataTransfer.getData("text"));
 		if(event.dataTransfer.getData("text") != "subway_station" && event.dataTransfer.getData("text") != "lodging" && event.dataTransfer.getData("text") != "restaurant" && event.dataTransfer.getData("text") != "freeSchedule"){
 			ev.preventDefault();
 			return;
@@ -203,7 +212,7 @@ input:focus {
 		  targetDiv = tf;
 		  var liId = idGenerator(targetDiv);
 		  var cnt = targetDiv.querySelectorAll('li').length + 1;
-		  console.log(cnt);
+		  var dayCnt = liId.substring(1, liId.indexOf("li"));
 		  var ulDiv;
 		  if(targetDiv.querySelector('ul') == null){
 			  var createUl = document.createElement('ul');
@@ -213,7 +222,7 @@ input:focus {
 			  var licode = document.createElement('li');
 			  licode.setAttribute('data-toggle' , 'modal');
 			  licode.setAttribute('data-target' , '#dataModal');
-			  licode.setAttribute('onclick', 'searchPlace("'+data+'", "'+liId+'", "'+cnt+'")');
+			  licode.setAttribute('onclick', 'searchPlace("'+data+'", "'+liId+'", "'+cnt+'" , "'+dayCnt+'")');
 			  licode.setAttribute('class', 'list-group-item list-group-item-action');
 			  licode.setAttribute('id' , liId);
 			  var textcode = document.createTextNode("+"); 
@@ -259,7 +268,7 @@ input:focus {
 		var result = e.id+"li"+cnt;
 		return result;
 	}
-
+	
 	 
 </script>
 </head>
@@ -305,7 +314,7 @@ input:focus {
 <div class="container-fluid m-content">
   <div class="row">
   	<div class="col-xl-10 border main-container">
-  		<form id="send" action="/schedule/test.kit" method="post">
+  		<form id="form" action="/schedule/test.kit" method="post" enctype="multipart/form-data">
   			<div class="innerpage bg-white shadow" id="dayCount" style="margin-top: -100px;" ondrop="drop(event)" ondragover="allowDrop(event)">
   			</div>
   		</form>
@@ -374,5 +383,29 @@ input:focus {
     </div>
   </div>
 </div>
+<script>
+	document.getElementById('submitBtn').addEventListener('click', e => {
+		alert("버튼 작동");
+		let data = new FormData();
+		let nameValue = ['pid', 'type', 'placeName', 'liCnt', 'placeAddress', 'body', 'price', 'dayCount'];
+
+		for (var i = 0; i < nameValue.length; i++) {
+			document.querySelectorAll("input[name="+nameValue[i]+"]").forEach(function(e, index){
+				console.log(index);
+				console.log(e);
+				console.log(e.value);
+				e.name = "Schedules[" + index + "]."+nameValue[i];
+				data.append(e.name, e.value);
+			});
+		}
+		
+		let options = {
+			method: 'POST',
+			body: data
+		};
+
+		fetch("/scheduleMaker/test.kit", options);
+	});
+</script>
 </body>
 </html>

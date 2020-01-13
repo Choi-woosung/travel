@@ -170,7 +170,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		var options;
 		var liCnt;
 		var placeObject;
-		
+		var dayCount;
 		
 		$(function(){
 			$("#sidebar-toggle").click(function(){
@@ -180,19 +180,6 @@ input[type="number"]::-webkit-inner-spin-button {
 		});
 		
 
-		// 자유 스케쥴 마커 추가하는 기능
-		
-		function selfAddedMarker(){
-			clearResults();
-			clearMarkers();/* 
-			google.maps.event.addListenerOnce(map, 'click', createMarker);
-			 */
-		}
-		
-		function createMarker(){
-			var thisLatlng = google.maps.Map.click();
-		}
-		 
 		function initialize() {
 			var myLatlng = new google.maps.LatLng(37.566535, 126.97796919999996); 
 			var myOptions = {
@@ -201,13 +188,39 @@ input[type="number"]::-webkit-inner-spin-button {
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
-			places = new google.maps.places.PlacesService(map);/* 
- 			google.maps.event.addListener(map, 'tilesloaded', tilesLoaded); */
+			places = new google.maps.places.PlacesService(map);
  			autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
 			google.maps.event.addListener(autocomplete, 'place_changed', function () {
 				showSelectedPlace();
 			});
 		}
+		
+
+		// 자유 스케쥴 마커 추가하는 기능
+		
+		function selfAddedMarker(){
+			google.maps.event.addListener(map, 'click', function(event) {
+			if(type != "freeSchedule") return;
+			createMarker(event.latLng);
+			});
+		}
+		
+		function createMarker(location){
+			markers[0] = new google.maps.Marker({
+				position: location,
+				map: map
+				});
+			
+			var contentString = '<div data-toggle="modal" data-target="#dataModal" onclick="addFreeResult()">'
+								+ "이 장소를 스케쥴에 추가"
+								+ '</div>';
+
+			var infowindow = new google.maps.InfoWindow({
+				content: contentString
+				});
+				infowindow.open(map,markers[0]);
+		}
+		 
  
 		function tilesLoaded() {
 			google.maps.event.clearListeners(map, 'tilesloaded');
@@ -216,11 +229,13 @@ input[type="number"]::-webkit-inner-spin-button {
 		
 
 		// 현재 클릭한 li의 구글 맵 타입과 아이디, cnt 반환해주는 기능
-		
-		function searchPlace(listType, eId, cnt){
+		function searchPlace(listType, eId, cnt, dayCnt){
 			type = listType;
 			eventId = eId;
 			liCnt = cnt;
+			dayCount = dayCnt;
+			clearMarkers();
+			clearResults();
 			if(type != "freeSchedule"){
 				search();
 			} else{
@@ -229,11 +244,39 @@ input[type="number"]::-webkit-inner-spin-button {
 			}
 		}
 		
+		// 자유 스케쥴 li에 추가하는 기능
+		
+		function addFreeResult(){
+			var targetLi = document.getElementById(eventId);
+			console.log(targetLi);
+			targetLi.setAttribute('data-toggle' , null);
+			targetLi.setAttribute('data-target' , null);
+			targetLi.setAttribute('onclick' , null);
+			targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
+								+ '<input type="text" class="mb-1" placeholder="제목"></h5>'
+								+ '<small class="text-muted">' + liCnt + '</small>'
+								+ '</div>'
+								+ '<input type="text" class="mb-1 text-left" placeholder="위치를 입력하세요"></p>'
+								+ '<div class="content-body-text input-group-sm mb-1" style="display : none;">'
+								+ '<input type="text" class="bodycontext" name="body" placeholder="메모" id="testtest"/>'
+								+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
+								+ '<input type="number" class="pricecontext" name="price" placeholder="예상비용" /></div>'
+								+ '</div>' 
+								+ '</div>'
+								+ '<div class="row">'
+								+ '<div class="col-sm border mx-3" onclick="textcommit(this,'+eventId+', type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
+								+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+')"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
+								+ '</div>';
+		}
+		
 		function showSelectedPlace() {
 			clearResults();
 			clearMarkers();
 			var place = autocomplete.getPlace();
-			map.panTo(place.geometry.location);/* 
+			map.panTo(place.geometry.location);
+			/* 
 			markers[0] = new google.maps.Marker({
 				position: place.geometry.location,
 				map: map
@@ -241,24 +284,26 @@ input[type="number"]::-webkit-inner-spin-button {
 			iw = new google.maps.InfoWindow({
 				content: getIWContent(place)
 			});
-			iw.open(map, markers[0]); */
+			iw.open(map, markers[0]);
+			*/
 			search();
 		}
  
 		function search() {
+			document.getElementById('infobox').style.display = 'block';
 			autocomplete.setBounds(map.getBounds());
 			var search = {
 				bounds: map.getBounds()
 			};
 			search.types = [type];
-			
 			places.search(search, function (results, status) {
 				if (status == google.maps.places.PlacesServiceStatus.OK) {
-					clearResults();
-					clearMarkers();
 					for (var i = 0; i < results.length; i++) {
 						addResult(results[i], i);
 					}
+				} else {
+					sleep(2000);
+					searchPlace(type, eventId, liCnt, dayCount);
 				}
 			});
 		}
@@ -389,34 +434,39 @@ input[type="number"]::-webkit-inner-spin-button {
 			};
 			
 			btn.onclick = function(){
-				var targetLi = document.getElementById(eventId);
-				targetLi.setAttribute('data-toggle' , null);
-				targetLi.setAttribute('data-target' , null);
-				targetLi.setAttribute('onclick' , null);
-				placeObject = place;
-				targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
-									+ '<h5 class="mb-1">' + place.name + '</h5>'
-									+ '<small class="text-muted">' + liCnt + '</small>'
-									+ '</div>'
-									+ '<p class="mb-1 text-left">' +place.formatted_address+ '</p>'
-									+ '<div class="content-body-text input-group-sm mb-1" style="display : none;">'
-									+ '<input type="text" class="bodycontext" name="body" placeholder="메모" id="testtest"/>'
-									+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
-									+ '<input type="number" class="pricecontext" name="price" placeholder="예상비용" /></div>'
-									+ '</div>' 
-									+ '</div>'
-									+ '<div class="row">'
-									+ '<div class="col-sm border mx-3" onclick="textcommit(this,'+eventId+', type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
-									+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
-									+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
-									+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+')"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
-									+ '</div>'
-									+ '<input type="text" class="d-none" name ="pid" value="'+place.place_id+'">'
-									+ '<input type="text" class="d-none" name ="type" value="'+type+'">'
-									+ '<input type="text" class="d-none" name ="placeName" value="'+place.name+'">'
-									+ '<input type="text" class="d-none" name ="liCnt" value="'+liCnt+'">'
-									+ '<input type="text" class="d-none" name ="placeAddress" value="'+place.formatted_address+'">';
+				makeLiResult(place);
 				}
+		}
+		
+		function makeLiResult(place){
+			var targetLi = document.getElementById(eventId);
+			targetLi.setAttribute('data-toggle' , null);
+			targetLi.setAttribute('data-target' , null);
+			targetLi.setAttribute('onclick' , null);
+			placeObject = place;
+			targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
+								+ '<h5 class="mb-1">' + place.name + '</h5>'
+								+ '<small class="text-muted">' + liCnt + '</small>'
+								+ '</div>'
+								+ '<p class="mb-1 text-left">' +place.formatted_address+ '</p>'
+								+ '<div class="content-body-text input-group-sm mb-1" style="display : none;">'
+								+ '<input type="text" class="bodycontext" name="body" placeholder="메모" id="testtest"/>'
+								+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
+								+ '<input type="number" class="pricecontext" name="price" placeholder="예상비용" /></div>'
+								+ '</div>' 
+								+ '</div>'
+								+ '<div class="row">'
+								+ '<div class="col-sm border mx-3" onclick="textcommit(this,'+eventId+', type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
+								+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+')"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
+								+ '</div>'
+								+ '<input type="text" class="d-none" name ="pid" value="'+place.place_id+'">'
+								+ '<input type="text" class="d-none" name ="type" value="'+type+'">'
+								+ '<input type="text" class="d-none" name ="placeName" value="'+place.name+'">'
+								+ '<input type="text" class="d-none" name ="liCnt" value="'+liCnt+'">'
+								+ '<input type="text" class="d-none" name ="placeAddress" value="'+place.formatted_address+'">'
+								+ '<input type="text" class="d-none" name ="dayCount" value="'+dayCount+'">';
 		}
 		
 		// 맵에 마커 추가 기능
