@@ -13,6 +13,5 @@
  	<beans:bean id="sdDAO" class="com.travel.www.dao.ScheduleDetailDAO" />
  	<beans:bean id="fDAO" class="com.travel.www.dao.FileDAO" />
  	<beans:bean id="qDAO" class="com.travel.www.dao.QnABoardDAO" />
- 	
-	
+ 	<beans:bean id="smDAO" class="com.travel.www.dao.ScheduleMakerDAO" />
 </beans:beans> 
