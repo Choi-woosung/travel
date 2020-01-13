@@ -627,7 +627,6 @@ p {
 		</div>
 	</div>
 
-
 	<script>
 	document.getElementById('submitBtn').addEventListener('click', e => {
 		alert("버튼 작동");
