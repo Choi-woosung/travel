@@ -266,10 +266,10 @@ p {
 		// function for udpating displayed date in button
 		function update() {
 		  if (checkin_date !== undefined) {
-		    $('#display-checkin').html(checkin_date.toLocaleDateString());
+		    $('#sSdate').html(checkin_date.toLocaleDateString());
 		  }
 		  if (checkout_date !== undefined) {
-		    $('#display-checkout').html(checkout_date.toLocaleDateString());
+		    $('#sEdate').html(checkout_date.toLocaleDateString());
 		  }
 		}
 
@@ -617,8 +617,8 @@ p {
 							<div class="checkout-picker"></div>
 						</div>
 						<p>
-							<a class="btn btn-success" href="#" role="button" data-toggle="modal" data-target=".dateSelector"> 출발일자  <span id="display-checkin"></span> 에서
-							<span id="display-checkout"> 까지 입니다.</span>
+							<a class="btn btn-success" href="#" role="button" data-toggle="modal" data-target=".dateSelector"> 출발일자  <span id="sSdate"></span> 에서
+							<span id="sEdate"></span> 까지 입니다.
 							</a>
 						</p>
 					</div>
@@ -633,28 +633,48 @@ p {
 		alert("버튼 작동");
 		let data = new FormData();
 		let nameValue = ['pid', 'type', 'placeName', 'liCnt', 'placeAddress', 'body', 'price', 'dayCount', 'placeLat' , 'placeLng'];
+		let idValue = ['scheduleName', 'scheduleBody', 'sCountry','sArea'];
+		let idData;
+		let querys;
 
 		for (var i = 0; i < nameValue.length; i++) {
-			document.querySelectorAll("input[name="+nameValue[i]+"]").forEach(function(e, index){
+			querys = document.querySelectorAll("input[name="+nameValue[i]+"]");
+			querys.forEach(function(e, index){
 				e.name = "Schedules[" + index + "]."+nameValue[i];
+				if(e.value == '' && nameValue[i] == 'price'){
+					e.value = '0';
+				} else if(e.value == ''){
+					e.value = 'empty Data';
+				}
+				console.log("nameValue : " + nameValue[i] + " ename : " + e.name + " , e.value : " + e.value);
 				data.append(e.name, e.value);
+				e.name = nameValue[i];
+				e.value = '';
 			});
 		}
 		
-		var nameData = document.getElementById("scheduleName").value;
-		var bodyData = document.getElementById("scheduleBody").value;
-		var fileData = document.querySelector("input[type=file]").files;
-		var sSdate = document.getElementById("display-checkin").innerHTML;
-		var sEdate = document.getElementById("display-checkout").innerHTML;
-		var sCountry = document.getElementById("sCountry").value;
-		var sArea = document.getElementById("sArea").value;
-		data.append("scheduleName", nameData);
-		data.append("scheduleBody", bodyData);
+		for (var i = 0; i < idValue.length; i++){
+			idData = document.getElementById(idValue[i]).value;
+			if(idData == null || idData == '' || idData == 'undefiend'){
+				idData = 'empty Data';
+			}
+			console.log(idValue[i], idData);
+			data.append(idValue[i], idData);
+		}
+		
+		var sSdate = document.getElementById("sSdate").innerHTML;
+		var sEdate = document.getElementById("sEdate").innerHTML;
+		if(sSdate == null || sSdate == '' || sSdate == 'undefiend'){
+			sSdate = 'empty Data';
+		}
+		if(sEdate == null || sEdate == '' || sEdate == 'undefiend'){
+			sEdate = 'empty Data';
+		}
 		data.append("sSdate", sSdate);
 		data.append("sEdate", sEdate);
-		data.append("sCountry", sCountry);
-		data.append("sArea", sArea);
-		
+		console.log(sSdate + sEdate);
+
+		var fileData = document.querySelector("input[type=file]").files;
 		if (fileData != null) {
 			for (let i = 0; i < fileData.length; i++) {
 				data.append('scheduleImg['+i+']', fileData[i]);
