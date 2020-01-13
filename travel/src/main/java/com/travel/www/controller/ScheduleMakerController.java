@@ -96,7 +96,6 @@ public class ScheduleMakerController {
 				bos.close();
 			}
 			
-			
 		}
 		
 //		int result = smDAO.ScheduleListing(sovo);
