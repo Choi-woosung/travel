@@ -19,6 +19,10 @@ public class QnABoardDAO {
 		return sqlSession.selectList("QnABoardSQL.qnaboard", vo);
 	}
 	
+	public int qnafile(QnABoardVO vo) {
+		return sqlSession.insert("QnABoardSQL.qnafile", vo);
+	}
+	
 	public String getprofile(QnABoardVO vo) {
 		return sqlSession.selectOne("QnABoardSQL.getprofile", vo);
 	}
