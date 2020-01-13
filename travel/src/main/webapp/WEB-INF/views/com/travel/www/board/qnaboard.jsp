@@ -307,11 +307,11 @@
 		<div class="hide" id="help_box">
 			<div class="h_contents">
 				<ul>
-					<li>1</li>
-					<li>2</li>
-					<li>3</li>
-					<li>4</li>
-					<li>5</li>
+					<li>1. a</li>
+					<li>2. b</li>
+					<li>3. c</li>
+					<li>4. d</li>
+					<li>5. e</li>
 				</ul>
 			</div>
 		</div>
@@ -323,7 +323,7 @@
 	<div class="hide" id="modal_file_box">
 		<div class="modal_contents">
 			<div id="new_file" class="new_file">
-				<input type="file" class="file_item1" multiple="multiple">
+				<input type="file" class="file_item1" multiple="multiple" id="isFile">
 			</div>
 			<div class="m_btn_box">
 				<div class="file_cancel_btn" id="file_cancel_btn">뒤로 가기</div>
@@ -377,13 +377,13 @@
 				isCls(help, '', 'backColor');
 			});
 			w_btn.addEventListener('click', () => {
-				let files = document.querySelector('.file_item1').files;
+				let files = document.getElementById('isFile').files;
 				let data = new FormData();
-
+				
 				data.append('q_head', w_haed.textContent);
 				data.append('q_body', w_body.textContent);		
 				
-				if (files.files != null) {
+				if (files != null) {
 					for (var i = 0; i < files.length; i++) {
 						data.append('files', files[i]);
 					}

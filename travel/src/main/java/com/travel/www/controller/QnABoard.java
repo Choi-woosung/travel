@@ -55,12 +55,11 @@ public class QnABoard {
 		File file = null;
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
+		String fileName = "";
+		String fileSave = "";
 		vo.setM_id((String) session.getAttribute("SID"));
 		
-		int writing = qDAO.qnawriting(vo);
-		
-//		System.out.println(vo.getQ_head());
-//		System.out.println(vo.getQ_body());
+		qDAO.qnawriting(vo);
 		
 		if (vo.getFiles() != null) {
 			Iterator<MultipartFile> itor = vo.getFiles().iterator();
@@ -68,10 +67,11 @@ public class QnABoard {
 			while (itor.hasNext()) {
 				path = "D:\\project\\git\\travel\\travel\\src\\main\\webapp\\resources\\img\\board";
 				MultipartFile part = itor.next();
+				
+				fileName += part.getOriginalFilename() + "/";
+				
 				path += "\\" + part.getOriginalFilename();
 				file = new File(path);
-				
-				System.out.println(part.getOriginalFilename());
 				
 				while (file.exists()) {
 					int n = 0;
@@ -80,6 +80,7 @@ public class QnABoard {
 					String name = part.getOriginalFilename().substring(0, part.getOriginalFilename().lastIndexOf('.'));
 					path = first + name + '_' + n + last;
 					file = new File(path);
+					fileSave += name + '_' + n + last + "/";
 					n++;
 				}
 				
@@ -93,10 +94,11 @@ public class QnABoard {
 				bos.close();
 			}
 			
+			vo.setF_file_name(fileName);
+			vo.setF_save_name(fileSave);
 			
-			
-		}
-		
+			qDAO.qnafile(vo);
+		} 			
 	}
 	
 	@RequestMapping("getprofile.kit")

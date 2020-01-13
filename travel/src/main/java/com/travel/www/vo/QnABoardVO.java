@@ -2,6 +2,7 @@ package com.travel.www.vo;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +16,8 @@ public class QnABoardVO {
 	private String f_no;
 	private String f_qno;
 	private String f_file_name;
-	private ArrayList<MultipartFile> files;
+	private String f_save_name;
+	private List<MultipartFile> files;
 	
 	public String getF_no() {
 		return f_no;
@@ -71,10 +73,16 @@ public class QnABoardVO {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
-	public ArrayList<MultipartFile> getFiles() {
+	public List<MultipartFile> getFiles() {
 		return files;
 	}
-	public void setFiles(ArrayList<MultipartFile> files) {
+	public void setFiles(List<MultipartFile> files) {
 		this.files = files;
+	}
+	public String etF_save_name() {
+		return f_save_name;
+	}
+	public void setF_save_name(String f_save_name) {
+		this.f_save_name = f_save_name;
 	}
 }
