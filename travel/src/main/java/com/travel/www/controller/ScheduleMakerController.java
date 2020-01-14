@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.travel.www.dao.ScheduleDAO;
 import com.travel.www.dao.ScheduleMakerDAO;
 import com.travel.www.vo.ScheduleOrderVO;
 
@@ -98,7 +99,8 @@ public class ScheduleMakerController {
 			
 		}
 		
-//		int result = smDAO.ScheduleListing(sovo);
-//		System.out.println("insert 결과 : " + result);
+		smDAO.ScheduleListing(sovo);
+		smDAO.makeSchedule(sovo);
 	}
+	
 }

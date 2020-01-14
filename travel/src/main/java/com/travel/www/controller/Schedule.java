@@ -299,9 +299,4 @@ public class Schedule {
 	   sVO.setLikeAvg(likeAvg);
 	   return sVO;
    }
-   
-   @RequestMapping("/scheduleListing.kit")
-   public void scheduleListing(ScheduleOrderVO SOVO) {
-	   System.out.println("여기 들어옴?");
-   }
 }

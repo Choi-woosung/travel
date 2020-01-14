@@ -11,8 +11,5 @@ public class FileDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession; 
 	
-	// 파일 정보 입력 전담 처리 함수
-//	public int insertPhoto(FileVO fVO) {
-//		return sqlSession.insert("mSQL.addPic", fVO);
-//	}
+	
 }

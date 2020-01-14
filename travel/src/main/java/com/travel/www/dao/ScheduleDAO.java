@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.travel.www.vo.ScheduleOrderVO;
 import com.travel.www.vo.ScheduleVO;
 
 public class ScheduleDAO {
@@ -51,10 +52,6 @@ public class ScheduleDAO {
 		map.put("month", month);
 		
 		return sqlSession.selectList("sSQL.ratingList", map);
-	}
-	
-	public ScheduleVO schedule() {
-		return sqlSession.selectOne("sSQL.schedule");
 	}
 	
 }
