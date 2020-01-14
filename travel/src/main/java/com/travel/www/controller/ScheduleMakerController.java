@@ -29,26 +29,7 @@ public class ScheduleMakerController {
 	ScheduleMakerDAO smDAO;
 	
 	@RequestMapping("/test.kit")
-	public void ScheduleListing(ModelAndView mv, ScheduleOrderVO sovo, HttpSession session) throws IOException {
-		ArrayList<ScheduleOrderVO> list = sovo.getSchedules();
-		System.out.println(list.size());
-		int i = 0;
-		for(ScheduleOrderVO li : list) {
-			System.out.println(i + " 번째 데이터 값은 : ");
-			System.out.println(li.getPlaceAddress());
-			System.out.println(li.getBody());
-			System.out.println(li.getDayCount());
-			System.out.println(li.getPid());
-			System.out.println(li.getLiCnt());
-			System.out.println(li.getType());
-			System.out.println(li.getPlaceName());
-			System.out.println(li.getPlaceLat());
-			System.out.println(li.getPlaceLng());
-			i++;
-		}
-		System.out.println(sovo.getScheduleName());
-		System.out.println(sovo.getScheduleBody());
-		
+	public void ScheduleListing(ModelAndView mv, ScheduleOrderVO sovo, HttpSession session) throws IOException {		
 		File file = null;
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;

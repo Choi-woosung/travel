@@ -306,8 +306,7 @@ img{
   			</c:if>
   		</div>
 			<div class="col border money bg-white shadow">
-			<c:forEach items="${LIST}" var="data">
-				${data.placeName }
+			<c:forEach items="${LIST}" var="data" varStatus="status">
 			</c:forEach>
 			</div>
 			<div class="col border mtext bg-white shadow">

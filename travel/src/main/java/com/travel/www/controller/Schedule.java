@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Console;
 import com.travel.www.dao.ScheduleDAO;
 import com.travel.www.dao.ScheduleDetailDAO;
 import com.travel.www.dao.ScheduleMakerDAO;
@@ -280,8 +281,13 @@ public class Schedule {
 		}
 	   	
 	   sVO = sdDAO.scheduleDetail(sVO);
-	   List<ScheduleOrderVO> list = smDAO.callScheduleMaker(sVO.getsNo());
 	   
+	   
+	   List<ScheduleOrderVO> list = smDAO.callScheduleMaker(sVO.getsNo()+1);
+	   
+	   for(int i = 0; i < list.size(); i++) {
+		   System.out.println(list.get(i).getPlaceName());
+	   }
 	   mv.addObject("LIST", list);
 	   mv.addObject("DATA", sVO);
 	   mv.addObject("likeAvg", likeAvg);
