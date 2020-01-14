@@ -289,10 +289,10 @@ input[type="number"]::-webkit-inner-spin-button {
 			parentContent.setAttribute('data-target' , null);
 			parentContent.setAttribute('onclick' , null);
 			parentContent.innerHTML = '<div class="d-flex w-100 justify-content-between">'
-								+ '<input type="text" class="freeName" placeholder="제목"></h5>'
+								+ '<input type="text" class="freeName" name="placeName" placeholder="제목"></h5>'
 								+ '<small class="text-muted">' + liCnt + '</small>'
 								+ '</div>'
-								+ '<div><input type="text" class="freeLoc" placeholder="위치를 입력하세요"></div>'
+								+ '<div><input type="text" class="freeLoc" name ="placeAddresse" placeholder="위치를 입력하세요"></div>'
 								+ '<div class="content-body-text input-group-sm mb-1" style="display : none;">'
 								+ '<input type="text" class="bodycontext" name="body" placeholder="메모" id="testtest"/>'
 								+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
@@ -307,12 +307,46 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '</div>'
 								+ '<input type="text" class="d-none" name ="pid" value="">'
 								+ '<input type="text" class="d-none" name ="type" value="'+type+'">'
-								+ '<input type="text" class="d-none" name ="placeName" value="">'
 								+ '<input type="text" class="d-none" name ="liCnt" value="'+liCnt+'">'
-								+ '<input type="text" class="d-none" name ="placeAddress" value="">'
 								+ '<input type="text" class="d-none" name ="dayCount" value="'+dayCount+'">'
 								+ '<input type="text" class="d-none" name ="placeLat" value="'+markerLocation.lat()+'">'
 								+ '<input type="text" class="d-none" name ="placeLng" value="'+markerLocation.lng()+'">';
+		}
+		
+
+		// 
+		
+		function makeLiResult(place){
+			var parentContent = getParents(eventId, 'list-group-item list-group-item-action');
+			parentContent.setAttribute('data-toggle' , null);
+			parentContent.setAttribute('data-target' , null);
+			parentContent.setAttribute('onclick' , null);
+			placeObject = place;
+			parentContent.innerHTML = '<div class="d-flex w-100 justify-content-between">'
+								+ '<h5 class="mb-1">' + place.name + '</h5>'
+								+ '<small class="text-muted">' + liCnt + '</small>'
+								+ '</div>'
+								+ '<p class="mb-1 text-left">' +place.formatted_address+ '</p>'
+								+ '<div class="content-body-text input-group-sm mb-1" style="display : none;">'
+								+ '<input type="text" class="bodycontext" name="body" placeholder="메모" id="testtest"/>'
+								+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
+								+ '<input type="number" class="pricecontext" name="price" placeholder="예상비용" /></div>'
+								+ '</div>' 
+								+ '</div>'
+								+ '<div class="row">'
+								+ '<div class="col-sm border mx-3" onclick="textcommit(this, type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" onclick="modifyContent(this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
+								+ '<div class="col-sm border mx-3" onclick="removeChildNode(this, type)"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
+								+ '</div>'
+								+ '<input type="text" class="d-none" name ="pid" value="'+place.place_id+'">'
+								+ '<input type="text" class="d-none" name ="type" value="'+type+'">'
+								+ '<input type="text" class="d-none" name ="placeName" value="'+place.name+'">'
+								+ '<input type="text" class="d-none" name ="liCnt" value="'+liCnt+'">'
+								+ '<input type="text" class="d-none" name ="placeAddress" value="'+place.formatted_address+'">'
+								+ '<input type="text" class="d-none" name ="dayCount" value="'+dayCount+'">'
+								+ '<input type="text" class="d-none" name ="placeLat" value="'+place.geometry.location.lat()+'">'
+								+ '<input type="text" class="d-none" name ="placeLng" value="'+place.geometry.location.lng()+'">';
 		}
 		 
 		function showSelectedPlace() {
@@ -472,40 +506,6 @@ input[type="number"]::-webkit-inner-spin-button {
 		}
 		
 		
-		// 
-		
-		function makeLiResult(place){
-			var parentContent = getParents(eventId, 'list-group-item list-group-item-action');
-			parentContent.setAttribute('data-toggle' , null);
-			parentContent.setAttribute('data-target' , null);
-			parentContent.setAttribute('onclick' , null);
-			placeObject = place;
-			parentContent.innerHTML = '<div class="d-flex w-100 justify-content-between">'
-								+ '<h5 class="mb-1">' + place.name + '</h5>'
-								+ '<small class="text-muted">' + liCnt + '</small>'
-								+ '</div>'
-								+ '<p class="mb-1 text-left">' +place.formatted_address+ '</p>'
-								+ '<div class="content-body-text input-group-sm mb-1" style="display : none;">'
-								+ '<input type="text" class="bodycontext" name="body" placeholder="메모" id="testtest"/>'
-								+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
-								+ '<input type="number" class="pricecontext" name="price" placeholder="예상비용" /></div>'
-								+ '</div>' 
-								+ '</div>'
-								+ '<div class="row">'
-								+ '<div class="col-sm border mx-3" onclick="textcommit(this, type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
-								+ '<div class="col-sm border mx-3" onclick="modifyContent(this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
-								+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
-								+ '<div class="col-sm border mx-3" onclick="removeChildNode(this, type)"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
-								+ '</div>'
-								+ '<input type="text" class="d-none" name ="pid" value="'+place.place_id+'">'
-								+ '<input type="text" class="d-none" name ="type" value="'+type+'">'
-								+ '<input type="text" class="d-none" name ="placeName" value="'+place.name+'">'
-								+ '<input type="text" class="d-none" name ="liCnt" value="'+liCnt+'">'
-								+ '<input type="text" class="d-none" name ="placeAddress" value="'+place.formatted_address+'">'
-								+ '<input type="text" class="d-none" name ="dayCount" value="'+dayCount+'">'
-								+ '<input type="text" class="d-none" name ="placeLat" value="'+place.geometry.location.lat()+'">'
-								+ '<input type="text" class="d-none" name ="placeLng" value="'+place.geometry.location.lng()+'">';
-		}
 		
 		// 맵에 마커 추가 기능
 		
