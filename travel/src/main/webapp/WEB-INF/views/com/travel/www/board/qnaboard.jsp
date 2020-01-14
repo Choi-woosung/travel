@@ -291,11 +291,39 @@
 			border-bottom: 1px solid #EBEBEB;
 			border-right: 1px solid #EBEBEB;
 		}
+		.board_item3 {
+			display: inline-block;
+			width: 100%;
+			min-height: 300px;
+			padding: 8px;
+			border-bottom: 1px solid #EBEBEB;
+			border-right: 1px solid #EBEBEB;
+		}
 		.b_item1{
 			text-align: center;
 		}
 		.b_item2{
 			text-align: right;
+		}
+		.a_btn {
+			border: 1px solid #EBEBEB;
+			width: 100%;
+			height: 10%;
+			text-align: center;
+			padding-top: 32px;
+			margin-left: 4px;
+			float: left;
+			margin-bottom: 8px;
+			font-weight: 700;
+			border-radius: 4px;
+			background-color: #F9FAFA;
+			user-select: none;
+			padding-top: 16px;
+			padding-bottom: 16px;
+		}
+		.a_btn:hover {
+			background-color: #666666;
+			color: #FFFFFF;
 		}
 	</style>
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Nanum+Brush+Script&display=swap" rel="stylesheet">
@@ -324,22 +352,22 @@
 		</div>
 		<c:if test="${empty list}">
 			<div class="board" id="board">
-					<div class="board_list font_we">
-						<div>번호</div>
-						<div>제목</div>
-						<div>날짜</div>
-						<div>상태</div>
-					</div>
-					<div id="board_items">
-						<c:forEach var="data" items="${LIST}">
-							<a class="board_list unset" href="?no=${data.q_no}">
-								<span>${data.q_no}</span>
-								<span>${data.q_head}</span>
-								<span>${data.q_wdate}</span>
-								<span>${data.q_status}</span>
-							</a>
-						</c:forEach>
-					</div>
+				<div class="board_list font_we">
+					<div>번호</div>
+					<div>제목</div>
+					<div>날짜</div>
+					<div>상태</div>
+				</div>
+				<div id="board_items">
+					<c:forEach var="data" items="${LIST}">
+						<a class="board_list unset" href="?no=${data.q_no}">
+							<span>${data.q_no}</span>
+							<span>${data.q_head}</span>
+							<span>${data.q_wdate}</span>
+							<span>${data.q_status}</span>
+						</a>
+					</c:forEach>
+				</div>
 			</div>
 		</c:if>
 		<div class="hide" id="help_box">
@@ -356,12 +384,14 @@
 		<c:if test="${not empty list}">
 			<div class="board_item_box">
 				<div class="board_item1">
+					<div class="hide">${list.q_no}</div>
 					<div class="b_item1">${list.q_head}</div>
 					<div class="b_item2">${list.q_wdate}</div>
 				</div>
 				<div class="board_item2">
 					<div>${list.q_body}</div>
 				</div>
+				<div class="board_item3" id="writ">${list.q_answer}</div>
 			</div>
 		</c:if>	
 	</div>

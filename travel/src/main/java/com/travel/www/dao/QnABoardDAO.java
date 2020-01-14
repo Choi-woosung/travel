@@ -46,4 +46,8 @@ public class QnABoardDAO {
 	public void a_writ(QnABoardVO vo) {
 		sqlSession.insert("QnABoardSQL.a_writ", vo);
 	}
+	
+	public QnABoardVO a_writlist(QnABoardVO vo) {
+		return sqlSession.selectOne("QnABoardSQL.a_writlist", vo);
+	}
 }

@@ -38,15 +38,13 @@ public class QnABoard {
 		
 		if (qDAO.getGrade(vo).getM_grade().equals("admin")) {
 			if (no != 0) {
-				mv.addObject("list", qDAO.qnaBoardList(vo));
+				mv.addObject("list", qDAO.a_writlist(vo));
 			}
 			
 			mv.addObject("LIST", qDAO.qnaboardall(vo));
 			mv.setViewName("board/qnaboard2");
 			return mv;
 		} else {
-			System.out.println(sid);
-			
 			if (sid == null) {
 				rv.setUrl(url);
 				mv.setView(rv);
@@ -136,6 +134,11 @@ public class QnABoard {
 	
 	@RequestMapping("a_writ.kit")
 	public void a_writ(QnABoardVO vo) {
+		if (vo.getQ_answer().equals("")) {
+			vo.setQ_status("N");
+		} else {
+			vo.setQ_status("Y");
+		}
 		qDAO.a_writ(vo);
 	}
 }
