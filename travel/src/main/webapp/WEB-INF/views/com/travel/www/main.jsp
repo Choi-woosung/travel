@@ -550,7 +550,6 @@
          <c:forEach var="data" items="${LIST}" begin="0" end="2">
             <div class="section col-md-2 ">
             	<p>${data.sName}</p>
-            	<img alt="photo" src="${data.sPic}" style="width: 300px; height: 300px;">
             	<div class="star_score row">
 				    <span class="st_off">
 				   		<span class="st_on" style="width: ${data.likeAvg * 20}%;" ></span>

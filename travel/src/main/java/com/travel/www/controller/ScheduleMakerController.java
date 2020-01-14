@@ -30,7 +30,6 @@ public class ScheduleMakerController {
 	
 	@RequestMapping("/test.kit")
 	public void ScheduleListing(ModelAndView mv, ScheduleOrderVO sovo, HttpSession session) throws IOException {
-		String path = "";
 		ArrayList<ScheduleOrderVO> list = sovo.getSchedules();
 		System.out.println(list.size());
 		int i = 0;
@@ -58,32 +57,38 @@ public class ScheduleMakerController {
 			Iterator<MultipartFile> itor = sovo.getScheduleImg().iterator();
 			
 			while (itor.hasNext()) {
-				path = session.getServletContext().getRealPath("/");
+				String path = session.getServletContext().getRealPath("/");
+				String path1 = "resources\\img\\scheduleImg\\";
+				path = path + path1;
 				
-				String rePath = path.substring(0, path.indexOf("source"));
-				String path2 = "git\\travel\\travel\\src\\main\\webapp\\resources\\img\\scheduleImg\\";
-				rePath = rePath + path2;
+//				String rePath = path.substring(0, path.indexOf("source"));
+//				String path2 = "git\\travel\\travel\\src\\main\\webapp\\resources\\img\\scheduleImg\\";
+//				rePath = rePath + path2;
 				
 				System.out.println("path : " + path);
-//				System.out.println("path2 : " + path2);
-				System.out.println("rePath : " + rePath);
+//				System.out.println("rePath : " + rePath);
 				
 				MultipartFile part = itor.next();
-				rePath += part.getOriginalFilename();
-				file = new File(rePath);
+				path += part.getOriginalFilename();
+//				rePath += part.getOriginalFilename();
+				
+				file = new File(path);
+//				file = new File(rePath);
 				
 				while (file.exists()) {
 					int n = 0;
-					String first = rePath.substring(0, rePath.length() - part.getOriginalFilename().length());
-					String last = rePath.substring(rePath.lastIndexOf('.'), rePath.length());
+					String first = path.substring(0, path.lastIndexOf("\\"));
+					String last = path.substring(path.lastIndexOf('.'), path.length());
 					String name = part.getOriginalFilename().substring(0, part.getOriginalFilename().lastIndexOf('.'));
-					rePath = first + name + '_' + n + last;
+					String rename = name + '_' + n + last;
+					
+					path = first + rename;
 					
 					System.out.println(first);
 					System.out.println(last);
 					System.out.println(name);
 					
-					file = new File(rePath);
+					file = new File(path);
 					n++;
 				 }
 				
