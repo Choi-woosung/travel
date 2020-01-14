@@ -21,7 +21,6 @@ public class ScheduleVO {
 	private int sDay;
 	private double sRate;
 	private String sDel;
-	private String sPic; 
 	private int sCost;
 	private int cnt;
 	private int idCheck;
@@ -63,12 +62,6 @@ public class ScheduleVO {
 	}
 	public void setsCost(int sCost) {
 		this.sCost = sCost;
-	}
-	public String getsPic() {
-		return sPic;
-	}
-	public void setsPic(String sPic) {
-		this.sPic = sPic;
 	}
 	public int getsRn() {
 		return sRn;

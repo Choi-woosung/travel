@@ -278,6 +278,7 @@ img{
 				<h3 class="titleh">${DATA.sName }</h3>
 				<div class="city">${DATA.sCountry} ${DATA.sArea }</div>
 			</div>
+			
   			<div class="border b1 bg-white"><%-- <img src="${DATA.sPic }" > --%></div>
   			<div class="b2 bg-white"> 
   			<div class="travelbody"><strong>나라 : </strong>${DATA.sCountry}</div>
@@ -305,6 +306,9 @@ img{
   			</c:if>
   		</div>
 			<div class="col border money bg-white shadow">
+			<c:forEach items="${LIST}" var="data">
+				${data.placeName }
+			</c:forEach>
 			</div>
 			<div class="col border mtext bg-white shadow">
 			<h4 class="sBody">계획</h4>
