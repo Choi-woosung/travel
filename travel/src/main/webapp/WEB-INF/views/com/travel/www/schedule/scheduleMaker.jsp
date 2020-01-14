@@ -687,7 +687,7 @@ p {
 			method: 'POST',
 			body: data
 		};
-
+ 
 		fetch("/scheduleMaker/test.kit", options);
 	});
 	
