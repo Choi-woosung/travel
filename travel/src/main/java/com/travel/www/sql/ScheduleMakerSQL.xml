@@ -22,6 +22,9 @@
 		VALUES(
 			(SELECT NVL(MAX(s_no) + 1, 1) FROM schedule),
 			#{scheduleName}, TO_DATE(#{sSdate}, 'YYYY/MM/DD'), TO_DATE(#{sEdate}, 'YYYY/MM/DD'), 
+			#{sCountry}, #{sArea},
+			sysdate, null, #{scheduleBody},
+			0, 'N', 0, #{url}, #{writer}
 			#{sCountry}, #{sArea}, 1002, sysdate, null, #{scheduleBody},
 			0, 'N', 0
 		)

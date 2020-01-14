@@ -324,7 +324,6 @@ public class Member {
 	
 	@RequestMapping("loginProc.kit")
 	public ModelAndView loginProc(HttpSession session, ModelAndView mv, RedirectView rv, MemberVO vo) {
-		System.out.println("dd");
 		int cnt = mDAO.loginProc(vo);
 		if(cnt != 1) {
 			// 실패한 경우
@@ -382,7 +381,6 @@ public class Member {
 	@RequestMapping("idCheck.kit")
 	@ResponseBody
 	public int idCheck(String id) {
-		System.out.println("ㅇㅇ");
 		int cnt = 0;
 		cnt = mDAO.idCheck(id);
 		return cnt;	

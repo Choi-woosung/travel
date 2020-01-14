@@ -51,10 +51,6 @@
 			$(location).attr('href', '/member/find_pw.kit');
 		});
 		
-		$('#find_pw_btn').click(function(){
-			$(location).attr('href', '/member/find_pw.kit');
-		});
-		
 		$('#btn').click(function(){
 			$(location).attr('href', '/member/loginProc.kit');
 			
@@ -110,7 +106,6 @@
 
   <div class="w3-margin">
     <input type="password" id="userPw" name="mPw" class="form-control" placeholder="비밀번호" maxlength="8" required> 
- 	<span id="find_pw_btn"></span>
   </div>
   
   <div class="pwex" style="display: none; color: red;">
@@ -121,7 +116,7 @@
       <input type="checkbox" value="remember-me"> 기억하기
   </div>
   
-    <button id="find_btn" class="w3-margin w3-center w3-button w3-hover-#f5f5f5">| 비밀번호찾기 |</button>
+    <input type="button" id="find_btn" class="w3-margin w3-center w3-button w3-hover-#f5f5f5" value="| 비밀번호찾기 |">
   
       
   <button class="btn btn-lg btn-primary btn-block" id="btn" type="submit">Sign in</button>
@@ -133,10 +128,6 @@
 	<c:if test="${not empty SID}">
 		<div class="btn btn-lg btn-primary btn-block" id="logout">로그아웃</div>
 	</c:if>
-
-
-
-
 
 </body>
 </html>	

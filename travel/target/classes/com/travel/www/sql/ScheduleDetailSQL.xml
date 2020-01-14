@@ -7,7 +7,7 @@
 <mapper namespace="sdSQL"> 
 	<select id="scheduleDetail" parameterType="sVO" resultType="sVO">
       SELECT
-         s_no sNo, s_name sName, s_country sCountry, s_area sArea, s_body sBody, s_cost sCost, s_rate sRate
+         s_no sNo, s_name sName, s_country sCountry, s_area sArea, s_pic sPic, s_body sBody, s_cost sCost, s_rate sRate
       FROM
          schedule
       WHERE

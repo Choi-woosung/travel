@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Console;
 import com.travel.www.dao.ScheduleDAO;
 import com.travel.www.dao.ScheduleDetailDAO;
 import com.travel.www.dao.ScheduleMakerDAO;
