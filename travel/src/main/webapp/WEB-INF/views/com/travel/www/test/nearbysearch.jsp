@@ -314,7 +314,7 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '<input type="text" class="d-none" name ="placeLat" value="'+markerLocation.lat()+'">'
 								+ '<input type="text" class="d-none" name ="placeLng" value="'+markerLocation.lng()+'">';
 		}
-		 
+		
 		function showSelectedPlace() {
 			clearResults();
 			clearMarkers();
