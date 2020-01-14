@@ -292,7 +292,7 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '<input type="text" class="freeName" name="placeName" placeholder="제목"></h5>'
 								+ '<small class="text-muted">' + liCnt + '</small>'
 								+ '</div>'
-								+ '<div><input type="text" class="freeLoc" name ="placeAddresse" placeholder="위치를 입력하세요"></div>'
+								+ '<div><input type="text" class="freeLoc" name ="placeAddress" placeholder="위치를 입력하세요"></div>'
 								+ '<div class="content-body-text input-group-sm mb-1" style="display : none;">'
 								+ '<input type="text" class="bodycontext" name="body" placeholder="메모" id="testtest"/>'
 								+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
