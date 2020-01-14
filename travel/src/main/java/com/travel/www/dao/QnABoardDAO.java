@@ -19,6 +19,10 @@ public class QnABoardDAO {
 		return sqlSession.selectList("QnABoardSQL.qnaboard", vo);
 	}
 	
+	public QnABoardVO qnaBoardList(QnABoardVO vo) {
+		return sqlSession.selectOne("QnABoardSQL.qnaboardlist", vo);
+	}
+	
 	public int qnafile(QnABoardVO vo) {
 		return sqlSession.insert("QnABoardSQL.qnafile", vo);
 	}

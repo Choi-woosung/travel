@@ -27,11 +27,20 @@
 		    q_no desc
 	</select>
 	
+	<select id="qnaboardlist" parameterType="QnABoardVO" resultType="QnABoardVO">
+		SELECT
+			ROWNUM q_no, q_head, q_body, q_wdate
+		FROM
+			(SELECT * FROM qnaboard ORDER BY q_no)
+		WHERE 
+			q_no = #{no}
+	</select>
+	
 	<insert id="qnafile" parameterType="QnABoardVO">
 		INSERT INTO qna_file 
 		VALUES(
 			(SELECT NVL(MAX(f_no) + 1, 1) FROM qna_file),
-			(SELECT NVL(MAX(q_no), 1) FROM qnaboard where m_id = #{m_id}),
+			(SELECT NVL(MAX(q_no) + 0, 1) FROM qnaboard where m_id = #{m_id}),
 			#{f_file_name},
 			#{f_save_name}
 		)

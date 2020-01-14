@@ -98,9 +98,9 @@ public class ScheduleMakerController {
 			}
 			
 		}
-		
-		smDAO.ScheduleListing(sovo);
-		smDAO.makeSchedule(sovo);
+
+		int sno = smDAO.makeSchedule(sovo);
+		smDAO.ScheduleListing(sovo, sno);
 	}
 	
 }

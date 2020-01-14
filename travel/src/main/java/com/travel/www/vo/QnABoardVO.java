@@ -18,6 +18,7 @@ public class QnABoardVO {
 	private String f_file_name;
 	private String f_save_name;
 	private List<MultipartFile> files;
+	private int no;
 	
 	public String getF_no() {
 		return f_no;
@@ -84,5 +85,11 @@ public class QnABoardVO {
 	}
 	public void setF_save_name(String f_save_name) {
 		this.f_save_name = f_save_name;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
 	}
 }

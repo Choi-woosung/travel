@@ -1,32 +1,20 @@
 package com.travel.www.util;
 
-/**
- * 	이 클래스는 페이지 이동 기능에 필요한 정보를 계산 하기 위해서
- * 만들어진 유틸리티 적인 클래스
- * @author 고호경
- * @since 2019.12.03
- * @version v.1.0
- * @see
- * 
- * 				변경이력
- * 						2019.12.03		클래스제작		담당자	-	고호경
- *						2019.12.18		클래스제작		담당자	-	고호경
- */
+
 public class PageUtil {
-	// 변수 선언
-	private int nowPage; 	// 현재 보고있는 페이지
-	private int totalCount; // 총 게시물 수
+	private int nowPage; 	
+	private int totalCount; 
 	
-	private int pageRow;	// 한페이지 당 보여줄 게시물 수
-	private int pageGroup;	//	한화면당 이동가능 페이지 수
+	private int pageRow;	
+	private int pageGroup;	
 	
-	private int startPage;	//	해당화면에서 나타날 이동 시작 페이지
-	private int endPage;	//	끝나는 페이지
+	private int startPage;	
+	private int endPage;	
 	
-	private int startCont;	//	현재 페이지에서 보여줄 시작게시물 번호
-	private int endCont;	//	현재 페이지에서 보여줄 마지막게시물 번호
+	private int startCont;	
+	private int endCont;	
 	
-	private int totalPage;	//	총 페이지 수
+	private int totalPage;	
 	
 	public PageUtil() {}
 	public PageUtil(int nowPage, int totalCount) {
@@ -35,7 +23,6 @@ public class PageUtil {
 		this.pageRow = 3;
 		this.pageGroup = 3;
 		
-		// 나머지 변수를 계산해서 채워준다.
 		calcPage();
 		calcStart();
 		calcEnd();
@@ -47,7 +34,6 @@ public class PageUtil {
 		this.pageRow = pageRow;
 		this.pageGroup = pageGroup;
 		
-		// 나머지 변수를 계산해서 채워준다.
 		calcPage();
 		calcStart();
 		calcEnd();
@@ -59,35 +45,24 @@ public class PageUtil {
 		this.pageRow = pageRow;
 		this.pageGroup = pageGroup;
 		
-		// 나머지 변수를 계산해서 채워준다.
 		calcPage();
 		calcStart();
 		calcEnd();
 		calcCont();
 	}
 	
-	// 총페이지 수를 계산하는 함수
 	public void calcPage() {
-		/*
-		 	총 페이지수는 총 게시물 수를 한화면에 표시할 게시물 갯수로 나누면 된다.
-		 	
-		 	단, 경우에 따라서는 한페이지가 증가 될 수 있다.
-		 */
 		
 		totalPage = (totalCount % pageRow == 0) ? (totalCount / pageRow) : (totalCount / pageRow +1);
 	}
 	
-	// 시작페이지를 계산할 함수
 	
 	public void calcStart() {
-		// 현재 보는 페이지의 그룹을 계산하고
 		int tmpGroup = (nowPage - 1) / pageGroup ;
 			
-		//현재 보는 페이지의 그룹의 시작페이지
 			startPage = tmpGroup * pageGroup + 1;
 	}
 	
-	// 종료 페이지 수를 계산해주는 함수
 	public void calcEnd() {
 		int tmpGroup = (nowPage -1) / pageGroup;
 		endPage = (tmpGroup +1) * pageGroup; 
@@ -96,7 +71,6 @@ public class PageUtil {
 		}
 	}
 	
-	// 시작과 종류게시물 번호 계산해주는 함수
 	public void calcCont() {
 		startCont = (nowPage -1) * pageRow +1;
 		endCont = nowPage * pageRow;
@@ -156,6 +130,5 @@ public class PageUtil {
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
-	
 	
 }

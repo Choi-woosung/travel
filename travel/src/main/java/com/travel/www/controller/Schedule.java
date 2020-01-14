@@ -59,9 +59,13 @@ public class Schedule {
     	  likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
     	  likeAvg = like / likeCount;
     	  
-    	  DecimalFormat form = new DecimalFormat("#.#");
-    	  String likeAvg1 = form.format(likeAvg);
-    	  likeAvg = Double.parseDouble(likeAvg1);
+    	  if(like == 0) {
+				likeAvg = 0;
+    	  }
+    	  
+//    	  DecimalFormat form = new DecimalFormat("#.#");
+//    	  String likeAvg1 = form.format(likeAvg);
+//    	  likeAvg = Double.parseDouble(likeAvg1);
     	  
     	  list.get(i).setLikeAvg(likeAvg);
       }
@@ -113,10 +117,14 @@ public class Schedule {
 		   like = sdDAO.LikeBoardLikeTotal(sVO);
 		   likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
 		   likeAvg = like / likeCount;
+		   
+		   if(like == 0) {
+				likeAvg = 0;
+		   }
   
-		   DecimalFormat form = new DecimalFormat("#.#");
-		   String likeAvg1 = form.format(likeAvg);
-		   likeAvg = Double.parseDouble(likeAvg1);
+//		   DecimalFormat form = new DecimalFormat("#.#");
+//		   String likeAvg1 = form.format(likeAvg);
+//		   likeAvg = Double.parseDouble(likeAvg1);
   
 		   list.get(i).setLikeAvg(likeAvg);
 	   }
@@ -159,10 +167,14 @@ public class Schedule {
 		   like = sdDAO.LikeBoardLikeTotal(sVO);
 		   likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
 		   likeAvg = like / likeCount;
+		   
+		   if(like == 0) {
+				likeAvg = 0;
+		   }
   
-		   DecimalFormat form = new DecimalFormat("#.#");
-		   String likeAvg1 = form.format(likeAvg);
-		   likeAvg = Double.parseDouble(likeAvg1);
+//		   DecimalFormat form = new DecimalFormat("#.#");
+//		   String likeAvg1 = form.format(likeAvg);
+//		   likeAvg = Double.parseDouble(likeAvg1);
   
 		   list.get(i).setLikeAvg(likeAvg);
 	   }
@@ -205,10 +217,14 @@ public class Schedule {
 		   like = sdDAO.LikeBoardLikeTotal(sVO);
 		   likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
 		   likeAvg = like / likeCount;
+		   
+		   if(like == 0) {
+				likeAvg = 0;
+		   }
   
-		   DecimalFormat form = new DecimalFormat("#.#");
-		   String likeAvg1 = form.format(likeAvg);
-		   likeAvg = Double.parseDouble(likeAvg1);
+//		   DecimalFormat form = new DecimalFormat("#.#");
+//		   String likeAvg1 = form.format(likeAvg);
+//		   likeAvg = Double.parseDouble(likeAvg1);
   
 		   list.get(i).setLikeAvg(likeAvg);
 	   }
@@ -248,15 +264,18 @@ public class Schedule {
 			  mv.setView(rv); 
 			  return mv; 
 			}
-	   // 寃뚯떆臾� 醫뗭븘�슂 珥� �룊�젏
 	   	double like = sdDAO.LikeBoardLikeTotal(sVO);
-	   // 寃뚯떆臾� 醫뗭븘�슂 珥� �궗�엺 �닔
 	   	double likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
-	   // �룊洹좉컪
 	   	double likeAvg = like/likeCount;
-	   	DecimalFormat form = new DecimalFormat("#.#");
-	   	String likeAvg1 = form.format(likeAvg);
-	   	likeAvg = Double.parseDouble(likeAvg1);
+	   	
+//	   	DecimalFormat form = new DecimalFormat("#.#");
+//	   	String likeAvg1 = form.format(likeAvg);
+//	   	likeAvg = Double.parseDouble(likeAvg1);
+	   	
+	   	if(like == 0) {
+			likeAvg = 0;
+		}
+	   	
 	   sVO = sdDAO.scheduleDetail(sVO);
 	   mv.addObject("DATA", sVO);
 	   mv.addObject("likeAvg", likeAvg);
@@ -268,35 +287,32 @@ public class Schedule {
    @ResponseBody
    public ScheduleVO shceduleGood(ScheduleVO sVO) {
 	    
-	   // �븳 �븘�씠�뵒 醫뗭븘�슂 泥댄겕 泥섎━
 	    int idCheck = sdDAO.LikeBoardLikeCheck(sVO);
 	   if(idCheck > 0) {
 		   sVO.setIdCheck(idCheck);
 		   return sVO;
 	   }
-	   // 寃뚯떆�뙋 醫뗭븘�슂 �젏�닔 �뾽�뜲�씠�듃
 	   	int cnt = sdDAO.scheduleStar(sVO);
 	   	
-	  // 醫뗭븘�슂 �뀒�씠釉� �뾽�뜲�씠�듃
 	   	cnt += sdDAO.scheduleLikeBoard(sVO);
 	   	
-	   // 寃뚯떆臾� 醫뗭븘�슂 珥� �룊�젏
 	   	double like = sdDAO.LikeBoardLikeTotal(sVO);
 	   	
-	   // 寃뚯떆臾� 醫뗭븘�슂 珥� �궗�엺 �닔
 	   	double likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
 	   	
-	   // �룊洹좉컪
 	   	double likeAvg = like/likeCount;
+	   	
+	   	if(like == 0) {
+			likeAvg = 0;
+		}
 
-	   	DecimalFormat form = new DecimalFormat("#.#");
-	   	String likeAvg1 = form.format(likeAvg);
-	   	likeAvg = Double.parseDouble(likeAvg1);
-	   	if(cnt == 2) {
-		   System.out.println("�벑濡앹셿猷�");
-	   	}
-	   sVO.setCnt(cnt);
-	   sVO.setLikeAvg(likeAvg);
-	   return sVO;
+//	   	DecimalFormat form = new DecimalFormat("#.#");
+//	   	String likeAvg1 = form.format(likeAvg);
+//	   	likeAvg = Double.parseDouble(likeAvg1);
+	   	
+	   	sVO.setCnt(cnt);
+	   	sVO.setLikeAvg(likeAvg);
+	   
+	   	return sVO;
    }
 }

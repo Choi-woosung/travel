@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ScheduleOrderVO {
+	
 	private ArrayList<ScheduleOrderVO> Schedules;
 	private String type;
 	private String placeName;
@@ -13,15 +14,15 @@ public class ScheduleOrderVO {
 	private String price;
 	private String liCnt;
 	private String dayCount;
-	private String pid;
-	private String placeAddress;
 	private String placeLat;
 	private String placeLng;
+	private String pid;
+	private String placeAddress;
 	private ArrayList<MultipartFile> scheduleImg;
 	private String scheduleName;
 	private String scheduleBody;
-	private String country;
-	private String city;
+	private String sCountry;
+	private String sArea;
 	private String sSdate;
 	private String sEdate;
 	
@@ -109,29 +110,31 @@ public class ScheduleOrderVO {
 	public void setScheduleBody(String scheduleBody) {
 		this.scheduleBody = scheduleBody;
 	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
 	public String getsSdate() {
 		return sSdate;
 	}
 	public void setsSdate(String sSdate) {
+		sSdate = sSdate.substring(0, sSdate.length()-1);
 		this.sSdate = sSdate;
 	}
 	public String getsEdate() {
 		return sEdate;
 	}
 	public void setsEdate(String sEdate) {
+		sEdate = sEdate.substring(0, sEdate.length()-1);
 		this.sEdate = sEdate;
+	}
+	public String getsCountry() {
+		return sCountry;
+	}
+	public void setsCountry(String sCountry) {
+		this.sCountry = sCountry;
+	}
+	public String getsArea() {
+		return sArea;
+	}
+	public void setsArea(String sArea) {
+		this.sArea = sArea;
 	}
 
 }
