@@ -134,8 +134,8 @@ public class QnABoard {
 		return qDAO.getname(vo);
 	}
 	
-//	@RequestMapping("a_writ.kit")
-//	public void a_writ(QnABoardVO vo) {
-//		qDAO.a_writ(vo);
-//	}
+	@RequestMapping("a_writ.kit")
+	public void a_writ(QnABoardVO vo) {
+		qDAO.a_writ(vo);
+	}
 }
