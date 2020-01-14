@@ -416,9 +416,8 @@ p {
 			  var licode = document.createElement('li');
 			  licode.setAttribute('data-toggle' , 'modal');
 			  licode.setAttribute('data-target' , '#dataModal');
-			  licode.setAttribute('onclick', 'searchPlace("'+data+'", "'+liId+'", "'+cnt+'" , "'+dayCnt+'")');
+			  licode.setAttribute('onclick', 'searchPlace("'+data+'", this, "'+cnt+'" , "'+dayCnt+'")');
 			  licode.setAttribute('class', 'list-group-item list-group-item-action');
-			  licode.setAttribute('id' , liId);
 			  var textcode = document.createTextNode("+"); 
 			  ulDiv.appendChild(licode);
 			  licode.appendChild(textcode);
@@ -428,8 +427,7 @@ p {
 			  licode.setAttribute('data-toggle' , 'modal');
 			  licode.setAttribute('data-target' , '#dataModal');
 			  licode.setAttribute('class', 'list-group-item list-group-item-action');
-			  licode.setAttribute('onclick', 'searchPlace("'+data+'", "'+liId+'", "'+cnt+'" , "'+dayCnt+'")');
-			  licode.setAttribute('id' , liId);
+			  licode.setAttribute('onclick', 'searchPlace("'+data+'", this, "'+cnt+'" , "'+dayCnt+'")');
 			  var textcode = document.createTextNode("+"); 
 			  ulDiv.appendChild(licode);
 			  licode.appendChild(textcode);
@@ -518,7 +516,7 @@ p {
   			<div class="nameEditLeft"><img src="/img/icon/document-text.svg"></div>
   			<div class="nameEditRight">
   				<span id="scheduleNameDiv" class="font-weight-bold mx-1">제목 설정하기</span>
-  				<textarea name="scheduleName" id="scheduleName" class="scheduleName" rows="2"></textarea>
+  				<textarea name="scheduleName" id="scheduleName" class="scheduleName" rows="2" required></textarea>
   			</div>
   		</div>
   		<div class="nameEdit my-1">
@@ -636,7 +634,6 @@ p {
 	var idValue = ['scheduleName', 'scheduleBody', 'sCountry','sArea'];
 	var submitCheck = false;
 	document.getElementById('submitBtn').addEventListener('click', e => {
-		alert("버튼 작동");
 		let data = new FormData();
 		let idData;
 		let querys;
@@ -651,7 +648,6 @@ p {
 				} else if(e.value == ''){
 					e.value = 'empty Data';
 				}
-				console.log("nameValue : " + nameValue[i] + " ename : " + valueName + " , e.value : " + e.value);
 				data.append(valueName, e.value);
 				if(e.value == 'empty Data' || e.value == '0'){
 					e.value = '';
@@ -666,7 +662,6 @@ p {
 			} else {
 				data.append(idValue[i], idData);
 			}
-			console.log(idValue[i], idData);
 		}
 		
 		var sSdate = document.getElementById("sSdate").innerHTML;
@@ -679,7 +674,6 @@ p {
 		}
 		data.append("sSdate", sSdate);
 		data.append("sEdate", sEdate);
-		console.log(sSdate + sEdate);
 
 		var fileData = document.querySelector("input[type=file]").files;
 		if (fileData != null) {

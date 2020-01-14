@@ -221,6 +221,7 @@ input[type="number"]::-webkit-inner-spin-button {
 		function selfAddedMarker(){
 			google.maps.event.addListener(map, 'click', function(event) {
 			if(type != "freeSchedule") return;
+			clearMarkers();
 			markerLocation = event.latLng;
 			createMarker(event.latLng);
 			});
@@ -268,12 +269,11 @@ input[type="number"]::-webkit-inner-spin-button {
 		// 자유 스케쥴 li에 추가하는 기능
 		
 		function addFreeResult(markerLocation){
-			var targetLi = document.getElementById(eventId);
-			console.log(targetLi);
-			targetLi.setAttribute('data-toggle' , null);
-			targetLi.setAttribute('data-target' , null);
-			targetLi.setAttribute('onclick' , null);
-			targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
+			var parentContent = getParents(eventId, 'list-group-item list-group-item-action');
+			parentContent.setAttribute('data-toggle' , null);
+			parentContent.setAttribute('data-target' , null);
+			parentContent.setAttribute('onclick' , null);
+			parentContent.innerHTML = '<div class="d-flex w-100 justify-content-between">'
 								+ '<input type="text" class="mb-1" placeholder="제목"></h5>'
 								+ '<small class="text-muted">' + liCnt + '</small>'
 								+ '</div>'
@@ -285,10 +285,10 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '</div>' 
 								+ '</div>'
 								+ '<div class="row">'
-								+ '<div class="col-sm border mx-3" onclick="textcommit(this, eventId, type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
-								+ '<div class="col-sm border mx-3" onclick="modifyContent(eventId, this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
-								+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
-								+ '<div class="col-sm border mx-3" onclick="removeChildNode(eventId, type)"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
+								+ '<div class="col-sm border mx-3" onclick="textcommit(this, type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" onclick="modifyContent(this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(markerLocation)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
+								+ '<div class="col-sm border mx-3" onclick="removeChildNode(this, type)"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
 								+ '</div>'
 								+ '<input type="text" class="d-none" name ="placeLat" value="'+markerLocation.lat()+'">'
 								+ '<input type="text" class="d-none" name ="placeLng" value="'+markerLocation.lng()+'">';
@@ -299,16 +299,6 @@ input[type="number"]::-webkit-inner-spin-button {
 			clearMarkers();
 			var place = autocomplete.getPlace();
 			map.panTo(place.geometry.location);
-			/* 
-			markers[0] = new google.maps.Marker({
-				position: place.geometry.location,
-				map: map
-			});
-			iw = new google.maps.InfoWindow({
-				content: getIWContent(place)
-			});
-			iw.open(map, markers[0]);
-			*/
 			search();
 		}
  
@@ -458,13 +448,16 @@ input[type="number"]::-webkit-inner-spin-button {
 				}
 		}
 		
+		
+		// 
+		
 		function makeLiResult(place){
-			var targetLi = document.getElementById(eventId);
-			targetLi.setAttribute('data-toggle' , null);
-			targetLi.setAttribute('data-target' , null);
-			targetLi.setAttribute('onclick' , null);
+			var parentContent = getParents(eventId, 'list-group-item list-group-item-action');
+			parentContent.setAttribute('data-toggle' , null);
+			parentContent.setAttribute('data-target' , null);
+			parentContent.setAttribute('onclick' , null);
 			placeObject = place;
-			targetLi.innerHTML = '<div class="d-flex w-100 justify-content-between">'
+			parentContent.innerHTML = '<div class="d-flex w-100 justify-content-between">'
 								+ '<h5 class="mb-1">' + place.name + '</h5>'
 								+ '<small class="text-muted">' + liCnt + '</small>'
 								+ '</div>'
@@ -514,11 +507,11 @@ input[type="number"]::-webkit-inner-spin-button {
 			}
 		
 		// 리스트 내 li 제거 기능 + 리스트에서 제거 시 비용 다시 계산해주는 함수
-		function removeChildNode(eventId, type){
-			if(eventId != eventId.parentNode.lastElementChild){
-				var targetLi = eventId.parentNode;
-				var thisid = eventId.id;
-				targetLi.removeChild(eventId);
+		function removeChildNode(e, type){
+			var parentContent = getParents(e, 'list-group-item list-group-item-action');
+			if(parentContent != parentContent.parentNode.lastElementChild){
+				var targetLi = parentContent.parentNode;
+				targetLi.removeChild(parentContent);
 				var counter = 1;
 				var smalls = targetLi.querySelectorAll('small');
 				smalls.forEach(e => {
@@ -531,11 +524,8 @@ input[type="number"]::-webkit-inner-spin-button {
 					e.value = counter;
 					counter++;
 				});
-				var dayCounter = thisid.substring(1, thisid.indexOf("li"));
-				var allLis = targetLi.querySelectorAll('li');
-				counter = 0;
 			} else {
-				eventId.parentNode.removeChild(eventId);
+				parentContent.parentNode.removeChild(parentContent);
 			}
 			priceCalc(type);
 		}
@@ -543,19 +533,17 @@ input[type="number"]::-webkit-inner-spin-button {
 		// list 내 li에 body 컨텐츠 추가, 금액 추가  하는 기능
 		
 		function modifyContent(e){
-			console.log(e);
-			/* ev.style.display = 'none';
-			ev.previousSibling.style.display = 'block';
-			var bodyText = eventId.querySelector('.content-body-text');
-			bodyText.style.display = 'block';
-			if(eventId.querySelector('input').hasAttribute('readonly')){
-				var allInput = eventId.querySelectorAll('input');
-
+			var parentContent = getParents(e, 'list-group-item list-group-item-action');
+			var modifyDisplay = parentContent.querySelector('.content-body-text');
+			e.style.display = 'none';
+			e.previousSibling.style.display = 'block';
+			modifyDisplay.style.display = 'block';
+			if(modifyDisplay.querySelector('input').hasAttribute('readonly')){
+				var allInput = modifyDisplay.querySelectorAll('input');
 				allInput.forEach(e => {
 					e.removeAttribute('readonly');
 				});
-			} */
-			
+			}
 		}
 		
 		
@@ -578,26 +566,25 @@ input[type="number"]::-webkit-inner-spin-button {
 		
 		// 수정 완료 했을때 작동하는 기능
 		
-		function textcommit(e, etarget, type){
+		function textcommit(e, type){
+			var parentContent = getParents(e, 'list-group-item list-group-item-action');
+			var modifyDisplay = parentContent.querySelector('.content-body-text');
 			var thisbool = false;
 			e.style.display = "none";
 			e.nextSibling.style.display = 'block';
-			var allInput = etarget.querySelectorAll('input');
-			var bodyInput = etarget.querySelector('input[name="body"]');
-			var priceInput = etarget.querySelector('input[name="price"]');
+			var allInput = modifyDisplay.querySelectorAll('input');
+			var bodyInput = modifyDisplay.querySelector('input[name="body"]');
+			var priceInput = modifyDisplay.querySelector('input[name="price"]');
 			allInput.forEach(e => {
 				e.setAttribute('readonly', 'true');
 			});
 			if(bodyInput.value == '' && priceInput.value == ''){
 				thisbool = true;
 			}
-			console.log(thisbool);
 			if(thisbool == true){
-				var bodyText = etarget.querySelector('.content-body-text');
-				bodyText.style.display = 'none';
+				modifyDisplay.style.display = 'none';
 			}
-			var price = parseInt(etarget.querySelector('.pricecontext').value);
-			console.log(price);
+			var price = parseInt(modifyDisplay.querySelector('.pricecontext').value);
 			if(isNaN(price) == false){
 				priceCalc(type);
 			}
@@ -606,7 +593,6 @@ input[type="number"]::-webkit-inner-spin-button {
 		
 		// 비용 계산하는 함수
 		function priceCalc(type){
-			alert("안들어와?");
 			tempPrice = 0;
 			var priceId;
 			if(type == 'subway_station'){
@@ -622,8 +608,6 @@ input[type="number"]::-webkit-inner-spin-button {
 			var allPrice = document.querySelectorAll('input[name="price"]');
 			
 			allPrice.forEach(e => {
-				console.log(e);
-				console.log(e.value);
 				if(e.value == ''){
 					return;
 				} else {
