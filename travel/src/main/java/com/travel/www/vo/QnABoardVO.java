@@ -19,6 +19,8 @@ public class QnABoardVO {
 	private String f_save_name;
 	private List<MultipartFile> files;
 	private int no;
+	private String m_grade;
+	private String q_answer;
 	
 	public String getF_no() {
 		return f_no;
@@ -91,5 +93,17 @@ public class QnABoardVO {
 	}
 	public void setNo(int no) {
 		this.no = no;
+	}
+	public String getM_grade() {
+		return m_grade;
+	}
+	public void setM_grade(String m_grade) {
+		this.m_grade = m_grade;
+	}
+	public String getQ_answer() {
+		return q_answer;
+	}
+	public void setQ_answer(String q_answer) {
+		this.q_answer = q_answer;
 	}
 }

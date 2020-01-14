@@ -19,6 +19,10 @@ public class QnABoardDAO {
 		return sqlSession.selectList("QnABoardSQL.qnaboard", vo);
 	}
 	
+	public List<QnABoardVO> qnaboardall(QnABoardVO vo) {
+		return sqlSession.selectList("QnABoardSQL.qnaboardall", vo);
+	}
+	
 	public QnABoardVO qnaBoardList(QnABoardVO vo) {
 		return sqlSession.selectOne("QnABoardSQL.qnaboardlist", vo);
 	}
@@ -35,4 +39,11 @@ public class QnABoardDAO {
 		return sqlSession.selectOne("QnABoardSQL.getname", vo);
 	}
 	
+	public QnABoardVO getGrade(QnABoardVO vo) {
+		return sqlSession.selectOne("QnABoardSQL.getgrade", vo);
+	}
+	
+	public void a_writ(QnABoardVO vo) {
+		sqlSession.insert("QnABoardSQL.a_writ", vo);
+	}
 }

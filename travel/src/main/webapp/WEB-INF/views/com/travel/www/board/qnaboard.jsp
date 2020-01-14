@@ -363,7 +363,7 @@
 					<div>${list.q_body}</div>
 				</div>
 			</div>
-		</c:if>
+		</c:if>	
 	</div>
 
 	<!-- modal -->

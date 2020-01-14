@@ -34,25 +34,36 @@ public class QnABoard {
 		String sid = (String) session.getAttribute("SID");
 		String url =  "/main.kit";
 		int no = vo.getNo();
-		
-		if (sid == null) {
-			rv.setUrl(url);
-			mv.setView(rv);
-			return mv;
-		}
-		
-		if (no != 0) {
-			mv.addObject("list", qDAO.qnaBoardList(vo));
-		}
-		
 		vo.setM_id(sid);
 		
-		List<QnABoardVO> list = qDAO.qnaboard(vo);
+		if (qDAO.getGrade(vo).getM_grade().equals("admin")) {
+			if (no != 0) {
+				mv.addObject("list", qDAO.qnaBoardList(vo));
+			}
+			
+			mv.addObject("LIST", qDAO.qnaboardall(vo));
+			mv.setViewName("board/qnaboard2");
+			return mv;
+		} else {
+			System.out.println(sid);
+			
+			if (sid == null) {
+				rv.setUrl(url);
+				mv.setView(rv);
+				return mv;
+			}
+			
+			if (no != 0) {
+				mv.addObject("list", qDAO.qnaBoardList(vo));
+			}
+			
+			List<QnABoardVO> list = qDAO.qnaboard(vo);
 
-		mv.addObject("LIST", list);
-		mv.setViewName("board/qnaboard");
-		
-		return mv; 
+			mv.addObject("LIST", list);
+			mv.setViewName("board/qnaboard");
+			
+			return mv; 
+		}
 	}
 	
 	@RequestMapping("qnaWriting.kit")
@@ -121,6 +132,10 @@ public class QnABoard {
 	public String getname(QnABoardVO vo, HttpSession session) {
 		vo.setM_id((String) session.getAttribute("SID"));
 		return qDAO.getname(vo);
-		
 	}
+	
+//	@RequestMapping("a_writ.kit")
+//	public void a_writ(QnABoardVO vo) {
+//		qDAO.a_writ(vo);
+//	}
 }
