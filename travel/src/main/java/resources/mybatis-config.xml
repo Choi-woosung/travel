@@ -27,6 +27,7 @@
 		<mapper resource="com/travel/www/sql/ScheduleSQL.xml"/>
 		<mapper resource="com/travel/www/sql/ScheduleDetailSQL.xml"/>
 		<mapper resource="com/travel/www/sql/QnABoardSQL.xml"/>
+		<mapper resource="com/travel/www/sql/ScheduleMakerSQL.xml"/>
 	</mappers>
 	
 	

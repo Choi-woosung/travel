@@ -37,13 +37,23 @@ public class MainController {
 			
 			sVO.setsNo(sno);
 			
-			like = sdDAO.LikeBoardLikeTotal(sVO);
-			likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
-			likeAvg = like / likeCount;
+			like = sdDAO.LikeBoardLikeTotal(sVO); //토탈
+			likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO); //해당 게시판 누른 사람수
+			likeAvg = like / likeCount; //평균점
+			
+			System.out.println("like total : " + like);
+			
+			if(like == 0) {
+				likeAvg = 0;
+			}
     	  
-			DecimalFormat form = new DecimalFormat("#.#");
-			String likeAvg1 = form.format(likeAvg);
-			likeAvg = Double.parseDouble(likeAvg1);
+//			DecimalFormat form = new DecimalFormat("#.#");
+//			String likeAvg1 = form.format(likeAvg);
+			
+//			System.out.println("likeAvg 1 : " + likeAvg1);
+//			likeAvg = Double.parseDouble(likeAvg1);
+			
+			System.out.println("likeAvg : " + likeAvg);
     	  
 			list.get(i).setLikeAvg(likeAvg);
 		}
