@@ -291,11 +291,39 @@
 			border-bottom: 1px solid #EBEBEB;
 			border-right: 1px solid #EBEBEB;
 		}
+		.board_item3 {
+			display: inline-block;
+			width: 100%;
+			min-height: 300px;
+			padding: 8px;
+			border-bottom: 1px solid #EBEBEB;
+			border-right: 1px solid #EBEBEB;
+		}
 		.b_item1{
 			text-align: center;
 		}
 		.b_item2{
 			text-align: right;
+		}
+		.a_btn {
+			border: 1px solid #EBEBEB;
+			width: 100%;
+			height: 10%;
+			text-align: center;
+			padding-top: 32px;
+			margin-left: 4px;
+			float: left;
+			margin-bottom: 8px;
+			font-weight: 700;
+			border-radius: 4px;
+			background-color: #F9FAFA;
+			user-select: none;
+			padding-top: 16px;
+			padding-bottom: 16px;
+		}
+		.a_btn:hover {
+			background-color: #666666;
+			color: #FFFFFF;
 		}
 	</style>
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Nanum+Brush+Script&display=swap" rel="stylesheet">
@@ -307,9 +335,9 @@
 	<div class="b_container" id="b_container">
 		<div class="left_bar">
 			<ul id="left_ul" class="left_ul">
-				<li id="writing">문의하기</li>
-				<li id="moon" class="backColor">내 문의내역</li>
-				<li id="help">도움말</li>
+				<%-- <li id="writing">문의하기</li> --%>
+				<li id="moon" class="backColor">문의내역 확인</li>
+				<%-- <li id="help">도움말</li> --%>
 			</ul>
 		</div>
 		<div class="hide" id="writing_box">
@@ -356,11 +384,21 @@
 		<c:if test="${not empty list}">
 			<div class="board_item_box">
 				<div class="board_item1">
+					<div class="hide" id="no">${list.q_no}</div>
 					<div class="b_item1">${list.q_head}</div>
 					<div class="b_item2">${list.q_wdate}</div>
 				</div>
 				<div class="board_item2">
 					<div>${list.q_body}</div>
+				</div>
+				<div class="board_item3" contenteditable="true" id="writ"><c:if test="${list.q_status eq 'N'}">${list.q_answer}</c:if></div>
+				<div>
+					<c:if test="${list.q_status eq 'N'}">
+						<input type="button" value="답변" id="a_writ" class="a_btn">
+					</c:if>
+					<c:if test="${list.q_status eq 'Y'}">
+						<input type="button" value="수정" id="a_edit" class="a_btn">
+					</c:if>
 				</div>
 			</div>
 		</c:if>	
@@ -402,6 +440,8 @@
 			let file_upload_btn = document.getElementById('file_upload_btn');
 			let file_cancel_btn = document.getElementById('file_cancel_btn');
 			let file_size = document.getElementById('file_size');
+			let a_writ = document.getElementById('a_writ');
+			let writ = document.getElementById('writ');
 			
 			<c:if test="${empty list}">
 				let board_items = document.getElementById('board_items').children;
@@ -411,22 +451,35 @@
 						board_items[i].children[3].textContent = '처리중'; 
 					} else {
 						board_items[i].children[3].textContent = '처리완료';
-					}
-					
+					} 
 				}
 			</c:if>
 			
-			writing.addEventListener('click', () => {
+			a_writ.addEventListener('click', () => {
+				let no = document.getElementById('no');
+				let data = new FormData();
+				let options = {
+						method: 'POST',
+						body: data
+					};
+				
+				data.append("q_no", no.textContents);
+				data.append('q_answer', writt.extContents;
+				
+				fetch("/board/a_writ.kit", options);
+			});
+			
+			<%-- writing.addEventListener('click', () => {
 				removeCls(writing_box, '', 'hide', 'writing_box');
 				isCls(writing, '', 'backColor');
-			});
+			}); --%>
 			moon.addEventListener('click', () => {
 				location.href = '/board/qnaBoard.kit';
 			});
-			help.addEventListener('click', () => {
+			<%-- help.addEventListener('click', () => {
 				removeCls(help_box, '', 'hide', 'help_box');
 				isCls(help, '', 'backColor');
-			});
+			}); --%>
 			w_btn.addEventListener('click', () => {
 				let files = document.getElementById('isFile').files;
 				let data = new FormData();

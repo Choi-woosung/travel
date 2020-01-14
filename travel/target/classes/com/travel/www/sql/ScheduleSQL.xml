@@ -82,7 +82,7 @@
 	<!-- 메인리스트 가져오기 -->
 	<select id="mainList" resultType="sVO">
 		SELECT
-			s.s_no sNo, s.s_name sName, s.s_body sBody, s.s_rate sRate, s.s_pic sPic,
+			s.s_no sNo, s.s_name sName, s.s_body sBody, s.s_rate sRate,
 			m.m_id mId, a.a_img_name avatarName
 		FROM
 			schedule s, member m, member_avatar a
