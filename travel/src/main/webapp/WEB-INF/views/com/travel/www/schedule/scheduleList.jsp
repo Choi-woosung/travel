@@ -483,6 +483,7 @@
 							<input type="hidden" name="sNo" value="${data.sNo}">
 							<input type="hidden" name="sCountry">
                      		<input type="hidden" name="sArea">
+                     		
 							<div class="w3-col m4"> 
 								<img alt="mainpic" src="${data.sPic}" style="width: 250px; height: 250px">
 							</div>

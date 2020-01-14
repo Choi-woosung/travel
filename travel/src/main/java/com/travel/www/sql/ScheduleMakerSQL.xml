@@ -46,4 +46,5 @@
 		ORDER BY
 			dayCount, liCnt DESC
 	</select>
+	
 </mapper> 

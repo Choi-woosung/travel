@@ -28,6 +28,7 @@ public class ScheduleOrderVO {
 	private String writer;
 	private String url;
 	
+	
 	public String getWriter() {
 		return writer;
 	}
