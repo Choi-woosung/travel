@@ -296,7 +296,7 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '<div class="content-body-text input-group-sm mb-1" style="display : none;">'
 								+ '<input type="text" class="bodycontext" name="body" placeholder="메모" id="testtest"/>'
 								+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
-								+ '<input type="number" class="pricecontext" name="price" placeholder="예상비용" /></div>'
+								+ '<input type="number" class="pricecontext '+type+'" name="price" placeholder="예상비용" /></div>'
 								+ '</div>' 
 								+ '</div>'
 								+ '<div class="row">'
@@ -331,7 +331,7 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '<div class="content-body-text input-group-sm mb-1" style="display : none;">'
 								+ '<input type="text" class="bodycontext" name="body" placeholder="메모" id="testtest"/>'
 								+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
-								+ '<input type="number" class="pricecontext" name="price" placeholder="예상비용" /></div>'
+								+ '<input type="number" class="pricecontext '+type+'" name="price" placeholder="예상비용" /></div>'
 								+ '</div>' 
 								+ '</div>'
 								+ '<div class="row">'
@@ -630,7 +630,7 @@ input[type="number"]::-webkit-inner-spin-button {
 				priceId = 'otherPrice';
 			}
 			var thisPrice = document.getElementById(priceId);
-			var allPrice = document.querySelectorAll('input[name="price"]');
+			var allPrice = document.querySelectorAll('.'+type);
 			
 			allPrice.forEach(e => {
 				if(e.value == ''){
