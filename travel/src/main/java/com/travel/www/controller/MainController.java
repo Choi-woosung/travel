@@ -41,8 +41,6 @@ public class MainController {
 			likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO); //해당 게시판 누른 사람수
 			likeAvg = like / likeCount; //평균점
 			
-			System.out.println("like total : " + like);
-			
 			if(like == 0) {
 				likeAvg = 0;
 			}
@@ -53,8 +51,6 @@ public class MainController {
 //			System.out.println("likeAvg 1 : " + likeAvg1);
 //			likeAvg = Double.parseDouble(likeAvg1);
 			
-			System.out.println("likeAvg : " + likeAvg);
-    	  
 			list.get(i).setLikeAvg(likeAvg);
 		}
 		
