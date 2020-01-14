@@ -285,9 +285,13 @@ public class Schedule {
 	   
 	   List<ScheduleOrderVO> list = smDAO.callScheduleMaker(sVO.getsNo()+1);
 	   
-	   for(int i = 0; i < list.size(); i++) {
-		   System.out.println(list.get(i).getPlaceName());
+	   int lastDayCount = Integer.parseInt(list.get(list.size() - 1).getDayCount());
+	   ArrayList<Integer> lenofday = new ArrayList<>();
+	   for(int i = 0; i < lastDayCount ; i++) {
+		   lenofday.add(i + 1);
 	   }
+	   
+	   mv.addObject("lenOfDay", lenofday);
 	   mv.addObject("LIST", list);
 	   mv.addObject("DATA", sVO);
 	   mv.addObject("likeAvg", likeAvg);

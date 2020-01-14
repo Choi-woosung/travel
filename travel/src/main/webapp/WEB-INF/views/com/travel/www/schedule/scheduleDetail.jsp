@@ -45,9 +45,6 @@ body, html {
 .title{
 	height: auto;
 }
-.money{
-	height: 80px;
-}
 .b1 {
 	height: 400px;
 	width : 400px;
@@ -306,8 +303,22 @@ img{
   			</c:if>
   		</div>
 			<div class="col border money bg-white shadow">
-			<c:forEach items="${LIST}" var="data" varStatus="status">
-			</c:forEach>
+			<script>
+				var idx = 1;
+				
+			</script>
+				<c:forEach items="${lenOfDay}" var="day">
+				<div>
+					ㅎㅇㅎㅇ
+					<c:forEach items="${LIST}" var="data">
+						<c:if test="${data.dayCount == day}">
+							<div style="width : 100px; height : 50px; background : blue;">
+								${data.placeName }
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+				</c:forEach>
 			</div>
 			<div class="col border mtext bg-white shadow">
 			<h4 class="sBody">계획</h4>
