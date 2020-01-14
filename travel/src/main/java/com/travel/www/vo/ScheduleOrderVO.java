@@ -25,6 +25,20 @@ public class ScheduleOrderVO {
 	private String sArea;
 	private String sSdate;
 	private String sEdate;
+	private String writer;
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	private String url;
 	
 	public ArrayList<ScheduleOrderVO> getSchedules() {
 		return Schedules;

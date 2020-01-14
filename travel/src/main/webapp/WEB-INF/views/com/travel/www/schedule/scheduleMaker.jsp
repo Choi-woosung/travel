@@ -509,6 +509,7 @@ p {
   		<form id="form" action="/schedule/test.kit" method="post" enctype="multipart/form-data">
   			<div class="innerpage bg-white shadow" id="dayCount" style="margin-top: -100px;" ondrop="drop(event)" ondragover="allowDrop(event)">
   			</div>
+  			<input type="text" class="d-none" name="writer" value="#{SID }">
   		</form>
   	</div>
   	<div class="col p-4">
@@ -630,7 +631,7 @@ p {
 	</div>
 
 	<script>
-	var nameValue = ['pid', 'type', 'placeName', 'liCnt', 'placeAddress', 'body', 'price', 'dayCount', 'placeLat' , 'placeLng'];
+	var nameValue = ['pid', 'type', 'placeName', 'liCnt', 'placeAddress', 'body', 'price', 'dayCount', 'placeLat' , 'placeLng', 'url'];
 	var idValue = ['scheduleName', 'scheduleBody', 'sCountry','sArea'];
 	var submitCheck = false;
 	document.getElementById('submitBtn').addEventListener('click', e => {
@@ -645,9 +646,7 @@ p {
 				var valueName = "Schedules[" + index + "]."+nameValue[i];
 				if(e.value == '' && nameValue[i] == 'price'){
 					e.value = '0';
-				}/*  else if(e.value == ''){
-					e.value = 'empty Data';
-				} */
+				}
 				data.append(valueName, e.value);
 				if(e.value == 'empty Data' || e.value == '0'){
 					e.value = '';
@@ -656,23 +655,13 @@ p {
 		}
 		
 		for (var i = 0; i < idValue.length; i++){
-			idData = document.getElementById(idValue[i]).value;/* 
-			if(idData == null || idData == '' || idData == 'undefiend'){
-				idData = 'empty Data';
-			} else {
-				
-			} */
+			idData = document.getElementById(idValue[i]).value;
 			data.append(idValue[i], idData);
 		}
 		
 		var sSdate = document.getElementById("sSdate").innerHTML;
-		var sEdate = document.getElementById("sEdate").innerHTML;/* 
-		if(sSdate == null || sSdate == '' || sSdate == 'undefiend'){
-			sSdate = 'empty Data';
-		}
-		if(sEdate == null || sEdate == '' || sEdate == 'undefiend'){
-			sEdate = 'empty Data';
-		} */
+		var sEdate = document.getElementById("sEdate").innerHTML;
+		var writer = document.getElementById("writer").value;
 		data.append("sSdate", sSdate);
 		data.append("sEdate", sEdate);
 

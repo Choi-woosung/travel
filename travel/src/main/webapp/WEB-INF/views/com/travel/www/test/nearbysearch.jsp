@@ -309,6 +309,7 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '<input type="text" class="d-none" name ="type" value="'+type+'">'
 								+ '<input type="text" class="d-none" name ="liCnt" value="'+liCnt+'">'
 								+ '<input type="text" class="d-none" name ="dayCount" value="'+dayCount+'">'
+								+ '<input type="text" class="d-none" name ="url" value="">'
 								+ '<input type="text" class="d-none" name ="placeLat" value="'+markerLocation.lat()+'">'
 								+ '<input type="text" class="d-none" name ="placeLng" value="'+markerLocation.lng()+'">';
 		}
@@ -345,6 +346,7 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '<input type="text" class="d-none" name ="liCnt" value="'+liCnt+'">'
 								+ '<input type="text" class="d-none" name ="placeAddress" value="'+place.formatted_address+'">'
 								+ '<input type="text" class="d-none" name ="dayCount" value="'+dayCount+'">'
+								+ '<input type="text" class="d-none" name ="url" value="'+place.url+'">'
 								+ '<input type="text" class="d-none" name ="placeLat" value="'+place.geometry.location.lat()+'">'
 								+ '<input type="text" class="d-none" name ="placeLng" value="'+place.geometry.location.lng()+'">';
 		}
