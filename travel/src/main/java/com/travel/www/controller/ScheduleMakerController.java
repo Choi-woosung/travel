@@ -72,13 +72,13 @@ public class ScheduleMakerController {
 					file = new File(path);
 					n++;
 				 }
-				
+			
 				fos = new FileOutputStream(file);
 				bos = new BufferedOutputStream(fos);
 				
 				bos.write(part.getBytes());
 				bos.flush();
-				
+
 				fos.close();
 				bos.close();
 			}

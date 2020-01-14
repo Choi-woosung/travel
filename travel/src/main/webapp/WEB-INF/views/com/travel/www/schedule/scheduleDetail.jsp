@@ -259,6 +259,7 @@ img{
 	});
 </script>
 </head>
+
 <body class="bg-light">
 	<header>
 		<c:import url="/navigationBar.kit"></c:import>

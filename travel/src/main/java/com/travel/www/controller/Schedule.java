@@ -298,7 +298,6 @@ public class Schedule {
       return mv;
    }
    
-    
    @RequestMapping("/scheduleStar.kit")
    @ResponseBody
    public ScheduleVO shceduleGood(ScheduleVO sVO) {
