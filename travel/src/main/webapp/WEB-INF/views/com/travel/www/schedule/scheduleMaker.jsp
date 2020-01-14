@@ -645,9 +645,9 @@ p {
 				var valueName = "Schedules[" + index + "]."+nameValue[i];
 				if(e.value == '' && nameValue[i] == 'price'){
 					e.value = '0';
-				} else if(e.value == ''){
+				}/*  else if(e.value == ''){
 					e.value = 'empty Data';
-				}
+				} */
 				data.append(valueName, e.value);
 				if(e.value == 'empty Data' || e.value == '0'){
 					e.value = '';
@@ -656,22 +656,23 @@ p {
 		}
 		
 		for (var i = 0; i < idValue.length; i++){
-			idData = document.getElementById(idValue[i]).value;
+			idData = document.getElementById(idValue[i]).value;/* 
 			if(idData == null || idData == '' || idData == 'undefiend'){
 				idData = 'empty Data';
 			} else {
-				data.append(idValue[i], idData);
-			}
+				
+			} */
+			data.append(idValue[i], idData);
 		}
 		
 		var sSdate = document.getElementById("sSdate").innerHTML;
-		var sEdate = document.getElementById("sEdate").innerHTML;
+		var sEdate = document.getElementById("sEdate").innerHTML;/* 
 		if(sSdate == null || sSdate == '' || sSdate == 'undefiend'){
 			sSdate = 'empty Data';
 		}
 		if(sEdate == null || sEdate == '' || sEdate == 'undefiend'){
 			sEdate = 'empty Data';
-		}
+		} */
 		data.append("sSdate", sSdate);
 		data.append("sEdate", sEdate);
 

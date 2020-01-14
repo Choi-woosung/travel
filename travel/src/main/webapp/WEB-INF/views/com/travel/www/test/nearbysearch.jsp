@@ -126,9 +126,9 @@ html, body {
 }
 
 .bodycontext {
+	display : block;
 	border : 0px;
 	border-bottom : 1px solid #dee2e6;
-	text-align : left;
 	padding-left : 1px;
 	width : 265px;
 }
@@ -157,6 +157,22 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .pac-container {
 	z-index : 1060;
+}
+
+.freeName {
+	font-size : 18px;
+	border : 0px;
+	border-bottom : 1px solid #dee2e6;
+	text-align : left;
+	height : 34.25px;
+}
+
+.freeLoc {
+	display : block;
+	float : left;
+	border : 0px;
+	border-bottom : 1px solid #dee2e6;
+	width : 90%;
 }
 
 
@@ -261,7 +277,6 @@ input[type="number"]::-webkit-inner-spin-button {
 			if(type != "freeSchedule"){
 				search();
 			} else{
-				document.getElementById('infobox').style.display = 'none';
 				selfAddedMarker();
 			}
 		}
@@ -274,10 +289,10 @@ input[type="number"]::-webkit-inner-spin-button {
 			parentContent.setAttribute('data-target' , null);
 			parentContent.setAttribute('onclick' , null);
 			parentContent.innerHTML = '<div class="d-flex w-100 justify-content-between">'
-								+ '<input type="text" class="mb-1" placeholder="제목"></h5>'
+								+ '<input type="text" class="freeName" placeholder="제목"></h5>'
 								+ '<small class="text-muted">' + liCnt + '</small>'
 								+ '</div>'
-								+ '<input type="text" class="mb-1 text-left" placeholder="위치를 입력하세요"></p>'
+								+ '<div><input type="text" class="freeLoc" placeholder="위치를 입력하세요"></div>'
 								+ '<div class="content-body-text input-group-sm mb-1" style="display : none;">'
 								+ '<input type="text" class="bodycontext" name="body" placeholder="메모" id="testtest"/>'
 								+ '<div class="inputPrice"><span class="priceLeft">비용 : </span>'
@@ -290,6 +305,12 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(markerLocation)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
 								+ '<div class="col-sm border mx-3" onclick="removeChildNode(this, type)"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
 								+ '</div>'
+								+ '<input type="text" class="d-none" name ="pid" value="">'
+								+ '<input type="text" class="d-none" name ="type" value="'+type+'">'
+								+ '<input type="text" class="d-none" name ="placeName" value="">'
+								+ '<input type="text" class="d-none" name ="liCnt" value="'+liCnt+'">'
+								+ '<input type="text" class="d-none" name ="placeAddress" value="">'
+								+ '<input type="text" class="d-none" name ="dayCount" value="'+dayCount+'">'
 								+ '<input type="text" class="d-none" name ="placeLat" value="'+markerLocation.lat()+'">'
 								+ '<input type="text" class="d-none" name ="placeLng" value="'+markerLocation.lng()+'">';
 		}
@@ -299,7 +320,9 @@ input[type="number"]::-webkit-inner-spin-button {
 			clearMarkers();
 			var place = autocomplete.getPlace();
 			map.panTo(place.geometry.location);
-			search();
+			if(type != 'freeSchedule'){
+				search();
+			}
 		}
  
 		function search() {
