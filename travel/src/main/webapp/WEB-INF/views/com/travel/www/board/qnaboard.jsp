@@ -18,7 +18,7 @@
 		}
 		body div:not(#nav) {
     		font-family: 'Nanum Brush Script', cursive;
-			font-family: 'Gothic A1', sans-serif;
+			font-family: 'Gothic A1', sans-serif;	
 		}
 		/* container */
 		.b_container {
@@ -65,6 +65,11 @@
 			padding-right: 8px; 
 			padding-top: 9px;
 			padding-bottom: 9px;
+			color: #666;
+		}
+		.board_list:hover {
+			color: #666;
+			text-decoration: none;
 		}
 		.font_we div {
 			font-weight: 700;
@@ -261,6 +266,37 @@
 			width: 100%;
 			height: 90%;
 		}
+		.board_item_box{
+			width: calc(100% - 200px);
+			height: 100vh;
+			font-size: 15px;
+			float: right;
+		}
+		.board_item1 {
+			display: grid;
+			width: 100%;
+			height: 40px; 
+			grid-template-columns: 80% 20%;
+			font-weight: 700;
+			padding-top: 8px;
+			padding-right: 8px;
+			border-bottom: 1px solid #EBEBEB;
+			border-right: 1px solid #EBEBEB;
+		}
+		.board_item2 {
+			display: inline-block;
+			width: 100%;
+			min-height: 300px;
+			padding: 8px;
+			border-bottom: 1px solid #EBEBEB;
+			border-right: 1px solid #EBEBEB;
+		}
+		.b_item1{
+			text-align: center;
+		}
+		.b_item2{
+			text-align: right;
+		}
 	</style>
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Nanum+Brush+Script&display=swap" rel="stylesheet">
 </head>
@@ -272,7 +308,7 @@
 		<div class="left_bar">
 			<ul id="left_ul" class="left_ul">
 				<li id="writing">문의하기</li>
-				<li id="moon">내 문의내역</li>
+				<li id="moon" class="backColor">내 문의내역</li>
 				<li id="help">도움말</li>
 			</ul>
 		</div>
@@ -286,24 +322,26 @@
 			<div class="w_btn" id="w_btn">문의하기</div>
 			<div class="w_cancel" id="w_cancel">취소</div>
 		</div>
-		<div class="hide" id="board">
-			<div class="board_list font_we">
-				<div>번호</div>
-				<div>제목</div>
-				<div>날짜</div>
-				<div>상태</div>
-			</div>
-			<div id="board_items">
-				<c:forEach var="data" items="${LIST}">
-					<div class="board_list">
-						<div>${data.q_no}</div>
-						<div>${data.q_head}</div>
-						<div>${data.q_wdate}</div>
-						<div>${data.q_status}</div>
+		<c:if test="${empty list}">
+			<div class="board" id="board">
+					<div class="board_list font_we">
+						<div>번호</div>
+						<div>제목</div>
+						<div>날짜</div>
+						<div>상태</div>
 					</div>
-				</c:forEach>
+					<div id="board_items">
+						<c:forEach var="data" items="${LIST}">
+							<a class="board_list unset" href="?no=${data.q_no}">
+								<span>${data.q_no}</span>
+								<span>${data.q_head}</span>
+								<span>${data.q_wdate}</span>
+								<span>${data.q_status}</span>
+							</a>
+						</c:forEach>
+					</div>
 			</div>
-		</div>
+		</c:if>
 		<div class="hide" id="help_box">
 			<div class="h_contents">
 				<ul>
@@ -315,6 +353,17 @@
 				</ul>
 			</div>
 		</div>
+		<c:if test="${not empty list}">
+			<div class="board_item_box">
+				<div class="board_item1">
+					<div class="b_item1">${list.q_head}</div>
+					<div class="b_item2">${list.q_wdate}</div>
+				</div>
+				<div class="board_item2">
+					<div>${list.q_body}</div>
+				</div>
+			</div>
+		</c:if>
 	</div>
 
 	<!-- modal -->
@@ -353,25 +402,27 @@
 			let file_upload_btn = document.getElementById('file_upload_btn');
 			let file_cancel_btn = document.getElementById('file_cancel_btn');
 			let file_size = document.getElementById('file_size');
-			let board_items = document.getElementById('board_items').children;
 			
-			for (var i = 0; i < board_items.length; i++) {
-				if (board_items[i].children[3].textContent == 'N') {
-					board_items[i].children[3].textContent = '처리중'; 
-				} else {
-					board_items[i].children[3].textContent = '처리완료';
+			<c:if test="${empty list}">
+				let board_items = document.getElementById('board_items').children;
+				
+				for (var i = 0; i < board_items.length; i++) {
+					if (board_items[i].children[3].textContent == 'N') {
+						board_items[i].children[3].textContent = '처리중'; 
+					} else {
+						board_items[i].children[3].textContent = '처리완료';
+					}
+					
 				}
-			}
+			</c:if>
 			
 			writing.addEventListener('click', () => {
 				removeCls(writing_box, '', 'hide', 'writing_box');
 				isCls(writing, '', 'backColor');
 			});
 			moon.addEventListener('click', () => {
-				removeCls(board, '', 'hide', 'board');
-				isCls(moon, '', 'backColor');
+				location.href = '/board/qnaBoard.kit';
 			});
-			moon.click();
 			help.addEventListener('click', () => {
 				removeCls(help_box, '', 'hide', 'help_box');
 				isCls(help, '', 'backColor');
@@ -396,7 +447,7 @@
 				
 				if (w_haed.textContent != '' && w_body != '') {
 					fetch('/board/qnaWriting.kit', options).then(() => {
-						location.reload();
+						moon.click();
 					});
 				}
 				

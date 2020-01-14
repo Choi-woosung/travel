@@ -4,15 +4,17 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,14 +30,19 @@ public class QnABoard {
 	QnABoardDAO qDAO;
 	
 	@RequestMapping("qnaBoard.kit")
-	public ModelAndView qnaBoard(ModelAndView mv, HttpSession session, RedirectView rv, QnABoardVO vo) {
+	public ModelAndView qnaBoard(ModelAndView mv, RedirectView rv, QnABoardVO vo, HttpSession session) {
 		String sid = (String) session.getAttribute("SID");
 		String url =  "/main.kit";
+		int no = vo.getNo();
 		
 		if (sid == null) {
 			rv.setUrl(url);
 			mv.setView(rv);
 			return mv;
+		}
+		
+		if (no != 0) {
+			mv.addObject("list", qDAO.qnaBoardList(vo));
 		}
 		
 		vo.setM_id(sid);
