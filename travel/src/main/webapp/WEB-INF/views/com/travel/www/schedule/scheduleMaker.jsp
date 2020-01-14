@@ -509,7 +509,7 @@ p {
   		<form id="form" action="/schedule/test.kit" method="post" enctype="multipart/form-data">
   			<div class="innerpage bg-white shadow" id="dayCount" style="margin-top: -100px;" ondrop="drop(event)" ondragover="allowDrop(event)">
   			</div>
-  			<input type="text" class="d-none" name="writer" value="#{SID }">
+  			<input type="text" class="d-none" name="writer" value="${SID }">
   		</form>
   	</div>
   	<div class="col p-4">
