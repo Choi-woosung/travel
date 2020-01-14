@@ -294,6 +294,7 @@ public class Schedule {
 	   mv.setViewName("/schedule/scheduleDetail");	   
       return mv;
    }
+   
     
    @RequestMapping("/scheduleStar.kit")
    @ResponseBody

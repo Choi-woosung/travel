@@ -313,6 +313,7 @@ img{
 			<h4 class="sBody">계획</h4>
 			<h5 class="sBody2">${DATA.sBody }</h5>
 			</div>
+			
   		<button type="button" class="btn bg-white border col-md-1 btn1" id="list">목록</button>
   		<button type="button" class="btn bg-white border col-md-1 btn2" id="">수정</button>
 </div>
