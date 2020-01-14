@@ -87,7 +87,6 @@
 	        			content += '		<div class="w3-container w3-card w3-margin-bottom content">';
 	        			content += '    		<input type="hidden" name="sNo" value="' + list[i].sNo + '"' + '>';
 	        			content += '        		<div class="w3-col m4">';
-	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
 	        			content += '        		</div>';
 	        			content += '        		<div class="w3-col m8 infobox">';
 	        			content += '        			<div class="star_score row">';
@@ -156,7 +155,6 @@
 	        			content += '		<div class="w3-container w3-card w3-margin-bottom content">';
 	        			content += '    		<input type="hidden" name="sNo" value="' + list[i].sNo + '"' + '>';
 	        			content += '        		<div class="w3-col m4">';
-	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
 	        			content += '        		</div>';
 	        			content += '        		<div class="w3-col m8 infobox">';
 	        			content += '        			<div class="star_score row">';
@@ -224,7 +222,6 @@
 	        			content += '		<div class="w3-container w3-card w3-margin-bottom content">';
 	        			content += '    		<input type="hidden" name="sNo" value="' + list[i].sNo + '"' + '>';
 	        			content += '        		<div class="w3-col m4">';
-	        			content += '           			<img alt="mainpic" src="' + list[i].sPic + '" style="width: 250px; height: 250px">';
 	        			content += '        		</div>';
 	        			content += '        		<div class="w3-col m8 infobox">';
 	        			content += '        			<div class="star_score row">';
@@ -483,8 +480,8 @@
 							<input type="hidden" name="sNo" value="${data.sNo}">
 							<input type="hidden" name="sCountry">
                      		<input type="hidden" name="sArea">
+                     		
 							<div class="w3-col m4"> 
-								<img alt="mainpic" src="${data.sPic}" style="width: 250px; height: 250px">
 							</div>
 							<div class="w3-col m8 infobox">
 								<div class="star_score row">

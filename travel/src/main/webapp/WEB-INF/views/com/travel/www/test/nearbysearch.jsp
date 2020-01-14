@@ -214,7 +214,9 @@ input[type="number"]::-webkit-inner-spin-button {
 			places = new google.maps.places.PlacesService(map);
  			autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
  			citySelector = new google.maps.places.Autocomplete(document.getElementById('citySelector'), options);
-
+ 			google.maps.event.addListener(map, 'tilesloaded', function() {
+ 				tilesLoaded();
+ 				});
             google.maps.event.addListener(citySelector, 'place_changed', function() {
                var place = citySelector.getPlace();
                var components = place.address_components;

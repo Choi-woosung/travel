@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.travel.www.dao.ScheduleDAO;
 import com.travel.www.dao.ScheduleDetailDAO;
+import com.travel.www.dao.ScheduleMakerDAO;
 import com.travel.www.vo.ScheduleOrderVO;
 import com.travel.www.vo.ScheduleVO;
 
@@ -29,6 +30,9 @@ public class Schedule {
    
    @Autowired
    ScheduleDetailDAO sdDAO;
+   
+   @Autowired
+   ScheduleMakerDAO smDAO;
    
    //리스트 가져오기
    @RequestMapping("/scheduleList.kit")
@@ -257,13 +261,12 @@ public class Schedule {
 
 
    @RequestMapping("/scheduleDetail.kit")
-   public ModelAndView shceduleDetail(ModelAndView mv, ScheduleVO sVO, RedirectView rv) {
-		
-		  if(sVO.getsNo() == 0 ) { 
-			  rv.setUrl("/main.kit"); 
-			  mv.setView(rv); 
-			  return mv; 
-			}
+   public ModelAndView shceduleDetail(ModelAndView mv, ScheduleOrderVO soVO, ScheduleVO sVO, RedirectView rv) {
+	   if(sVO.getsNo() == 0 ) { 
+		  rv.setUrl("/main.kit"); 
+		  mv.setView(rv);
+		  return mv; 
+	    }
 	   	double like = sdDAO.LikeBoardLikeTotal(sVO);
 	   	double likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
 	   	double likeAvg = like/likeCount;
@@ -277,12 +280,21 @@ public class Schedule {
 		}
 	   	
 	   sVO = sdDAO.scheduleDetail(sVO);
+	   
+	   
+	   List<ScheduleOrderVO> list = smDAO.callScheduleMaker(sVO.getsNo()+1);
+	   
+	   for(int i = 0; i < list.size(); i++) {
+		   System.out.println(list.get(i).getPlaceName());
+	   }
+	   mv.addObject("LIST", list);
 	   mv.addObject("DATA", sVO);
 	   mv.addObject("likeAvg", likeAvg);
 	   mv.setViewName("/schedule/scheduleDetail");	   
       return mv;
    }
    
+    
    @RequestMapping("/scheduleStar.kit")
    @ResponseBody
    public ScheduleVO shceduleGood(ScheduleVO sVO) {

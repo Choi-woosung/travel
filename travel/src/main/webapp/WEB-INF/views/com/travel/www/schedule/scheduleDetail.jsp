@@ -278,7 +278,8 @@ img{
 				<h3 class="titleh">${DATA.sName }</h3>
 				<div class="city">${DATA.sCountry} ${DATA.sArea }</div>
 			</div>
-  			<div class="border b1 bg-white"><img src="${DATA.sPic }" ></div>
+			
+  			<div class="border b1 bg-white"><%-- <img src="${DATA.sPic }" > --%></div>
   			<div class="b2 bg-white"> 
   			<div class="travelbody"><strong>나라 : </strong>${DATA.sCountry}</div>
   			<div class="travelbody"><strong>도시 : </strong>${DATA.sArea}</div>
@@ -305,11 +306,14 @@ img{
   			</c:if>
   		</div>
 			<div class="col border money bg-white shadow">
+			<c:forEach items="${LIST}" var="data" varStatus="status">
+			</c:forEach>
 			</div>
 			<div class="col border mtext bg-white shadow">
 			<h4 class="sBody">계획</h4>
 			<h5 class="sBody2">${DATA.sBody }</h5>
 			</div>
+			
   		<button type="button" class="btn bg-white border col-md-1 btn1" id="list">목록</button>
   		<button type="button" class="btn bg-white border col-md-1 btn2" id="">수정</button>
 </div>

@@ -352,22 +352,22 @@
 		</div>
 		<c:if test="${empty list}">
 			<div class="board" id="board">
-					<div class="board_list font_we">
-						<div>번호</div>
-						<div>제목</div>
-						<div>날짜</div>
-						<div>상태</div>
-					</div>
-					<div id="board_items">
-						<c:forEach var="data" items="${LIST}">
-							<a class="board_list unset" href="?no=${data.q_no}">
-								<span>${data.q_no}</span>
-								<span>${data.q_head}</span>
-								<span>${data.q_wdate}</span>
-								<span>${data.q_status}</span>
-							</a>
-						</c:forEach>
-					</div>
+				<div class="board_list font_we">
+					<div>번호</div>
+					<div>제목</div>
+					<div>날짜</div>
+					<div>상태</div>
+				</div>
+				<div id="board_items">
+					<c:forEach var="data" items="${LIST}">
+						<a class="board_list unset" href="?no=${data.q_no}">
+							<span>${data.q_no}</span>
+							<span>${data.q_head}</span>
+							<span>${data.q_wdate}</span>
+							<span>${data.q_status}</span>
+						</a>
+					</c:forEach>
+				</div>
 			</div>
 		</c:if>
 		<div class="hide" id="help_box">
@@ -384,20 +384,20 @@
 		<c:if test="${not empty list}">
 			<div class="board_item_box">
 				<div class="board_item1">
-					<div class="hide" id="no">${list.q_no}</div>
+					<div class="hide">${list.q_no}</div>
 					<div class="b_item1">${list.q_head}</div>
 					<div class="b_item2">${list.q_wdate}</div>
 				</div>
 				<div class="board_item2">
 					<div>${list.q_body}</div>
 				</div>
-				<div class="board_item3" contenteditable="true" id="writ"><c:if test="${list.q_status eq 'N'}">${list.q_answer}</c:if></div>
+				<div class="board_item3" contenteditable="true" id="writ">${list.q_answer}</div>
 				<div>
 					<c:if test="${list.q_status eq 'N'}">
 						<input type="button" value="답변" id="a_writ" class="a_btn">
 					</c:if>
 					<c:if test="${list.q_status eq 'Y'}">
-						<input type="button" value="수정" id="a_edit" class="a_btn">
+						<input type="button" value="수정" id="a_writ" class="a_btn">
 					</c:if>
 				</div>
 			</div>
@@ -454,19 +454,21 @@
 					} 
 				}
 			</c:if>
-			
 			a_writ.addEventListener('click', () => {
-				let no = document.getElementById('no');
+				let no = document.querySelector('div.board_item1 div.hide');
+
 				let data = new FormData();
 				let options = {
 						method: 'POST',
 						body: data
 					};
 				
-				data.append("q_no", no.textContents);
-				data.append('q_answer', writt.extContents;
+				data.append("q_no", + no.textContent);
+				data.append('q_answer', writ.textContent);
 				
-				fetch("/board/a_writ.kit", options);
+				fetch("/board/a_writ.kit", options).then(() => {
+					moon.click();
+				});
 			});
 			
 			<%-- writing.addEventListener('click', () => {

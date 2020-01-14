@@ -12,7 +12,7 @@
 			(SELECT NVL(MAX(sd_mno) + 1, 1) FROM schedulemaker),
 			#{SOVO.type}, #{SOVO.placeName}, #{SOVO.body}, #{SOVO.price}, #{SOVO.liCnt},
 			#{SOVO.dayCount}, #{SOVO.placeLat}, #{SOVO.placeLng}, #{SOVO.pid},
-			#{SOVO.placeAddress}, #{SNO}
+			#{SOVO.placeAddress}, #{SNO}, #{SOVO.url}
 		)
 	</insert>
 	
@@ -25,6 +25,8 @@
 			#{sCountry}, #{sArea},
 			sysdate, null, #{scheduleBody},
 			0, 'N', 0, #{url}, #{writer}
+			#{sCountry}, #{sArea}, 1002, sysdate, null, #{scheduleBody},
+			0, 'N', 0
 		)
 	</insert>
 	
@@ -34,4 +36,17 @@
 		from
 			schedule
 	</select>
+	
+	<select id="selectScheduleMaker" parameterType="int" resultType="soVO">
+		SELECT
+			SD_MTYPE type, SD_MNAME placeName, SD_MBODY body, SD_MCOST price, SD_MORDER liCnt, SD_MDAY dayCount, SD_MLAT placeLat,
+			SD_MLNG placeLng, SD_MPID pid, SD_MADDRESS placeAddress, SD_MURL url
+		FROM
+			SCHEDULEMAKER
+		WHERE
+			SD_SNO = #{sno}
+		ORDER BY
+			dayCount, liCnt
+	</select>
+	
 </mapper> 
