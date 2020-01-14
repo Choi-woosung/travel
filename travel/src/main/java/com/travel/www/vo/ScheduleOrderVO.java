@@ -26,6 +26,8 @@ public class ScheduleOrderVO {
 	private String sSdate;
 	private String sEdate;
 	private String writer;
+	private String url;
+	
 	public String getWriter() {
 		return writer;
 	}
@@ -38,7 +40,6 @@ public class ScheduleOrderVO {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	private String url;
 	
 	public ArrayList<ScheduleOrderVO> getSchedules() {
 		return Schedules;
