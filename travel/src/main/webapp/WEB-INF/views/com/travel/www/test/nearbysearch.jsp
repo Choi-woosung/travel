@@ -476,10 +476,10 @@ input[type="number"]::-webkit-inner-spin-button {
 								+ '</div>' 
 								+ '</div>'
 								+ '<div class="row">'
-								+ '<div class="col-sm border mx-3" onclick="textcommit(this,'+eventId+', type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
-								+ '<div class="col-sm border mx-3" onclick="modifyContent('+eventId+', this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" onclick="textcommit(this, type)" style="display : none;"><img src="/img/icon/check.svg" alt="" width="16" height="16" title="hammer"></div>'
+								+ '<div class="col-sm border mx-3" onclick="modifyContent(this)"><img src="/img/icon/hammer.svg" alt="" width="16" height="16" title="hammer"></div>'
 								+ '<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal" onclick="viewThisContent(placeObject)"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>'
-								+ '<div class="col-sm border mx-3" onclick="removeChildNode('+eventId+', type)"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
+								+ '<div class="col-sm border mx-3" onclick="removeChildNode(this, type)"><img src="/img/icon/trash.svg" alt="" width="16" height="16" title="trash"></div>'
 								+ '</div>'
 								+ '<input type="text" class="d-none" name ="pid" value="'+place.place_id+'">'
 								+ '<input type="text" class="d-none" name ="type" value="'+type+'">'
@@ -542,8 +542,9 @@ input[type="number"]::-webkit-inner-spin-button {
 		
 		// list 내 li에 body 컨텐츠 추가, 금액 추가  하는 기능
 		
-		function modifyContent(eventId, ev){
-			ev.style.display = 'none';
+		function modifyContent(e){
+			console.log(e);
+			/* ev.style.display = 'none';
 			ev.previousSibling.style.display = 'block';
 			var bodyText = eventId.querySelector('.content-body-text');
 			bodyText.style.display = 'block';
@@ -553,7 +554,7 @@ input[type="number"]::-webkit-inner-spin-button {
 				allInput.forEach(e => {
 					e.removeAttribute('readonly');
 				});
-			}
+			} */
 			
 		}
 		

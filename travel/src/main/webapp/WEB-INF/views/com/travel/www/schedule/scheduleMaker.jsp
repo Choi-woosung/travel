@@ -399,7 +399,7 @@ p {
 		}
 	  document.getElementById('infobox').style.display = 'block';
 	  var data = event.dataTransfer.getData("text");
-	  var tf = getParents(ev.target);
+	  var tf = getParents(ev.target, 'innerpage2 bg-white shadow');
 	  var targetDiv;
 	  if(tf.className == 'innerpage2 bg-white shadow'){
 		  targetDiv = tf;
@@ -407,6 +407,7 @@ p {
 		  cnt = targetDiv.querySelectorAll('li').length + 1;
 		  dayCnt = liId.substring(1, liId.indexOf("li"));
 		  var ulDiv;
+		  
 		  if(targetDiv.querySelector('ul') == null){
 			  var createUl = document.createElement('ul');
 			  createUl.setAttribute('class', 'list-group');
@@ -436,13 +437,13 @@ p {
 	  }
 	}
 	  
-	function getParents(e){
+	function getParents(e, findName){
 		var tf = false;
 		var parentData = e;
 		var tempNode;
 		while(parentData){
 			tempNode = parentData;
-			if(parentData.className == 'innerpage2 bg-white shadow'){
+			if(parentData.className == findName){
 				tf = true;
 				break;
 			};
