@@ -92,4 +92,17 @@
 			s_rate desc
 	</select>
 	
+	<insert id="insertSchedule" parameterType="soVO">
+		INSERT INTO
+			schedule
+		VALUES(
+			(SELECT NVL(MAX(s_no) + 1, 1) FROM schedule),
+			#{scheduleName}, #{scheduleSdate}, #{scheduleEdate}, 
+			#{scheduleCountry}, #{scheduleArea}, #{scheduleWriter}, 
+			sysdate, null, #{scheduleBody},
+			0, 'N', #{schedulePic}, 
+			(SELECT SUM(sd_mcost) FROM schedulemaker WHERE sd_sno = #{scheduleMcost})				
+		)
+	</insert>
+	
 </mapper> 
