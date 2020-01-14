@@ -34,4 +34,16 @@
 		from
 			schedule
 	</select>
+	
+	<select id="selectScheduleMaker" parameterType="int" resultType="soVO">
+		SELECT
+			SD_MTYPE type, SD_MNAME placeName, SD_MBODY body, SD_MCOST price, SD_MORDER liCnt, SD_MDAY dayCount, SD_MLAT placeLat,
+			SD_MLNG placeLng, SD_MPID pid, SD_MADDRESS placeAddress, SD_MURL url, SD_MWRITER writer
+		FROM
+			SCHEDULEMAKER
+		WHERE
+			SD_SNO = #{sno}
+		ORDER BY
+			dayCount, liCnt DESC
+	</select>
 </mapper> 

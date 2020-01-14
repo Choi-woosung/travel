@@ -278,7 +278,7 @@ img{
 				<h3 class="titleh">${DATA.sName }</h3>
 				<div class="city">${DATA.sCountry} ${DATA.sArea }</div>
 			</div>
-  			<div class="border b1 bg-white"><img src="${DATA.sPic }" ></div>
+  			<div class="border b1 bg-white"><%-- <img src="${DATA.sPic }" > --%></div>
   			<div class="b2 bg-white"> 
   			<div class="travelbody"><strong>나라 : </strong>${DATA.sCountry}</div>
   			<div class="travelbody"><strong>도시 : </strong>${DATA.sArea}</div>

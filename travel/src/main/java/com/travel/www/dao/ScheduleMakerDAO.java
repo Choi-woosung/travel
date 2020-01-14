@@ -2,6 +2,7 @@ package com.travel.www.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,9 @@ public class ScheduleMakerDAO {
 	public int makeSchedule(ScheduleOrderVO soVO) {
 		sqlSession.insert("soSQL.insertSchedule", soVO);
 		return sqlSession.selectOne("soSQL.selectSno");
+	}
+	
+	public List<ScheduleOrderVO> callScheduleMaker(int sno){
+		return sqlSession.selectList("soSQL.selectScheduleMaker", sno);
 	}
 }
