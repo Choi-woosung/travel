@@ -1,7 +1,10 @@
 package com.travel.www.controller;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.travel.www.dao.ScheduleDAO;
 import com.travel.www.dao.ScheduleDetailDAO;
 import com.travel.www.util.PageUtil;
+import com.travel.www.vo.ScheduleImgVO;
 import com.travel.www.vo.ScheduleVO;
 import com.travel.www.vo.TestVO;
 
@@ -22,19 +26,27 @@ public class MainController {
 	ScheduleDetailDAO sdDAO;
 	 
 	@RequestMapping("/main.kit")
-	public ModelAndView getMain(ModelAndView mv, ScheduleVO sVO) {
+	public ModelAndView getMain(ModelAndView mv, ScheduleVO sVO, HttpSession session) {
 		double like = 0;
 		double likeCount = 0;
      	double likeAvg = 0;
 		
 		List<ScheduleVO> list = sDAO.mainList();
+		ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
 		PageUtil PageUtil = new PageUtil();
 		
+		String path = "/img/scheduleImg/";
 		PageUtil.setPage(0, 99, 1, 1);
-		
 		for(int i = 0; i < list.size(); i++) {
 			int sno = list.get(i).getsNo();
-			
+			if(photoList.get(i).getOriname() != null) {
+				list.get(i).setImgname(path + photoList.get(i).getOriname());
+				if(photoList.get(i).getSavename() != null) {
+					list.get(i).setImgname(path + photoList.get(i).getSavename());
+				}
+			} else {
+				list.get(i).setImgname(path + "default.jpg");
+			}
 			sVO.setsNo(sno);
 			
 			like = sdDAO.LikeBoardLikeTotal(sVO); //토탈
@@ -44,12 +56,6 @@ public class MainController {
 			if(like == 0) {
 				likeAvg = 0;
 			}
-    	  
-//			DecimalFormat form = new DecimalFormat("#.#");
-//			String likeAvg1 = form.format(likeAvg);
-			
-//			System.out.println("likeAvg 1 : " + likeAvg1);
-//			likeAvg = Double.parseDouble(likeAvg1);
 			
 			list.get(i).setLikeAvg(likeAvg);
 		}

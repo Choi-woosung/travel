@@ -301,6 +301,7 @@ input:focus{
          <c:forEach var="data" items="${LIST}" begin="0" end="2">
             <input type="hidden" name="sNo" value="${data.sNo}">
             <div class="col-md-4 text-center mouseC">
+            <img src="${data.imgname }" style="width : 100%; height : 250px">
                <p>${data.sName}</p>
                <div class="star_score row">
                 <span class="st_off">

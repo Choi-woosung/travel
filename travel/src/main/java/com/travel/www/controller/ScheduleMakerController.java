@@ -47,7 +47,6 @@ public class ScheduleMakerController {
 				String path1 = "resources\\img\\scheduleImg\\";
 				path = path + path1;
 				
-				
 				System.out.println("path : " + path);
 				
 				MultipartFile part = itor.next();

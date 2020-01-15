@@ -26,7 +26,28 @@ public class ScheduleVO {
 	private int idCheck;
 	private double likeAvg;
 	private String avatarName;
+	private String oriname;
+	private String savename;
+	private String imgname;
 	
+	public String getImgname() {
+		return imgname;
+	}
+	public void setImgname(String imgname) {
+		this.imgname = imgname;
+	}
+	public String getOriname() {
+		return oriname;
+	}
+	public void setOriname(String oriname) {
+		this.oriname = oriname;
+	}
+	public String getSavename() {
+		return savename;
+	}
+	public void setSavename(String savename) {
+		this.savename = savename;
+	}
 	public String getAvatarName() {
 		return avatarName;
 	}

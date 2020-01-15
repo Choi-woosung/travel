@@ -608,6 +608,10 @@ p {
 	var urllength;
 	document.getElementById('submitBtn').addEventListener('click', e => {
 		
+		if(document.getElementById('writer').value == ''){
+			alert("로그인이 필요한 서비스입니다");
+			return;
+		}
 		let data = new FormData();
 		let idData;
 		let querys;
@@ -635,8 +639,10 @@ p {
 		var sSdate = document.getElementById("sSdate").innerHTML;
 		var sEdate = document.getElementById("sEdate").innerHTML;
 		var writer = document.getElementById("writer").value;
+		console.log(writer);
 		data.append("sSdate", sSdate);
 		data.append("sEdate", sEdate);
+		data.append("writer", writer);
 
 		var fileData = document.querySelector("input[type=file]").files;
 		if (fileData != null) {
