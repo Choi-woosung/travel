@@ -206,7 +206,7 @@ input:focus{
       });
       
       $('#myInfo').click(function(){
-         
+         $(location).attr('href', '/member/memberForm.kit')
       });
       
       $('#certification').click(function(){

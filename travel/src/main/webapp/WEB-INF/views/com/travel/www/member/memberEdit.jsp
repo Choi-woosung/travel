@@ -56,6 +56,9 @@
 	height: 28px;
 	margin-left: 15px;
 }
+.editbox{
+	margin-top: 50px;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -220,16 +223,14 @@
 </script>
 </head>
 <body>
-	<header>
-		<c:import url="/navigationBar.kit"></c:import>
-	</header>
+
 
 	<!-- 회원 정보 수정 모달 -->
 
-	<div class="container" id="edit">
-		<h2 class=".col-md-4 text-center">회원 정보 수정</h2>
+	<div class="container " id="edit">
+		<h2 class=".col-md-4 text-center editbox">회원 정보 수정</h2>
 		<input type="hidden" name="mId" value="${DATA.mId}">
-		<div class="col-md-12 border main">
+		<div class="col-md-12 main">
 			<div class="ml-4">
 				<div class="p-4 row">
 					<pre>아   이   디 :</pre>
@@ -242,13 +243,13 @@
 				<div class="p-4 row">
 					<pre>프로필 이미지 :</pre>
 					<select class="profile_select" id="profile_select"></select>
-					<img id="profile_img" width="128" height="128">
+					<img id="profile_img" class="ml-4" width="128" height="128">
 				</div>
 				<div class="p-4 row">
 					<pre>비 밀  번 호 :</pre>
 					<h5 class="" id="name"></h5>
 					<h5 class="">
-						<input type="password" class="ml-4" id="pw" name="mPw"
+						<input type="password" class="ml-4 " id="pw" name="mPw"
 							required="required">
 					</h5>
 				</div>
