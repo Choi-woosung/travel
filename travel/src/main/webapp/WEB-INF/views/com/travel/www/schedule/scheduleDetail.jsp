@@ -377,7 +377,6 @@ body, html {
 			</span>
 				<div class="avg" id="avg"></div>
 			</div>
-				<div class="travelbody"><strong>작성자 : ${DATA.mId }</strong> <img src="/img/profile/${DATA.avatarName}"></div>
 			</div>
 			
   			<div class="border b1 bg-white"><%-- <img src="${DATA.sPic }" > --%></div>
@@ -386,7 +385,6 @@ body, html {
   			<div class="travelbody"><strong>도시 : </strong>${DATA.sArea}</div>
   			<div class="travelbody"><strong>출발일 : </strong>${DATA.sSdate}</div>
   			<div class="travelbody"><strong>도착일 : </strong>${DATA.sEdate}</div>
- 
   			<div class="travelbody"><strong>작성일 : </strong>${DATA.sWdate }</div>
   			</div>
   			<c:if test="${!empty SID }">
