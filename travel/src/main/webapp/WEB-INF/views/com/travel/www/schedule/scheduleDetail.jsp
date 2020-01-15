@@ -16,6 +16,7 @@
 body, html {
 	margin: 0;
 	padding: 0;
+
 	overflow-x: hidden;
 }
 
@@ -38,42 +39,52 @@ body, html {
 	z-index : 10;
 }
 .main{
+	width: 80%;
 	margin-top : 30px;
 	padding-bottom : 50px;
 	height: auto;
+	margin-left: 10%;
 }
 .title{
+
 	height: auto;
 }
 .b1 {
-	height: 400px;
-	width : 400px;
+	height: 200px;
+	width : 200px;
 	display : inline-block;
     overflow:auto;
     text-align: center;
     margin-top: 35px ; 
-    margin-left: 35px;
+    margin-left: 10%;
 }
 .b2 {
-	height: 300px;
-	width : 300px;
+	height: 200px;
+	width : 400px;
+	margin-top: 35px ;
 	display : inline-block;
-    overflow:auto;
-    margin-top: 20px ; 
+    margin-top: 20px; 
 }
 .mtext{
+	margin-left: 10%;
+	width: 80%;
 	height: auto;
 	font-size: 20px;
 }
 .titleh{
-	margin: 10px;
+	margin: 20px;
 }
-.city, .travelbody, .sBody{
-
+.travelbody{
+	margin-top: 30px;
+	margin-left: 10%;
+} 
+.sBody{
 	margin: 30px;
 }
 .city{
 	font-size: 20px;
+	margin-top: 10px;
+	margin-left: 40px;
 }
 .travelbody{
 	font-size: 15px;
@@ -82,17 +93,16 @@ body, html {
 	margin: 30px;
 }
 .btn1{
-	
+	margin-right: 110px;
 	float: right;
 	margin-top: 10px;
 }
 .btn2{
 	float: right;
 	margin-top: 10px;
-	margin-right: 10px;
 }
 .mbody{
-	width: 1000px;
+		width:90%;
 }
 .fa-heart{
 	font-size:48px;
@@ -127,42 +137,45 @@ body, html {
 .starL.on{background-position:0 0;}
 .starR.on{background-position:-15px 0;}
 
-.star_score span{display:inline-block;
-height:30px;
-background:url(/img/icon/sp_ico3.png) no-repeat -9999px -9999px}
+.star_score span{
+	display:inline-block;
+	height:30px;
+	background:url(/img/icon/sp_ico3.png) no-repeat -9999px -9999px}
 .star_score span.st_off{
-position:relative;
-width:115px;
-margin-right:2px; 
-background-position: 0 -895px;
+	position:relative;
+	width:115px;
+	margin-right:2px; 
+	background-position: 0 -895px;
 }
 .star_score{
 	float: right;
 	margin-top: 10px;
-	
+	margin-bottom: 30px;
 }
-.star_score span.st_on{overflow:hidden;
-position:absolute;
-top:0;
-left:0;
-z-index:10;
-background-position:0 -920px;
-text-indent:-9999px}
+.star_score span.st_on{
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:10;
+	background-position:0 -920px;
+	text-indent:-9999px
+}
 
 .avg, .score{
-font-size: 20px;
+	font-size: 20px;
 }
 .score{
 	margin-top: 10px;
 	margin-left: 5px;
 }
 .avg{
-margin-left: 5px;
-margin-right: 10px;
+	margin-left: 5px;
+	margin-right: 10px;
 }
 
 .star_rate{
-display: inline-block;
+	display: inline-block;
     font-weight: 400;
     color: #212529;
     text-align: center;
@@ -185,11 +198,63 @@ display: inline-block;
 
 .daybox {
 	width : 300px;
-	maring : 20px;
+	margin : 3%;
 	height : 50px;
     display: inline-table;
 }
+.money{
+	margin-left: 10%;
+	width: 80%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	overflow-x: scroll; 
+}
 
+#nav{
+	height: 70px;
+	background: rgba( 0, 0, 0, 0.7);
+	display: block;
+	width: 100%;
+	z-index: 99999;
+	transition: all ease .5s;
+   }
+   
+
+#logo {
+   font-family: 'Ubuntu', sans-serif;
+   color: #fff;
+   padding: 20px;
+   font-size: 30px;
+   transition: all ease .5s;
+   text-align: left;
+}
+
+.navBtn {
+    float : left;
+    margin-left : 50px;
+    list-style : none;
+    cursor : pointer;
+}
+
+.btns{
+   float : left;
+   position : relative;
+   left : 1100px;
+   top : 10px;
+   font-size : 20px;
+}
+
+.searchBar{
+   width : 400px;
+   height : 50px;
+   border : 1px solid black;
+   border-radius : 1px;
+   color : black;
+   text-align : center;
+}
+.logoText{
+	cursor: pointer;
+}
 </style>
 <script>
 
@@ -260,32 +325,69 @@ display: inline-block;
 			$('.star_rate').css('display', 'none');
 			$('.star_rating').css('display', 'block');
 		});
+
+		$('#signIn').click(function() {
+	         $(location).attr('href', '/member/login.kit');
+	      });
+	      
+	    $('#logout').click(function() {
+	         $(location).attr('href', '/member/logout.kit');
+	      });
+	    $('#signUp').click(function() {
+	         $(location).attr('href', '/member/join.kit');
+	      });
+	      
+	    $('#myInfo').click(function(){
+	         $(location).attr('href', '/member/memberForm.kit')
+	      });
+	    $('.logoText').click(function () {
+			$(location).attr('href', '/main.kit')
+		});
 	});
+	
 </script>
 </head>
 
 <body class="bg-light">
-	<header>
-		<c:import url="/navigationBar.kit"></c:import>
-	</header>
+	 <div id="nav">
+         <div id="logo">
+         	<span class="logoText">ConsulTravel</span>
+            <div class="btns">
+               <ul>
+                  <c:if test="${empty SID }">
+                  <li class="navBtn" id="signIn">Sign In</li>
+                  <li class="navBtn" id="signUp">Sign Up</li>
+                  </c:if>
+                  <c:if test="${!empty SID }">
+                  <li class="navBtn" id="myInfo">My Info</li>
+                  <li class="navBtn" id="logout">Logout</li>
+                  </c:if>
+               </ul>
+            </div>
+         </div>
+   </div>
   	<div class="container mbody">
 			  	<div class="border main bg-white shadow">
-			<div class="col border title bg-white">
-				<div class="star_score row">
+			<div class="col  title bg-white">
+				<h3 class="titleh">${DATA.sName }</h3>
+				<div class="city">${DATA.sCountry} ${DATA.sArea }</div>
+				<div class="star_score row ">
 		    <span class="st_off" >
 		   		<span class="st_on" style="width: ${likeAvg * 20}%;" ></span>
 			</span>
 				<div class="avg" id="avg"></div>
 			</div>
-				<h3 class="titleh">${DATA.sName }</h3>
-				<div class="city">${DATA.sCountry} ${DATA.sArea }</div>
+				<div class="travelbody"><strong>작성자 : ${DATA.mId }</strong> <img src="/img/profile/${DATA.avatarName}"></div>
 			</div>
 			
   			<div class="border b1 bg-white"><%-- <img src="${DATA.sPic }" > --%></div>
-  			<div class="b2 bg-white"> 
+  			<div class="b2 bg-white "> 
   			<div class="travelbody"><strong>나라 : </strong>${DATA.sCountry}</div>
   			<div class="travelbody"><strong>도시 : </strong>${DATA.sArea}</div>
-  			<div class="travelbody"><strong>총 경비 : </strong>${DATA.sCost } WON</div>
+  			<div class="travelbody"><strong>출발일 : </strong>${DATA.sSdate}</div>
+  			<div class="travelbody"><strong>도착일 : </strong>${DATA.sEdate}</div>
+ 
+  			<div class="travelbody"><strong>작성일 : </strong>${DATA.sWdate }</div>
   			</div>
   			<c:if test="${!empty SID }">
 		<div class="row">
@@ -307,7 +409,7 @@ display: inline-block;
 			<button type="button" class="star_rate ">평점등록</button>
   			</c:if>
   		</div>
-			<div class="col border money bg-white shadow">
+			<div class="border money bg-white shadow">
 				<c:forEach items="${lenOfDay}" var="day" varStatus="status">
 				<div class="daybox">
 				<ul class="list-group">
@@ -325,7 +427,8 @@ display: inline-block;
 							<div class="pricecontext">${data.price }</div>
 							</div>
 						</div>
-						<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search">
+						<div class="row">
+						<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>
 						</div>
 					</li>
 					</c:if>
@@ -334,7 +437,7 @@ display: inline-block;
 				</div>
 				</c:forEach> 
 			</div>
-			<div class="col border mtext bg-white shadow">
+			<div class="border mtext bg-white shadow">
 			<h4 class="sBody">계획</h4>
 			<h5 class="sBody2">${DATA.sBody }</h5>
 			</div>

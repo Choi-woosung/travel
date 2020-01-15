@@ -7,7 +7,7 @@
 <mapper namespace="sdSQL"> 
 	<select id="scheduleDetail" parameterType="sVO" resultType="sVO">
       SELECT
-         s_no sNo, s_name sName, s_country sCountry, s_area sArea, s_body sBody, s_rate sRate
+         s_no sNo, s_name sName, s_country sCountry, s_area sArea, s_wdate sWdate, s_Sdate sSdate, s_Edate sEdate, s_body sBody, s_rate sRate
       FROM
          schedule
       WHERE
@@ -53,6 +53,16 @@
 		WHERE
     		LM_ID = #{mId}
     	AND LS_NO = #{sNo}
+   </select>
+   <select id="avatar" parameterType="sVO" resultType="sVO">
+   		SELECT
+    		a_img_name avatarName, m_id mId
+		FROM
+   			member_avatar, member
+		WHERE
+    		m_no = (SELECT s_writer FROM schedule WHERE s_no = #{sNo})
+    	AND
+    		m_avatar = a_img_no;
    </select>
    <select id="LikeTotal" parameterType="sVO" resultType="double">
    		SELECT
