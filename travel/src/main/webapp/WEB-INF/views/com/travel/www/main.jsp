@@ -131,6 +131,12 @@
    
 
 #logo {
+	font-family: 'Ubuntu', sans-serif;
+	color: #fff;
+	padding: 20px;
+	font-size: 30px;
+	transition: all ease .5s;
+	text-align: left;
    font-family: 'Ubuntu', sans-serif;
    color: #fff;
    padding: 20px;
@@ -190,6 +196,8 @@ input:focus{
     cursor : pointer;
 }
 
+.mouseC {cursor: pointer;}
+
 </style>
 <script>
    $(function() {
@@ -206,7 +214,7 @@ input:focus{
       });
       
       $('#myInfo').click(function(){
-         
+         $(location).attr('href', '/member/memberForm.kit')
       });
       
       $('#certification').click(function(){
@@ -222,6 +230,9 @@ input:focus{
          $(location).attr('href', '/schedule/scheduleList.kit?sarea=' + sarea);
       });
 
+      $('.box').click(function () {
+		$(this).submit();
+	})
       $(window).scroll(function() {
         if($(document).scrollTop() > 50) {
           $('#nav').addClass('shrink');
@@ -284,10 +295,12 @@ input:focus{
    </div>
    <hr>
    <section>
+          <form action="/schedule/scheduleDetail.kit" method="get" class="box">
       <div class="container">
          <div class="row">
          <c:forEach var="data" items="${LIST}" begin="0" end="2">
-            <div class="col-md-4 text-center">
+            <input type="hidden" name="sNo" value="${data.sNo}">
+            <div class="col-md-4 text-center mouseC">
                <p>${data.sName}</p>
                <div class="star_score row">
                 <span class="st_off">
@@ -301,6 +314,7 @@ input:focus{
          </c:forEach>
          </div>
       </div>
+         </form>
    </section>
    <footer>
       <c:import url="/footer.kit"></c:import>

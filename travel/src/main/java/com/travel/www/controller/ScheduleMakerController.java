@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.travel.www.dao.ScheduleDAO;
 import com.travel.www.dao.ScheduleMakerDAO;
+import com.travel.www.vo.ScheduleImgVO;
 import com.travel.www.vo.ScheduleOrderVO;
 
 @Controller
@@ -29,10 +30,14 @@ public class ScheduleMakerController {
 	ScheduleMakerDAO smDAO;
 	
 	@RequestMapping("/test.kit")
-	public void ScheduleListing(ModelAndView mv, ScheduleOrderVO sovo, HttpSession session) throws IOException {		
+	public void ScheduleListing(ModelAndView mv, ScheduleOrderVO sovo, ScheduleImgVO siVO, HttpSession session) throws IOException {		
 		File file = null;
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
+		
+		String name = "";
+		String rename = "";
+		int sno = smDAO.makeSchedule(sovo);
 		
 		if (sovo.getScheduleImg() != null) {
 			Iterator<MultipartFile> itor = sovo.getScheduleImg().iterator();
@@ -53,6 +58,8 @@ public class ScheduleMakerController {
 				path += part.getOriginalFilename();
 //				rePath += part.getOriginalFilename();
 				
+				name = part.getOriginalFilename();
+				
 				file = new File(path);
 //				file = new File(rePath);
 				
@@ -60,8 +67,8 @@ public class ScheduleMakerController {
 					int n = 0;
 					String first = path.substring(0, path.lastIndexOf("\\"));
 					String last = path.substring(path.lastIndexOf('.'), path.length());
-					String name = part.getOriginalFilename().substring(0, part.getOriginalFilename().lastIndexOf('.'));
-					String rename = name + '_' + n + last;
+					name = part.getOriginalFilename().substring(0, part.getOriginalFilename().lastIndexOf('.')); // 원래이름
+					rename = name + '_' + n + last; // 저장이름
 					
 					path = first + rename;
 					
@@ -81,12 +88,15 @@ public class ScheduleMakerController {
 
 				fos.close();
 				bos.close();
+				
+				siVO.setSno(sno);
+				siVO.setOriname(name);
+				siVO.setSavename(rename);
+				
+				smDAO.insertScheduleImg(siVO);
 			}
-			
 		}
-
 		
-		int sno = smDAO.makeSchedule(sovo);
 		smDAO.ScheduleListing(sovo, sno);
 	}
 	

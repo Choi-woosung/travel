@@ -30,27 +30,20 @@
 	
 	<select id="qnaboardall" resultType="QnABoardVO" parameterType="QnABoardVO">
 		SELECT
-		    q_no, q_head, q_wdate, q_status
+		    ROWNUM q_no, q_head, q_wdate, q_status
 		FROM
-		    qnaboard
+		    (SELECT * FROM qnaboard ORDER BY q_no) q
 		ORDER BY
 		    q_no desc
 	</select>
 	
 	<select id="qnaboardlist" parameterType="QnABoardVO" resultType="QnABoardVO">
 		SELECT
-		    q_no, q_head, q_body, q_wdate, q_answer 
+			ROWNUM q_no, q.q_head, q.q_body, q.q_wdate, m.m_grade, q.q_status, q.q_answer
 		FROM
-		    (SELECT
-		        ROWNUM q_no, q_head, q_body, q_wdate, q_answer 
-		    FROM
-		        (SELECT * FROM qnaboard ORDER BY q_no)
-		    WHERE
-		        m_id = #{m_id}
-		    ORDER BY
-		        q_no desc)
+			(SELECT * FROM qnaboard ORDER BY q_no) q, member m
 		WHERE 
-		    q_no = #{no}
+			q_no = #{no} and m.m_id = #{m_id}
 	</select>
 	
 	<select id="getgrade" parameterType="QnABoardVO" resultType="QnABoardVO">
@@ -91,21 +84,7 @@
 	</select>
 	
 	<update id="a_writ">
-		UPDATE
-		    qnaboard
-		SET
-		    q_answer = #{q_answer}, q_status = #{q_status}
-		WHERE
-		    q_no = #{q_no} and m_id = (SELECT m_id FROM qnaboard WHERE q_no = #{q_no})
+		
 	</update>
-	
-	<select id="a_writlist" parameterType="QnABoardVO" resultType="QnABoardVO">
-		SELECT
-			q.q_no, q.q_head, q.q_body, q.q_wdate, m.m_grade, q.q_status, q.q_answer
-		FROM
-			qnaboard q, member m
-		WHERE 
-			q_no = #{no} and m.m_id = #{m_id}
-	</select>
 	
 </mapper>

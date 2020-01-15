@@ -17,7 +17,7 @@
 		<typeAlias alias="sVO" type="com.travel.www.vo.ScheduleVO"/>
 		<typeAlias alias="QnABoardVO" type="com.travel.www.vo.QnABoardVO"/>
 		<typeAlias alias="soVO" type="com.travel.www.vo.ScheduleOrderVO"/>
-		
+		<typeAlias alias="siVO" type="com.travel.www.vo.ScheduleImgVO"/>
 	</typeAliases> 
 	
 	 
