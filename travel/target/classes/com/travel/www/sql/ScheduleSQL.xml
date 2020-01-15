@@ -9,7 +9,7 @@
 	<!-- 스케쥴리스트가져오기 -->
 	<select id="scheduleList" resultType="sVO" parameterType="hashmap">
 		SELECT
-			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_rate sRate, s_pic sPic, s_cost sCost
+			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_rate sRate, s_body sBody, s_country sCountry, s_Area sArea
 		FROM
 			schedule
 		<if test="!(sarea eq null) and !(sarea.equals('')) or !(month eq null) and !(month.equals(''))">
@@ -32,7 +32,7 @@
 	<!-- 리스트 최신순 정렬 -->
 	<select id="recentList" resultType="sVO" parameterType="hashmap">
 		SELECT
-			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_rate sRate, s_pic sPic, s_cost sCost
+			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_rate sRate, s_body sBody, s_country sCountry, s_Area sArea
 		FROM
 			schedule
 		<if test="!(sarea eq null) and !(sarea.equals('')) or !(month eq null) and !(month.equals(''))">
@@ -57,7 +57,7 @@
 	<!-- 리스트 평점순 정렬 -->
 	<select id="ratingList" resultType="sVO" parameterType="hashmap">
 		SELECT
-			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_rate sRate, s_pic sPic, s_cost sCost
+			s_no sNo, s_name sName, s_sdate sSdate, s_edate sEdate, s_wdate sWdate, s_rate sRate, s_body sBody, s_country sCountry, s_Area sArea
 		FROM
 			schedule
 		<if test="!(sarea eq null) and !(sarea.equals('')) or !(month eq null) and !(month.equals(''))">

@@ -373,11 +373,12 @@
 		<div class="hide" id="help_box">
 			<div class="h_contents">
 				<ul>
-					<li>1. a</li>
-					<li>2. b</li>
-					<li>3. c</li>
-					<li>4. d</li>
-					<li>5. e</li>
+					<li><h6>ConsulTravel</h6></li>
+					<li><h5>ConsulTravel</h5></li>
+					<li><h4>ConsulTravel</h4></li>
+					<li><h3>ConsulTravel</h3></li>
+					<li><h2>ConsulTravel</h2></li>
+					<li><h1>ConsulTravel</h1></li>
 				</ul>
 			</div>
 		</div>

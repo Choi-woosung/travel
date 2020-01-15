@@ -15,7 +15,6 @@
 	 <typeAliases>
 		<typeAlias alias="mVO" type="com.travel.www.vo.MemberVO"/>
 		<typeAlias alias="sVO" type="com.travel.www.vo.ScheduleVO"/>
-		<typeAlias alias="detailVO" type="com.travel.www.vo.ScheduleDetailVO"/>
 		<typeAlias alias="QnABoardVO" type="com.travel.www.vo.QnABoardVO"/>
 		<typeAlias alias="soVO" type="com.travel.www.vo.ScheduleOrderVO"/>
 		
