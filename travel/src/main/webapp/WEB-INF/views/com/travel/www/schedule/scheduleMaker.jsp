@@ -605,6 +605,7 @@ p {
 	var nameValue = ['pid', 'type', 'placeName', 'liCnt', 'placeAddress', 'body', 'price', 'dayCount', 'placeLat' , 'placeLng', 'url'];
 	var idValue = ['scheduleName', 'scheduleBody', 'sCountry','sArea'];
 	var submitCheck = false;
+	var urllength;
 	document.getElementById('submitBtn').addEventListener('click', e => {
 		
 		let data = new FormData();
@@ -612,7 +613,7 @@ p {
 		let querys;
 		let valuePrice;
 
-		for (var i = 0; i < nameValue.length; i++) {
+		for (var i = 0; i < nameValue.length; i++){
 			querys = document.querySelectorAll("input[name="+nameValue[i]+"]");
 			querys.forEach(function(e, index){
 				var valueName = "Schedules[" + index + "]."+nameValue[i];
@@ -626,6 +627,7 @@ p {
 			});
 		}
 		
+		alert("들어옴?");
 		for (var i = 0; i < idValue.length; i++){
 			idData = document.getElementById(idValue[i]).value;
 			data.append(idValue[i], idData);
