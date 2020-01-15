@@ -9,175 +9,31 @@
 <link rel="shortcut icon" type="image/x-icon" href="/img/main/favicon2.ico" />
 <title>ConsulTravel</title>
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<script type="text/javascript"
-   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&libraries=places"></script>
+   <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+   
   
 <style>
-.jumbotron {
-   background-image: url("/img/main/hongkong.jpg");
+.mainview {
+   background-image: url("/img/main/wallpaper2.jpeg");
    background-size: cover;
    background-repeat: no-repeat;
    background-position: right center;
-   height: 800px;
-}
-.mainSearch {
-   width: 400px;
-   height: 500px;
-   background: white;
-   padding: 20px;
-   position: relative;
-   left: -200px;
-   top: 50px;
-}
-.form-control {
-   width: 350px;
-}
-.mainSubmit {
-   float: right;
-}
-.disabled {
-   color: white;
-   margin-left: 50px;
-}
-.ui-datepicker select.ui-datepicker-month {
-   margin-left: 4%;
-   padding-bottom: 1.6%;
-}
-.ui-datepicker select.ui-datepicker-year {
-   padding-top: 1.6%;
-}
-.ui-widget-header {
-   background: white;
-}
-.ui-state-default, .ui-widget-content .ui-state-default,
-   .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover,
-   html .ui-button.ui-state-disabled:active {
-   border: 1px solid white;
-   text-align: center;
-   background: white;
-   font-weight: normal;
-   color: #454545;
+   height: 900px;
+   position : relative;
 }
 
-.city {
-   width: 359px;
-}
-.pCount {
-   width: 359px;
-   height: 120px;
-   background: white;
-   position: absolute;
-   border: 1px solid gray;
-   border-radius: 3px;
-   padding: 10px;
-   margin-top: 2px;
-   display: none;
-}
-.pCount.view {
-   display: block;
-}
-.totalChange {
-   margin-bottom: 20px;
-}
-.left, .right, .total {
-   width: 13px;
-   height: 20px;
-   background: white;
-   float: right;
-}
-.barcolor {
-   background: #222222;
-}
-.nav-link {
-   font-size: 20px;
-}
-.adult {
-   display: flex;
-   font-size: 15px;
-   justify-content: space-between;
-}
-.count {
-   display: flex;
-   font-size: 15px;
-   justify-content: space-between;
-   
-}
-.section {
-   width: 400px;
-   text-align: center;
-   height: auto;
-   background: white;
-   padding: 20px;
-}
-.pbtn {
-   border:none;
-}
-.leftBtn1{
-   position: relative;
-   top: -10px;
-   left: 5px;
-}
-.leftBtn2{
-   position: relative;
-   top: -11px;
-   left: 11px;
-}
-.topIpt{
-   position: relative;
-   top: -9px;
-   left: 2px;
-   width: 32px;
-   text-align: center;
-}
-.bottomIpt{
-   position: relative;
-   top: -10px;
-   left: 5px;
-   width: 32px;
-   text-align: center;
-}
-.rightBtn1{
-   position: relative;
-   top: -10px;
-   left: 5px;
-}
-.rightBtn2{
-   position: relative;
-   top: -11px;
-   left: 5px;
-}
-.confirmBtn{
-   position: relative;
-   top: -15px;
-   left: 0px;
-}
-.topAdult{
-   position: relative;
-   top: 0px;
-   left: 0px;
-}
-.countAdult{
-   position: relative;
-   top: -7px;
-   left: 0px;
-}
 .seduction{
    position: relative;
-   top: -350px;
-   left: 950px;
+   top: 300px;
+   left: 1050px;
    width: 600px;
    height: 600px;
 /*    border: 1px solid black; */
    color: white;
    font-size: 50px;
    font-weight: bold;
-}
-#make {
-   float : right;
 }
 
 /* 별만들기 */
@@ -262,6 +118,69 @@
 		width: 100%;
 		height: 100%;
 	}
+	
+	#nav{
+  height: 70px;
+  background: transparent;
+  display: block;
+  position: fixed;
+  width: 100%;
+  z-index: 99999;
+  transition: all ease .5s;
+	}
+	
+
+#logo {
+	font-family: 'Ubuntu', sans-serif;
+  color: #fff;
+  padding: 20px;
+  font-size: 30px;
+  transition: all ease .5s;
+  text-align : left;
+}
+
+.navBtn {
+	float : left;
+	margin-left : 50px;
+    list-style:none;
+}
+
+.btns{
+	float : left;
+	position : relative;
+	left : 1100px;
+	top : 10px;
+	font-size : 20px;
+}
+
+.searchBar{
+	width : 400px;
+	height : 50px;
+	border : 1px solid black;
+	border-radius : 1px;
+	color : black;
+	text-align : center;
+}
+
+#nav.shrink {
+  height: 70px;
+  transition: all ease .5s;
+  background-color: rgba( 0, 0, 0, 0.7);
+}
+
+#nav.shrink #logo {
+  padding: 10px;
+  transition: all ease .5s;
+}
+
+input:focus{
+    outline: none;
+}
+
+.section1 {
+	padding : 50px;
+}
+
 </style>
 <script>
    $(function() {
@@ -286,269 +205,62 @@
       $('#nearbysearch').click(function(){
          $(location).attr('href', '/test/nearbysearch.kit');
       });
-      
-      /* 인원수 클릭 시 인원 수 창 뜨고 없어지는 기능 */
-      $('#people').click(function() {
-         $('.pCount').addClass('view');
-      });
-      $('body').on('click', function(e) {
-         var pClass = $(e.target).hasClass('city');
-         var psClass = $(e.target).parents().hasClass('tCount');
-         if (!pClass && !psClass) {
-            $('.pCount').removeClass('view');
-         } else if (psClass) {
-            return false;
-         }
-      });
-      /*    캘린더  */
-      $('#calendarArea1').click(function(e) {
-         e.preventDefault();
-         $('#sSdate').focus();
-      });
-      $('#calendarArea2').click(function(e) {
-         e.preventDefault();
-         $("#sEdate").focus();
-      });
-      //예약발행 달력_시작 
-      $('#sSdate').datepicker(
-            {
-               dateFormat : 'yy/mm/dd',
-               showMonthAfterYear : true,
-               changeMonth : true,
-               changeYear : true,
-               numberOfMonths : 1,
-               dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-               monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
-                     '7월', '8월', '9월', '10월', '11월', '12월' ],
-               minDate : -0
-               //오늘날짜 이후부터만 설정되게 
-               ,
-               onClose : function(selectedDate) {
-                  $('#sEdate').datepicker("option", "minDate", "maxDate",
-                        selectedDate);
-               }
-            });
-      
-      //기간발행_끝 
-      $("#sEdate").datepicker(
-            {
-               dateFormat : 'yy/mm/dd',
-               showMonthAfterYear : true,
-               changeMonth : true,
-               changeYear : true,
-               numberOfMonths : 1,
-               dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-               monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
-                     '7월', '8월', '9월', '10월', '11월', '12월' ],
-               minDate : -0
-               //오늘날짜 이후부터만 설정되게 
-               ,
-               onClose : function(selectedDate) {
-                  $('#sSdate').datepicker("option", "minDate", "maxDate",
-                        selectedDate);
-               },
-            });
-   
-      // 인원수 기능 함수    
-      var a = 0;
-      var b = 0;
-      $('#cCount').val(a);
-      $('#aCount').val(b);
-      $('.abtn').click(function() {
-         var tmp = $(this).attr('id');
-         var sp = $('#startbtn1').html();
-         var rp = $('#endbtn1').html();
-         var nCount = $(this).text();
-         if (nCount != sp || nCount != rp) {
-            $('#aCount').val();
-         }
-         if (nCount == sp) {
-            if (a == 0) {
-               return;
-            }
-            a--;
-            $('#aCount').val(a);
-            $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
-         }
-         if (nCount == rp) {
-            if (a == 99) {
-               return;
-            }
-            a++;
-            $('#aCount').val(a);
-            $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
-         }
-      });
-      
-      $('.cbtn').click(function() {
-         var sp = $('#startbtn2').html();
-         var rp = $('#endbtn2').html();
-         var nCount = $(this).text();
-         var aCount = $('#cCount').text(b);
-         if (nCount != sp || nCount != rp) {
-            $('#cCount').val();
-         }
-         if (nCount == sp) {
-            if (b == 0) {
-               return;
-            }
-            b--;
-            $('#cCount').val(b);
-            $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
-         }
-         if (nCount == rp) {
-            if (b == 99) {
-               return;
-            }
-            b++;
-            $('#cCount').val(b);
-            $('#people').val('성인 : ' + a + ' 어린이 : ' + b);
-         }
-      });
-      
-      $('.exbtn').click(function () {
-         $('.pCount').removeClass('view');
-      });
-      
-         
-      $('#search').click(function() {
-         $('#adult12').val(a);
-         $('#child12').val(b);
-         
-         var sarea = $('#sArea').val();
-         var address = $('#inputArea').val();
-               var formid = document.myform;
-                  $('#frm').attr('action', '/schedule/scheduleList.kit?sarea=' + sarea + "&address=" + address);
-                  $('#frm').submit();
-            });
-      
-      
-      $('#make').click(function(){
-         
-         let url = '/schedule/scheduleMaker.kit';
-         $(location).attr('href', url);
-      }); 
-   });
-   /*    function getsearch() {
-    var formid = document.myform;
-    if (formid.sCountry.value == "") {
-    formid.sCountry.focus();
-    alert("여행 가실 곳을 입력해주세요");
-    return;
-    } else if (formid.sSdate.value == "") {
-    alert("출발일을 입력해주세요");
-    formid.sSdate.focus();
-    return;
-    } else if (formid.sEdate.value == "") {
-    alert("도착일을 입력해주세요");
-    formid.sEdate.focus();
-    return;
-    } else {
-    $('#frm').attr('action', '/schedule/scheduleList.kit');
-    $('#frm').submit();
-    }; */
-</script>
-<script>
-   // 구글 맵 api 자동완성기능 //
-   $(document).ready(
-         function() {
-            var autocomplete;
-            var options = {
-               types : [ 'geocode' ]
-            };
-            autocomplete = new google.maps.places.Autocomplete(document
-                  .getElementById('inputArea'), options);
-            google.maps.event.addListener(autocomplete, 'place_changed', function() {
-               var place = autocomplete.getPlace();
-               var components = place.address_components;
-               var component0 = components[0];
-               var component2 = components[2];
-               var street0 = component0['long_name'];
-               var street2 = component2['long_name'];
-               
-               console.log(street0);
-               console.log(street2);
-               
-               $('#sCountry').val(street2);
-               $('#sArea').val(street0);
-            });
-         });
+
+		$(window).scroll(function() {
+	  	if($(document).scrollTop() > 50) {
+	    	$('#nav').addClass('shrink');
+	    }
+	    else {
+	    $('#nav').removeClass('shrink');
+	    }
+	});
+    });
+    
+   $(function(){
+	   var autocomplete;
+	   autocomplete = new google.maps.places.Autocomplete(
+			   document.getElementById("searchBar"), {
+			   types: ['(cities)']
+			   });
+   })
 </script>
 </head>
 <body>
-   <header>
-      <c:import url="/navigationBar.kit"></c:import>
-   </header>
-   <div class="jumbotron">
-      <div class="container">
-         <div class="mainSearch">
-            <h3>떠나고 싶은 곳 어디든</h3>
-            <h2>지금 검색해보세요.</h2>
-            <form method="POST" name="myform" id="frm">
-               <div class="form-group">
-                  <label for="inputArea"> 여행가는 도시 </label> <input type="text"
-                     class="form-control city" id="inputArea" name="address"
-                     placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
-                     <input type="hidden" name="sCountry" id="sCountry">
-                     <input type="hidden" name="sArea" id="sArea">
-               </div>
-               <div class="row">
-                  <div class="form-group col-md-6 ">
-                     <label for="calendarArea" id="calendarArea1"> 출발일 선택 </label> <input
-                        type="text" class="form-control col-md-12" id="sSdate"
-                        name="sSdate" placeholder="언제부터 ?" autocomplete="off">
-                  </div>
-                  <div class="form-group col-md-6">
-                     <label for="calendarArea"> 도착일 선택 </label> <input type="text"
-                        class="form-control col-md-12" id="sEdate" name="Edate"
-                        placeholder="언제까지 ?" autocomplete="off">
-
-                  </div>
-               </div>
-               <div class="form-group tCount confirmDiv">
-                  <label for="inputArea"> 인원수 </label> <input type="text"
-                     class="form-control city" id="people" name="people" placeholder="인원수를 선택해주세요" autocomplete="off">
-                  <div class="pCount" id="pCount">
-                     <div class="adult topAdult">
-                        <label> <span class="totalcount">성인</span>
-                        </label>
-
-                        <button class="abtn ml-4 btn leftBtn1" id="startbtn1" >&laquo;</button>
-                        <input type="text" class="pbtn topIpt" id="aCount">
-                        <button class="abtn btn rightBtn1" id="endbtn1" >&raquo;</button>
-            
-                     </div>
-                     <div class="count">
-                     <label> <span class="totalcount countAdult">어린이</span>
-                     </label>
-                        <button class="cbtn btn leftBtn2" id="startbtn2" >&laquo;</button>
-                        <input type="text" class="pbtn bottomIpt" id="cCount">
-                        <button class="cbtn btn rightBtn2" id="endbtn2">&raquo;</button>
-               
-                     </div>
-                        <button class="btn btn-outline-info exbtn confirmBtn">확인</button>
-                  </div>
-                  <input type="hidden" name="sAtotal" id="adult12">
-                  <input type="hidden" name="sCtotal" id="child12">   
-                  <input type="hidden" name="sRn" value="1">            
-               </div>
-   <!--             <button type="button" class="btn btn-outline-info" id="make">스케쥴만들기</button> -->
-               <button type="button" class="btn btn-outline-info" id="search">여행추천</button>
-   <!--           <button type="button" class="btn btn-outline-info" id="certification">이메일인증</button> -->
-               <button type="button" class="btn btn-outline-info" id="nearbysearch">근처검색</button>
-            </form>
-         </div>
-      </div>
+   <div id="nav">
+   		<div id="logo">
+   			ConsulTravel
+   			<div class="btns">
+   				<ul>
+   					<c:if test="${empty SID }">
+   					<li class="navBtn">Sign In</li>
+   					<li class="navBtn">Sign Up</li>
+   					</c:if>
+   					<li class="navBtn">
+   					</li>
+   				</ul>
+   			</div>
+   		</div>
+   </div>
+   <div class="mainview">
       <div class="seduction">
-         <p>여러분의 스케줄을 만들어보세요! </p>
+         <p>자기만의 여행 계획을 </p>
+         <p>만들어보세요 </p>
          <button type="button" class="btn btn-light btn-lg" id="make">스케줄 만들어보기</button>
       </div>
    </div>
+   <div class="container text-center section1">
+   		<h1>가고 싶은 어디든 지금 검색해보세요</h1>
+   		<br>
+   		<input id="searchBar" type="text" class="searchBar" autocomplete="false">
+   		<span class="searchicon"><img src="/img/icon/search.svg" style="width : 50px; height : 50px;"></span>
+   		<h3>원하시는 여행 장소를 입력해서 다양한 여행 계획을 검색해보세요</h3>
+   </div>
+   <hr>
    <section>
-      <div class="container-fluid">
+      <div class="container">
          <div class="row">
          <c:forEach var="data" items="${LIST}" begin="0" end="2">
-            <div class="section col-md-2 ">
+            <div class="col-md-4 text-center">
             	<p>${data.sName}</p>
             	<div class="star_score row">
 				    <span class="st_off">
