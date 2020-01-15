@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Console;
 import com.travel.www.dao.ScheduleDAO;
 import com.travel.www.dao.ScheduleDetailDAO;
 import com.travel.www.dao.ScheduleMakerDAO;
@@ -51,13 +52,17 @@ public class Schedule {
     	  int sno = list.get(i).getsNo();
     	  String sdate = list.get(i).getsSdate();
     	  String wdate = list.get(i).getsWdate();
+    	  String edate = list.get(i).getsEdate();
     	  
     	  sdate = sdate.substring(0, sdate.indexOf(' '));
     	  wdate = wdate.substring(0, wdate.indexOf(' '));
+    	  edate = edate.substring(0, edate.indexOf(' '));
     	  
     	  sVO.setsNo(sno);
+    	  
     	  list.get(i).setsSdate(sdate);
     	  list.get(i).setsWdate(wdate);
+    	  list.get(i).setsEdate(edate);
     	  
     	  like = sdDAO.LikeBoardLikeTotal(sVO);
     	  likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
@@ -75,7 +80,7 @@ public class Schedule {
       }
       
       
-       
+      System.out.println(list.get(0).getsEdate());
       mv.addObject("ADDRESS", address);
       mv.addObject("PEOPLE", people);
       mv.addObject("LIST", list);

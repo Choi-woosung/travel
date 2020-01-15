@@ -308,7 +308,7 @@ img{
 				var idx = 1;
 				
 			</script>
-				<c:forEach items="${lenOfDay}" var="day">
+<%-- 				<c:forEach items="${lenOfDay}" var="day">
 				<div>
 					ㅎㅇㅎㅇ
 					<c:forEach items="${LIST}" var="data">
@@ -319,7 +319,7 @@ img{
 						</c:if>
 					</c:forEach>
 				</div>
-				</c:forEach>
+				</c:forEach> --%>
 			</div>
 			<div class="col border mtext bg-white shadow">
 			<h4 class="sBody">계획</h4>
