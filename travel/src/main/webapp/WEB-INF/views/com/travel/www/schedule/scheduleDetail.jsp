@@ -182,10 +182,14 @@ display: inline-block;
 	margin-left: 50px;
 	display: none;
 }
-img{
-	width: 100%;
-	height: 100%;
+
+.daybox {
+	width : 300px;
+	maring : 20px;
+	height : 50px;
+    display: inline-table;
 }
+
 </style>
 <script>
 
@@ -304,28 +308,37 @@ img{
   			</c:if>
   		</div>
 			<div class="col border money bg-white shadow">
-			<script>
-				var idx = 1;
-				
-			</script>
-				<c:forEach items="${lenOfDay}" var="day">
-				<div>
-					ㅎㅇㅎㅇ
+				<c:forEach items="${lenOfDay}" var="day" varStatus="status">
+				<div class="daybox">
+				<ul class="list-group">
 					<c:forEach items="${LIST}" var="data">
-						<c:if test="${data.dayCount == day}">
-							<div style="width : 100px; height : 50px; background : blue;">
-								${data.placeName }
+					<c:if test="${data.dayCount == status.count}">
+					<li class="list-group-item list-group-item-action">
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">${data.placeName }</h5>
+							<small class="text-muted">${data.liCnt }</small>
+						</div>
+						<p class="mb-1 text-left">${data.placeAddress }</p>
+						<div class="content-body-text input-group-sm mb-1" style="display : none;">
+							<div class="bodycontext">${data.body }</div>
+							<div class="inputPrice"><span class="priceLeft">비용 : </span>
+							<div class="pricecontext">${data.price }</div>
 							</div>
-						</c:if>
+						</div>
+						<div class="row">
+						<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>
+						</div>
+					</li>
+					</c:if>
 					</c:forEach>
+					</ul>
 				</div>
-				</c:forEach>
+				</c:forEach> 
 			</div>
 			<div class="col border mtext bg-white shadow">
 			<h4 class="sBody">계획</h4>
 			<h5 class="sBody2">${DATA.sBody }</h5>
 			</div>
-			
   		<button type="button" class="btn bg-white border col-md-1 btn1" id="list">목록</button>
   		<button type="button" class="btn bg-white border col-md-1 btn2" id="">수정</button>
 </div>

@@ -81,7 +81,9 @@ public class QnABoard {
 			Iterator<MultipartFile> itor = vo.getFiles().iterator();
 			
 			while (itor.hasNext()) {
-				path = "D:\\project\\git\\travel\\travel\\src\\main\\webapp\\resources\\img\\board";
+				path = session.getServletContext().getRealPath("/");
+				String path1 = "resources\\img\\board\\";
+				path = path + path1;
 				MultipartFile part = itor.next();
 				
 				fileName += part.getOriginalFilename() + "/";
@@ -91,7 +93,7 @@ public class QnABoard {
 				
 				while (file.exists()) {
 					int n = 0;
-					String first = path.substring(0, path.length() - part.getOriginalFilename().length());
+					String first = path.substring(0, path.lastIndexOf("\\"));
 					String last = path.substring(path.lastIndexOf('.'), path.length());
 					String name = part.getOriginalFilename().substring(0, part.getOriginalFilename().lastIndexOf('.'));
 					path = first + name + '_' + n + last;

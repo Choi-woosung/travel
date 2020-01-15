@@ -54,4 +54,5 @@ public class ScheduleDAO {
 		return sqlSession.selectList("sSQL.ratingList", map);
 	}
 	
+	
 }

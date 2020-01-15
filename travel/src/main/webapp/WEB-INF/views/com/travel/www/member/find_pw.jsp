@@ -141,8 +141,7 @@ $(function(){
 				<p>
 					<label class="w3-margin">
 					<input class="form-control" size="31" type="email" id="email" name="email" placeholder="이메일" required="" maxlength="30"> </label>
-					<span id="find_email"></span>	
-					<input class="w3-input" type="hidden"  >
+					<input class="w3-input" type="hidden" >
 					
 					
 				</p>

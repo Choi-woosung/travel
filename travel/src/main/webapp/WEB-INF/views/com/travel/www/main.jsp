@@ -9,9 +9,9 @@
 <link rel="shortcut icon" type="image/x-icon" href="/img/main/favicon2.ico" />
 <title>ConsulTravel</title>
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7Hg6_GJq3uKTQJdLZudqW_vQHbRcy0s&libraries=places"></script>
-   <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
    
   
 <style>
@@ -45,81 +45,81 @@
     float:left;
     text-indent: -9999px;
     cursor: pointer;
-	}
-	
-	.starR{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px; 
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.starL.on{background-position:0 0;}
-	.starR.on{background-position:-15px 0;}
-	
-	.star_score span{display:inline-block;
-	height:30px;
-	background:url(/img/icon/sp_ico3.png) no-repeat -9999px -9999px}
-	.star_score span.st_off{
-	position:relative;
-	width:115px;
-	margin-right:2px; 
-	background-position: 0 -895px;
-	}
-	.star_score{
-		float: right;
-/* 		margin-top: 10px; */
-		
-	}
-	.star_score span.st_on{overflow:hidden;
-	position:absolute;
-	top: 0px;
-	left:0;
-	z-index:10;
-	background-position:0 -920px;
-	text-indent:-9999px}
-	
-	.avg, .score{
-	font-size: 20px;
-	}
-	.score{
-		margin-top: 10px;
-		margin-left: 5px;
-	}
-	.avg{
-	margin-left: 5px;
-	margin-right: 10px;
-	}
-	
-	.star_rate{
-	display: inline-block;
-	    font-weight: 400;
-	    color: #212529;
-	    text-align: center;
-	    vertical-align: middle;
-		float: right;
-		user-select: none;
-	    background-color: lavender;
-	    border: 1px solid transparent;
-	    padding: .375rem .75rem;
-	    font-size: 1rem;
-	    line-height: 1.5;
-	    border-radius: .25rem;
-	    
-	}
-	.star_rating{
-		margin-top: 10px;
-		margin-left: 50px;
-		display: none;
-	}
-	img{
-		width: 100%;
-		height: 100%;
-	}
-	
-	#nav{
+   }
+   
+   .starR{
+       background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+       background-size: auto 100%;
+       width: 15px;
+       height: 30px; 
+       float:left;
+       text-indent: -9999px;
+       cursor: pointer;
+   }
+   .starL.on{background-position:0 0;}
+   .starR.on{background-position:-15px 0;}
+   
+   .star_score span{display:inline-block;
+   height:30px;
+   background:url(/img/icon/sp_ico3.png) no-repeat -9999px -9999px}
+   .star_score span.st_off{
+   position:relative;
+   width:115px;
+   margin-right:2px; 
+   background-position: 0 -895px;
+   }
+   .star_score{
+      float: right;
+/*       margin-top: 10px; */
+      
+   }
+   .star_score span.st_on{overflow:hidden;
+   position:absolute;
+   top: 0px;
+   left:0;
+   z-index:10;
+   background-position:0 -920px;
+   text-indent:-9999px}
+   
+   .avg, .score{
+   font-size: 20px;
+   }
+   .score{
+      margin-top: 10px;
+      margin-left: 5px;
+   }
+   .avg{
+   margin-left: 5px;
+   margin-right: 10px;
+   }
+   
+   .star_rate{
+   display: inline-block;
+       font-weight: 400;
+       color: #212529;
+       text-align: center;
+       vertical-align: middle;
+      float: right;
+      user-select: none;
+       background-color: lavender;
+       border: 1px solid transparent;
+       padding: .375rem .75rem;
+       font-size: 1rem;
+       line-height: 1.5;
+       border-radius: .25rem;
+       
+   }
+   .star_rating{
+      margin-top: 10px;
+      margin-left: 50px;
+      display: none;
+   }
+   img{
+      width: 100%;
+      height: 100%;
+   }
+   
+#nav{
   height: 70px;
   background: transparent;
   display: block;
@@ -127,8 +127,8 @@
   width: 100%;
   z-index: 99999;
   transition: all ease .5s;
-	}
-	
+   }
+   
 
 #logo {
 	font-family: 'Ubuntu', sans-serif;
@@ -137,30 +137,36 @@
 	font-size: 30px;
 	transition: all ease .5s;
 	text-align: left;
+   font-family: 'Ubuntu', sans-serif;
+   color: #fff;
+   padding: 20px;
+   font-size: 30px;
+   transition: all ease .5s;
+   text-align: left;
 }
 
 .navBtn {
-	float : left;
-	margin-left : 50px;
+   float : left;
+   margin-left : 50px;
     list-style : none;
     cursor : pointer;
 }
 
 .btns{
-	float : left;
-	position : relative;
-	left : 1100px;
-	top : 10px;
-	font-size : 20px;
+   float : left;
+   position : relative;
+   left : 1100px;
+   top : 10px;
+   font-size : 20px;
 }
 
 .searchBar{
-	width : 400px;
-	height : 50px;
-	border : 1px solid black;
-	border-radius : 1px;
-	color : black;
-	text-align : center;
+   width : 400px;
+   height : 50px;
+   border : 1px solid black;
+   border-radius : 1px;
+   color : black;
+   text-align : center;
 }
 
 #nav.shrink {
@@ -179,12 +185,18 @@ input:focus{
 }
 
 .section1 {
-	padding : 50px;
+   padding : 50px;
 }
 
 .sectionText {
-	padding-top: 30px;
+   padding-top: 30px;
 }
+
+.logoText {
+    cursor : pointer;
+}
+
+.mouseC {cursor: pointer;}
 
 </style>
 <script>
@@ -194,7 +206,7 @@ input:focus{
       });
       
       $('#logout').click(function() {
-         $(location).attr('href', '/www/member/logout.kit');
+         $(location).attr('href', '/member/logout.kit');
       });
       
       $('#signUp').click(function() {
@@ -202,7 +214,7 @@ input:focus{
       });
       
       $('#myInfo').click(function(){
-    	  
+         $(location).attr('href', '/member/memberForm.kit')
       });
       
       $('#certification').click(function(){
@@ -214,25 +226,27 @@ input:focus{
       });
       
       $('.searchicon').click(function(){
-    	 var sarea = $('#sArea').val();
-    	 
+        var sarea = $('#sArea').val();
          $(location).attr('href', '/schedule/scheduleList.kit?sarea=' + sarea);
       });
 
-		$(window).scroll(function() {
-	  	if($(document).scrollTop() > 50) {
-	    	$('#nav').addClass('shrink');
-	    }
-	    else {
-	    $('#nav').removeClass('shrink');
-	    }
-	});
-		
-	//구글맵 자동검색
+      $('.box').click(function () {
+		$(this).submit();
+	})
+      $(window).scroll(function() {
+        if($(document).scrollTop() > 50) {
+          $('#nav').addClass('shrink');
+       }
+       else {
+       $('#nav').removeClass('shrink');
+       }
+   });
+      
+   //구글맵 자동검색
    var autocomplete;
    autocomplete = new google.maps.places.Autocomplete(
-		   document.getElementById("searchBar"), {
-		   types: ['(cities)']
+         document.getElementById("searchBar"), {
+         types: ['(cities)']
    });
    google.maps.event.addListener(autocomplete, 'place_changed', function() {
        var place = autocomplete.getPlace();
@@ -248,21 +262,21 @@ input:focus{
 </head>
 <body>
    <div id="nav">
-   		<div id="logo">
-   			ConsulTravel
-   			<div class="btns">
-   				<ul>
-   					<c:if test="${empty SID }">
-   					<li class="navBtn" id="signIn">Sign In</li>
-   					<li class="navBtn" id="signUp">Sign Up</li>
-   					</c:if>
-   					<c:if test="${!empty SID }">
-   					<li class="navBtn" id="myInfo">My Info</li>
-   					<li class="navBtn" id="logout">Logout</li>
-   					</c:if>
-   				</ul>
-   			</div>
-   		</div>
+         <div id="logo">
+         	<span class="logoText">ConsulTravel</span>
+            <div class="btns">
+               <ul>
+                  <c:if test="${empty SID }">
+                  <li class="navBtn" id="signIn">Sign In</li>
+                  <li class="navBtn" id="signUp">Sign Up</li>
+                  </c:if>
+                  <c:if test="${!empty SID }">
+                  <li class="navBtn" id="myInfo">My Info</li>
+                  <li class="navBtn" id="logout">Logout</li>
+                  </c:if>
+               </ul>
+            </div>
+         </div>
    </div>
    <div class="mainview">
       <div class="seduction">
@@ -272,32 +286,35 @@ input:focus{
       </div>
    </div>
    <div class="container text-center section1">
-   		<h1>가고 싶은 어디든 지금 검색해보세요</h1>
-   		<br>
-   		<input id="searchBar" type="text" class="searchBar" autocomplete="false">
-   		<span class="searchicon"><img src="/img/icon/search.svg" style="width : 50px; height : 50px;"></span>
-   		<h3 class="sectionText">원하시는 여행 장소를 입력해서 다양한 여행 계획을 검색해보세요</h3>
-		<input type="hidden" id="sArea">
+         <h1>가고 싶은 어디든 지금 검색해보세요</h1>
+         <br>
+         <input id="searchBar" type="text" class="searchBar" autocomplete="false">
+         <span class="searchicon"><img src="/img/icon/search.svg" style="width : 50px; height : 50px;"></span>
+         <h3 class="sectionText">원하시는 여행 장소를 입력해서 다양한 여행 계획을 검색해보세요</h3>
+      <input type="hidden" id="sArea">
    </div>
    <hr>
    <section>
+          <form action="/schedule/scheduleDetail.kit" method="get" class="box">
       <div class="container">
          <div class="row">
          <c:forEach var="data" items="${LIST}" begin="0" end="2">
-            <div class="col-md-4 text-center">
-            	<p>${data.sName}</p>
-            	<div class="star_score row">
-				    <span class="st_off">
-				   		<span class="st_on" style="width: ${data.likeAvg * 20}%;" ></span>
-					</span>
-				</div>
-				<p>${data.sBody}</p>
-				<img alt="profile" src="/img/profile/${data.avatarName}" style="width: 50px; height: 50px;">
-				<p>${data.mId}</p>
+            <input type="hidden" name="sNo" value="${data.sNo}">
+            <div class="col-md-4 text-center mouseC">
+               <p>${data.sName}</p>
+               <div class="star_score row">
+                <span class="st_off">
+                     <span class="st_on" style="width: ${data.likeAvg * 20}%;" ></span>
+               </span>
+            </div>
+            <p>${data.sBody}</p>
+            <img alt="profile" src="/img/profile/${data.avatarName}" style="width: 50px; height: 50px;">
+            <p>${data.mId}</p>
             </div>
          </c:forEach>
          </div>
       </div>
+         </form>
    </section>
    <footer>
       <c:import url="/footer.kit"></c:import>
