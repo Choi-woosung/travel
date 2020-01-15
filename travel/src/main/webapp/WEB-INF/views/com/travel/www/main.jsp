@@ -137,7 +137,6 @@
 	font-size: 30px;
 	transition: all ease .5s;
 	text-align: left;
-	cursor: pointer;
 }
 
 .navBtn {

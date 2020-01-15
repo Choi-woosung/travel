@@ -7,6 +7,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.travel.www.vo.ScheduleImgVO;
 import com.travel.www.vo.ScheduleOrderVO;
 
 public class ScheduleMakerDAO {
@@ -30,6 +31,10 @@ public class ScheduleMakerDAO {
 		return sqlSession.selectOne("soSQL.selectSno");
 	}
 	
+	//스케쥴 이미지 삽입
+	public void insertScheduleImg(ScheduleImgVO siVO) {
+		sqlSession.insert("soSQL.insertScheduleImg", siVO);
+	}
 	
 	public List<ScheduleOrderVO> callScheduleMaker(int sno){
 		return sqlSession.selectList("soSQL.selectScheduleMaker", sno);
