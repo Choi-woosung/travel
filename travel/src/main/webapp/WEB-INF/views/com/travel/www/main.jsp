@@ -132,17 +132,19 @@
 
 #logo {
 	font-family: 'Ubuntu', sans-serif;
-  color: #fff;
-  padding: 20px;
-  font-size: 30px;
-  transition: all ease .5s;
-  text-align : left;
+	color: #fff;
+	padding: 20px;
+	font-size: 30px;
+	transition: all ease .5s;
+	text-align: left;
+	cursor: pointer;
 }
 
 .navBtn {
 	float : left;
 	margin-left : 50px;
-    list-style:none;
+    list-style : none;
+    cursor : pointer;
 }
 
 .btns{
@@ -181,29 +183,41 @@ input:focus{
 	padding : 50px;
 }
 
+.sectionText {
+	padding-top: 30px;
+}
+
 </style>
 <script>
    $(function() {
-      $('#login').click(function() {
+      $('#signIn').click(function() {
          $(location).attr('href', '/member/login.kit');
       });
+      
       $('#logout').click(function() {
          $(location).attr('href', '/www/member/logout.kit');
       });
-      $('#join').click(function() {
+      
+      $('#signUp').click(function() {
          $(location).attr('href', '/member/join.kit');
       });
       
-      $('#test').click(function(){
-         $(location).attr('href', '/hotelSearch.kit');
+      $('#myInfo').click(function(){
+    	  
       });
       
       $('#certification').click(function(){
          $(location).attr('href', '/member/email.kit');
       });
       
-      $('#nearbysearch').click(function(){
-         $(location).attr('href', '/test/nearbysearch.kit');
+      $('#make').click(function(){
+         $(location).attr('href', '/schedule/scheduleMaker.kit');
+      });
+      
+      $('.searchicon').click(function(){
+    	 var sarea = $('#sArea').val();
+    	 
+         $(location).attr('href', '/schedule/scheduleList.kit?sarea=' + sarea);
       });
 
 		$(window).scroll(function() {
@@ -214,15 +228,23 @@ input:focus{
 	    $('#nav').removeClass('shrink');
 	    }
 	});
-    });
-    
-   $(function(){
-	   var autocomplete;
-	   autocomplete = new google.maps.places.Autocomplete(
-			   document.getElementById("searchBar"), {
-			   types: ['(cities)']
-			   });
-   })
+		
+	//구글맵 자동검색
+   var autocomplete;
+   autocomplete = new google.maps.places.Autocomplete(
+		   document.getElementById("searchBar"), {
+		   types: ['(cities)']
+   });
+   google.maps.event.addListener(autocomplete, 'place_changed', function() {
+       var place = autocomplete.getPlace();
+       var components = place.address_components;
+       var component0 = components[0];
+       var street0 = component0['long_name'];
+       
+       $('#sArea').val(street0);
+   });
+});
+   
 </script>
 </head>
 <body>
@@ -232,11 +254,13 @@ input:focus{
    			<div class="btns">
    				<ul>
    					<c:if test="${empty SID }">
-   					<li class="navBtn">Sign In</li>
-   					<li class="navBtn">Sign Up</li>
+   					<li class="navBtn" id="signIn">Sign In</li>
+   					<li class="navBtn" id="signUp">Sign Up</li>
    					</c:if>
-   					<li class="navBtn">
-   					</li>
+   					<c:if test="${!empty SID }">
+   					<li class="navBtn" id="myInfo">My Info</li>
+   					<li class="navBtn" id="logout">Logout</li>
+   					</c:if>
    				</ul>
    			</div>
    		</div>
@@ -253,7 +277,8 @@ input:focus{
    		<br>
    		<input id="searchBar" type="text" class="searchBar" autocomplete="false">
    		<span class="searchicon"><img src="/img/icon/search.svg" style="width : 50px; height : 50px;"></span>
-   		<h3>원하시는 여행 장소를 입력해서 다양한 여행 계획을 검색해보세요</h3>
+   		<h3 class="sectionText">원하시는 여행 장소를 입력해서 다양한 여행 계획을 검색해보세요</h3>
+		<input type="hidden" id="sArea">
    </div>
    <hr>
    <section>
