@@ -325,8 +325,7 @@ display: inline-block;
 							<div class="pricecontext">${data.price }</div>
 							</div>
 						</div>
-						<div class="row">
-						<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search"></div>
+						<div class="col-sm border mx-3" data-toggle="modal" data-target="#dataModal"><img src="/img/icon/search.svg" alt="" width="16" height="16" title="search">
 						</div>
 					</li>
 					</c:if>
