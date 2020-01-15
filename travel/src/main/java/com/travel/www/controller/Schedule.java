@@ -50,6 +50,8 @@ public class Schedule {
       
       List<ScheduleVO> list = sDAO.scheduleList(sarea);
       ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
+	   System.out.println(list);
+	   System.out.println(photoList);
       
       for(int i = 0; i < list.size(); i++) {
     	  int sno = list.get(i).getsNo();
@@ -123,6 +125,8 @@ public class Schedule {
 	   
 	   List<ScheduleVO> list = sDAO.recentList(sarea, month);
 	   ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
+	   System.out.println(list);
+	   System.out.println(photoList);
 	   
 	   for(int i = 0; i < list.size(); i++) {
 		   int sno = list.get(i).getsNo();

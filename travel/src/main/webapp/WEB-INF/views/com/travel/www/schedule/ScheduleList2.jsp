@@ -75,6 +75,8 @@
 	        	success : function(data){
 	        		var list = data;
 	        		
+	        		alert("성공");
+	        		
 	        		$('.delete').remove();
 	        		
 	        		for(var i = 0; i < list.length; i++){
@@ -141,6 +143,7 @@
 	        	success : function(data){
 	        		var list = data;
 	        		
+	        		alert("성공");
 	        		
 	        		$('.delete').remove();
 	        		
@@ -207,6 +210,7 @@
 	        	success : function(data){
 	        		var list = data;
 	        		
+	        		alert("성공");
 	        		
 	        		$('.delete').remove();
 	        		
@@ -426,72 +430,12 @@
 		width: 100%;
 		height: 100%;
 	}
-	
-	#nav{
-	height: 70px;
-	background: rgba( 0, 0, 0, 0.7);
-	display: block;
-	width: 100%;
-	z-index: 99999;
-	transition: all ease .5s;
-   }
-   
-
-#logo {
-   font-family: 'Ubuntu', sans-serif;
-   color: #fff;
-   padding: 20px;
-   font-size: 30px;
-   transition: all ease .5s;
-   text-align: left;
-}
-
-.navBtn {
-    float : left;
-    margin-left : 50px;
-    list-style : none;
-    cursor : pointer;
-}
-
-.btns{
-   float : left;
-   position : relative;
-   left : 1100px;
-   top : 10px;
-   font-size : 20px;
-}
-
-.searchBar{
-   width : 400px;
-   height : 50px;
-   border : 1px solid black;
-   border-radius : 1px;
-   color : black;
-   text-align : center;
-}
-.logoText{
-	cursor: pointer;
-}
 </style>
 </head>
 <body>
-	 <div id="nav">
-         <div id="logo">
-         	<span class="logoText">ConsulTravel</span>
-            <div class="btns">
-               <ul>
-                  <c:if test="${empty SID }">
-                  <li class="navBtn" id="signIn">Sign In</li>
-                  <li class="navBtn" id="signUp">Sign Up</li>
-                  </c:if>
-                  <c:if test="${!empty SID }">
-                  <li class="navBtn" id="myInfo">My Info</li>
-                  <li class="navBtn" id="logout">Logout</li>
-                  </c:if>
-               </ul>
-            </div>
-         </div>
-   </div>
+   <header>
+      <c:import url="/navigationBar.kit"></c:import>
+   </header>
    <div class="container">
       <div class="w3-container w3-margin-top mainSearch">
           <form method="POST" name="myform" id="frm">
