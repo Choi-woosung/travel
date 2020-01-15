@@ -421,10 +421,9 @@ body, html {
 							<small class="text-muted">${data.liCnt }</small>
 						</div>
 						<p class="mb-1 text-left">${data.placeAddress }</p>
-						<div class="content-body-text input-group-sm mb-1" style="display : none;">
+						<div class="content-body-text input-group-sm mb-1">
 							<div class="bodycontext">${data.body }</div>
-							<div class="inputPrice"><span class="priceLeft">비용 : </span>
-							<div class="pricecontext">${data.price }</div>
+							<div class="inputPrice"><span class="priceLeft">비용 : ${data.price }원</span>
 							</div>
 						</div>
 						<div class="row">

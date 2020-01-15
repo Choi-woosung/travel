@@ -229,10 +229,10 @@ input:focus{
         var sarea = $('#sArea').val();
          $(location).attr('href', '/schedule/scheduleList.kit?sarea=' + sarea);
       });
-
-      $('.box').click(function () {
-		$(this).submit();
-	})
+		
+      $('.mouseC').click(function(){
+    	  $()
+      })
       $(window).scroll(function() {
         if($(document).scrollTop() > 50) {
           $('#nav').addClass('shrink');

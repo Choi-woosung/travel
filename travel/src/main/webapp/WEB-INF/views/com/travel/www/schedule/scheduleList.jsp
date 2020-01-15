@@ -102,6 +102,7 @@
                     content += '                 </div>';
                     content += '              </div>';
                     content += '       </div>';
+                    content += '<img src="'+list[i].imgname+'" class="imageContent2">';
                     content += '   </form>';
                     content += '</div>';
                     
@@ -168,6 +169,7 @@
                     content += '                 </div>';
                     content += '              </div>';
                     content += '       </div>';
+                    content += '<img src="'+list[i].imgname+'" class="imageContent2">';
                     content += '   </form>';
                     content += '</div>';
                     
@@ -233,7 +235,7 @@
                     content += '                 </div>';
                     content += '              </div>';
                     content += '       </div>';
-                    content += '   </form>';
+                    content += '<img src="'+list[i].imgname+'" class="imageContent2">';;
                     content += '</div>';
 				
 					
@@ -481,6 +483,23 @@
 .content {
 	background : white;
 }
+
+.imageContent {
+	position : relative;
+	left : 750px;
+	top : -170px;
+	width : 200px;
+	height : 200px;
+}
+
+
+.imageContent2 {
+	position : relative;
+	left : 750px;
+	top : -300px;
+	width : 200px;
+	height : 200px;
+}
    
 </style>
 </head>
@@ -561,6 +580,7 @@
 						<p> 여행시작일  ${data.sSdate } ~  ${data.sEdate} 까지 </p>
 						<p> 나라 : ${data.sCountry } , 도시 : ${data.sArea } </p>
 						<p> ${data.sBody } </p>
+                        <img src="${data.imgname}" class="imageContent">
                         </div>
                      </div>
                   </div>

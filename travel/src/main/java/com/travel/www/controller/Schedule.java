@@ -18,13 +18,16 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.travel.www.dao.ScheduleDAO;
 import com.travel.www.dao.ScheduleDetailDAO;
 import com.travel.www.dao.ScheduleMakerDAO;
+import com.travel.www.vo.ScheduleImgVO;
 import com.travel.www.vo.ScheduleOrderVO;
 import com.travel.www.vo.ScheduleVO;
 
 @Controller
 @RequestMapping("/schedule")
 public class Schedule {
-   
+	
+	String path = "/img/scheduleImg/";
+	
    @Autowired
    ScheduleDAO sDAO;
    
@@ -46,9 +49,18 @@ public class Schedule {
       double likeAvg = 0;
       
       List<ScheduleVO> list = sDAO.scheduleList(sarea);
+      ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
       
       for(int i = 0; i < list.size(); i++) {
     	  int sno = list.get(i).getsNo();
+			if(photoList.get(i).getOriname() != null) {
+				list.get(i).setImgname(path + photoList.get(i).getOriname());
+				if(photoList.get(i).getSavename() != null) {
+					list.get(i).setImgname(path + photoList.get(i).getSavename());
+				}
+			} else {
+				list.get(i).setImgname(path + "default.jpg");
+			}
     	  String sdate = list.get(i).getsSdate();
     	  String wdate = list.get(i).getsWdate();
     	  String edate = list.get(i).getsEdate();
@@ -110,12 +122,23 @@ public class Schedule {
 	   double likeAvg = 0;
 	   
 	   List<ScheduleVO> list = sDAO.recentList(sarea, month);
+	   ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
 	   
 	   for(int i = 0; i < list.size(); i++) {
 		   int sno = list.get(i).getsNo();
+		   if(photoList.get(i).getOriname() != null) {
+				list.get(i).setImgname(path + photoList.get(i).getOriname());
+				if(photoList.get(i).getSavename() != null) {
+					list.get(i).setImgname(path + photoList.get(i).getSavename());
+				}
+			} else {
+				list.get(i).setImgname(path + "default.jpg");
+			}
 		   String sdate = list.get(i).getsSdate();
 		   String edate = list.get(i).getsEdate();
 		   String wdate = list.get(i).getsWdate();
+		   
+		   
 		   
 		   sVO.setsNo(sno);
 		  
@@ -162,9 +185,18 @@ public class Schedule {
 	   double likeAvg = 0;
 	   
 	   List<ScheduleVO> list = sDAO.scheduleList(sarea, month);
+	   ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
 	   
 	   for(int i = 0; i < list.size(); i++) {
 		   int sno = list.get(i).getsNo();
+		   if(photoList.get(i).getOriname() != null) {
+				list.get(i).setImgname(path + photoList.get(i).getOriname());
+				if(photoList.get(i).getSavename() != null) {
+					list.get(i).setImgname(path + photoList.get(i).getSavename());
+				}
+			} else {
+				list.get(i).setImgname(path + "default.jpg");
+			}
 		   String sdate = list.get(i).getsSdate();
 		   String edate = list.get(i).getsEdate();
 		   String wdate = list.get(i).getsWdate();
@@ -218,9 +250,18 @@ public class Schedule {
 	   double likeAvg = 0;
 	   
 	   List<ScheduleVO> list = sDAO.ratingList(sarea, month);
+	   ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
 	   
 	   for(int i = 0; i < list.size(); i++) {
 		   int sno = list.get(i).getsNo();
+		   if(photoList.get(i).getOriname() != null) {
+				list.get(i).setImgname(path + photoList.get(i).getOriname());
+				if(photoList.get(i).getSavename() != null) {
+					list.get(i).setImgname(path + photoList.get(i).getSavename());
+				}
+			} else {
+				list.get(i).setImgname(path + "default.jpg");
+			}
 		   String sdate = list.get(i).getsSdate();
 		   String edate = list.get(i).getsEdate();
 		   String wdate = list.get(i).getsWdate();
