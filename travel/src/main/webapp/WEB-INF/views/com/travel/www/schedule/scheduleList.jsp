@@ -246,6 +246,23 @@
 	        	}
 	        });
         });
+		$('#signIn').click(function() {
+	         $(location).attr('href', '/member/login.kit');
+	      });
+	      
+	    $('#logout').click(function() {
+	         $(location).attr('href', '/member/logout.kit');
+	      });
+	    $('#signUp').click(function() {
+	         $(location).attr('href', '/member/join.kit');
+	      });
+	      
+	    $('#myInfo').click(function(){
+	         $(location).attr('href', '/member/memberForm.kit')
+	      });
+	    $('.logoText').click(function () {
+			$(location).attr('href', '/main.kit')
+		});
    });
 </script>
 <style>
