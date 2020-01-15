@@ -63,6 +63,14 @@ public class Schedule {
     	  list.get(i).setsWdate(wdate);
     	  list.get(i).setsEdate(edate);
     	  
+
+    	  String body = list.get(i).getsBody();
+    	  if(body.length() > 40) {
+        	  body = body.substring(0, 40);
+        	  body += "...";
+        	  list.get(i).setsBody(body);    		  
+    	  }
+    	  
     	  like = sdDAO.LikeBoardLikeTotal(sVO);
     	  likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
     	  likeAvg = like / likeCount;
@@ -78,8 +86,6 @@ public class Schedule {
     	  list.get(i).setLikeAvg(likeAvg);
       }
       
-      
-      System.out.println(list.get(0).getsEdate());
       mv.addObject("ADDRESS", address);
       mv.addObject("PEOPLE", people);
       mv.addObject("LIST", list);
@@ -125,18 +131,20 @@ public class Schedule {
 		   like = sdDAO.LikeBoardLikeTotal(sVO);
 		   likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
 		   likeAvg = like / likeCount;
+	    	  String body = list.get(i).getsBody();
+	    	  if(body.length() > 40) {
+	        	  body = body.substring(0, 40);
+	        	  body += "...";
+	        	  list.get(i).setsBody(body);    		  
+	    	  }
 		   
 		   if(like == 0) {
 				likeAvg = 0;
 		   }
   
-//		   DecimalFormat form = new DecimalFormat("#.#");
-//		   String likeAvg1 = form.format(likeAvg);
-//		   likeAvg = Double.parseDouble(likeAvg1);
-  
 		   list.get(i).setLikeAvg(likeAvg);
 	   }
-	   
+
 	   return list;
    }
    
@@ -172,6 +180,12 @@ public class Schedule {
 		   list.get(i).setsEdate(edate);
 		   list.get(i).setsWdate(wdate);
 		   
+	    	  String body = list.get(i).getsBody();
+	    	  if(body.length() > 40) {
+	        	  body = body.substring(0, 40);
+	        	  body += "...";
+	        	  list.get(i).setsBody(body);    		  
+	    	  }		   
 		   like = sdDAO.LikeBoardLikeTotal(sVO);
 		   likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);
 		   likeAvg = like / likeCount;
@@ -221,6 +235,13 @@ public class Schedule {
 		   list.get(i).setsSdate(sdate);
 		   list.get(i).setsEdate(edate);
 		   list.get(i).setsWdate(wdate);
+		   
+	    	  String body = list.get(i).getsBody();
+	    	  if(body.length() > 40) {
+	        	  body = body.substring(0, 40);
+	        	  body += "...";
+	        	  list.get(i).setsBody(body);    		  
+	    	  }
 		   
 		   like = sdDAO.LikeBoardLikeTotal(sVO);
 		   likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO);

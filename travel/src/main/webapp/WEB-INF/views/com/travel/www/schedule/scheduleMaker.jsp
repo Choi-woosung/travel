@@ -627,7 +627,6 @@ p {
 			});
 		}
 		
-		alert("들어옴?");
 		for (var i = 0; i < idValue.length; i++){
 			idData = document.getElementById(idValue[i]).value;
 			data.append(idValue[i], idData);
@@ -652,6 +651,8 @@ p {
 		};
  
 		fetch("/scheduleMaker/test.kit", options);
+
+		alert("저장이 완료되었습니다");
 	});
 	
 	

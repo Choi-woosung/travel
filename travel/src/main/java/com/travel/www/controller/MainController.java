@@ -74,15 +74,8 @@ public class MainController {
 
 	@RequestMapping("/testview.kit")
 	public ModelAndView getTest(ModelAndView mv) {
-		mv.setViewName("test/test");
+		mv.setViewName("schedule/scheduleList2");
 		return mv;
 	}
 	
-	@RequestMapping("/testResponse.kit")
-	public ModelAndView getTestResponse(ModelAndView mv, TestVO vo) {
-		System.out.println(vo.getDat());
-		mv.setViewName("/testview.kit");	
-		return mv;
-		
-	}
 }

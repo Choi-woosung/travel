@@ -96,11 +96,9 @@
                     content += '                 </div>';
                     content += '                    <h5 class="sname w3-padding">' + list[i].sName + '</h5>'; 
                     content += '                    <div class="info w3-padding">'; 
-                    content += '                       <p>여행시작일 : ' + list[i].sSdate + '</p>';
-                    content += '                       <p>여행종료일 : ' + list[i].sEdate + '</p>';
-                    content += '                       <p>작성일 : ' + list[i].sWdate + '</p>';
-                    content += '                       <p>총금액 : ' + list[i].sCost + ' 원</p>';
-                    content += '                       <p>평점 : ' + list[i].sRate + ' 점</p>';
+                    content += '	<p> 여행시작일 ' + list[i].sSdate + ' ~ ' + list[i].sEdate + ' 까지 </p>';
+                    content += '<p> 나라 : ' + list[i].sCountry  + ', 도시 : ' + list[i].sArea + '</p>';
+                    content += '					<p> ' + list[i].sBody + ' </p>';
                     content += '                 </div>';
                     content += '              </div>';
                     content += '       </div>';
@@ -164,11 +162,9 @@
                     content += '                 </div>';
                     content += '                    <h5 class="sname w3-padding">' + list[i].sName + '</h5>'; 
                     content += '                    <div class="info w3-padding">'; 
-                    content += '                       <p>여행시작일 : ' + list[i].sSdate + '</p>';
-                    content += '                       <p>여행종료일 : ' + list[i].sEdate + '</p>';
-                    content += '                       <p>작성일 : ' + list[i].sWdate + '</p>';
-                    content += '                       <p>총금액 : ' + list[i].sCost + ' 원</p>';
-                    content += '                       <p>평점 : ' + list[i].sRate + ' 점</p>';
+                    content += '	<p> 여행시작일 ' + list[i].sSdate + ' ~ ' + list[i].sEdate + ' 까지 </p>';
+                    content += '<p> 나라 : ' + list[i].sCountry  + ', 도시 : ' + list[i].sArea + '</p>';
+                    content += '					<p> ' + list[i].sBody + ' </p>';
                     content += '                 </div>';
                     content += '              </div>';
                     content += '       </div>';
@@ -231,17 +227,17 @@
                     content += '                 </div>';
                     content += '                    <h5 class="sname w3-padding">' + list[i].sName + '</h5>'; 
                     content += '                    <div class="info w3-padding">'; 
-                    content += '                       <p>여행시작일 : ' + list[i].sSdate + '</p>';
-                    content += '                       <p>여행종료일 : ' + list[i].sEdate + '</p>';
-                    content += '                       <p>작성일 : ' + list[i].sWdate + '</p>';
-                    content += '                       <p>총금액 : ' + list[i].sCost + ' 원</p>';
-                    content += '                       <p>평점 : ' + list[i].sRate + ' 점</p>';
+                    content += '	<p> 여행시작일 ' + list[i].sSdate + ' ~ ' + list[i].sEdate + ' 까지 </p>';
+                    content += '<p> 나라 : ' + list[i].sCountry  + ', 도시 : ' + list[i].sArea + '</p>';
+                    content += '					<p> ' + list[i].sBody + ' </p>';
                     content += '                 </div>';
                     content += '              </div>';
                     content += '       </div>';
                     content += '   </form>';
                     content += '</div>';
-                    
+				
+					
+
                     $('.add').append(content);
                  }
               },
@@ -253,6 +249,9 @@
    });
 </script>
 <style>
+	body{
+		background : #f0f0f0;
+	}
    *{box-sizing: border-box;}
    
 /*    검색창 박스 크기 */
@@ -268,14 +267,20 @@
    
 /*    검색창 input 크기 */
    .pbtn {
-      width: 94%;
+      width : 400px;
       padding: 4px;
       text-align: center;
+      position : absolute;
+      left : 950px;
+      top : 130px;
    }
    
 /*    주소검색버튼 */
    #search {
+   	position : absolute;
       margin-bottom: 4px;
+      left : 1400px;
+      top : 130px;
    }
    
 /*    월별선택버튼 */
@@ -426,26 +431,80 @@
       margin-left: 50px;
       display: none;
    }
-   img{
-      width: 100%;
-      height: 100%;
+   
+   #nav{
+  height: 70px;;
+  background-color: rgba( 0, 0, 0, 0.7);
+  display: block;
+  width: 100%;
+  z-index: 99999;
+  transition: all ease .5s;
    }
+   
+
+#logo {
+   font-family: 'Ubuntu', sans-serif;
+   color: #fff;
+   font-size: 30px;
+   padding : 10px;
+   transition: all ease .5s;
+   text-align: left;
+}
+
+.navBtn {
+   float : left;
+   margin-left : 50px;
+    list-style : none;
+    cursor : pointer;
+}
+
+.btns{
+   float : left;
+   position : relative;
+   left : 1100px;
+   font-size : 20px;
+}
+
+.searchBar{
+   width : 400px;
+   height : 50px;
+   border : 1px solid black;
+   border-radius : 1px;
+   color : black;
+   text-align : center;
+}
+
+.logoText {
+    cursor : pointer;
+}
+
+.content {
+	background : white;
+}
+   
 </style>
 </head>
 <body>
-   <header>
-      <c:import url="/navigationBar.kit"></c:import>
-   </header>
+   <div id="nav">
+         <div id="logo">
+         	<span class="logoText">ConsulTravel</span>
+            <div class="btns">
+               <ul>
+                  <c:if test="${empty SID }">
+                  <li class="navBtn" id="signIn">Sign In</li>
+                  <li class="navBtn" id="signUp">Sign Up</li>
+                  </c:if>
+                  <c:if test="${!empty SID }">
+                  <li class="navBtn" id="myInfo">My Info</li>
+                  <li class="navBtn" id="logout">Logout</li>
+                  </c:if>
+               </ul>
+            </div>
+         </div>
+   </div>
    <div class="container">
       <div class="w3-container w3-margin-top mainSearch">
-          <form method="POST" name="myform" id="frm">
-               <input type="text" class="city pbtn" id="inputArea" name="address" value="${ADDRESS}"
-                  placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
-                  
-                  <input type="hidden" name="sCountry" id="sCountry">
-                  <input type="hidden" name="sArea" id="sArea">
-                  <button type="button" class="btn btn-outline-info" id="search">검색</button>
-          </form>
+
       </div>
       
       <div class="w3-container w3-margin-top w3-margin-left">
@@ -454,7 +513,7 @@
             <a href="#" class="sortmenu" id="ratinglist">평점순</a>
             <a href="#" class="sortmenu" id="recentlist">최신순</a>
             <a class="sortmonth">
-               <select name="month" id="month" class="btn btn-outline-info">
+               <select name="month" id="month">
                   <option value="">월별검색</option>
                   <option value="01">1월</option>
                   <option value="02">2월</option>
@@ -469,12 +528,19 @@
                   <option value="11">11월</option>
                   <option value="12">12월</option>
                </select>
-               <input type="button" class="btn btn-outline-info" value="검색" id="searchmonth">
-            </a>
-         </div>
+               <input type="button" class="btn btn-dark" value="검색" id="searchmonth">	
+				</a>
+				<form method="POST" name="myform" id="frm">
+					<input type="text" class="city pbtn" id="inputArea" name="address" value="${ADDRESS}" placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
+					<input type="hidden" name="sCountry" id="sCountry"> <input type="hidden" name="sArea" id="sArea">
+					<button type="button" class="btn btn-dark" id="search">검색</button>
+				</form>
+			</div>
       <div class="add" id="add">
+        <h3 class="listheadtext">검색된 여행 스케쥴 <span id="listlength"></span>개</h3>
          <div class="delete">
             <c:forEach var="data" items="${LIST}" varStatus="status">
+   			<input type="hidden" name="count" class="counter">
                <form action="/schedule/scheduleDetail.kit" method="get" class="box">
                   <div class="w3-container w3-margin-bottom content">
                      <input type="hidden" name="sNo" value="${data.sNo}">
@@ -492,10 +558,9 @@
                         </div>
                         <h5 class="sname w3-padding">${data.sName}</h5>
                         <div class="info w3-padding">
-                           <p>여행시작일 : ${data.sSdate}</p>
-                           <p>여행종료일 : ${data.sEdate}</p>
-                           <p>작성일 : ${data.sWdate}</p>
-                           <p>총금액 : ${data.sCost} 원</p>
+						<p> 여행시작일  ${data.sSdate } ~  ${data.sEdate} 까지 </p>
+						<p> 나라 : ${data.sCountry } , 도시 : ${data.sArea } </p>
+						<p> ${data.sBody } </p>
                         </div>
                      </div>
                   </div>
@@ -505,5 +570,9 @@
       </div>
       </div>
    </div>
+   <script>
+   var counter = document.querySelectorAll('.counter').length;
+   	document.getElementById('listlength').innerHTML = counter;
+   </script>
 </body>
 </html>

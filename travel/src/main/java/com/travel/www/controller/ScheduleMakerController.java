@@ -47,21 +47,15 @@ public class ScheduleMakerController {
 				String path1 = "resources\\img\\scheduleImg\\";
 				path = path + path1;
 				
-//				String rePath = path.substring(0, path.indexOf("source"));
-//				String path2 = "git\\travel\\travel\\src\\main\\webapp\\resources\\img\\scheduleImg\\";
-//				rePath = rePath + path2;
 				
 				System.out.println("path : " + path);
-//				System.out.println("rePath : " + rePath);
 				
 				MultipartFile part = itor.next();
 				path += part.getOriginalFilename();
-//				rePath += part.getOriginalFilename();
 				
 				name = part.getOriginalFilename();
 				
 				file = new File(path);
-//				file = new File(rePath);
 				
 				while (file.exists()) {
 					int n = 0;

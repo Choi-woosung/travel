@@ -230,10 +230,53 @@ $(function(){
          var place = autocomplete.getPlace();
          var components = place.address_components;
          var component0 = components[0];
+         var component2 = components[2];
          var street0 = component0['long_name'];
+         var street2 = component2['long_name'];
          
+         $('#sCountry').val(street2);
          $('#sArea').val(street0);
      });
+     
+     $('#search').click(function(){
+         var sarea = $('#sArea').val();
+          var address = $('#inputArea').val();
+         
+         $('#frm').attr('action', '/schedule/scheduleList.kit?sarea=' + sarea + "&address=" + address);
+         $('#frm').submit();
+      });
+     
+     $('#recentlist').click(function(){
+         var month = $('#month').val();
+         
+         var url = decodeURIComponent(location.href);
+         var params;
+         var param;
+         
+         params = url.substring(url.indexOf('?') + 1, url.length);
+         params = params.split('&');
+         
+         param = params[0];
+         
+         $.ajax({
+            url : "/schedule/recentlist.kit?sarea=" + param + "&month=" + month,
+            type : "post",
+            dataType : "json",
+            data : {
+               "sarea" : param,
+               "month" : month
+            },
+            success : function(data){
+               console.log("성공");
+               }
+            },
+            error : function(){
+               alert("통신오류");
+            }
+         });
+      });
+      
+
 });
 
 
@@ -262,7 +305,7 @@ $(function(){
    		<form method="POST" name="myform" id="frm">
    			<div class="left">
                <input type="text" class="searchbar" id="inputArea" name="address" value="${ADDRESS}" placeholder="떠나실 장소를 검색해보세요" autocomplete="off">
-               <button type="button" class="searchbarBtn btn btn-light">검색</button>
+               <button type="button" class="searchbarBtn btn btn-light" id="search">검색</button>
                <input type="hidden" name="sCountry" id="sCountry">
                <input type="hidden" name="sArea" id="sArea">
             </div>
@@ -293,7 +336,7 @@ $(function(){
    			</div>
         </form>
    		</div>
-   		<div class="rightbox">
+   		<div class="rightbox" id="rightbox">
    		<h3 class="listheadtext">검색된 여행 스케쥴 <span id="listlength"></span>개</h3>
    		<c:forEach var="data" items="${LIST}" varStatus="status">
    			<input type="hidden" name="count" class="counter">
