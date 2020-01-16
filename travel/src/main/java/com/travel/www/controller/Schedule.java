@@ -56,7 +56,7 @@ public class Schedule {
       double likeAvg = 0;
       
       List<ScheduleVO> list = sDAO.scheduleList(sarea);
-      ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
+//      ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
 //	   System.out.println(list);
 //	   System.out.println(photoList);
       
@@ -64,14 +64,14 @@ public class Schedule {
 	   
       for(int i = 0; i < list.size(); i++) {
     	  int sno = list.get(i).getsNo();
-			if(photoList.get(i).getOriname() != null) {
-				list.get(i).setImgname(path + photoList.get(i).getOriname());
-				if(photoList.get(i).getSavename() != null) {
-					list.get(i).setImgname(path + photoList.get(i).getSavename());
-				}
-			} else {
-				list.get(i).setImgname(path + "default.jpg");
-			}
+//			if(photoList.get(i).getOriname() != null) {
+//				list.get(i).setImgname(path + photoList.get(i).getOriname());
+//				if(photoList.get(i).getSavename() != null) {
+//					list.get(i).setImgname(path + photoList.get(i).getSavename());
+//				}
+//			} else {
+//				list.get(i).setImgname(path + "default.jpg");
+//			}
     	  String sdate = list.get(i).getsSdate();
     	  String wdate = list.get(i).getsWdate();
     	  String edate = list.get(i).getsEdate();
