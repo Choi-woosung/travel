@@ -38,8 +38,8 @@ public class MemberDAO {
 	
 	// 회원가입 추가
 	public int insertMemb(MemberVO mVO) {
-		System.out.println("************************* DAO");
-		System.out.println(mVO);
+//		System.out.println("************************* DAO");
+//		System.out.println(mVO);
 		return sqlSession.insert("mSQL.addMember", mVO);		
 	}
 	

@@ -105,7 +105,7 @@
   </div>
 
   <div class="w3-margin">
-    <input type="password" id="userPw" name="mPw" class="form-control" placeholder="비밀번호" maxlength="8" required> 
+    <input type="password" id="userPw" name="mPw" class="form-control" placeholder="비밀번호" maxlength="20" required>
   </div>
   
   <div class="pwex" style="display: none; color: red;">

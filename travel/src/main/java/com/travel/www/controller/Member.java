@@ -325,6 +325,7 @@ public class Member {
 	@RequestMapping("loginProc.kit")
 	public ModelAndView loginProc(HttpSession session, ModelAndView mv, RedirectView rv, MemberVO vo) {
 		int cnt = mDAO.loginProc(vo);
+		System.out.println("로그인 성공 : " + cnt);
 		if(cnt != 1) {
 			// 실패한 경우
 			rv.setUrl("/member/login.kit");
@@ -332,7 +333,6 @@ public class Member {
 			// 성공한 경우
 			session.setAttribute("SID", vo.getmId());
 			rv.setUrl("/main.kit");
-		
 		}
 		mv.setView(rv);
 		return mv;
@@ -363,13 +363,13 @@ public class Member {
 	public ModelAndView joinProc(ModelAndView mv, RedirectView rv, 
 									HttpSession session, MemberVO mVO) {
 		
-		System.out.println("### cont mail : " + mVO.getmMail());
+//		System.out.println("### cont mail : " + mVO.getmMail());
 		
 		// 할일
 		// 1. 회원정보 입력하고
 		int cnt = mDAO.insertMemb(mVO);
-		if(cnt != 1) {
-			rv.setUrl("/member/main.kit");
+		if(cnt == 1) {
+			rv.setUrl("/main.kit");
 		} else {
 			rv.setUrl("/member/join.kit");
 		}

@@ -151,12 +151,5 @@ public class MemberVO {
 	public void setFile(MultipartFile[] file) {
 		this.file = file;
 	}
-	
-	
-	public String toString() {
-		return mId + " | " + mPw + " | " + mName + " | " + mMail + " | " + mAddress + " | " + sPcdate + " | " + mMobile + " | " + mGrade + " | " + mPoint ;
-	}
-
-	
 
 }

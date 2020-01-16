@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,10 +40,16 @@ public class Schedule {
    
    //리스트 가져오기
    @RequestMapping("/scheduleList.kit")
-   public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req) {
+   public ModelAndView scheduleListForm(ModelAndView mv, ScheduleVO sVO, HttpServletRequest req, HttpSession session) {
       String people = req.getParameter("people");
       String address = req.getParameter("address");
       String sarea = req.getParameter("sarea");
+      
+      String path = session.getServletContext().getRealPath("/");
+      String path1 = "resources\\img\\scheduleImg\\";
+	  path = path + path1;
+	  
+	  System.out.println("path : " + path);
       
       double like = 0;
       double likeCount = 0;
@@ -50,9 +57,11 @@ public class Schedule {
       
       List<ScheduleVO> list = sDAO.scheduleList(sarea);
       ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
-	   System.out.println(list);
-	   System.out.println(photoList);
+//	   System.out.println(list);
+//	   System.out.println(photoList);
       
+//	   System.out.println("이미지 파일 : " + photoList.get(0).getOriname());
+	   
       for(int i = 0; i < list.size(); i++) {
     	  int sno = list.get(i).getsNo();
 			if(photoList.get(i).getOriname() != null) {

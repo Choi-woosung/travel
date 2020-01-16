@@ -351,7 +351,7 @@
                     
                 <li>
                     <label for="email" class="email_form w3-serif"><b>이메일</b></label>
-                    <button type="submit" id="mail_in" class="w3-teal w3-text-light-gray">이메일 인증</button>
+<!--                     <button type="submit" id="mail_in" class="w3-teal w3-text-light-gray">이메일 인증</button> -->
                     <input type="email" id="email" name="mMail" >
                 </li>
 				<br>

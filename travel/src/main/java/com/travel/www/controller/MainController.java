@@ -30,25 +30,40 @@ public class MainController {
 		double like = 0;
 		double likeCount = 0;
      	double likeAvg = 0;
+     	
+//     	String path = session.getServletContext().getRealPath("/");
+//        String path1 = "resources\\img\\scheduleImg\\";
+//  	  	path = path + path1;
 		
 		List<ScheduleVO> list = sDAO.mainList();
-		ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
+//		ArrayList<ScheduleImgVO> photoList = sDAO.mainPhotos(list);
 		PageUtil PageUtil = new PageUtil();
 		
-		String path = "/img/scheduleImg/";
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getsArea());
+		}
+		
+//		String path = "/img/scheduleImg/";
 		PageUtil.setPage(0, 99, 1, 1);
 		for(int i = 0; i < list.size(); i++) {
 			int sno = list.get(i).getsNo();
-			if(photoList.get(i).getOriname() != null) {
-				list.get(i).setImgname(path + photoList.get(i).getOriname());
-				if(photoList.get(i).getSavename() != null) {
-					list.get(i).setImgname(path + photoList.get(i).getSavename());
-				}
-			} else {
-				list.get(i).setImgname(path + "default.jpg");
-			}
+//			if(photoList.get(i).getOriname() != null) {
+//				list.get(i).setImgname(path + photoList.get(i).getOriname());
+//				if(photoList.get(i).getSavename() != null) {
+//					list.get(i).setImgname(path + photoList.get(i).getSavename());
+//				}
+//			} else {
+//				list.get(i).setImgname(path + "default.jpg");
+//			}
 			sVO.setsNo(sno);
 			
+			String bodys = list.get(i).getsBody();
+			
+			if (bodys.length() > 10) {
+				bodys = bodys.substring(0, 10);
+				bodys = bodys + "...";
+				list.get(i).setsBody(bodys);
+			}
 			like = sdDAO.LikeBoardLikeTotal(sVO); //토탈
 			likeCount = sdDAO.LikeBoardLikeCheckTotal(sVO); //해당 게시판 누른 사람수
 			likeAvg = like / likeCount; //평균점

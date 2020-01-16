@@ -91,11 +91,18 @@
 		ORDER BY
 			s_rate desc
 	</select>
+	
 	<select id="mainPhotos" parameterType="HashMap" resultType="siVO">
 		SELECT
 			oriname, savename
 		FROM
 			(select rownum, si_oriname oriname, si_savename savename from scheduleimg where si_sno = #{sno})
 		where rownum = 1
+<!-- 			SELECT DISTINCT -->
+<!-- 				i.si_oriname oriname, i.si_savename savename -->
+<!-- 			FROM -->
+<!-- 				schedule s, scheduleimg i -->
+<!-- 			WHERE -->
+<!-- 				i.si_sno = #{sno} -->
 	</select>
 </mapper> 
